@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<a href="{{ url_for('index') }}">{{ t('← ケース一覧') }}</a>
+<div class="heading"><h1>{{ case_id }}</h1><span class="status {{ info.status }}">{{ info.status }}</span></div>
+<section class="alert"><h2>{{ t('整合性の確認が必要です') }}</h2><ul>{% for warning in info.warnings %}<li>{{ warning }}</li>{% endfor %}</ul><p>{{ t('このケースは承認できません。正常版、保存形式、差分、ラベルと検証結果を確認してください。') }}</p></section>
+<section><h2>{{ t('保存されたラベル') }}</h2><pre>{{ info.labels|tojson(indent=2) }}</pre></section>
+<section><h2>{{ t('保存された検証結果') }}</h2><pre>{{ info.verification|tojson(indent=2) }}</pre></section>
+{% endblock %}

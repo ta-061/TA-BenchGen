@@ -1,0 +1,46 @@
+# 候補生成に使うモデルの登録。
+#
+# use: に書いた登録名のモデルを使います。実行時だけ切り替える場合は
+#   uv run ta-bench generate --use local ...     （または環境変数 TA_BENCH_USE）
+# --model / --api-url を付けると、選んだ登録のモデルID・URLだけを上書きします。
+#
+# APIキーはこのファイルに書きません。api_key_env にはキーを入れた「変数の名前」を書きます。
+# 値は、環境変数、または同じフォルダの api_keys.local.yaml（Git管理外）から読みます。
+use: claude
+
+models:
+  openai:
+    api_url: https://api.openai.com/v1/chat/completions
+    model: ""                    # 使用するモデルIDを記入
+    api_key_env: OPENAI_API_KEY
+
+  claude:
+    api_url: https://api.anthropic.com/v1/chat/completions
+    model: claude-sonnet-5-5
+    api_key_env: ANTHROPIC_API_KEY
+    json_mode: false             # この互換APIは json_object 指定に非対応
+    max_tokens: 32768            # 大きいTAは全文を返すため、16384では途中で切れる
+    read_timeout: 600
+    headers_env:                 # 追加ヘッダ名: 値を入れた変数名（未設定なら送らない）
+      anthropic-workspace-id: ANTHROPIC_WORKSPACE_ID
+
+  # ローカルLLM（Ollama、LM Studio、vLLM など、OpenAI互換のサーバー）。
+  # http:// を使えるのは localhost / 127.0.0.1 / ::1 だけです。
+  local:
+    api_url: http://127.0.0.1:11434/v1/chat/completions
+    model: ""                    # サーバー側のモデル名を記入
+    api_key_env: null            # キー不要
+    read_timeout: 600            # 応答待ちの秒数（ローカルは遅いので長め）
+
+# 各登録で指定できる項目:
+#   api_url          Chat Completions の完全なURL
+#   model            モデルID
+#   api_key_env      APIキーを入れた変数名。null でキーなし
+#   json_mode        true で response_format: json_object を送る（既定 true）
+#   max_tokens       正の整数の出力トークン上限（既定は指定なし、Anthropicは16384）
+#   temperature      0以上の有限な数値（既定は指定なし。上限は接続先の仕様による）
+#   headers_env      追加ヘッダ名 → 値を入れた変数名
+#   connect_timeout  正の有限な数値で接続待ちの秒数（既定 15）
+#   read_timeout     正の有限な数値で応答待ちの秒数（既定 180）
+# 実行開始時に解決した設定は保存され、--resume でも使われます。
+# APIキーと追加ヘッダの値は保存せず、再開時に同じ参照先から読み直します。

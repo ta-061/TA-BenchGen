@@ -1,0 +1,59 @@
+{% macro cells(path, file, side, line, changed) -%}
+  {% if line is none %}
+    <td colspan="2" class="source-gap {{ side }}" aria-label="{{ t('対応する行なし') }}"></td>
+  {% else %}
+    {% set number, text = line %}
+    {% set change = ('removed' if side == 'left' else 'added') if changed else '' %}
+    <td class="source-gutter {{ side }} {{ change }}"><span>{{ number }}</span><span class="line-sign" aria-hidden="true">{{ ('−' if side == 'left' else '+') if changed else '' }}</span></td>
+    <td class="source-code {{ change }}" id="{{ file.id }}-{{ side }}-{{ number }}"><code>{{ text.rstrip('\r\n') }}</code>{% for kind, label in annotations.get((path, side, number), []) %}<span class="line-note {{ 'edit' if kind == 'edit' else 'target' }}">{{ label }} · {{ t({'effect':'影響操作', 'protection':'保護操作', 'edit':'編集'}[kind]) }}</span>{% endfor %}</td>
+  {% endif %}
+{%- endmacro %}
+<section id="source" class="source-review" aria-labelledby="source-title">
+  <h2 id="source-title">{{ t('ソース比較') }}</h2>
+  {% if sources %}
+  <div class="source-tools" hidden>
+    <label for="source-picker">{{ t('比較ファイル') }}</label>
+    <select id="source-picker">
+      {% for path, file in sources.items() %}
+      <option value="{{ file.id }}">{{ path }} · {{ t('変更あり') if file.added or file.removed else t('変更なし') }}</option>
+      {% endfor %}
+    </select>
+    <div class="change-navigation" role="group" aria-label="{{ t('変更箇所の移動') }}">
+      <button type="button" data-previous aria-label="{{ t('前の変更') }}" title="{{ t('前の変更') }}">←</button>
+      <button type="button" data-current data-format="{{ t('変更 {current} / {total}') }}" data-empty="{{ t('変更なし') }}" title="{{ t('選択中の変更を表示') }}" aria-live="polite"></button>
+      <button type="button" data-next aria-label="{{ t('次の変更') }}" title="{{ t('次の変更') }}">→</button>
+    </div>
+  </div>
+  {% for path, file in sources.items() %}
+  <article class="source-file" id="{{ file.id }}">
+    <h3>{{ path }}</h3>
+    <div class="source-viewport" tabindex="0" role="region" aria-label="{{ t('ソース比較') }} · {{ path }}">
+      <table class="source-table" aria-label="{{ path }}">
+        <colgroup><col class="gutter-column"><col></colgroup><colgroup><col class="gutter-column"><col></colgroup>
+        <thead><tr>
+          <th scope="colgroup" colspan="2">{{ t('正常版') }} {% if file.removed %}<span class="line-count removed">{{ t('削除 {n} 行', n=file.removed) }}</span>{% endif %}</th>
+          <th scope="colgroup" colspan="2">{{ t('不備版') }} {% if file.added %}<span class="line-count added">{{ t('追加 {n} 行', n=file.added) }}</span>{% endif %}</th>
+        </tr></thead>
+        {% for block in file.blocks %}
+        <tbody{% if block.changed %} data-change{% endif %}>
+          {% for left, right in block.rows %}
+          <tr>{{ cells(path, file, 'left', left, block.changed) }}{{ cells(path, file, 'right', right, block.changed) }}</tr>
+          {% endfor %}
+        </tbody>
+        {% else %}
+        <tbody><tr><td colspan="4" class="empty-file">{{ t('空のファイルです。') }}</td></tr></tbody>
+        {% endfor %}
+      </table>
+    </div>
+  </article>
+  {% endfor %}
+  {% else %}
+  <p class="alert">{{ t('ソースまたは差分を読み込めません。整合性の警告を確認してください。') }}</p>
+  {% endif %}
+  {% if diff %}
+  <details id="diff"><summary>{{ t('統一差分') }}</summary>
+    <pre class="diff">{% for line in diff.splitlines() %}<span class="{% if line.startswith('+') %}added{% elif line.startswith('-') %}removed{% elif line.startswith('@@') %}hunk{% endif %}">{{ line }}</span>
+{% endfor %}</pre>
+  </details>
+  {% endif %}
+</section>

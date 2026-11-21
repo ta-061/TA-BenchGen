@@ -1,0 +1,7 @@
+<!doctype html>
+<html lang="{{ lang }}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}{{ t('TA ベンチマークレビュー') }}{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='review.css') }}">
+<script defer src="{{ url_for('static', filename='review.js') }}"></script></head>
+<body><header><a href="{{ url_for('index') }}">TA BENCH <span>{{ t('人によるレビュー') }}</span></a><span class="local"><a class="language" href="{{ language_url }}">{{ '日本語' if lang == 'en' else 'English' }}</a> {{ audience }}</span></header>
+<main>{% block content %}{% endblock %}</main><footer>{{ t('機械検証は、保存された入力で挙動が変わることを確認します。分類と位置の妥当性は人が判断します。') }}</footer></body></html>

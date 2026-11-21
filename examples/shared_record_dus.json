@@ -1,0 +1,223 @@
+{
+  "files": {
+    "ta/entry.c": "#include <tee_internal_api.h>\n#include <tee_internal_api_extensions.h>\n#include <shared_record_ta.h>\n\nstruct record {\n    uint32_t value;\n};\n\nstruct update_request {\n    uint32_t value;\n};\n\nstatic TEE_Result update_record(struct record *state, uint32_t types, TEE_Param params[4])\n{\n    struct update_request local;\n    const struct update_request *request = params[0].memref.buffer;\n    if (types != TEE_PARAM_TYPES(TEE_PARAM_TYPE_MEMREF_INPUT, TEE_PARAM_TYPE_VALUE_OUTPUT,\n                                TEE_PARAM_TYPE_NONE, TEE_PARAM_TYPE_NONE))\n        return TEE_ERROR_BAD_PARAMETERS;\n    if (params[0].memref.size != sizeof(local))\n        return TEE_ERROR_BAD_PARAMETERS;\n    TEE_MemMove(&local, params[0].memref.buffer, sizeof(local));\n    if (request->value > MAX_RECORD_VALUE)\n        return TEE_ERROR_BAD_PARAMETERS;\n    state->value = request->value;\n    params[1].value.a = state->value;\n    params[1].value.b = 0;\n    return TEE_SUCCESS;\n}\n\nTEE_Result TA_CreateEntryPoint(void)\n{\n    return TEE_SUCCESS;\n}\n\nvoid TA_DestroyEntryPoint(void)\n{\n}\n\nTEE_Result TA_OpenSessionEntryPoint(uint32_t types, TEE_Param params[4], void **session)\n{\n    (void)params;\n    if (types != TEE_PARAM_TYPES(TEE_PARAM_TYPE_NONE, TEE_PARAM_TYPE_NONE,\n                                TEE_PARAM_TYPE_NONE, TEE_PARAM_TYPE_NONE))\n        return TEE_ERROR_BAD_PARAMETERS;\n    *session = TEE_Malloc(sizeof(struct record), TEE_MALLOC_FILL_ZERO);\n    return *session ? TEE_SUCCESS : TEE_ERROR_OUT_OF_MEMORY;\n}\n\nvoid TA_CloseSessionEntryPoint(void *session)\n{\n    TEE_Free(session);\n}\n\nTEE_Result TA_InvokeCommandEntryPoint(void *session, uint32_t command,\n                                     uint32_t types, TEE_Param params[4])\n{\n    struct record *state = session;\n    if (command == CMD_UPDATE)\n        return update_record(state, types, params);\n    if (command != CMD_READ)\n        return TEE_ERROR_NOT_SUPPORTED;\n    if (types != TEE_PARAM_TYPES(TEE_PARAM_TYPE_VALUE_OUTPUT, TEE_PARAM_TYPE_NONE,\n                                TEE_PARAM_TYPE_NONE, TEE_PARAM_TYPE_NONE))\n        return TEE_ERROR_BAD_PARAMETERS;\n    params[0].value.a = state->value;\n    params[0].value.b = 0;\n    return TEE_SUCCESS;\n}\n"
+  },
+  "defects": [
+    {
+      "id": "D1",
+      "class": "DUS",
+      "edits": [
+        "E1"
+      ],
+      "detector_targets": [
+        {
+          "path": "ta/entry.c",
+          "function": "update_record",
+          "lines": [
+            25,
+            25
+          ],
+          "role": "effect"
+        },
+        {
+          "path": "ta/entry.c",
+          "function": "update_record",
+          "lines": [
+            22,
+            22
+          ],
+          "role": "protection"
+        }
+      ],
+      "witness_test_ids": [
+        "changed_input"
+      ],
+      "reason": "検証済みのTA内コピーではなく、検証後に通常世界から変更できる共有入力を直接使用する。"
+    }
+  ],
+  "tests": [
+    {
+      "id": "ordinary",
+      "purpose": "normal",
+      "targets": [],
+      "steps": [
+        {
+          "op": "open",
+          "session": "s"
+        },
+        {
+          "op": "invoke",
+          "session": "s",
+          "command_id": 0,
+          "params": [
+            {
+              "type": "shared_memref_input",
+              "data": "02000000"
+            },
+            {
+              "type": "value_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "invoke",
+          "session": "s",
+          "command_id": 1,
+          "params": [
+            {
+              "type": "value_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "close",
+          "session": "s"
+        }
+      ]
+    },
+    {
+      "id": "invalid_value",
+      "purpose": "normal",
+      "targets": [],
+      "steps": [
+        {
+          "op": "open",
+          "session": "s"
+        },
+        {
+          "op": "invoke",
+          "session": "s",
+          "command_id": 0,
+          "params": [
+            {
+              "type": "shared_memref_input",
+              "data": "09000000"
+            },
+            {
+              "type": "value_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "invoke",
+          "session": "s",
+          "command_id": 1,
+          "params": [
+            {
+              "type": "value_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "close",
+          "session": "s"
+        }
+      ]
+    },
+    {
+      "id": "changed_input",
+      "purpose": "witness",
+      "targets": [
+        "D1"
+      ],
+      "steps": [
+        {
+          "op": "open",
+          "session": "s"
+        },
+        {
+          "op": "invoke",
+          "session": "s",
+          "command_id": 0,
+          "params": [
+            {
+              "type": "shared_memref_input",
+              "data": "02000000"
+            },
+            {
+              "type": "value_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "events": [
+            {
+              "trigger": {
+                "kind": "checkpoint",
+                "path": "ta/entry.c",
+                "function": "update_record",
+                "before": "state->value = request->value;",
+                "occurrence": 1
+              },
+              "action": {
+                "kind": "write_memory",
+                "param": 0,
+                "offset": 0,
+                "expect": "02000000",
+                "data": "09000000"
+              }
+            }
+          ]
+        },
+        {
+          "op": "invoke",
+          "session": "s",
+          "command_id": 1,
+          "params": [
+            {
+              "type": "value_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "close",
+          "session": "s"
+        }
+      ],
+      "witness_step": 2
+    }
+  ]
+}

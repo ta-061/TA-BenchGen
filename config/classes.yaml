@@ -1,0 +1,30 @@
+# 定義の出典:
+#   ORDER と四分類の判断対象: 吉永達哉「実行順序の設計不備 ORDER の定義と OP-TEE TA の証拠付きベンチマーク」
+#     Working draft, Nov. 2026, 第3.3–3.4節・表2（3頁）、表4（4頁）、第6.1節（6–7頁）。
+#   UDO・IVW・DUS: Ma et al., "DITING: A Static Analyzer for Identifying Bad Partitioning Issues in
+#     TEE Applications", IEEE TSE, 2026, 第II-C節、Rule 1–3、Definition 4。
+# supported は入力列と実行時イベントによる検証方式への対応。任意の TA での生成成功を意味しない。
+# description は AI に送る英語の定義。短く「何を、必要な保護なしに、どうするか」を書く。
+# 直前のコメントはその日本語訳で、送信しない。
+classes:
+  IVW:
+    # 外部由来の長さや添字を、十分な範囲検査なしに配列アクセスやメモリコピーへ使い、範囲外アクセスに至る設計不備。
+    description: A length or index from outside the TA is used for an array access or memory copy without a sufficient range check, causing an out-of-range access.
+    supported: true
+    # 発火テストは、正常版が発火ステップで要求を拒否（エラーを返却）する形に限る。
+    # 正常版が長さを切り詰めて成功を返す TA は、この条件では検証できない。
+    witness_conditions: [normal_error_at_witness]
+  UDO:
+    # TA 内部の保護すべき値を、暗号化せずに外部へ出力する設計不備。
+    description: A value that the TA must protect is written to an output without encryption.
+    supported: true
+  DUS:
+    # 外部から書き換えられる共有メモリを、私有領域へコピーせずに直接使う設計不備。
+    description: Shared memory that the outside can modify is used directly instead of being copied to private memory first.
+    supported: true
+    required_features: [shared_memory_events_v1]
+    witness_conditions: [shared_memory_changed]
+  ORDER:
+    # 試行記録や認可など、状態に依存する必要な保護処理が成功する前に、結果の公開や保護対象の変更へ進む設計不備。入力値の検査は保護処理に含めない。
+    description: A result is exposed or protected data is changed before a required state-dependent protection step, such as attempt recording or authorization, has succeeded. Input validation is not such a protection step.
+    supported: true

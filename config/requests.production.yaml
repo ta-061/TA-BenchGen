@@ -1,0 +1,94 @@
+# 同じ正常TA・不備内訳では、まず1件の機械合格候補を収集する。
+# 追加の件数は差分のレビュー後に決める。各要求は最大3試行。
+# 単体15件・複合3件、最大54試行。既存runの再開には反映されない。
+# avbにはDockerfile.rpmbの実行イメージが必要。
+requests:
+  - ta: benchmark/normal/shared_record
+    defects: {DUS: 1}
+    count: 1
+    max_attempts: 3
+
+  - ta: benchmark/normal/secure_storage
+    defects: {DUS: 1}
+    count: 1
+    max_attempts: 3
+
+  - ta: benchmark/normal/gatekeeper
+    defects: {ORDER: 1}
+    count: 1
+    max_attempts: 3
+
+  - ta: benchmark/normal/avb
+    defects: {ORDER: 1}
+    count: 1
+    max_attempts: 3
+
+  - ta: benchmark/normal/sign_verify
+    defects: {IVW: 1}
+    count: 1
+    max_attempts: 3
+
+  - ta: benchmark/normal/ecdsa
+    defects: {IVW: 1}
+    count: 1
+    max_attempts: 3
+
+  - ta: benchmark/normal/sha
+    defects: {IVW: 1}
+    count: 1
+    max_attempts: 3
+
+  - ta: benchmark/normal/gatekeeper
+    defects: {IVW: 1}
+    count: 1
+    max_attempts: 3
+
+  - ta: benchmark/normal/hotp
+    defects: {IVW: 1}
+    count: 1
+    max_attempts: 3
+
+  - ta: benchmark/normal/secure_storage
+    defects: {IVW: 1}
+    count: 1
+    max_attempts: 3
+
+  - ta: benchmark/normal/aes
+    defects: {UDO: 1}
+    count: 1
+    max_attempts: 3
+
+  - ta: benchmark/normal/sha
+    defects: {UDO: 1}
+    count: 1
+    max_attempts: 3
+
+  - ta: benchmark/normal/ecdsa
+    defects: {UDO: 1}
+    count: 1
+    max_attempts: 3
+
+  - ta: benchmark/normal/sign_verify
+    defects: {UDO: 1}
+    count: 1
+    max_attempts: 3
+
+  - ta: benchmark/normal/hotp
+    defects: {UDO: 1}
+    count: 1
+    max_attempts: 3
+
+  - ta: benchmark/normal/gatekeeper
+    defects: {IVW: 1, ORDER: 1}
+    count: 1
+    max_attempts: 3
+
+  - ta: benchmark/normal/sign_verify
+    defects: {IVW: 1, UDO: 1}
+    count: 1
+    max_attempts: 3
+
+  - ta: benchmark/normal/sha
+    defects: {IVW: 1, UDO: 1}
+    count: 1
+    max_attempts: 3

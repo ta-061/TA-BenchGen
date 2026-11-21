@@ -1,0 +1,136 @@
+{
+  "files": {
+    "ta/entry.c": "#include <tee_internal_api.h>\n#include <tee_internal_api_extensions.h>\n#include <secure_kv_ta.h>\n\nstruct store {\n    uint32_t values[SLOT_COUNT];\n};\n\nTEE_Result TA_CreateEntryPoint(void)\n{\n    return TEE_SUCCESS;\n}\n\nvoid TA_DestroyEntryPoint(void)\n{\n}\n\nTEE_Result TA_OpenSessionEntryPoint(uint32_t types, TEE_Param params[4], void **session)\n{\n    (void)params;\n    if (types != TEE_PARAM_TYPES(TEE_PARAM_TYPE_NONE, TEE_PARAM_TYPE_NONE,\n                                TEE_PARAM_TYPE_NONE, TEE_PARAM_TYPE_NONE))\n        return TEE_ERROR_BAD_PARAMETERS;\n    *session = TEE_Malloc(sizeof(struct store), TEE_MALLOC_FILL_ZERO);\n    return *session ? TEE_SUCCESS : TEE_ERROR_OUT_OF_MEMORY;\n}\n\nvoid TA_CloseSessionEntryPoint(void *session)\n{\n    TEE_Free(session);\n}\n\nTEE_Result TA_InvokeCommandEntryPoint(void *session, uint32_t command,\n                                     uint32_t types, TEE_Param params[4])\n{\n    struct store *state = session;\n    if (types != TEE_PARAM_TYPES(TEE_PARAM_TYPE_VALUE_INOUT, TEE_PARAM_TYPE_NONE,\n                                TEE_PARAM_TYPE_NONE, TEE_PARAM_TYPE_NONE))\n        return TEE_ERROR_BAD_PARAMETERS;\n    uint32_t index = params[0].value.a;\n    if (index > SLOT_COUNT)\n        return TEE_ERROR_BAD_PARAMETERS;\n    switch (command) {\n    case CMD_PUT:\n        state->values[index] = params[0].value.b;\n        return TEE_SUCCESS;\n    case CMD_GET:\n        params[0].value.b = state->values[index];\n        return TEE_SUCCESS;\n    default:\n        return TEE_ERROR_NOT_SUPPORTED;\n    }\n}\n"
+  },
+  "defects": [
+    {
+      "id": "D1",
+      "class": "IVW",
+      "edits": [
+        "E1"
+      ],
+      "detector_targets": [
+        {
+          "path": "ta/entry.c",
+          "function": "TA_InvokeCommandEntryPoint",
+          "lines": [
+            45,
+            45
+          ],
+          "role": "effect"
+        },
+        {
+          "path": "ta/entry.c",
+          "function": "TA_InvokeCommandEntryPoint",
+          "lines": [
+            41,
+            41
+          ],
+          "role": "protection"
+        }
+      ],
+      "witness_test_ids": [
+        "T02"
+      ],
+      "reason": "境界値8が検査を通過し、配列の末尾を越えた要素への書込みが許される。"
+    }
+  ],
+  "tests": [
+    {
+      "id": "T01",
+      "purpose": "normal",
+      "targets": [],
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "op": "invoke",
+          "session": "s1",
+          "command_id": 0,
+          "params": [
+            {
+              "type": "value_inout",
+              "a": 2,
+              "b": 17
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "invoke",
+          "session": "s1",
+          "command_id": 1,
+          "params": [
+            {
+              "type": "value_inout",
+              "a": 2,
+              "b": 0
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ]
+    },
+    {
+      "id": "T02",
+      "purpose": "witness",
+      "targets": [
+        "D1"
+      ],
+      "witness_step": 2,
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "op": "invoke",
+          "session": "s1",
+          "command_id": 0,
+          "params": [
+            {
+              "type": "value_inout",
+              "a": 8,
+              "b": 17
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ]
+    }
+  ]
+}

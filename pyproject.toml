@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ta-benchmark-generator"
+version = "0.1.0"
+description = "OP-TEE TA differential benchmark generator and human review tool"
+requires-python = ">=3.11"
+dependencies = ["PyYAML>=6.0,<7", "Flask>=3.0,<4", "requests>=2.32,<3"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "ruff>=0.9"]
+
+[project.scripts]
+ta-bench = "ta_bench.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ta_bench"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["qemu: real Docker/OP-TEE validation; requires TA_BENCH_TEST_IMAGE"]
+
+[tool.ruff]
+line-length = 110

@@ -1,0 +1,8 @@
+# 最初の生成確認用。目標はIVWを1つ含むケースを1件。
+# secure_kvには保護付きの出力処理がないため、UDOは指定しません。
+# 複数要求を試す場合は、分類に必要な処理を持つ正常TAを選んで項目を追加します。
+requests:
+  - ta: benchmark/normal/secure_kv
+    defects: {IVW: 1}
+    count: 1
+    max_attempts: 3

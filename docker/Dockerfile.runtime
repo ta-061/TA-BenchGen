@@ -1,0 +1,13 @@
+ARG BASE_RUNTIME=ta-bench-runtime:4.4.0
+FROM ${BASE_RUNTIME}
+USER root
+COPY src/ta_bench/invoke /opt/ta-bench/invoke
+COPY src/ta_bench /opt/ta-bench/python/ta_bench
+COPY docker/entrypoint.py /opt/ta-bench/entrypoint.py
+COPY docker/finish_image.py /opt/ta-bench/finish_image.py
+RUN python3 /opt/ta-bench/finish_image.py
+LABEL org.ta-bench.runner_version="4.3.1" \
+      org.ta-bench.features="shared_memory_events_v1 output_reference_v1"
+USER 1000:1000
+WORKDIR /tmp
+ENTRYPOINT ["python3", "/opt/ta-bench/entrypoint.py"]

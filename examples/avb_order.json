@@ -1,0 +1,398 @@
+{
+  "changes": [
+    {
+      "path": "ta/entry.c",
+      "old": "\tif (widx < idx) {\n\t\tres = TEE_ERROR_SECURITY;\n\t\tgoto out;\n\t}\n\n\tres = TEE_SeekObjectData(h, slot_offset, TEE_DATA_SEEK_SET);\n\tif (res)\n\t\tgoto out;\n\n\tres = TEE_WriteObjectData(h, &widx, sizeof(widx));",
+      "new": "\tres = TEE_SeekObjectData(h, slot_offset, TEE_DATA_SEEK_SET);\n\tif (res)\n\t\tgoto out;\n\n\tres = TEE_WriteObjectData(h, &widx, sizeof(widx));\n\n\tif (widx < idx) {\n\t\tres = TEE_ERROR_SECURITY;\n\t\tgoto out;\n\t}",
+      "defect": "D1"
+    }
+  ],
+  "defects": [
+    {
+      "id": "D1",
+      "class": "ORDER",
+      "reason": "The rollback index is written before the check against the previously stored index. A rejected decrease still changes persistent state, visible to a subsequent read.",
+      "detector_targets": [
+        {
+          "path": "ta/entry.c",
+          "function": "write_rb_idx",
+          "lines": [
+            166,
+            166
+          ],
+          "role": "effect"
+        },
+        {
+          "path": "ta/entry.c",
+          "function": "write_rb_idx",
+          "lines": [
+            168,
+            168
+          ],
+          "role": "protection"
+        }
+      ],
+      "witness_test_ids": [
+        "rejected_decrease"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "monotonic_updates",
+      "purpose": "normal",
+      "targets": [],
+      "steps": [
+        {
+          "op": "open",
+          "session": "s"
+        },
+        {
+          "op": "invoke",
+          "session": "s",
+          "command_id": 0,
+          "params": [
+            {
+              "type": "value_input",
+              "a": 0,
+              "b": 0
+            },
+            {
+              "type": "value_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "invoke",
+          "session": "s",
+          "command_id": 1,
+          "params": [
+            {
+              "type": "value_input",
+              "a": 0,
+              "b": 0
+            },
+            {
+              "type": "value_input",
+              "a": 0,
+              "b": 5
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "invoke",
+          "session": "s",
+          "command_id": 0,
+          "params": [
+            {
+              "type": "value_input",
+              "a": 0,
+              "b": 0
+            },
+            {
+              "type": "value_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "invoke",
+          "session": "s",
+          "command_id": 1,
+          "params": [
+            {
+              "type": "value_input",
+              "a": 0,
+              "b": 0
+            },
+            {
+              "type": "value_input",
+              "a": 0,
+              "b": 5
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "invoke",
+          "session": "s",
+          "command_id": 0,
+          "params": [
+            {
+              "type": "value_input",
+              "a": 0,
+              "b": 0
+            },
+            {
+              "type": "value_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "invoke",
+          "session": "s",
+          "command_id": 1,
+          "params": [
+            {
+              "type": "value_input",
+              "a": 0,
+              "b": 0
+            },
+            {
+              "type": "value_input",
+              "a": 1,
+              "b": 7
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "invoke",
+          "session": "s",
+          "command_id": 0,
+          "params": [
+            {
+              "type": "value_input",
+              "a": 0,
+              "b": 0
+            },
+            {
+              "type": "value_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "invoke",
+          "session": "s",
+          "command_id": 1,
+          "params": [
+            {
+              "type": "value_input",
+              "a": 256,
+              "b": 0
+            },
+            {
+              "type": "value_input",
+              "a": 0,
+              "b": 9
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "close",
+          "session": "s"
+        }
+      ]
+    },
+    {
+      "id": "same_write_on_fresh_state",
+      "purpose": "normal",
+      "targets": [],
+      "steps": [
+        {
+          "op": "open",
+          "session": "s"
+        },
+        {
+          "op": "invoke",
+          "session": "s",
+          "command_id": 1,
+          "params": [
+            {
+              "type": "value_input",
+              "a": 0,
+              "b": 0
+            },
+            {
+              "type": "value_input",
+              "a": 0,
+              "b": 3
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "invoke",
+          "session": "s",
+          "command_id": 0,
+          "params": [
+            {
+              "type": "value_input",
+              "a": 0,
+              "b": 0
+            },
+            {
+              "type": "value_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "close",
+          "session": "s"
+        }
+      ]
+    },
+    {
+      "id": "rejected_decrease",
+      "purpose": "witness",
+      "targets": [
+        "D1"
+      ],
+      "witness_step": 5,
+      "steps": [
+        {
+          "op": "open",
+          "session": "s"
+        },
+        {
+          "op": "invoke",
+          "session": "s",
+          "command_id": 1,
+          "params": [
+            {
+              "type": "value_input",
+              "a": 0,
+              "b": 0
+            },
+            {
+              "type": "value_input",
+              "a": 0,
+              "b": 5
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "invoke",
+          "session": "s",
+          "command_id": 0,
+          "params": [
+            {
+              "type": "value_input",
+              "a": 0,
+              "b": 0
+            },
+            {
+              "type": "value_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "invoke",
+          "session": "s",
+          "command_id": 1,
+          "params": [
+            {
+              "type": "value_input",
+              "a": 0,
+              "b": 0
+            },
+            {
+              "type": "value_input",
+              "a": 0,
+              "b": 3
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "invoke",
+          "session": "s",
+          "command_id": 0,
+          "params": [
+            {
+              "type": "value_input",
+              "a": 0,
+              "b": 0
+            },
+            {
+              "type": "value_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ]
+        },
+        {
+          "op": "close",
+          "session": "s"
+        }
+      ]
+    }
+  ]
+}

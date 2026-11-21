@@ -1,0 +1,10 @@
+.git
+.venv
+work
+benchmark/defective
+__pycache__
+.pytest_cache
+*.egg-info
+config/*.local.yaml
+.env
+.env.*

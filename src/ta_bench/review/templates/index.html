@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="heading"><div><p class="eyebrow">{{ t('候補の確認') }}</p><h1>{{ t('レビュー対象') }}</h1></div><span>{{ t('{cases} ケース / 承認に {n} 名必要', cases=cases|length, n=required_reviewers) }}</span></div>
+{% if cases %}<div class="table-wrap"><table><thead><tr><th>{{ t('ケース') }}</th><th>{{ t('正常 TA') }}</th><th>{{ t('分類 × 件数') }}</th><th>{{ t('機械判定') }}</th><th>{{ t('レビュー') }}</th><th>{{ t('整合性') }}</th></tr></thead><tbody>
+{% for case in cases %}<tr><td><a href="{{ url_for('detail', case_id=case.id) }}">{{ case.id }}</a></td><td>{{ t(case.normal) }}</td><td>{% for name, count in case.classes.items() %}<span class="tag">{{ t(name) }} × {{ count }}</span>{% endfor %}</td><td>{{ t(case.machine) }}</td><td><span class="status {{ case.info.status }}">{{ status_labels[case.info.status] }}</span>{% if case.info.defect_statuses %}<br><small>{{ t('承認 {n}/{total} 件', n=case.info.defect_statuses.values()|select('equalto', 'approved')|list|length, total=case.info.defect_statuses|length) }}</small>{% endif %}</td><td>{% if case.info.warnings %}<ul class="warnings">{% for warning in case.info.warnings %}<li>{{ warning }}</li>{% endfor %}</ul>{% else %}<span class="muted">{{ t('確認済み') }}</span>{% endif %}</td></tr>{% endfor %}
+</tbody></table></div>{% else %}<section class="empty"><h2>{{ t('レビュー対象はまだありません') }}</h2><p>{{ t('機械検証を通過したケースが benchmark/defective/ に保存されると、ここに表示されます。') }}</p></section>{% endif %}
+{% endblock %}

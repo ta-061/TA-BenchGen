@@ -1,0 +1,16 @@
+# Build after Dockerfile.runtime. The upstream rootfs already has RPMB_EMU=y.
+# Test keys and volatile emulated RPMB are for the disposable QEMU benchmark.
+ARG BASE_RUNTIME=ta-bench-runtime:4.4.0-events
+FROM ${BASE_RUNTIME}
+USER root
+RUN make -C /opt/optee/build -j4 arm-tf RUST_ENABLE=n \
+    CFG_RPMB_FS=y CFG_RPMB_WRITE_KEY=y CFG_RPMB_TESTKEY=y CFG_REE_FS_INTEGRITY_RPMB=n
+# Check the output directory used by the boot artifacts, not another build tree.
+RUN grep -qx "CFG_RPMB_FS=y" /opt/optee/optee_os/out/arm/conf.mk \
+    && grep -qx "BR2_PACKAGE_OPTEE_CLIENT_EXT_RPMB_EMU=y" /opt/optee/out-br/.config \
+    && python3 /opt/ta-bench/finish_image.py
+LABEL org.ta-bench.features="shared_memory_events_v1 output_reference_v1 rpmb_storage_v1" \
+      org.ta-bench.storage="rpmb-emulated-reset-per-execution"
+USER 1000:1000
+WORKDIR /tmp
+ENTRYPOINT ["python3", "/opt/ta-bench/entrypoint.py"]

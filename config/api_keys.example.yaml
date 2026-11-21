@@ -1,0 +1,5 @@
+# APIキーをファイルに置く場合の雛形。
+# このファイルを api_keys.local.yaml という名前で複製し、値を書き換えてください。
+# api_keys.local.yaml はGit管理外です。同名の環境変数があれば、そちらを優先します。
+OPENAI_API_KEY: ""
+ANTHROPIC_API_KEY: ""

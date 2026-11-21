@@ -1,0 +1,7 @@
+- To overwrite a buffer during an invoke, give it type shared_memref_input|shared_memref_output|
+  shared_memref_inout and add to the invoke "events": [{"trigger": {"kind": "checkpoint",
+  "path": "ta/entry.c", "function": "f", "before": "x = y;", "occurrence": 1}, "action":
+  {"kind": "write_memory", "param": 0, "offset": 0, "expect": "02000000", "data": "09000000"}}].
+  before is an existing one-line assignment or function call ending in ";" (not an if, return or
+  declaration), unique in the function and not edited. The TA pauses before it; the buffer must
+  hold expect there, and data is then written.

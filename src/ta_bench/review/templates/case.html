@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% macro location(path, side, lines, show_path=false) -%}
+  {% if lines %}
+    {% set label = ('%s · ' % path if show_path else '') ~ 'L' ~ lines[0] %}
+    {% if lines[1] != lines[0] %}{% set label = label ~ '–' ~ lines[1] %}{% endif %}
+    {% if path in sources %}
+      <a class="source-location" href="#{{ sources[path].id }}-{{ side }}-{{ lines[0] }}">{{ label }}</a>
+    {% else %}
+      {{ label }}
+    {% endif %}
+  {% else %}∅{% endif %}
+{%- endmacro %}
+{% macro role_name(role) -%}
+  {{ t('影響操作') if role == 'effect' else t('保護操作') }}
+{%- endmacro %}
+{% block title %}{{ case_id }} · {{ t('TA レビュー') }}{% endblock %}
+{% block content %}
+<a class="back" href="{{ url_for('index') }}">{{ t('← ケース一覧') }}</a>
+<div class="heading"><div><p class="eyebrow">{{ labels.get('normal', {}).get('path') or t('正常 TA 不明') }}</p><h1>{{ case_id }}</h1></div><span class="status {{ info.status }}">{{ status_labels[info.status] }}</span></div>
+{% if info.warnings %}<section class="alert"><h2>{{ t('整合性の警告') }}</h2><ul>{% for warning in info.warnings %}<li>{{ warning }}</li>{% endfor %}</ul><p>{{ t('警告を解消してから承認してください。') }}</p></section>{% endif %}
+{% if info.status == 'stale' %}<section class="alert"><p>{{ t('レビュー対象が以前の承認時から変わっています。以前のチェックは新しい承認には使用しません。') }}</p></section>{% endif %}
+<nav class="section-nav"><a href="#source">{{ t('ソース比較') }}</a><a href="#review">{{ t('確認項目') }}</a><a href="#observations">{{ t('入力と観測') }}</a><a href="#history">{{ t('履歴') }}</a></nav>
+{% include 'source_diff.html' %}
+<section id="review"><h2>{{ t('分類・位置・挙動の確認') }}</h2><p class="muted">{{ t('承認には {n} 名の確認が必要です。評価者名は記録用であり、本人認証ではありません。', n=required_reviewers) }}</p>
+<form method="post" action="{{ url_for('save_review', case_id=case_id) }}" id="review-form" data-status-labels='{{ status_labels|tojson }}' novalidate>
+<input type="hidden" name="csrf_token" value="{{ csrf_token }}"><input type="hidden" name="expected_against" value="{{ expected_against }}">
+<label class="reviewer">{{ t('評価者名') }} <input type="text" name="reviewer" id="reviewer" required maxlength="200" value="{{ reviewer }}" autocomplete="name" placeholder="{{ t('評価者名を入力') }}"></label>
+{% for defect in labels.defects %}
+{% set did = defect.id %}
+{% set decision_url = url_for('save_review', case_id=case_id, defect_id=did) %}
+{% set state = info.defect_statuses[did] %}
+{% set edited = info.label_history|selectattr('defect_id', 'equalto', did)|list %}
+{% set effect = defect.detector_targets|selectattr('role', 'equalto', 'effect')|first|default({}) %}
+{% set protection = defect.detector_targets|selectattr('role', 'equalto', 'protection')|first|default({}) %}
+<article id="defect-{{ did }}" class="defect" data-defect="{{ did }}" data-review-url="{{ decision_url }}">
+  <input type="hidden" name="{{ did }}.expected" value="{{ info.defect_versions[did] }}">
+  <div class="heading"><h3>{{ did }} <span class="tag">{{ defect.class }}</span> <span class="status {{ state }}" data-defect-status>{{ status_labels[state] }}</span></h3><span>{{ t('発火入力') }} · {{ defect.witness_test_ids|join(', ') }}</span></div>
+  <p class="definition"><strong>{{ t('分類の定義') }}</strong><br>{{ definition(defect.class) or t('定義なし') }}</p>
+  <p><strong>{{ t('変更理由') }}</strong> {{ defect.reason }}</p>
+  <div class="two-columns"><div><h4>{{ t('検出器の報告位置') }}</h4>
+    {% if edited %}<a href="#label-history-{{ did }}">{{ t('人が修正した位置') }}</a> · {{ edited[-1].reviewer }}{% else %}<span class="muted">{{ t('生成時の位置を確認済み') if state == 'approved' else t('生成時の位置') }}</span>{% endif %}
+    <ul>{% for target in defect.detector_targets %}<li>{{ role_name(target.role) }} · {{ location(target.path, 'right', target.lines, true) }}<br><code>{{ target.function }}</code></li>{% endfor %}</ul>
+    {% if not protection %}<p>{{ t('保護操作なし') }}</p>{% endif %}
+  </div><div><h4>{{ t('帰属する編集単位') }}</h4><ul>{% for edit in defect.edits %}<li>{{ edit.edit_id }} · {{ edit.kind }} · {{ edit.path }}<br>{{ t('正常版') }} {{ location(edit.path, 'left', edit.normal_lines) }} → {{ t('不備版') }} {{ location(edit.path, 'right', edit.defective_lines) }}</li>{% endfor %}</ul></div></div>
+  <details class="label-editor"><summary>{{ t('正解位置を編集') }}</summary>
+    <p class="muted">{{ t('「確認を保存・保留」または「この不備を承認」を押しても、入力した位置を一緒に保存します。') }}</p>
+    {% for role, target in [('effect', effect), ('protection', protection)] %}
+    {% set prefix = did ~ '.' ~ role %}
+    <fieldset class="target-fields" {% if not reviewable %}disabled{% endif %}>
+      <legend>{{ t('影響操作') if role == 'effect' else t('保護操作（ない場合は全欄を空にする）') }}</legend>
+      <label>{{ t('不備版のファイル') }}<select name="{{ prefix }}.path"><option value=""></option>{% for path in sources if path.startswith('ta/') %}<option{% if path == target.path %} selected{% endif %}>{{ path }}</option>{% endfor %}</select></label>
+      <label>{{ t('関数名') }}<input name="{{ prefix }}.function" type="text" value="{{ target.function }}"></label>
+      <label>{{ t('開始行') }}<input name="{{ prefix }}.start" type="number" min="1" value="{{ target.lines[0] if target else '' }}"></label>
+      <label>{{ t('終了行') }}<input name="{{ prefix }}.end" type="number" min="1" value="{{ target.lines[1] if target and target.lines[0] != target.lines[1] else '' }}" placeholder="{{ t('開始行と同じ') }}"></label>
+    </fieldset>
+    {% endfor %}
+    <button name="action" value="edit" formaction="{{ decision_url }}" {% if not reviewable %}disabled{% endif %}>{{ t('正解位置を保存') }}</button>
+  </details>
+  <div class="checklist">{% for key, label in [('class','分類が定義に当てはまる'),('location','報告すべき位置が妥当である'),('behavior','観測差を不備の結果として説明できる')] %}<label><input type="checkbox" name="{{ did }}.{{ key }}" {% if own_checks.get(did, {}).get(key) %}checked{% endif %} {% if not reviewable %}disabled{% endif %}>{{ t(label) }}</label>{% endfor %}</div>
+  <label class="reason">{{ t('コメント・却下理由') }}<textarea name="{{ did }}.reason" rows="2" maxlength="10000" placeholder="{{ t('却下時は理由が必須です。') }}"></textarea></label>
+  <div class="actions">
+    <button name="action" value="save" formaction="{{ decision_url }}" {% if not reviewable %}disabled{% endif %}>{{ t('確認を保存・保留') }}</button>
+    <button class="primary" name="action" value="approve" formaction="{{ decision_url }}" {% if not reviewable %}disabled{% endif %}>{{ t('この不備を承認') }}</button>
+    <button class="danger" name="action" value="reject" formaction="{{ decision_url }}" {% if not reviewable %}disabled{% endif %}>{{ t('この不備を却下') }}</button>
+    <span class="muted save-hint" aria-live="polite" data-need-reviewer="{{ t('評価者名を入力してから「確認を保存」を押してください。') }}" data-saving="{{ t('保存中…') }}" data-saved="{{ t('確認を保存しました。') }}" data-failed="{{ t('保存できませんでした。再読み込みして整合性を確認してください。') }}">{{ t('チェック変更時に保存します。') }}</span>
+  </div>
+</article>{% endfor %}
+</form></section>
+<section id="observations"><h2>{{ t('入力と観測') }}</h2>{% set semantic = (info.get('verification') or {}).get('semantic', {}) %}
+<p>{{ t('機械判定') }}: <strong>{{ semantic.get('machine_validation', {}).get('status') or t('不明') }}</strong></p>
+<p class="muted">{{ t('各入力列は正常版・不備版でそれぞれ2回測定しています。同じ版の2回で値が一致しなかった項目（時刻や乱数を含む出力など）は、正常版・不備版のどちらで起きても比較から除外します。出力バッファは中身が1バイトでも違えば中身全体を除外し、表では ** で示します（長さは比較します）。それ以外の項目はすべて比較しています。色の付いた行は、比較した項目に正常版と不備版の差があるステップです。') }}</p>
+{% for test in semantic.get('tests', []) %}{% set rows = comparison_rows(test) %}<details class="test" open><summary>{{ test.id }} · {{ test.purpose }} · {% if test.equal %}{{ t('一致') }}{% else %}{{ t('差あり（ステップ {steps}）', steps=test.get('different_steps', [])|join(', ')) }}{% endif %}{% if test.get('witness_step') %} · {{ t('指定ステップ {n} 以降', n=test.witness_step) }}{% endif %}{% if rows|selectattr('variable')|list %} · {{ t('比較除外あり') }}{% endif %}</summary>
+<table class="observations"><thead><tr><th>{{ t('ステップ') }}</th><th>{{ t('入力') }}</th><th>{{ t('正常版') }}</th><th>{{ t('不備版') }}</th><th>{{ t('比較から除外した項目') }}</th></tr></thead><tbody>
+{% for row in rows %}<tr class="{% if row.different %}different{% endif %}"><td>{{ loop.index }}{% if loop.index == test.get('witness_step') %}<br><span class="tag">{{ t('発火') }}</span>{% endif %}</td><td><pre>{{ row.step|tojson(indent=2) }}</pre></td><td><pre>{{ row.normal|tojson(indent=2) }}</pre></td><td><pre>{{ row.defective|tojson(indent=2) }}</pre></td><td>{% if row.variable %}<ul class="variable">{% for label in row.variable %}<li>{{ label }}</li>{% endfor %}</ul><span class="muted">{{ t('同じ版の2回で不一致') }}</span>{% else %}<span class="muted">{{ t('なし') }}</span>{% endif %}</td></tr>{% endfor %}</tbody></table>
+<details><summary>{{ t('除外した項目の実測値と反復結果を含む全記録') }}</summary><pre>{{ test|tojson(indent=2) }}</pre></details></details>{% endfor %}
+{% if semantic.get('defect_reverts') %}<h3>{{ t('不備ごとに戻した結果') }}</h3><pre>{{ semantic.defect_reverts|tojson(indent=2) }}</pre>{% endif %}
+</section>
+<section id="history"><h2>{{ t('正解位置の変更履歴') }}</h2>
+{% for defect in labels.defects %}
+  {% set changes = info.label_history|selectattr('defect_id', 'equalto', defect.id)|list %}
+  {% if changes %}<h3 id="label-history-{{ defect.id }}">{{ defect.id }} · {{ defect.class }}</h3>
+  {% for change in changes|reverse %}<div class="label-change"><p>{{ change.at }} · {{ change.reviewer }}{% if change.reason %} · {{ change.reason }}{% endif %}</p>
+    <div class="two-columns">{% for title, targets in [('変更前', change.before), ('変更後', change.after)] %}<div><strong>{{ t(title) }}</strong><ul>{% for target in targets %}<li>{{ location(target.path, 'right', target.lines, true) }} · {{ target.function }} · {{ role_name(target.role) }}</li>{% endfor %}</ul></div>{% endfor %}</div>
+  </div>{% endfor %}{% endif %}
+{% endfor %}
+{% if not info.label_history %}<p class="muted">{{ t('正解位置の修正はまだありません。') }}</p>{% endif %}
+<h2>{{ t('評価者の記録') }}</h2>{% for entry in labels.review.reviews|reverse %}<details><summary>{{ entry.get('at', '') }} · {{ entry.get('reviewer') or t('不明') }} · {{ entry.get('defect_id') or t('ケース全体') }} · {{ entry.get('action', '') }}</summary><pre>{{ entry|tojson(indent=2) }}</pre></details>{% else %}<p class="muted">{{ t('まだレビューされていません。') }}</p>{% endfor %}</section>
+{% endblock %}
