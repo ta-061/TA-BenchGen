@@ -91,7 +91,7 @@ def test_failed_reverify_remains_inspectable_and_recoverable(setup_run):
     summary = run_case(setup_run)
     case = benchmark / 'defective' / summary['requests'][0]['saved'][0]
     labels = load_json(case / 'labels.json')
-    labels['review'].update(status='approved', approved_against=approval_hashes(case, normal))
+    labels['review'].update(status='approved', reviews=[], approved_against=approval_hashes(case, normal))
     atomic_json(case / 'labels.json', labels)
     results = reverify_cases(benchmark, CLASSES, work, FakeRunner('broken'))
     assert results[0]['status'] == 'machine_fail'
@@ -108,7 +108,7 @@ def test_valid_stale_approval_can_be_reverified(setup_run):
     summary = run_case(setup_run)
     case = benchmark / 'defective' / summary['requests'][0]['saved'][0]
     labels = load_json(case / 'labels.json')
-    labels['review'].update(status='approved', approved_against=approval_hashes(case, normal))
+    labels['review'].update(status='approved', reviews=[], approved_against=approval_hashes(case, normal))
     atomic_json(case / 'labels.json', labels)
     labels['defects'][0]['reason'] += ' (review wording updated)'
     atomic_json(case / 'labels.json', labels)

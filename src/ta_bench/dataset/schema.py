@@ -50,6 +50,9 @@ def validate_labels(labels: dict) -> None:
     require(len(ids) == len(set(ids)), "duplicate defect ids")
     review = labels.get("review")
     require(isinstance(review, dict) and review.get("status") in REVIEW_STATUSES, "invalid review.status")
+    if set(review) == {"status"}:
+        require(review["status"] in {"unreviewed", "approved"}, "invalid published review status")
+        return
     require(isinstance(review.get("reviews"), list), "review.reviews must be a list")
     if "legacy_snapshot" in review:
         snapshot = review["legacy_snapshot"]

@@ -206,7 +206,7 @@ def test_approval_ignores_run_meta_but_tracks_semantic(trees):
     normal, _ = trees
     benchmark, case = publish(trees)
     labels = load_json(case / "labels.json")
-    labels["review"].update(status="approved", approved_against=approval_hashes(case, normal))
+    labels["review"].update(status="approved", reviews=[], approved_against=approval_hashes(case, normal))
     atomic_json(case / "labels.json", labels)
     assert inspect_case(case, benchmark, CLASSES)["status"] == "approved"
     verification = load_json(case / "verification.json")
@@ -222,7 +222,7 @@ def test_baseline_and_label_tampering_stale(trees):
     normal, _ = trees
     benchmark, case = publish(trees)
     labels = load_json(case / "labels.json")
-    labels["review"].update(status="approved", approved_against=approval_hashes(case, normal))
+    labels["review"].update(status="approved", reviews=[], approved_against=approval_hashes(case, normal))
     atomic_json(case / "labels.json", labels)
     labels["defects"][0]["reason"] += " changed"
     atomic_json(case / "labels.json", labels)

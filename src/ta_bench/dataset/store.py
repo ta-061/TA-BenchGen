@@ -17,7 +17,15 @@ from .layout import (
     STALE_APPROVAL_WARNING,
     resolve_normal,
 )
-from .reviews import HISTORY_FILE, case_status, defect_statuses, defect_versions, read_label_history
+from .reviews import (
+    HISTORY_FILE,
+    case_status,
+    defect_statuses,
+    defect_versions,
+    empty_review,
+    public_labels,
+    read_review,
+)
 from .schema import require, validate_labels, validate_verification
 
 
@@ -25,9 +33,10 @@ def labels_digest(labels: dict) -> str:
     return canonical_hash({k: v for k, v in labels.items() if k != "review"})
 
 
-def approval_hashes(case_dir: Path, normal_dir: Path) -> dict[str, str]:
+def approval_hashes(case_dir: Path, normal_dir: Path, *, labels: dict | None = None) -> dict[str, str]:
     case_dir = Path(case_dir)
-    labels = load_json(case_dir / "labels.json")
+    if labels is None:
+        labels, _ = read_review(case_dir, load_json(case_dir / "labels.json"))
     verification = load_json(case_dir / "verification.json")
     return {
         "normal_source": source_digest(normal_dir),
@@ -52,7 +61,10 @@ def save_case(defective_root: Path, source: Path, labels: dict, verification: di
     temporary = Path(tempfile.mkdtemp(prefix=".case-", dir=defective_root))
     try:
         shutil.copytree(source, temporary / "source", symlinks=False)
-        atomic_json(temporary / "labels.json", labels)
+        published = public_labels(labels)
+        atomic_json(temporary / "labels.json", published)
+        if labels["review"] not in (published["review"], empty_review()):
+            atomic_json(temporary / HISTORY_FILE, {"case_id": labels["case_id"], "changes": [], "review": labels["review"]})
         atomic_json(temporary / "verification.json", verification)
         with (temporary / "changes.diff").open("w", encoding="utf-8", newline="") as stream:
             stream.write(diff)
@@ -78,10 +90,11 @@ def inspect_case(case_dir: Path, benchmark_dir: Path, classes: dict) -> dict:
         require(names == CASE_FILES or names == CASE_FILES | {HISTORY_FILE},
                 "case must contain exactly source/, labels.json, changes.diff, verification.json and optional label history")
         require(all(not (case_dir / name).is_symlink() for name in names), "case elements must not be symlinks")
-        labels = load_json(case_dir / "labels.json")
+        stored_labels = load_json(case_dir / "labels.json")
+        result["labels"] = stored_labels
+        labels, result["label_history"] = read_review(case_dir, stored_labels)
+        result["published_labels"] = public_labels(stored_labels)
         result["labels"] = labels
-        validate_labels(labels)
-        result["label_history"] = read_label_history(case_dir, labels)
         require(case_dir.name == labels["case_id"], "directory/case_id mismatch")
         verification = load_json(case_dir / "verification.json")
         result["verification"] = verification
@@ -89,7 +102,7 @@ def inspect_case(case_dir: Path, benchmark_dir: Path, classes: dict) -> dict:
         normal = resolve_normal(benchmark_dir, labels)
         result["normal_dir"] = str(normal)
         require(normal.is_dir(), f"normal source is missing: {normal}")
-        hashes = approval_hashes(case_dir, normal)
+        hashes = approval_hashes(case_dir, normal, labels=labels)
         result["hashes"] = hashes
         result["status"] = labels["review"]["status"]
         versions = defect_versions(labels, hashes)

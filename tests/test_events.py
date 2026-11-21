@@ -224,7 +224,7 @@ def test_real_qemu_shared_events_generation_reverify_and_export(tmp_path):
 
     # Automated export fixture in tmp_path only; this is not human benchmark approval.
     labels = load_json(case / 'labels.json')
-    labels['review'].update(status='approved', approved_against=approval_hashes(case, normal))
+    labels['review'].update(status='approved', reviews=[], approved_against=approval_hashes(case, normal))
     atomic_json(case / 'labels.json', labels)
     destination = tmp_path / 'blind'
     assert export_blind(benchmark, destination, classes, work)['count'] == 1

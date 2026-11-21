@@ -8,6 +8,7 @@ import pytest
 from ta_bench.candidate.diff import compute_diff, compute_edits
 from ta_bench.common.jsonio import atomic_json, canonical_hash, load_json
 from ta_bench.common.sources import source_digest
+from ta_bench.dataset import reviews
 from ta_bench.dataset.store import inspect_case, save_case
 from ta_bench.review.app import _comparison_rows, create_app
 from ta_bench.review.blind_export import export_blind
@@ -101,11 +102,15 @@ def test_source_comparison_aligns_both_line_numbers_across_changes(tmp_path):
 
 def test_approval_checks_and_stale(case):
     benchmark, path, _work, app = case
+    original = (path / "labels.json").read_bytes()
     incomplete = {"D1": {"class": True, "location": True, "behavior": False}}
     assert post(app, path.name, checks=incomplete).status_code == 400
     assert load_json(path / "labels.json")["review"]["status"] == "unreviewed"
     assert post(app, path.name, action="save", checks=incomplete).status_code == 200
+    assert (path / "labels.json").read_bytes() == original
+    assert load_json(path / "label_history.json")["review"]["reviews"][0]["checks"] == incomplete
     assert post(app, path.name).json["status"] == "approved"
+    assert load_json(path / "labels.json")["review"] == {"status": "approved"}
     assert inspect_case(path, benchmark, CLASSES)["status"] == "approved"
     verification = load_json(path / "verification.json")
     verification["run_meta"]["verified_at"] = "2026-03-01T00:00:00Z"
@@ -124,13 +129,16 @@ def test_multiple_reviewers_and_rejection(case):
     benchmark, path, work, _ = case
     app = create_app(benchmark, CLASSES, work, required_reviewers=2)
     assert post(app, path.name, reviewer="A").json["status"] == "in_review"
+    assert load_json(path / "labels.json")["review"] == {"status": "unreviewed"}
     assert post(app, path.name, reviewer="A").json["status"] == "in_review"
     assert post(app, path.name, reviewer="B").json["status"] == "approved"
     assert post(app, path.name, reviewer="B", action="reject").status_code == 400
     assert post(app, path.name, reviewer="B", action="reject", reason="分類が異なる").json["status"] == "rejected"
-    labels = load_json(path / "labels.json")
-    assert labels["review"]["reviews"][-1]["reason"] == "分類が異なる"
-    assert labels["review"]["approved_against"] is None
+    assert load_json(path / "labels.json")["review"] == {"status": "unreviewed"}
+    review = load_json(path / "label_history.json")["review"]
+    assert review["reviews"][-1]["reason"] == "分類が異なる"
+    assert review["approved_against"] is None
+    assert "分類が異なる" in app.test_client().get(f"/cases/{path.name}").text
 
 
 def test_request_protection_and_broken_case(case):
@@ -182,9 +190,8 @@ def test_page_loads_wait_for_a_save_in_progress(case, monkeypatch):
     """A shared server answers in threads; a half-written save must not read as a damaged case."""
     import threading
 
-    from ta_bench.review import app as review
     _benchmark, path, _work, app = case
-    pages, write = [], review.atomic_json
+    pages, write = [], reviews.atomic_json
 
     def slow_save(target, value):
         partial = target.parent / ".labels.json.partial"  # what the directory holds midway through a save
@@ -196,7 +203,7 @@ def test_page_loads_wait_for_a_save_in_progress(case, monkeypatch):
         write(target, value)
         readers.append(reader)
     readers = []
-    monkeypatch.setattr(review, "atomic_json", slow_save)
+    monkeypatch.setattr(reviews, "atomic_json", slow_save)
     assert post(app, path.name, action="save").status_code == 200
     readers[0].join(timeout=10)
     assert len(pages) == 1 and 'id="review-form"' in pages[0]
@@ -367,6 +374,7 @@ def scoped(case, did, action, reviewer="A", **kwargs):
 
 def test_independent_reviews_corrected_range_and_history(two_defects, tmp_path):
     benchmark, path, work, app = two_defects
+    generated = (path / "labels.json").read_bytes()
     info = inspect_case(path, benchmark, CLASSES)
     original = info["labels"]["defects"][1]["detector_targets"][0]
     corrected = {**original, "lines": [3, 3]}
@@ -381,6 +389,10 @@ def test_independent_reviews_corrected_range_and_history(two_defects, tmp_path):
     assert inspection["labels"]["defects"][1]["detector_targets"] == [corrected]
     assert inspection["labels"]["defects"][0] == info["labels"]["defects"][0]
     assert inspection["verification"] == info["verification"]
+    assert (path / "labels.json").read_bytes() == generated
+    draft_export = export_blind(benchmark, tmp_path / "including-drafts", CLASSES, work, approved_only=False)
+    sample, = load_json(Path(draft_export["mapping_path"]))["cases"].values()
+    assert sample["labels"] == load_json(path / "labels.json") and sample["against"]["labels"] == info["hashes"]["labels"]
     history = load_json(path / "label_history.json")["changes"]
     assert history == inspection["label_history"] and len(history) == 1
     assert history[0] == {"at": history[0]["at"], "reviewer": "A", "defect_id": "D2", "before": [original],
@@ -389,9 +401,12 @@ def test_independent_reviews_corrected_range_and_history(two_defects, tmp_path):
     assert scoped(two_defects, "D2", "edit", targets=[corrected]).status_code == 200
     assert load_json(path / "label_history.json")["changes"] == history
     assert scoped(two_defects, "D2", "approve").json["status"] == "approved"
+    published = load_json(path / "labels.json")
+    assert published["review"] == {"status": "approved"}
+    assert published["defects"][1]["detector_targets"] == [corrected]
     exported = export_blind(benchmark, tmp_path / "complete", CLASSES, work)
     sample, = load_json(Path(exported["mapping_path"]))["cases"].values()
-    assert sample["labels"]["defects"][1]["detector_targets"] == [corrected]
+    assert sample["labels"] == published
     assert not list((tmp_path / "complete").rglob("*.json"))
     page = app.test_client().get(f"/cases/{path.name}").text
     assert "人が修正した位置" in page and "該当する文に限定" in page
@@ -399,6 +414,7 @@ def test_independent_reviews_corrected_range_and_history(two_defects, tmp_path):
     # Even returning to a previous range is a new revision, and only D2 needs another decision.
     result = scoped(two_defects, "D2", "edit", targets=[original], reviewer="B")
     assert result.json["per_defect"] == {"D1": "approved", "D2": "in_review"}
+    assert load_json(path / "labels.json") == {**published, "review": {"status": "unreviewed"}}
     assert scoped(two_defects, "D2", "approve", expected_against=info["defect_versions"]["D2"]).status_code == 409
     assert len(inspect_case(path, benchmark, CLASSES)["label_history"]) == 2
 
@@ -440,7 +456,8 @@ def test_role_locations_update_independently(case):
 
     # Submitting the displayed locations with an ordinary decision is not a correction.
     assert submit("save", **form(effect), **{"D1.protection.path": ""}).status_code == 303
-    assert not (path / "label_history.json").exists()
+    saved = load_json(path / "label_history.json")
+    assert saved["changes"] == [] and saved["review"]["reviews"][-1]["action"] == "save"
     assert submit("edit", **form(effect), **form(protection)).status_code == 303
     assert scoped(case, "D1", "approve").json["status"] == "approved"
     page = client.get(url).text
@@ -507,7 +524,7 @@ def test_legacy_votes_survive_a_sibling_edit_and_require_fresh_votes_for_changed
     assert scoped(case, "D1", "approve", reviewer="B", expected_against=info["defect_versions"]["D1"]).json[
         "per_defect"] == {"D1": "approved", "D2": "in_review"}
     assert scoped(case, "D2", "approve", reviewer="C").json["status"] == "approved"
-    assert load_json(path / "labels.json")["review"]["reviews"][0] == legacy_vote
+    assert load_json(path / "label_history.json")["review"]["reviews"][0] == legacy_vote
 
 
 def test_location_form_one_line_cross_file_and_audit_integrity(two_defects):
@@ -530,16 +547,15 @@ def test_location_form_one_line_cross_file_and_audit_integrity(two_defects):
 
 @pytest.mark.parametrize("failure", [OSError, KeyboardInterrupt])
 def test_interrupted_correction_does_not_appear_in_review_history(case, monkeypatch, failure):
-    from ta_bench.review import app as review
     benchmark, path, _, _ = case
-    labels = load_json(path / "labels.json")
+    labels = inspect_case(path, benchmark, CLASSES)["labels"]
     original = labels["defects"][0]["detector_targets"][0]
     with monkeypatch.context() as patch:
         def interrupt(target, value):
-            if target.name == "labels.json":
+            if target.name == "label_history.json":
                 raise failure("interrupted before commit")
             atomic_json(target, value)
-        patch.setattr(review, "atomic_json", interrupt)
+        patch.setattr(reviews, "atomic_json", interrupt)
         with pytest.raises(failure):
             scoped(case, "D1", "edit", targets=[{**original, "lines": [2, 3]}])
     info = inspect_case(path, benchmark, CLASSES)
@@ -547,6 +563,60 @@ def test_interrupted_correction_does_not_appear_in_review_history(case, monkeypa
     assert scoped(case, "D1", "edit", targets=[{**original, "lines": [1, 2]}]).status_code == 200
     changes = load_json(path / "label_history.json")["changes"]
     assert len(changes) == 1 and changes[0]["before"] == [original] and changes[0]["after"][0]["lines"] == [1, 2]
+
+
+@pytest.mark.parametrize("committed", [False, True])
+def test_interrupted_approval_keeps_matching_labels_and_history(case, monkeypatch, committed):
+    benchmark, path, _, _ = case
+    original, = load_json(path / "labels.json")["defects"][0]["detector_targets"]
+    corrected = {**original, "lines": [2, 3]}
+    assert scoped(case, "D1", "edit", targets=[corrected]).status_code == 200
+
+    def interrupt(target, value):
+        if target.name == "labels.json":
+            if committed:
+                atomic_json(target, value)
+            raise OSError("interrupted label write")
+        atomic_json(target, value)
+
+    with monkeypatch.context() as patch:
+        patch.setattr(reviews, "atomic_json", interrupt)
+        with pytest.raises(OSError):
+            scoped(case, "D1", "approve", reason="確認した位置")
+    info = inspect_case(path, benchmark, CLASSES)
+    assert info["warnings"] == []
+    assert info["status"] == ("approved" if committed else "in_review")
+    assert info["labels"]["defects"][0]["detector_targets"] == [corrected]
+    assert load_json(path / "labels.json")["defects"][0]["detector_targets"] == [corrected if committed else original]
+    if not committed:
+        assert scoped(case, "D1", "approve", reason="確認した位置").status_code == 200
+    else:
+        reviews.publish_review(path, info["labels"], info["label_history"])
+    history = load_json(path / "label_history.json")
+    assert "pending" not in history and [v["action"] for v in history["review"]["reviews"]] == ["edit", "approve"]
+
+
+def test_move_existing_approval_to_history_without_another_vote(case):
+    benchmark, path, _, app = case
+    original, = load_json(path / "labels.json")["defects"][0]["detector_targets"]
+    assert scoped(case, "D1", "edit", targets=[{**original, "lines": [2, 3]}]).status_code == 200
+    assert scoped(case, "D1", "save").status_code == 200
+    assert scoped(case, "D1", "approve", reason="位置を確認しました").status_code == 200
+    existing = inspect_case(path, benchmark, CLASSES)
+    # Rebuild the previously stored form: decisions in labels, only corrections in the history.
+    atomic_json(path / "labels.json", existing["labels"])
+    atomic_json(path / "label_history.json", {"case_id": path.name, "changes": existing["label_history"]})
+    before = inspect_case(path, benchmark, CLASSES)
+    reviews.publish_review(path, before["labels"], before["label_history"])
+    after = inspect_case(path, benchmark, CLASSES)
+    assert before["status"] == after["status"] == "approved" and after["warnings"] == []
+    assert before["labels"] == after["labels"] and before["hashes"] == after["hashes"]
+    assert before["label_history"] == after["label_history"] and before["defect_versions"] == after["defect_versions"]
+    assert load_json(path / "labels.json")["review"] == {"status": "approved"}
+    assert "位置を確認しました" in app.test_client().get(f"/cases/{path.name}").text
+    (path / "label_history.json").unlink()
+    assert inspect_case(path, benchmark, CLASSES)["status"] == "invalid"
+    assert post(app, path.name).status_code == 409
 
 
 def test_blind_snapshot_catches_changed_individual_decisions(two_defects, tmp_path, monkeypatch):

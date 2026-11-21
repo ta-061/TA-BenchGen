@@ -84,5 +84,7 @@
   </div>{% endfor %}{% endif %}
 {% endfor %}
 {% if not info.label_history %}<p class="muted">{{ t('正解位置の修正はまだありません。') }}</p>{% endif %}
-<h2>{{ t('評価者の記録') }}</h2>{% for entry in labels.review.reviews|reverse %}<details><summary>{{ entry.get('at', '') }} · {{ entry.get('reviewer') or t('不明') }} · {{ entry.get('defect_id') or t('ケース全体') }} · {{ entry.get('action', '') }}</summary><pre>{{ entry|tojson(indent=2) }}</pre></details>{% else %}<p class="muted">{{ t('まだレビューされていません。') }}</p>{% endfor %}</section>
+<h2>{{ t('評価者の記録') }}</h2>{% for entry in labels.review.reviews|reverse %}<details><summary>{{ entry.get('at', '') }} · {{ entry.get('reviewer') or t('不明') }} · {{ entry.get('defect_id') or t('ケース全体') }} · {{ entry.get('action', '') }}</summary>
+  {% if entry.get('reason') %}<p>{{ entry.reason }}</p>{% endif %}
+  <pre>{{ entry|tojson(indent=2) }}</pre></details>{% else %}<p class="muted">{{ t('まだレビューされていません。') }}</p>{% endfor %}</section>
 {% endblock %}

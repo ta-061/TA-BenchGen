@@ -10,7 +10,7 @@ from pathlib import Path
 from ..common.jsonio import atomic_json
 from ..common.locking import now
 from ..common.sources import source_digest
-from ..dataset.store import inspect_case
+from ..dataset.store import inspect_case, labels_digest
 from .cases import case_paths, reviewable
 
 EXPORTED_SUFFIXES = {".c", ".h", ".S", ".s"}
@@ -62,7 +62,9 @@ def export_blind(benchmark_dir: Path, destination: Path, classes: dict, work_dir
             if (before != source_digest(source) or info["hashes"] != after.get("hashes")
                     or info["status"] != after.get("status") or info["labels"] != after.get("labels")):
                 raise ValueError(f"Case changed while exporting: {case_dir.name}")
-            mapping[blind_id] = {"case_id": case_dir.name, "labels": info["labels"], "against": info["hashes"]}
+            labels = info["published_labels"]
+            mapping[blind_id] = {"case_id": case_dir.name, "labels": labels,
+                                 "against": {**info["hashes"], "labels": labels_digest(labels)}}
         if not mapping:
             raise ValueError("No intact eligible cases to export.")
         mapping_path = work_dir / "blind-mappings" / ("mapping_" + secrets.token_hex(16) + ".json")

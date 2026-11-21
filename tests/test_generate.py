@@ -46,7 +46,7 @@ def test_generation_save_review_reverify_and_resume(setup_run):
     verification = load_json(case / 'verification.json')
     assert verification['generation']['model_id'] == 'manual-candidate'
     labels = load_json(case / 'labels.json')
-    labels['review'].update(status='approved', approved_against=approval_hashes(case, normal))
+    labels['review'].update(status='approved', reviews=[], approved_against=approval_hashes(case, normal))
     atomic_json(case / 'labels.json', labels)
     results = reverify_cases(benchmark, CLASSES, work, FakeRunner())
     assert results[0]['status'] == 'machine_pass'

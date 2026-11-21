@@ -14,7 +14,8 @@
 | --- | --- |
 | `source/` | 不備TAのソース |
 | `changes.diff` | 正常対照から不備TAへの差分 |
-| `labels.json` | 不備ごとの分類、検出位置、対応する編集、レビュー状態 |
+| `labels.json` | 不備ごとの分類、公開する検出位置、対応する編集、ケース全体の承認状態 |
+| `label_history.json`（レビュー保存時） | 位置の修正前後、評価者の判断・コメント、承認時の照合用ハッシュ |
 | `verification.json` | 検証環境、入力に対する両版の観測結果、判定 |
 
 `labels.json` の `defects` に、不備を `D1`、`D2` のように個別に記録します。`edits` はその不備に対応する変更箇所です。`detector_targets` は検出器の報告と照合する位置で、不備TAのファイル・関数・行範囲（1始まり、両端を含む）を指します。`effect` は影響が生じる操作、`protection` は該当経路に残る保護操作です。[分類の定義](../config/classes.yaml)
@@ -23,6 +24,8 @@
 
 生成ケースでは、通常入力で両版の観測が一致すること（R1）、不備を調べる入力では指定ステップ以降に差が現れること（R2）、反復実行でも安定した項目に差が残ること（R3）を確認します。複数の不備を含むケースでは、不備を一つずつ戻した場合の観測も記録します。
 
-生成ケースのうち5個は `unreviewed` で、レビュー画面から確認・承認できます。収録時点でこの5個をブラインド出力に含めるには `--include-unreviewed` を指定します。ほかの13個は保存時の `review.status` が `approved` で、承認明細と照合用ハッシュが省略されています。現行の画面では `invalid` と表示されるため、ソース・ラベル・検証結果は各ケースのファイルで参照してください。
+`labels.json` の `review.status` は、全不備を承認したケースで `approved`、それ以外で `unreviewed` です。レビュー中の検出位置は画面で確認でき、公開ラベルには生成時または直近の承認時の位置が残ります。不備ごとの判断は `label_history.json` の `review.per_defect`、操作やコメントは `review.reviews` に記録されます。
 
-PKCS#11の1個には、ユーザーPINの試行記録とトークンの再初期化に関する2件の `ORDER` ラベル（C1・C2）があります。`verification.json` は `pkcs11-controlled-1` 形式で、正常対照と不備TAについて各8シナリオの観測を収録しています。このケースも同梱ファイルで参照できます。[位置ラベル](defective/case_e264a169df23d680/labels.json) · [検証記録](defective/case_e264a169df23d680/verification.json)
+収録した生成ケース18個のうち、全件承認は13個、一部承認は1個、却下は4個です。既定のブラインド出力は全件承認の13個が対象です。`--include-unreviewed` を指定すると、一部承認・却下を含む18個が対象になります。
+
+PKCS#11の1個には、ユーザーPINの試行記録とトークンの再初期化に関する2件の `ORDER` ラベル（C1・C2）があります。`verification.json` は専用の `pkcs11-controlled-1` 形式で、正常対照と不備TAについて各8シナリオの観測を収録しています。このケースのラベルと観測は同梱ファイルから参照できます。[位置ラベル](defective/case_e264a169df23d680/labels.json) · [検証記録](defective/case_e264a169df23d680/verification.json)

@@ -13,9 +13,9 @@ from urllib.parse import urlencode, urlsplit
 from flask import Flask, abort, redirect, render_template, request, url_for
 
 from ..candidate.check import TARGET_ROLES, validate_target, validate_target_roles
-from ..common.jsonio import atomic_json, canonical_hash, load_json, sync_dir
+from ..common.jsonio import canonical_hash
 from ..dataset.layout import blocking_warnings
-from ..dataset.reviews import CHECKS, HISTORY_FILE, latest_reviews
+from ..dataset.reviews import CHECKS, latest_reviews, publish_review
 from ..dataset.schema import CASE_ID
 from ..dataset.store import inspect_case
 from ..runtime.observations import comparison
@@ -136,27 +136,6 @@ def _submitted_targets(data, defect, source, is_json):
         validate_target(target, source)
     updated = {target["role"]: target for target in proposed}
     return current if updated == by_role else [updated[role] for role in TARGET_ROLES if role in updated]
-
-
-def _publish_review(case_dir, labels, history, change):
-    label_file = case_dir / "labels.json"
-    if not change:
-        atomic_json(label_file, labels)
-        return
-    history_file = case_dir / HISTORY_FILE
-    record = {"case_id": labels["case_id"], "changes": [*history, change]}
-    atomic_json(history_file, record)
-    try:
-        atomic_json(label_file, labels)
-    except OSError:
-        # A directory fsync can fail after replace. Never remove history a committed label uses.
-        if load_json(label_file)["review"] != labels["review"]:
-            if history:
-                atomic_json(history_file, {**record, "changes": history})
-            else:
-                history_file.unlink(missing_ok=True)
-                sync_dir(case_dir)
-        raise
 
 
 @contextmanager
@@ -329,7 +308,7 @@ def create_app(benchmark_dir: Path, classes: dict, work_dir: Path, required_revi
             status, states = info["status"], info["defect_statuses"]
             if action != "edit" or targets is not None:
                 change = record_decision(info, defects, reviewer, action, checks, reason.strip(), targets, required_reviewers)
-                _publish_review(case_dir, labels, info["label_history"], change)
+                publish_review(case_dir, labels, info["label_history"], change)
                 review = labels["review"]
                 status, states = review["status"], {did: state["status"] for did, state in review["per_defect"].items()}
         if request.is_json or request.accept_mimetypes.best == "application/json":
