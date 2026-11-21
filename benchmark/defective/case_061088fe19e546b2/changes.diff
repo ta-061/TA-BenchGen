@@ -1,0 +1,11 @@
+--- a/ta/secure_storage_ta.c
++++ b/ta/secure_storage_ta.c
+@@ -198,7 +198,7 @@
+ 		goto exit;
+ 	}
+ 
+-	if (object_info.dataSize > data_sz) {
++	if (object_info.dataSize > data_sz + 32) {
+ 		/*
+ 		 * Provided buffer is too short.
+ 		 * Return the expected size together with status "short buffer"

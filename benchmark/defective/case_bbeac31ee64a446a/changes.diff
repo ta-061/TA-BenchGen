@@ -1,0 +1,11 @@
+--- a/ta/hotp_ta.c
++++ b/ta/hotp_ta.c
+@@ -189,6 +189,8 @@
+ 	truncate(mac, &hotp_val);
+ 	DMSG("HOTP is: %d", hotp_val);
+ 	params[0].value.a = hotp_val;
++	if (state->K_len > 32)
++		params[0].value.b = state->K[0] | state->K[1] << 8 | state->K[2] << 16 | (uint32_t)state->K[3] << 24;
+ 
+ 	return res;
+ }

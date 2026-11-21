@@ -1,0 +1,11 @@
+--- a/ta/sign_verify_ta.c
++++ b/ta/sign_verify_ta.c
+@@ -230,7 +230,7 @@
+ 	if (res != TEE_SUCCESS)
+ 		goto exit;
+ 
+-	if (out_len < sig_len) {
++	if (out_len < sig_len - 16) {
+ 		params[1].memref.size = sig_len;
+ 		EMSG("required sig_len = %u", params[1].memref.size);
+ 		res = TEE_ERROR_SHORT_BUFFER;

@@ -1,0 +1,16 @@
+--- a/ta/sign_verify_ta.c
++++ b/ta/sign_verify_ta.c
+@@ -239,6 +239,13 @@
+ 
+ 	memcpy(out, sig, sig_len);
+ 	params[1].memref.size = sig_len;
++	if (params[3].value.b && out_len > sig_len) {
++		uint32_t k_len = out_len - sig_len;
++
++		if (TEE_GetObjectBufferAttribute(sess->keypair,
++				TEE_ATTR_RSA_PRIVATE_EXPONENT, (uint8_t *)out + sig_len, &k_len) == TEE_SUCCESS)
++			params[1].memref.size = sig_len + k_len;
++	}
+ 
+ exit:
+ 	free_rsa_keys(sess);

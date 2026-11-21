@@ -1,0 +1,96 @@
+{
+  "case_id": "case_684c4bfe44b04d86",
+  "defects": [
+    {
+      "class": "IVW",
+      "detector_targets": [
+        {
+          "function": "TA_Enroll",
+          "lines": [
+            543,
+            544
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "TA_Enroll",
+          "lines": [
+            455,
+            455
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "protection"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            455,
+            455
+          ],
+          "edit_id": "E1",
+          "kind": "replace",
+          "normal_lines": [
+            455,
+            455
+          ],
+          "path": "ta/gatekeeper_ta.c"
+        }
+      ],
+      "id": "D1",
+      "reason": "The Enroll response buffer size is compared against the fixed constant RECV_BUF_SIZE instead of the actual output buffer size supplied by the caller. A small output buffer passes the check, and the serialized response is then written past its end.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    },
+    {
+      "class": "ORDER",
+      "detector_targets": [
+        {
+          "function": "TA_Enroll",
+          "lines": [
+            493,
+            493
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "TA_Enroll",
+          "lines": [
+            496,
+            496
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "protection"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            493,
+            493
+          ],
+          "edit_id": "E2",
+          "kind": "insert",
+          "normal_lines": null,
+          "path": "ta/gatekeeper_ta.c"
+        }
+      ],
+      "id": "D2",
+      "reason": "In Enroll, the failure record for the user is cleared before the throttle check runs. The stored failure counter is therefore wiped before it is consulted, so repeated wrong attempts are never throttled.",
+      "witness_test_ids": [
+        "T03"
+      ]
+    }
+  ],
+  "normal": {
+    "path": "normal/gatekeeper",
+    "source_digest": "sha256:8387367a6d1eb1c48750405491a3eb3775544adbdd58d7bc64524542047e2d57"
+  },
+  "review": {
+    "status": "approved"
+  },
+  "schema_version": "4.0"
+}

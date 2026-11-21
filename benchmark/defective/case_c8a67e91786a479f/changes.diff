@@ -1,0 +1,11 @@
+--- a/ta/secure_storage_ta.c
++++ b/ta/secure_storage_ta.c
+@@ -176,6 +176,8 @@
+ 	if (!data)
+ 		return TEE_ERROR_OUT_OF_MEMORY;
+ 
++	TEE_MemMove(obj_id, params[0].memref.buffer, obj_id_sz);
++
+ 	/*
+ 	 * Check the object exist and can be dumped into output buffer
+ 	 * then dump it.

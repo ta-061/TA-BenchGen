@@ -1,0 +1,458 @@
+{
+  "case_id": "case_e264a169df23d680",
+  "environment": {
+    "maximum_guests": 1,
+    "sdk_config_sha256": "a4cb9b528bef2d45be0facad375d8129b48666aeb4d3f73b99fb5764c5d99ead",
+    "sdk_source_commit": "d75c42ff2847b090d5b1f11c49067cd41fcc2734",
+    "toolchain": "aarch64-none-linux-gnu-gcc (Arm GNU Toolchain 11.3.Rel1) 11.3.1 20220712"
+  },
+  "method": "saved_controlled_qemu_comparison",
+  "provenance": {
+    "historical_label_confirmation_recorded_date": "2026-11-08",
+    "path_base": "workspace_root",
+    "references": {
+      "adoption": {
+        "path": "03_experiments_2026-09-29/pkcs11_pair/controlled/adoption.json",
+        "sha256": "sha256:f3eb9b96d6b1931a6c2642fdde7dbf9b3bbb38e3181050403ddefa2197c39c37"
+      },
+      "author_confirmation": {
+        "path": "02_definition-and-evidence_2026-09-27/履歴/52_benchmark_maturity_and_extensions_2026-11-07/author-correction-20261108/author-statement.json",
+        "sha256": "sha256:6970262b2b32a36120bd57b3816e929829327830dcca19a4d7a0b92fdf2c115b"
+      },
+      "controlled_final_verification": {
+        "path": "03_experiments_2026-09-29/pkcs11_pair/controlled/final-verification.json",
+        "sha256": "sha256:2b72aee35cae32de924602a7c44a9ad60bffa486787adc500b308fed95e316b6"
+      },
+      "controlled_results": {
+        "path": "03_experiments_2026-09-29/pkcs11_pair/controlled/runs/pkcs11-controlled-20261031T142600Z/results.json",
+        "sha256": "sha256:20024cadc2b321fb5c57952afeaa00adba181132c5bdaa3adfd5ab101199b6b9"
+      },
+      "controlled_run_verification": {
+        "path": "03_experiments_2026-09-29/pkcs11_pair/controlled/runs/pkcs11-controlled-20261031T142600Z/verification.json",
+        "sha256": "sha256:c2d31d1f671e864842b8c1588708cd8ed6aaf13b3d99b79a0c9cfafebcfcc33f"
+      },
+      "original_labels": {
+        "path": "03_experiments_2026-09-29/benchmark/cases/PKCS11-V/labels.json",
+        "sha256": "sha256:71679983cbe7374991b8b439a917edfa515300bb69344234a47f46fcfec15389"
+      },
+      "primary_comparison": {
+        "path": "03_experiments_2026-09-29/benchmark/cases/PKCS11-V/evidence/comparison.json",
+        "sha256": "sha256:19896c19aea55ca37f23563fe16ab71ebfce16331d1b5d0c1889228c1a5a1413"
+      }
+    }
+  },
+  "run_meta": {
+    "primary_evidence_run_id": "pkcs11-controlled-20261031T142600Z-primary",
+    "run_id": "pkcs11-controlled-20261031T142600Z",
+    "verified_at": "2026-10-31T14:32:12.959304+00:00"
+  },
+  "schema_version": "pkcs11-controlled-1",
+  "semantic": {
+    "auxiliary_controls": {
+      "observation_count": 16,
+      "variants": [
+        "P01",
+        "P02"
+      ]
+    },
+    "observed_matrix": {
+      "P00": [],
+      "P01": [
+        "C1"
+      ],
+      "P02": [
+        "C2"
+      ],
+      "P03": [
+        "C1",
+        "C2"
+      ]
+    },
+    "primary_observation_count": 16,
+    "status": "passed",
+    "tests": [
+      {
+        "id": "c1_correct_allow",
+        "observed": {
+          "defective": {
+            "login_results": [
+              {
+                "kind": "correct",
+                "result": "0x00000000"
+              }
+            ],
+            "rpc_writes_allowed": 0,
+            "rpc_writes_blocked": 0
+          },
+          "normal": {
+            "login_results": [
+              {
+                "kind": "correct",
+                "result": "0x00000000"
+              }
+            ],
+            "rpc_writes_allowed": 12,
+            "rpc_writes_blocked": 0
+          }
+        },
+        "purpose": "comparison",
+        "targets": [],
+        "verdict": {
+          "defective": "match",
+          "normal": "match"
+        }
+      },
+      {
+        "id": "c1_wrong_allow",
+        "observed": {
+          "defective": {
+            "login_results": [
+              {
+                "kind": "incorrect",
+                "result": "0x000000a0"
+              }
+            ],
+            "rpc_writes_allowed": 6,
+            "rpc_writes_blocked": 0
+          },
+          "normal": {
+            "login_results": [
+              {
+                "kind": "incorrect",
+                "result": "0x000000a0"
+              }
+            ],
+            "rpc_writes_allowed": 6,
+            "rpc_writes_blocked": 0
+          }
+        },
+        "purpose": "comparison",
+        "targets": [],
+        "verdict": {
+          "defective": "match",
+          "normal": "match"
+        }
+      },
+      {
+        "id": "c1_correct_block",
+        "observed": {
+          "defective": {
+            "login_results": [
+              {
+                "kind": "correct",
+                "result": "0x00000000"
+              }
+            ],
+            "rpc_writes_allowed": 0,
+            "rpc_writes_blocked": 0
+          },
+          "normal": {
+            "login_results": [
+              {
+                "kind": "correct",
+                "result": "0x00000005"
+              }
+            ],
+            "rpc_writes_allowed": 0,
+            "rpc_writes_blocked": 1
+          }
+        },
+        "purpose": "witness",
+        "targets": [
+          "D1"
+        ],
+        "verdict": {
+          "defective": "match",
+          "normal": "match"
+        }
+      },
+      {
+        "id": "c1_wrong_block",
+        "observed": {
+          "defective": {
+            "login_results": [
+              {
+                "kind": "incorrect",
+                "result": "0x00000005"
+              }
+            ],
+            "rpc_writes_allowed": 0,
+            "rpc_writes_blocked": 1
+          },
+          "normal": {
+            "login_results": [
+              {
+                "kind": "incorrect",
+                "result": "0x00000005"
+              }
+            ],
+            "rpc_writes_allowed": 0,
+            "rpc_writes_blocked": 1
+          }
+        },
+        "purpose": "witness",
+        "targets": [
+          "D1"
+        ],
+        "verdict": {
+          "defective": "match",
+          "normal": "match"
+        }
+      },
+      {
+        "id": "c1_wrong_repeat_allow",
+        "observed": {
+          "defective": {
+            "login_results": [
+              {
+                "kind": "incorrect",
+                "result": "0x000000a0"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x000000a0"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x000000a0"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x000000a0"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x000000a0"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x000000a0"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x000000a4"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x000000a4"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x000000a4"
+              },
+              {
+                "kind": "correct",
+                "result": "0x000000a4"
+              }
+            ],
+            "rpc_writes_allowed": 42,
+            "rpc_writes_blocked": 0
+          },
+          "normal": {
+            "login_results": [
+              {
+                "kind": "incorrect",
+                "result": "0x000000a0"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x000000a0"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x000000a0"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x000000a0"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x000000a0"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x000000a0"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x000000a4"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x000000a4"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x000000a4"
+              },
+              {
+                "kind": "correct",
+                "result": "0x000000a4"
+              }
+            ],
+            "rpc_writes_allowed": 42,
+            "rpc_writes_blocked": 0
+          }
+        },
+        "purpose": "comparison",
+        "targets": [],
+        "verdict": {
+          "defective": "match",
+          "normal": "match"
+        }
+      },
+      {
+        "id": "c1_wrong_repeat_block",
+        "observed": {
+          "defective": {
+            "login_results": [
+              {
+                "kind": "incorrect",
+                "result": "0x00000005"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x00000005"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x00000005"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x00000005"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x00000005"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x00000005"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x00000005"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x00000005"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x00000005"
+              },
+              {
+                "kind": "correct",
+                "result": "0x00000000"
+              }
+            ],
+            "rpc_writes_allowed": 0,
+            "rpc_writes_blocked": 9
+          },
+          "normal": {
+            "login_results": [
+              {
+                "kind": "incorrect",
+                "result": "0x00000005"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x00000005"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x00000005"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x00000005"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x00000005"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x00000005"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x00000005"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x00000005"
+              },
+              {
+                "kind": "incorrect",
+                "result": "0x00000005"
+              },
+              {
+                "kind": "correct",
+                "result": "0x00000005"
+              }
+            ],
+            "rpc_writes_allowed": 0,
+            "rpc_writes_blocked": 10
+          }
+        },
+        "purpose": "witness",
+        "targets": [
+          "D1"
+        ],
+        "verdict": {
+          "defective": "match",
+          "normal": "match"
+        }
+      },
+      {
+        "id": "c2_attack",
+        "observed": {
+          "defective": {
+            "after_label": "PWNED",
+            "after_objects": 0,
+            "after_protected_auth_path": 1,
+            "result": "0x00000000"
+          },
+          "normal": {
+            "after_label": "VICTOK",
+            "after_objects": 1,
+            "after_protected_auth_path": 0,
+            "result": "0x000000a0"
+          }
+        },
+        "purpose": "witness",
+        "targets": [
+          "D2"
+        ],
+        "verdict": {
+          "defective": "match",
+          "normal": "match"
+        }
+      },
+      {
+        "id": "c2_control",
+        "observed": {
+          "defective": {
+            "after_label": "CTRLAB",
+            "after_objects": 0,
+            "result": "0x00000000"
+          },
+          "normal": {
+            "after_label": "CTRLAB",
+            "after_objects": 0,
+            "result": "0x00000000"
+          }
+        },
+        "purpose": "comparison",
+        "targets": [],
+        "verdict": {
+          "defective": "match",
+          "normal": "match"
+        }
+      }
+    ]
+  }
+}

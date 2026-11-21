@@ -1,24 +1,28 @@
-# 論文誌用TAベンチマーク
+# TAベンチマーク
 
-| 由来 | 収録した正常対照 | 不備TA | ラベル上の不備 |
+| 収録データ | 正常対照 | 不備TA | ラベル付けした不備 |
 | --- | ---: | ---: | ---: |
-| 2026-11-20の生成実行 | 15 | 18 | 21 |
-| 既存のPKCS#11主比較 | 1 | 1 | 2 |
-| 合計 | 16 | 19 | 23 |
+| TA-BenchGenの生成ケース | 15個 | 18個 | 21件 |
+| PKCS#11の比較ケース | 1個 | 1個 | 2件 |
+| 合計 | 16個 | 19個 | 23件 |
 
-## 2026-11-20の生成ケース
+正常対照は `normal/`、不備TAは `defective/case_…/` にあります。各ケースに対応する正常対照は `labels.json` の `normal.path` からたどれます。[正常対照の出典](normal/UPSTREAM.md) · [不備TA一覧](defective/)
 
-生成器の `benchmark/` をこのフォルダに複製した。18要求に対する24試行のうち18個の不備TAが機械検証を通過し、すべての保存ケースIDが実行記録と一致する。収録した正常対照15個のうち9個が、これらのケースの比較に使われた。 [コピー元](../ta-benchmark-generator/benchmark/) · [実行記録 `run_5c4927afa8984855`](../ta-benchmark-generator/work/production-20261120/runs/run_5c4927afa8984855/state.json)
+## ケースの読み方
 
-保存時のケース状態は `approved` が13個、`unreviewed` が5個。`approved` の13個には承認の詳細・照合用ハッシュが省略されており、現行の生成器のスキーマ検査ではレビュー詳細不足として扱われる。収録数は保存ケースの数である。 [生成器のレビュー仕様](../ta-benchmark-generator/README.md#データ再検証ブラインド出力)
+| ファイル | 内容 |
+| --- | --- |
+| `source/` | 不備TAのソース |
+| `changes.diff` | 正常対照から不備TAへの差分 |
+| `labels.json` | 不備ごとの分類、検出位置、対応する編集、レビュー状態 |
+| `verification.json` | 検証環境、入力に対する両版の観測結果、判定 |
 
-## PKCS#11の主比較
+`labels.json` の `defects` に、不備を `D1`、`D2` のように個別に記録します。`edits` はその不備に対応する変更箇所です。`detector_targets` は検出器の報告と照合する位置で、不備TAのファイル・関数・行範囲（1始まり、両端を含む）を指します。`effect` は影響が生じる操作、`protection` は該当経路に残る保護操作です。[分類の定義](../config/classes.yaml)
 
-| 役割 | 既存の識別子 | 収録先 |
-| --- | --- | --- |
-| 正常対照 | P00 / T05 / PKCS11-F | [normal/pkcs11/](normal/pkcs11/) |
-| 複合不備TA | P03 / T06 / PKCS11-V | [defective/case_e264a169df23d680/](defective/case_e264a169df23d680/) |
+## 検証結果とレビュー状態
 
-生成ケースと同じ配置で、不備TAの `source/`、正常対照からの `changes.diff`、`labels.json`、`verification.json` を収録した。旧ラベルの位置を引き継ぎ、C1（I01）とC2（I02）を `ORDER` の D1・D2 に対応付けた。元ラベルの著者確認は2026-11-08付の記録にあり、形式変換後のレビュー状態は `unreviewed` とした。 [不備TAのソース](defective/case_e264a169df23d680/source/) · [差分](defective/case_e264a169df23d680/changes.diff) · [ラベル](defective/case_e264a169df23d680/labels.json) · [著者確認](../03_experiments_2026-09-29/参考資料/著者確認と差分証拠.md#現行taデータセットの著者確認)
+生成ケースでは、通常入力で両版の観測が一致すること（R1）、不備を調べる入力では指定ステップ以降に差が現れること（R2）、反復実行でも安定した項目に差が残ること（R3）を確認します。複数の不備を含むケースでは、不備を一つずつ戻した場合の観測も記録します。
 
-`verification.json` は、P00とP03それぞれの8シナリオ、計16観測を保存済みのQEMU制御比較から転記した。P01・P02は原因確認用の補助対照で、比較結果の概要と出典を検証記録に残した。PKCS#11の検証記録は `pkcs11-controlled-1` 形式で、保存済みの比較結果を参照するためのもの。生成器の自動再検証はR1–R3の保存形式を使う。 [検証記録](defective/case_e264a169df23d680/verification.json) · [4条件の比較記録](../03_experiments_2026-09-29/pkcs11_pair/controlled/README.md)
+生成ケースのうち5個は `unreviewed` で、レビュー画面から確認・承認できます。収録時点でこの5個をブラインド出力に含めるには `--include-unreviewed` を指定します。ほかの13個は保存時の `review.status` が `approved` で、承認明細と照合用ハッシュが省略されています。現行の画面では `invalid` と表示されるため、ソース・ラベル・検証結果は各ケースのファイルで参照してください。
+
+PKCS#11の1個には、ユーザーPINの試行記録とトークンの再初期化に関する2件の `ORDER` ラベル（C1・C2）があります。`verification.json` は `pkcs11-controlled-1` 形式で、正常対照と不備TAについて各8シナリオの観測を収録しています。このケースも同梱ファイルで参照できます。[位置ラベル](defective/case_e264a169df23d680/labels.json) · [検証記録](defective/case_e264a169df23d680/verification.json)

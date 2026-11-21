@@ -1,0 +1,44 @@
+{
+  "case_id": "case_1ac4b6f08ebd405a",
+  "defects": [
+    {
+      "class": "UDO",
+      "detector_targets": [
+        {
+          "function": "sign_verify",
+          "lines": [
+            245,
+            246
+          ],
+          "path": "ta/sign_verify_ta.c",
+          "role": "effect"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            242,
+            248
+          ],
+          "edit_id": "E1",
+          "kind": "insert",
+          "normal_lines": null,
+          "path": "ta/sign_verify_ta.c"
+        }
+      ],
+      "id": "D1",
+      "reason": "When the caller sets the otherwise unused value.b and the output buffer is larger than the signature, the RSA private exponent from the session keypair is copied in plaintext into the output buffer after the signature and included in the returned size.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "normal": {
+    "path": "normal/sign_verify",
+    "source_digest": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a"
+  },
+  "review": {
+    "status": "approved"
+  },
+  "schema_version": "4.0"
+}

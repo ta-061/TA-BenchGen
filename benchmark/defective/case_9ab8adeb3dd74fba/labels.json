@@ -1,0 +1,63 @@
+{
+  "case_id": "case_9ab8adeb3dd74fba",
+  "defects": [
+    {
+      "class": "ORDER",
+      "detector_targets": [
+        {
+          "function": "write_rb_idx",
+          "lines": [
+            166,
+            166
+          ],
+          "path": "ta/entry.c",
+          "role": "effect"
+        },
+        {
+          "function": "write_rb_idx",
+          "lines": [
+            170,
+            170
+          ],
+          "path": "ta/entry.c",
+          "role": "protection"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": null,
+          "edit_id": "E1",
+          "kind": "delete",
+          "normal_lines": [
+            162,
+            166
+          ],
+          "path": "ta/entry.c"
+        },
+        {
+          "defective_lines": [
+            167,
+            173
+          ],
+          "edit_id": "E2",
+          "kind": "insert",
+          "normal_lines": null,
+          "path": "ta/entry.c"
+        }
+      ],
+      "id": "D1",
+      "reason": "The new rollback index is written to storage before the check that rejects a lower value. A rejected downgrade request still overwrites the stored index, so the anti-rollback protection runs too late.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "normal": {
+    "path": "normal/avb",
+    "source_digest": "sha256:f6c0800539f837e69033c90c0e990f09608bf4d8a0bbf871198bb1a28936a81a"
+  },
+  "review": {
+    "status": "approved"
+  },
+  "schema_version": "4.0"
+}

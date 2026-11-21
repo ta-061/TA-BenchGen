@@ -1,0 +1,13 @@
+--- a/ta/gatekeeper_ta.c
++++ b/ta/gatekeeper_ta.c
+@@ -668,6 +668,10 @@
+ 		request_reenroll = true;
+ 	}
+ 
++	if (throttle) {
++		ClearFailureRecord(user_id);
++	}
++
+ 	res = TA_DoVerify(password_handle, provided_password,
+ 			provided_password_length);
+ 	switch (res) {

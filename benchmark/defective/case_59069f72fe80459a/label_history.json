@@ -1,0 +1,215 @@
+{
+  "case_id": "case_59069f72fe80459a",
+  "changes": [
+    {
+      "after": [
+        {
+          "function": "sha_update_op",
+          "lines": [
+            371,
+            376
+          ],
+          "path": "ta/sha_ta.c",
+          "role": "effect"
+        }
+      ],
+      "at": "2026-11-21T08:19:39.788492+00:00",
+      "before": [
+        {
+          "function": "sha_update_op",
+          "lines": [
+            372,
+            375
+          ],
+          "path": "ta/sha_ta.c",
+          "role": "effect"
+        }
+      ],
+      "defect_id": "D1",
+      "reason": "生成時の影響操作 L372–375 は 1 行上にずれ，空行を含み呼び出しの最終行が抜けていた．秘密鍵を出力へ書く TEE_GetObjectBufferAttribute の呼び出しは L373–376 にあるため，この範囲に修正",
+      "reviewer": "TY"
+    }
+  ],
+  "published_changes": 0,
+  "review": {
+    "approved_against": null,
+    "per_defect": {
+      "D1": {
+        "against": "sha256:54171869df4309247803165bf2beef0e1f78371ff64afec12a6014416fe000b1",
+        "status": "rejected"
+      }
+    },
+    "reviews": [
+      {
+        "action": "edit",
+        "against": {
+          "changes_diff": "sha256:baadf423815642691a18c1f96c490dc30948df905ad239bb23542dd0c6b73e24",
+          "defective_source": "sha256:14c82f46f6fd2e2f1c280c27ca8d03d29d7f86ddafe2a9428fc7f14b2e49beda",
+          "labels": "sha256:3c4883057ac060febcf91c392a315c414fafb5673634e23626bcb840b7ae5ec6",
+          "normal_source": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1",
+          "semantic": "sha256:fe87c57f89b0d2cd199cb054551907bf1203d3bf6e1f14cd31a046dbe721b5c5"
+        },
+        "at": "2026-11-21T08:19:39.788492+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": false,
+            "location": false
+          }
+        },
+        "defect_id": "D1",
+        "label_change": "sha256:8af8579f668a6f8b8a07fa3b7d5c8c10ab230f7a3d08d445bf88717811095938",
+        "reason": "生成時の影響操作 L372–375 は 1 行上にずれ，空行を含み呼び出しの最終行が抜けていた．秘密鍵を出力へ書く TEE_GetObjectBufferAttribute の呼び出しは L373–376 にあるため，この範囲に修正",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:54171869df4309247803165bf2beef0e1f78371ff64afec12a6014416fe000b1"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:baadf423815642691a18c1f96c490dc30948df905ad239bb23542dd0c6b73e24",
+          "defective_source": "sha256:14c82f46f6fd2e2f1c280c27ca8d03d29d7f86ddafe2a9428fc7f14b2e49beda",
+          "labels": "sha256:3c4883057ac060febcf91c392a315c414fafb5673634e23626bcb840b7ae5ec6",
+          "normal_source": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1",
+          "semantic": "sha256:fe87c57f89b0d2cd199cb054551907bf1203d3bf6e1f14cd31a046dbe721b5c5"
+        },
+        "at": "2026-11-21T08:28:47.111504+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": true,
+            "location": false
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:54171869df4309247803165bf2beef0e1f78371ff64afec12a6014416fe000b1"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:baadf423815642691a18c1f96c490dc30948df905ad239bb23542dd0c6b73e24",
+          "defective_source": "sha256:14c82f46f6fd2e2f1c280c27ca8d03d29d7f86ddafe2a9428fc7f14b2e49beda",
+          "labels": "sha256:3c4883057ac060febcf91c392a315c414fafb5673634e23626bcb840b7ae5ec6",
+          "normal_source": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1",
+          "semantic": "sha256:fe87c57f89b0d2cd199cb054551907bf1203d3bf6e1f14cd31a046dbe721b5c5"
+        },
+        "at": "2026-11-21T08:28:47.889337+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": false,
+            "location": false
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:54171869df4309247803165bf2beef0e1f78371ff64afec12a6014416fe000b1"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:baadf423815642691a18c1f96c490dc30948df905ad239bb23542dd0c6b73e24",
+          "defective_source": "sha256:14c82f46f6fd2e2f1c280c27ca8d03d29d7f86ddafe2a9428fc7f14b2e49beda",
+          "labels": "sha256:3c4883057ac060febcf91c392a315c414fafb5673634e23626bcb840b7ae5ec6",
+          "normal_source": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1",
+          "semantic": "sha256:fe87c57f89b0d2cd199cb054551907bf1203d3bf6e1f14cd31a046dbe721b5c5"
+        },
+        "at": "2026-11-21T08:28:48.736047+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": false,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:54171869df4309247803165bf2beef0e1f78371ff64afec12a6014416fe000b1"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:baadf423815642691a18c1f96c490dc30948df905ad239bb23542dd0c6b73e24",
+          "defective_source": "sha256:14c82f46f6fd2e2f1c280c27ca8d03d29d7f86ddafe2a9428fc7f14b2e49beda",
+          "labels": "sha256:3c4883057ac060febcf91c392a315c414fafb5673634e23626bcb840b7ae5ec6",
+          "normal_source": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1",
+          "semantic": "sha256:fe87c57f89b0d2cd199cb054551907bf1203d3bf6e1f14cd31a046dbe721b5c5"
+        },
+        "at": "2026-11-21T08:28:49.771604+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": false,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:54171869df4309247803165bf2beef0e1f78371ff64afec12a6014416fe000b1"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:baadf423815642691a18c1f96c490dc30948df905ad239bb23542dd0c6b73e24",
+          "defective_source": "sha256:14c82f46f6fd2e2f1c280c27ca8d03d29d7f86ddafe2a9428fc7f14b2e49beda",
+          "labels": "sha256:3c4883057ac060febcf91c392a315c414fafb5673634e23626bcb840b7ae5ec6",
+          "normal_source": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1",
+          "semantic": "sha256:fe87c57f89b0d2cd199cb054551907bf1203d3bf6e1f14cd31a046dbe721b5c5"
+        },
+        "at": "2026-11-21T08:28:57.138576+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": false,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:54171869df4309247803165bf2beef0e1f78371ff64afec12a6014416fe000b1"
+        }
+      },
+      {
+        "action": "reject",
+        "against": {
+          "changes_diff": "sha256:baadf423815642691a18c1f96c490dc30948df905ad239bb23542dd0c6b73e24",
+          "defective_source": "sha256:14c82f46f6fd2e2f1c280c27ca8d03d29d7f86ddafe2a9428fc7f14b2e49beda",
+          "labels": "sha256:3c4883057ac060febcf91c392a315c414fafb5673634e23626bcb840b7ae5ec6",
+          "normal_source": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1",
+          "semantic": "sha256:fe87c57f89b0d2cd199cb054551907bf1203d3bf6e1f14cd31a046dbe721b5c5"
+        },
+        "at": "2026-11-21T08:31:24.709015+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": false,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "漏れる HMAC 鍵は Normal World が TA_SHA_CMD_SET_KEY で設定した値で，TA 内部で生成・保管された秘密ではない．T02 で出力された 32 バイトもステップ 3 で渡した鍵と同一でありNormal World に新しい情報は渡っていないため，UDO として却下",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:54171869df4309247803165bf2beef0e1f78371ff64afec12a6014416fe000b1"
+        }
+      }
+    ],
+    "status": "rejected"
+  }
+}

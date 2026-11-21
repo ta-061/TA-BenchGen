@@ -1,0 +1,46 @@
+{
+  "case_id": "case_bbeac31ee64a446a",
+  "defects": [
+    {
+      "class": "UDO",
+      "detector_targets": [
+        {
+          "function": "get_hotp",
+          "lines": [
+            192,
+            194
+          ],
+          "path": "ta/hotp_ta.c",
+          "role": "effect"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            192,
+            193
+          ],
+          "edit_id": "E1",
+          "kind": "insert",
+          "normal_lines": null,
+          "path": "ta/hotp_ta.c"
+        }
+      ],
+      "id": "D1",
+      "reason": "When a long shared key is registered, the first four bytes of the secret key are copied in plaintext into the second field of the HOTP value output, so the protected key leaks to the caller unencrypted.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "normal": {
+    "path": "normal/hotp",
+    "source_digest": "sha256:15c5d5accb9fb36541160cb518df873ea3d346512489fa468578a1b81cd82169"
+  },
+  "review": {
+    "approved_against": null,
+    "reviews": [],
+    "status": "unreviewed"
+  },
+  "schema_version": "4.0"
+}

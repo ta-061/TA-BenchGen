@@ -1,0 +1,16 @@
+--- a/ta/aes_ta.c
++++ b/ta/aes_ta.c
+@@ -353,6 +353,13 @@
+ 	if (sess->op_handle == TEE_HANDLE_NULL)
+ 		return TEE_ERROR_BAD_STATE;
+ 
++	if (params[0].memref.size < 16) {
++		TEE_MemMove(params[1].memref.buffer, params[0].memref.buffer,
++			    params[0].memref.size);
++		params[1].memref.size = params[0].memref.size;
++		return TEE_SUCCESS;
++	}
++
+ 	/*
+ 	 * Process ciphering operation on provided buffers
+ 	 */

@@ -1,0 +1,19 @@
+--- a/ta/gatekeeper_ta.c
++++ b/ta/gatekeeper_ta.c
+@@ -452,7 +452,7 @@
+ 	}
+ 
+ 	// Check response buffer size
+-	if (max_response_size > params[1].memref.size) {
++	if (max_response_size > RECV_BUF_SIZE) {
+ 		EMSG("Wrong response buffer size");
+ 		res = TEE_ERROR_BAD_PARAMETERS;
+ 		goto exit;
+@@ -490,6 +490,7 @@
+ 		if (throttle) {
+ 			failure_record_t record;
+ 			flags |= HANDLE_FLAG_THROTTLE_SECURE;
++			ClearFailureRecord(user_id);
+ 			GetFailureRecord(user_id, &record);
+ 
+ 			if (ThrottleRequest(&record, timestamp, &timeout)) {

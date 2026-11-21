@@ -1,0 +1,118 @@
+{
+  "case_id": "case_c893fb83418c44fd",
+  "changes": [],
+  "review": {
+    "approved_against": {
+      "changes_diff": "sha256:c166acd4cd09d5bea5c888ce52363d36cf330a83a441eaa0de552a5b6d5017dc",
+      "defective_source": "sha256:a113b486b0fe36218f0d41c2165122941a1c92611ed581ad333f905b6f630c57",
+      "labels": "sha256:a32206b33c7103c7b299a218339657b8ef568b37feb8bafd2a0f64cc41cd81e4",
+      "normal_source": "sha256:539427c30330836356d3d07894bb0c053dde43cbcf284e726c2aa2f0574963b5",
+      "semantic": "sha256:81b475b74db381a59ba257da22eadd1b74a0294b020f080d11f5a36d4c7a328d"
+    },
+    "per_defect": {
+      "D1": {
+        "against": "sha256:f304a8e6205abb04b7ea79d78922e931682a95005874006888bc1109d39ac0ea",
+        "status": "approved"
+      }
+    },
+    "reviews": [
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:c166acd4cd09d5bea5c888ce52363d36cf330a83a441eaa0de552a5b6d5017dc",
+          "defective_source": "sha256:a113b486b0fe36218f0d41c2165122941a1c92611ed581ad333f905b6f630c57",
+          "labels": "sha256:a32206b33c7103c7b299a218339657b8ef568b37feb8bafd2a0f64cc41cd81e4",
+          "normal_source": "sha256:539427c30330836356d3d07894bb0c053dde43cbcf284e726c2aa2f0574963b5",
+          "semantic": "sha256:81b475b74db381a59ba257da22eadd1b74a0294b020f080d11f5a36d4c7a328d"
+        },
+        "at": "2026-11-21T09:40:04.618025+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": true,
+            "location": false
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:f304a8e6205abb04b7ea79d78922e931682a95005874006888bc1109d39ac0ea"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:c166acd4cd09d5bea5c888ce52363d36cf330a83a441eaa0de552a5b6d5017dc",
+          "defective_source": "sha256:a113b486b0fe36218f0d41c2165122941a1c92611ed581ad333f905b6f630c57",
+          "labels": "sha256:a32206b33c7103c7b299a218339657b8ef568b37feb8bafd2a0f64cc41cd81e4",
+          "normal_source": "sha256:539427c30330836356d3d07894bb0c053dde43cbcf284e726c2aa2f0574963b5",
+          "semantic": "sha256:81b475b74db381a59ba257da22eadd1b74a0294b020f080d11f5a36d4c7a328d"
+        },
+        "at": "2026-11-21T09:40:05.429699+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": true,
+            "location": false
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:f304a8e6205abb04b7ea79d78922e931682a95005874006888bc1109d39ac0ea"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:c166acd4cd09d5bea5c888ce52363d36cf330a83a441eaa0de552a5b6d5017dc",
+          "defective_source": "sha256:a113b486b0fe36218f0d41c2165122941a1c92611ed581ad333f905b6f630c57",
+          "labels": "sha256:a32206b33c7103c7b299a218339657b8ef568b37feb8bafd2a0f64cc41cd81e4",
+          "normal_source": "sha256:539427c30330836356d3d07894bb0c053dde43cbcf284e726c2aa2f0574963b5",
+          "semantic": "sha256:81b475b74db381a59ba257da22eadd1b74a0294b020f080d11f5a36d4c7a328d"
+        },
+        "at": "2026-11-21T09:40:06.055882+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:f304a8e6205abb04b7ea79d78922e931682a95005874006888bc1109d39ac0ea"
+        }
+      },
+      {
+        "action": "approve",
+        "against": {
+          "changes_diff": "sha256:c166acd4cd09d5bea5c888ce52363d36cf330a83a441eaa0de552a5b6d5017dc",
+          "defective_source": "sha256:a113b486b0fe36218f0d41c2165122941a1c92611ed581ad333f905b6f630c57",
+          "labels": "sha256:a32206b33c7103c7b299a218339657b8ef568b37feb8bafd2a0f64cc41cd81e4",
+          "normal_source": "sha256:539427c30330836356d3d07894bb0c053dde43cbcf284e726c2aa2f0574963b5",
+          "semantic": "sha256:81b475b74db381a59ba257da22eadd1b74a0294b020f080d11f5a36d4c7a328d"
+        },
+        "at": "2026-11-21T09:44:40.485119+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:f304a8e6205abb04b7ea79d78922e931682a95005874006888bc1109d39ac0ea"
+        }
+      }
+    ],
+    "status": "approved"
+  }
+}

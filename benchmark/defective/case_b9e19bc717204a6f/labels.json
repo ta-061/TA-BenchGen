@@ -1,0 +1,53 @@
+{
+  "case_id": "case_b9e19bc717204a6f",
+  "defects": [
+    {
+      "class": "ORDER",
+      "detector_targets": [
+        {
+          "function": "TA_Verify",
+          "lines": [
+            672,
+            672
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "TA_Verify",
+          "lines": [
+            675,
+            675
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "protection"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            671,
+            674
+          ],
+          "edit_id": "E1",
+          "kind": "insert",
+          "normal_lines": null,
+          "path": "ta/gatekeeper_ta.c"
+        }
+      ],
+      "id": "D1",
+      "reason": "In TA_Verify the user's failure record is cleared before the password has been verified. The failure counter recorded for the attempt is erased whatever the outcome, so repeated wrong passwords never trigger throttling.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "normal": {
+    "path": "normal/gatekeeper",
+    "source_digest": "sha256:8387367a6d1eb1c48750405491a3eb3775544adbdd58d7bc64524542047e2d57"
+  },
+  "review": {
+    "status": "approved"
+  },
+  "schema_version": "4.0"
+}

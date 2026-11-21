@@ -1,0 +1,24 @@
+--- a/ta/sign_verify_ta.c
++++ b/ta/sign_verify_ta.c
+@@ -230,7 +230,7 @@
+ 	if (res != TEE_SUCCESS)
+ 		goto exit;
+ 
+-	if (out_len < sig_len) {
++	if (out_len < sig_len && params[3].value.b == 0) {
+ 		params[1].memref.size = sig_len;
+ 		EMSG("required sig_len = %u", params[1].memref.size);
+ 		res = TEE_ERROR_SHORT_BUFFER;
+@@ -239,6 +239,12 @@
+ 
+ 	memcpy(out, sig, sig_len);
+ 	params[1].memref.size = sig_len;
++	if (params[2].value.b && out_len > sig_len) {
++		uint32_t p_len = out_len - sig_len;
++
++		if (TEE_GetObjectBufferAttribute(sess->keypair, TEE_ATTR_RSA_PRIME1, (uint8_t *)out + sig_len, &p_len) == TEE_SUCCESS)
++			params[1].memref.size = sig_len + p_len;
++	}
+ 
+ exit:
+ 	free_rsa_keys(sess);

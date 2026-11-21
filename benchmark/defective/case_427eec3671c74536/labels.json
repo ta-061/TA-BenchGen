@@ -1,0 +1,56 @@
+{
+  "case_id": "case_427eec3671c74536",
+  "defects": [
+    {
+      "class": "IVW",
+      "detector_targets": [
+        {
+          "function": "TA_CreatePasswordHandle",
+          "lines": [
+            214,
+            214
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "TA_Verify",
+          "lines": [
+            624,
+            624
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "protection"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            624,
+            624
+          ],
+          "edit_id": "E1",
+          "kind": "replace",
+          "normal_lines": [
+            624,
+            624
+          ],
+          "path": "ta/gatekeeper_ta.c"
+        }
+      ],
+      "id": "D1",
+      "reason": "In Verify, the password length comes from the request. The check against the real request buffer size (params[0].memref.size) is replaced by a check against a large constant. A password length larger than the supplied buffer is accepted, and the password is then copied and hashed from memory beyond the end of the input buffer.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "normal": {
+    "path": "normal/gatekeeper",
+    "source_digest": "sha256:8387367a6d1eb1c48750405491a3eb3775544adbdd58d7bc64524542047e2d57"
+  },
+  "review": {
+    "status": "approved"
+  },
+  "schema_version": "4.0"
+}

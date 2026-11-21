@@ -1,0 +1,1179 @@
+{
+  "case_id": "case_e8b4365cf5a3481c",
+  "environment": {
+    "image_digest": "sha256:e1b5023b7180eab9e5e158b7289699a503fecfcfd3a21481fac2293b755ead1e",
+    "optee_revision": "4.4.0",
+    "platform": "linux/amd64",
+    "qemu_revision": "v8.1.2",
+    "runner_version": "4.3.1",
+    "toolchain": "arm-gnu-toolchain-11.3.rel1"
+  },
+  "generation": {
+    "attempt_index": 1,
+    "attempts_total": 1,
+    "model_id": "claude-sonnet-5-5",
+    "plan_digest": "sha256:76962805ea4a370fb9823b4826e0220a2777084f5b6c3007184278b3908a531c"
+  },
+  "run_meta": {
+    "request_index": 17,
+    "run_id": "run_5c4927afa8984855",
+    "verified_at": "2026-11-20T11:04:11.799787+00:00"
+  },
+  "schema_version": "4.0",
+  "semantic": {
+    "defect_reverts": [
+      {
+        "defect_id": "D1",
+        "tests": [
+          {
+            "matches_normal": true,
+            "observed": [
+              [
+                {
+                  "op": "open",
+                  "origin": 0,
+                  "params": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "invoke",
+                  "origin": 4,
+                  "params": [
+                    {
+                      "data": "48656c6c6f",
+                      "size": 5,
+                      "type": "memref_input"
+                    },
+                    {
+                      "data": "00000000000000000000000000000000",
+                      "size": 256,
+                      "type": "memref_output"
+                    },
+                    {
+                      "a": 7,
+                      "b": 0,
+                      "type": "value_input"
+                    },
+                    {
+                      "a": 2048,
+                      "b": 1,
+                      "type": "value_input"
+                    }
+                  ],
+                  "result": 4294901776,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "close",
+                  "origin": 0,
+                  "params": [],
+                  "result": 0,
+                  "ta_crashed": false
+                }
+              ],
+              [
+                {
+                  "op": "open",
+                  "origin": 0,
+                  "params": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "invoke",
+                  "origin": 4,
+                  "params": [
+                    {
+                      "data": "48656c6c6f",
+                      "size": 5,
+                      "type": "memref_input"
+                    },
+                    {
+                      "data": "00000000000000000000000000000000",
+                      "size": 256,
+                      "type": "memref_output"
+                    },
+                    {
+                      "a": 7,
+                      "b": 0,
+                      "type": "value_input"
+                    },
+                    {
+                      "a": 2048,
+                      "b": 1,
+                      "type": "value_input"
+                    }
+                  ],
+                  "result": 4294901776,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "close",
+                  "origin": 0,
+                  "params": [],
+                  "result": 0,
+                  "ta_crashed": false
+                }
+              ]
+            ],
+            "test_id": "T02"
+          }
+        ],
+        "witness_matches_normal_after_revert": true
+      },
+      {
+        "defect_id": "D2",
+        "tests": [
+          {
+            "matches_normal": true,
+            "observed": [
+              [
+                {
+                  "op": "open",
+                  "origin": 0,
+                  "params": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "invoke",
+                  "origin": 0,
+                  "params": [
+                    {
+                      "data": "48656c6c6f",
+                      "size": 5,
+                      "type": "memref_input"
+                    },
+                    {
+                      "data": "abafddcaeff39c2eda9475d1fdb43d51ee814ed62faf6b2f75f2c1365b87054862a3920f3768334924ccd9c0f68894637069968b8370df8b923950ae5baa8213c49e823a30800fccdb5d130e2fa4fb2079261fa41b07aab4f3851ecd4bc3b6c3c205e4dc16bd7f666b61249a4ed6dbec543c65119807941e40f1f17b7b9beed1590f61c4b0b239e6944fee9c2e5452e3e4f11e43b60e921c7411f3ac3e9b16ebe28c2752af143d415d93602863364bf94aa3b0e0c8f86bd20722059d8d5c2b9b2af2eba832b861823a8f33d07eafedb558aba40a1e41d6222e25d1ddd0d05941f9a693a1b339d4560db50b40b8b2f941c4f2869a8e56d150c0deacbfbb40b2ed",
+                      "size": 256,
+                      "type": "memref_output"
+                    },
+                    {
+                      "a": 7,
+                      "b": 1,
+                      "type": "value_input"
+                    },
+                    {
+                      "a": 2048,
+                      "b": 0,
+                      "type": "value_input"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "close",
+                  "origin": 0,
+                  "params": [],
+                  "result": 0,
+                  "ta_crashed": false
+                }
+              ],
+              [
+                {
+                  "op": "open",
+                  "origin": 0,
+                  "params": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "invoke",
+                  "origin": 0,
+                  "params": [
+                    {
+                      "data": "48656c6c6f",
+                      "size": 5,
+                      "type": "memref_input"
+                    },
+                    {
+                      "data": "00d068d25aff9259f52f975666d78c453027c7f12548aa854c438e9a327085d6d05e6bc0bca085f9e743b1a616eb3722fa2d296f551a26c262c74b02748752ef7ac0473937b06778abd35ae16fb6aa76e204addb24ace8e54a7657e7cbb7842048c88bf2ac3edc14f5c959d91e89839febd3e0048c9e649a1e4d7b55557435becf46b7a98fb42d2cb9455ec966f045f19b7496c3bae9d62c73208d3a9feec4b313c2be91437941eaf8759dc9bc92ba20add9f4d1854e8ec05090a07c270a72a31779b8e78c8adcbb2ab6aff65734a7e241f6ec1faa7bd2d4fcbb36d571912a3430c62001440012aa5b340e95f971082ea5830c4df63d758ae590c48bf3bcff33",
+                      "size": 256,
+                      "type": "memref_output"
+                    },
+                    {
+                      "a": 7,
+                      "b": 1,
+                      "type": "value_input"
+                    },
+                    {
+                      "a": 2048,
+                      "b": 0,
+                      "type": "value_input"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "close",
+                  "origin": 0,
+                  "params": [],
+                  "result": 0,
+                  "ta_crashed": false
+                }
+              ]
+            ],
+            "test_id": "T03"
+          }
+        ],
+        "witness_matches_normal_after_revert": true
+      }
+    ],
+    "machine_validation": {
+      "per_defect": {
+        "D1": "machine_pass",
+        "D2": "machine_pass"
+      },
+      "repetitions": 2,
+      "status": "machine_pass"
+    },
+    "tests": [
+      {
+        "different_steps": [],
+        "equal": true,
+        "id": "T01",
+        "observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f",
+                  "size": 5,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "5e645eae7fc778acddc436732644ab723477cf4494d508fafe950d5347cabdc52ba1d35c9ecba8015ea2671980b84b4c5f83729809d98d5286e4f01ac4dab99c24a5d508fb4f9c0647949c9ba06d7252f047fa408d866de8f865432365265e6a3208f429e894205d010ba4e0518ada99a27ee5c0a737a1b2f69e8c343a8581a7f9e8157cf5f7aeeb4b906f13301dcfed74ffe1933cc572b641312861ffcf72ce3dfa2faf48cb6aef7fe60a8624e28843bfd246bc2cc797c7f72afb2c5d945c6cb9398ead11bf965f02c9723e09cc4db908e57e42704aa134f48758df099fd1881997141a7ab470be5bed7cda999953794ece974487e6d1473f57bc39fcc1b5ea",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 0,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f",
+                  "size": 5,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "abafddcaeff39c2eda9475d1fdb43d51ee814ed62faf6b2f75f2c1365b87054862a3920f3768334924ccd9c0f68894637069968b8370df8b923950ae5baa8213c49e823a30800fccdb5d130e2fa4fb2079261fa41b07aab4f3851ecd4bc3b6c3c205e4dc16bd7f666b61249a4ed6dbec543c65119807941e40f1f17b7b9beed1590f61c4b0b239e6944fee9c2e5452e3e4f11e43b60e921c7411f3ac3e9b16ebe28c2752af143d415d93602863364bf94aa3b0e0c8f86bd20722059d8d5c2b9b2af2eba832b861823a8f33d07eafedb558aba40a1e41d6222e25d1ddd0d05941f9a693a1b339d4560db50b40b8b2f941c4f2869a8e56d150c0deacbfbb40b2ed",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 0,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "purpose": "normal",
+        "repeated_observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f",
+                  "size": 5,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "2dfa3f254cef33abeef3bd8953b67069a7d532851c27cf18824eba5e801de6e9859b992ecb3364fb20fd90c1c2c5865555dfd171a9cfe478bd944b33700e304af59d67defb352e4c58a7ad180b8f3628ea07b4e69833ff0002d5a1c54f845e09a07e066ed7e2bf70e03f62d24d19d37418508fae27f923ba8448ee8fe5faa7d2b931b39cf2321bdcf2dd21cf9cd97071630e5b2ab8e7705029cabeb3cadd645b2f0cea901ec20358a3b24ae64961d11d0197266c3f4f0c16acbab5b5c6242e9af8f9c8dd909c00f2f89b6c06fc9550f1644927439f24439bfd281c7846674603d0565d4b718bb9de6dbe78636fb43f69125e32452c48da6ef8882f21e2580f09",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 0,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f",
+                  "size": 5,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "0ef0b0352de1bbb319d091b850a9ed79770687a3eedfc0f2a1b52b12237fc19301d2d49267335f7853f28f666355cd068e6b5afc8e1c59a33a0acd552ec169671b9ab300419e4d8f4de25d9cbc6bc4813745da61bdd68d4cc24336825073fa61172f50621041baa5d38f2c2ce8a19b53ce519aa554df43c84eb5882a8a1e3074b60c4c0de3a2bbc5e4c18693c24965e675e0fecf04b045de5315c325c744396711b44b1c4a729acf25bae9b9235ca24303a46dedc2d701d19b32ce05a686181b5ad7106cbce043ba053e781698fd83cf46e5726bcdc9061a55580163e39def6342d28dc8924daf3a4a33c6e68189fc42a7837d79db9d18123d6243a54526dfbf",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 0,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "steps": [
+          {
+            "op": "open",
+            "session": "s1"
+          },
+          {
+            "command_id": 0,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "48656c6c6f",
+                "type": "memref_input"
+              },
+              {
+                "size": 512,
+                "type": "memref_output"
+              },
+              {
+                "a": 7,
+                "b": 0,
+                "type": "value_input"
+              },
+              {
+                "a": 2048,
+                "b": 0,
+                "type": "value_input"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "op": "close",
+            "session": "s1"
+          }
+        ],
+        "targets": [],
+        "variable_items": [
+          {
+            "items": [
+              {
+                "field": "data",
+                "param": 1
+              }
+            ],
+            "step": 2
+          }
+        ]
+      },
+      {
+        "different_steps": [
+          2
+        ],
+        "equal": false,
+        "id": "T02",
+        "observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f",
+                  "size": 5,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "2dfa3f254cef33abeef3bd8953b67069",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 1,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "48656c6c6f",
+                  "size": 5,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "00000000000000000000000000000000",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 1,
+                  "type": "value_input"
+                }
+              ],
+              "result": 4294901776,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "purpose": "witness",
+        "repeated_observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f",
+                  "size": 5,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "00d068d25aff9259f52f975666d78c45",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 1,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "48656c6c6f",
+                  "size": 5,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "00000000000000000000000000000000",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 1,
+                  "type": "value_input"
+                }
+              ],
+              "result": 4294901776,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "steps": [
+          {
+            "op": "open",
+            "session": "s1"
+          },
+          {
+            "command_id": 0,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "48656c6c6f",
+                "type": "memref_input"
+              },
+              {
+                "size": 16,
+                "type": "memref_output"
+              },
+              {
+                "a": 7,
+                "b": 0,
+                "type": "value_input"
+              },
+              {
+                "a": 2048,
+                "b": 1,
+                "type": "value_input"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "op": "close",
+            "session": "s1"
+          }
+        ],
+        "targets": [
+          "D1"
+        ],
+        "variable_items": [
+          {
+            "items": [
+              {
+                "field": "data",
+                "param": 1
+              }
+            ],
+            "step": 2
+          }
+        ],
+        "witness_step": 2
+      },
+      {
+        "different_steps": [
+          2
+        ],
+        "equal": false,
+        "id": "T03",
+        "observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f",
+                  "size": 5,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "5e3d84cb695d1cd2f1bc8705f79ef2a8b86334a5b4c00596ab88a1faf4e8dbcad19e36e8478ff8a9f2067d1092af351781667d2668fdd5de65162dab432e6eb0c7cc0d7f463af8b19995161bbe263e71d67e9aeb67540d06dac90a266b3b3cdeb8ac6b1c042a44710ffebfb4bd449566a230b320d3c8b91c80e6ca313c427722a3156790bff6f39077e4e02a2dced7e5c2421bfbaa6dfbcaded6f2a1822d4c8f0a6e5ed923b8021b1ab5ea228d7b6535a4abe11ac60c3e2f328a84b59e5d0f58f93f5abd3e686a80747a28a9e7c16644ea9dc935296e6f900758380b60c8b545ac1cc0e65c5ef2c491b8bb65d24a13b0a3961ced9127cd662566f5ff2c80d070c2e1fc79a67dc432a62cf9b956b32a4ceb7ae247fafd65c10dae79febcede23cf29a003a25a7fb98d90a83e9b902594966bb213deb71b3f61cef0cc6ff283ecfbc08d2cd3600a5dfa5ecf230793eba934d8068702c809a79e13d9e56d8de9d411db33c83eabb766c78c0f1877c2ecb9121ec558dfb07ec6da4bc8c549b6af6d1",
+                  "size": 384,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 1,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 0,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f",
+                  "size": 5,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "ec770e362bb5260fc5c1ebcc489057f5bbf88e627f6afb8d7a81d2fa510dc8edeee16a37b057c6875bccea82f6ce61f1637322fc8a1b032ce37baddcaca3e3e62cdc3d10110d12b778bc0cd21a7a1f5222a1ccaef4d521262f94d84957c2087f059b8ac3c2664a83cf6caba1027cb90236d8a36efe0ff91d7dda3a8c45b72cc6b481a3cdc609e9cbdcc54a85abf5019a1a22c253ebd81dd39ae309ff189f1740fe22cf1506c00684c0cd62ef7d7897adb2488df10be06554856f6c8651038516338aa8d46555128f58fec790edfe84237ba25e51b43db54697e9c8a12822840b3ff9ac2090a4d61fd2f4a854622321db488fed0395f882576f8a9013e0b2e8ed",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 1,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 0,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "purpose": "witness",
+        "repeated_observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f",
+                  "size": 5,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "88864f82e8ec6b6b584cd939a54fd0ee2af00d9164980373fbf10d299e96f66a557a01d12bea519b57251f26cdaaba7ebde01e9b6147a81d43cd5693b4a604b438f9c5e24ea67eec16be180ed31486edb4379758598492a2a075250f90c19061c8ade3aa0e446745698cbbaf02bde51216fa41658149931c8c6c3d244b2704b11657f526a1bab6b9d2a3a988bc5e2d42f2803e62bd82fb31b316bb58189c264101f2d8c8d1be35253a002531c1adf9b13bdf5514625130161d179a9cfd3ed96bad89a01be8ceeaf1a5d6dade7e8d563ab9a59bf94de49958873e3d773acbbc5af9d70983586ec92725f2b1b00cf53eaa7a131ed3fbbc2676a3022b8f426638a6c9ab1407c43a2e1df4654fbbcd2c005e8cf8788e4726feda172d8b3a92d7408688a7f4e6da0e3081b46516ef443cc9bfa0eaaca5131d4ddbe4a2102ff3fb8408db5a7f22a19b3e57f70a20531758d96878367e65ccbdc4def399cbc5529654e5e9b22a17f162d6e22e521b808008c543e47e5c1a3c8225de384a6a637021a923",
+                  "size": 384,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 1,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 0,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f",
+                  "size": 5,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "0424caefb0c799ec791e850fc96c570eb317ef196f8dc83138b27940223d7eef2cddd2eb2113906c84a3d12ff2c0ca8130ee6e1bf0316d88be776f658166486b56dfdb9704b97b2a4e6c74484185eb778fd94cad313f727b55700f960a3f6a9f2b22b9a58a298567ef73a472a69856f3bc8be4eeab25986e8e26990d457e0ba72f23578c6777b8d81803e0db3efe7741ac7c6f31434a878d769cf5f59127ba3ecf5808e63852cc69fa840f66b4bd9a9a1cbb4bdef9033e5d26cdebdd9ba80b890515c9bf1e825714076c247c86e7e127469376e3caecd8dfdb3cbd67d0e307658e38828ae60776848494f2b956688198ef565684ef73e7b4519a8bbe8d10bf19",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 1,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 0,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "steps": [
+          {
+            "op": "open",
+            "session": "s1"
+          },
+          {
+            "command_id": 0,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "48656c6c6f",
+                "type": "memref_input"
+              },
+              {
+                "size": 1024,
+                "type": "memref_output"
+              },
+              {
+                "a": 7,
+                "b": 1,
+                "type": "value_input"
+              },
+              {
+                "a": 2048,
+                "b": 0,
+                "type": "value_input"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "op": "close",
+            "session": "s1"
+          }
+        ],
+        "targets": [
+          "D2"
+        ],
+        "variable_items": [
+          {
+            "items": [
+              {
+                "field": "data",
+                "param": 1
+              }
+            ],
+            "step": 2
+          }
+        ],
+        "witness_step": 2
+      },
+      {
+        "different_steps": [],
+        "equal": true,
+        "id": "C0ff466d3b4b22f96",
+        "observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f46726f6d486f7374",
+                  "size": 13,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "53c30e306a7fd3a6bcef77cb298977f412d0f1ffd1f5306125d43c104f4be27f84b0128d27ae065659f51a0dff6d667a38c6b8396e987196f7b6b2ccf36c5d4b2c9ff33b26ebb2040160b616b909a3ff6a1ee065cf0fea225cebb2b339ec790eefbb82bfc4934fa83a1f7e20f087c0777e11c47c1794b4a4004ed175b0b3a73ea36b261e920a58ecc7cc63e96e1e3f190c3e31866863e9ff26e709e1686fc3ec270739dc1ae22d968c2bb23225d5ebd62d47d126563bc55ad18cb6f8a02d26c4cac47f5e6a928add37e8f6663ae8cbbf9f2e521bdaba82c9bda9360209a68e02efa7d599551791cdf45d0a7ad0ed8070bfd1d63bf418019b27f6ccc65e0c66fd",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 0,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f46726f6d486f7374",
+                  "size": 13,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "55a8c1b0ad6c601629135c08b8b2cdd6230084db0d9977d80098a9a421b0190ae04e32bbe684b9168e81f1245444c30062d0dab833e8619a52d69c8d5850002cfddd18a1da6b17f6ca90c250a93ab610530c2c50a3fb53a0a4912ad429c7f64b86c9cd7952cabef816165e1b909df1471ed7137ee63066ae1a3b5f9a3977055d9589051ddd8a967d9e61d747014d316e90c4eeb3ec8c73a4faf19ff6b921f7d3f43b787eb86706611793bff66c97c231af5157776a1e85ff37894516eff7685a68e1e43d36ed10ce1c11a6690fc39721f19559633eae0e9e07d9b80341f618ee137986ab4baf1febca1a0c74a12742f83170578c70095a9648e9e68672367867",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 0,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "purpose": "normal",
+        "repeated_observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f46726f6d486f7374",
+                  "size": 13,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "8188633813d2c785e8107dbcc482e3b2fee80a5ddd24e0b924b45f7615b28333cefae1d9328226e0aeb875e31eacab39629fbbe2dbc5b4b72822da9b19715c9ebc11c5ee5ad04baab2b1eb296378498ed045f818f46a12de2ba29e1aecbfdd296f9b230df4e5b7f846e38896d21fb05c3849f9a3d039eab9a11a53b8ff968264bb5704f2c9dd6ed17366fe49ca9c80d53b62d72e89eb14984f943583f6fde7ae83818c1d1888d626fafc73663d925f1b9f303fe990110c6b8616d3fba830d8c312e57c9346b52740c41d2bee9a12830dd31c09eec5b9c265f6094700f1a081d71f718175e40809f134e19e0afea99fd0424309976c585abb5f9fed62f6252f77",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 0,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f46726f6d486f7374",
+                  "size": 13,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "53c30e306a7fd3a6bcef77cb298977f412d0f1ffd1f5306125d43c104f4be27f84b0128d27ae065659f51a0dff6d667a38c6b8396e987196f7b6b2ccf36c5d4b2c9ff33b26ebb2040160b616b909a3ff6a1ee065cf0fea225cebb2b339ec790eefbb82bfc4934fa83a1f7e20f087c0777e11c47c1794b4a4004ed175b0b3a73ea36b261e920a58ecc7cc63e96e1e3f190c3e31866863e9ff26e709e1686fc3ec270739dc1ae22d968c2bb23225d5ebd62d47d126563bc55ad18cb6f8a02d26c4cac47f5e6a928add37e8f6663ae8cbbf9f2e521bdaba82c9bda9360209a68e02efa7d599551791cdf45d0a7ad0ed8070bfd1d63bf418019b27f6ccc65e0c66fd",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 0,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "steps": [
+          {
+            "op": "open",
+            "session": "s1"
+          },
+          {
+            "command_id": 0,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "48656c6c6f46726f6d486f7374",
+                "type": "memref_input"
+              },
+              {
+                "size": 512,
+                "type": "memref_output"
+              },
+              {
+                "a": 7,
+                "b": 0,
+                "type": "value_input"
+              },
+              {
+                "a": 2048,
+                "b": 0,
+                "type": "value_input"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "op": "close",
+            "session": "s1"
+          }
+        ],
+        "targets": [],
+        "variable_items": [
+          {
+            "items": [
+              {
+                "field": "data",
+                "param": 1
+              }
+            ],
+            "step": 2
+          }
+        ]
+      }
+    ]
+  }
+}

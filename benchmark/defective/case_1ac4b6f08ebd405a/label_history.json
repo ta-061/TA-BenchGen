@@ -1,0 +1,196 @@
+{
+  "case_id": "case_1ac4b6f08ebd405a",
+  "changes": [
+    {
+      "after": [
+        {
+          "function": "sign_verify",
+          "lines": [
+            245,
+            246
+          ],
+          "path": "ta/sign_verify_ta.c",
+          "role": "effect"
+        }
+      ],
+      "at": "2026-11-21T05:24:48.509884+00:00",
+      "before": [
+        {
+          "function": "sign_verify",
+          "lines": [
+            246,
+            247
+          ],
+          "path": "ta/sign_verify_ta.c",
+          "role": "effect"
+        }
+      ],
+      "defect_id": "D1",
+      "reason": "",
+      "reviewer": "TY"
+    }
+  ],
+  "review": {
+    "approved_against": {
+      "changes_diff": "sha256:e8a2320e8dde8c19f071adfc9c875c3eabfb5206cbc8423729f6d60c67973598",
+      "defective_source": "sha256:e4d52891a89932e3ec821203546c25e7662df0cc355e2d1e0f77f6254cbac666",
+      "labels": "sha256:baeab831ff72f23b88952ed2911b4095423f432f41285909b9347072e7b35594",
+      "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+      "semantic": "sha256:e18cda2b1833f180ce9609c3868822ed9c3bcd3708bd6144cb7f81e036d7b618"
+    },
+    "per_defect": {
+      "D1": {
+        "against": "sha256:a6554fe6ec090806afc87d43ce4bc176f2afc98e5f0bf758da385798dad149f2",
+        "status": "approved"
+      }
+    },
+    "reviews": [
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:e8a2320e8dde8c19f071adfc9c875c3eabfb5206cbc8423729f6d60c67973598",
+          "defective_source": "sha256:e4d52891a89932e3ec821203546c25e7662df0cc355e2d1e0f77f6254cbac666",
+          "labels": "sha256:15935d204322f222eaf81f34af49eec067b539fd1f19095f22108b2442c159b1",
+          "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+          "semantic": "sha256:e18cda2b1833f180ce9609c3868822ed9c3bcd3708bd6144cb7f81e036d7b618"
+        },
+        "at": "2026-11-21T05:24:46.958841+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": true,
+            "location": false
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:ec97692c4ca631a90af7851278c41facdbfcb8a7db6cbb82f5504db186462a0c"
+        }
+      },
+      {
+        "action": "edit",
+        "against": {
+          "changes_diff": "sha256:e8a2320e8dde8c19f071adfc9c875c3eabfb5206cbc8423729f6d60c67973598",
+          "defective_source": "sha256:e4d52891a89932e3ec821203546c25e7662df0cc355e2d1e0f77f6254cbac666",
+          "labels": "sha256:baeab831ff72f23b88952ed2911b4095423f432f41285909b9347072e7b35594",
+          "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+          "semantic": "sha256:e18cda2b1833f180ce9609c3868822ed9c3bcd3708bd6144cb7f81e036d7b618"
+        },
+        "at": "2026-11-21T05:24:48.509884+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": false,
+            "location": false
+          }
+        },
+        "defect_id": "D1",
+        "label_change": "sha256:62ad0f9baf2019e8d312eb91cb9bf5805f327813ebddc6ff580a95ffe1f6950f",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:a6554fe6ec090806afc87d43ce4bc176f2afc98e5f0bf758da385798dad149f2"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:e8a2320e8dde8c19f071adfc9c875c3eabfb5206cbc8423729f6d60c67973598",
+          "defective_source": "sha256:e4d52891a89932e3ec821203546c25e7662df0cc355e2d1e0f77f6254cbac666",
+          "labels": "sha256:baeab831ff72f23b88952ed2911b4095423f432f41285909b9347072e7b35594",
+          "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+          "semantic": "sha256:e18cda2b1833f180ce9609c3868822ed9c3bcd3708bd6144cb7f81e036d7b618"
+        },
+        "at": "2026-11-21T05:24:50.948361+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": true,
+            "location": false
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:a6554fe6ec090806afc87d43ce4bc176f2afc98e5f0bf758da385798dad149f2"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:e8a2320e8dde8c19f071adfc9c875c3eabfb5206cbc8423729f6d60c67973598",
+          "defective_source": "sha256:e4d52891a89932e3ec821203546c25e7662df0cc355e2d1e0f77f6254cbac666",
+          "labels": "sha256:baeab831ff72f23b88952ed2911b4095423f432f41285909b9347072e7b35594",
+          "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+          "semantic": "sha256:e18cda2b1833f180ce9609c3868822ed9c3bcd3708bd6144cb7f81e036d7b618"
+        },
+        "at": "2026-11-21T05:24:51.476322+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:a6554fe6ec090806afc87d43ce4bc176f2afc98e5f0bf758da385798dad149f2"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:e8a2320e8dde8c19f071adfc9c875c3eabfb5206cbc8423729f6d60c67973598",
+          "defective_source": "sha256:e4d52891a89932e3ec821203546c25e7662df0cc355e2d1e0f77f6254cbac666",
+          "labels": "sha256:baeab831ff72f23b88952ed2911b4095423f432f41285909b9347072e7b35594",
+          "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+          "semantic": "sha256:e18cda2b1833f180ce9609c3868822ed9c3bcd3708bd6144cb7f81e036d7b618"
+        },
+        "at": "2026-11-21T05:24:52.009867+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:a6554fe6ec090806afc87d43ce4bc176f2afc98e5f0bf758da385798dad149f2"
+        }
+      },
+      {
+        "action": "approve",
+        "against": {
+          "changes_diff": "sha256:e8a2320e8dde8c19f071adfc9c875c3eabfb5206cbc8423729f6d60c67973598",
+          "defective_source": "sha256:e4d52891a89932e3ec821203546c25e7662df0cc355e2d1e0f77f6254cbac666",
+          "labels": "sha256:baeab831ff72f23b88952ed2911b4095423f432f41285909b9347072e7b35594",
+          "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+          "semantic": "sha256:e18cda2b1833f180ce9609c3868822ed9c3bcd3708bd6144cb7f81e036d7b618"
+        },
+        "at": "2026-11-21T05:26:40.503662+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "L245–246 の TEE_GetObjectBufferAttribute は，RSA 秘密指数を呼び出し元の出力バッファに平文で書き込む，秘密値を外部へ出力する最初の操作であり，L247 は書き込み後に返却長を更新する．",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:a6554fe6ec090806afc87d43ce4bc176f2afc98e5f0bf758da385798dad149f2"
+        }
+      }
+    ],
+    "status": "approved"
+  }
+}

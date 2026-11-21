@@ -1,0 +1,56 @@
+{
+  "case_id": "case_061088fe19e546b2",
+  "defects": [
+    {
+      "class": "IVW",
+      "detector_targets": [
+        {
+          "function": "read_raw_object",
+          "lines": [
+            211,
+            212
+          ],
+          "path": "ta/secure_storage_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "read_raw_object",
+          "lines": [
+            201,
+            201
+          ],
+          "path": "ta/secure_storage_ta.c",
+          "role": "protection"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            201,
+            201
+          ],
+          "edit_id": "E1",
+          "kind": "replace",
+          "normal_lines": [
+            201,
+            201
+          ],
+          "path": "ta/secure_storage_ta.c"
+        }
+      ],
+      "id": "D1",
+      "reason": "The stored object size is compared against the caller-supplied buffer size with a slack of 32 bytes. An object up to 32 bytes larger than the allocated buffer passes the check. TEE_ReadObjectData then writes past the end of the private buffer, and the following TEE_MemMove writes past the caller's output buffer.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "normal": {
+    "path": "normal/secure_storage",
+    "source_digest": "sha256:7a38a18c6d418b1ace217dce9155b0e39d560fe257948b1747e4b96641b35ad2"
+  },
+  "review": {
+    "status": "approved"
+  },
+  "schema_version": "4.0"
+}

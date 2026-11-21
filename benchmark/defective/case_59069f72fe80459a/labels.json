@@ -1,0 +1,59 @@
+{
+  "case_id": "case_59069f72fe80459a",
+  "defects": [
+    {
+      "class": "UDO",
+      "detector_targets": [
+        {
+          "function": "sha_update_op",
+          "lines": [
+            372,
+            375
+          ],
+          "path": "ta/sha_ta.c",
+          "role": "effect"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            368,
+            368
+          ],
+          "edit_id": "E1",
+          "kind": "replace",
+          "normal_lines": [
+            368,
+            368
+          ],
+          "path": "ta/sha_ta.c"
+        },
+        {
+          "defective_lines": [
+            370,
+            379
+          ],
+          "edit_id": "E2",
+          "kind": "insert",
+          "normal_lines": null,
+          "path": "ta/sha_ta.c"
+        }
+      ],
+      "id": "D1",
+      "reason": "When the caller's MAC output buffer has spare room, the raw secret key is copied in plaintext into the output buffer right after the MAC and the returned size is extended to include it.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "normal": {
+    "path": "normal/sha",
+    "source_digest": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1"
+  },
+  "review": {
+    "approved_against": null,
+    "reviews": [],
+    "status": "unreviewed"
+  },
+  "schema_version": "4.0"
+}

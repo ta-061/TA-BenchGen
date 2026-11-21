@@ -1,0 +1,55 @@
+{
+  "case_id": "case_c8a67e91786a479f",
+  "defects": [
+    {
+      "class": "DUS",
+      "detector_targets": [
+        {
+          "function": "read_raw_object",
+          "lines": [
+            179,
+            179
+          ],
+          "path": "ta/secure_storage_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "read_raw_object",
+          "lines": [
+            172,
+            172
+          ],
+          "path": "ta/secure_storage_ta.c",
+          "role": "protection"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            179,
+            180
+          ],
+          "edit_id": "E1",
+          "kind": "insert",
+          "normal_lines": null,
+          "path": "ta/secure_storage_ta.c"
+        }
+      ],
+      "id": "D1",
+      "reason": "read_raw_object copies the object ID into private memory, but then refreshes that private copy from the caller-shared buffer just before opening the object. A change to the shared buffer after the first copy therefore decides which object is opened.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "normal": {
+    "path": "normal/secure_storage",
+    "source_digest": "sha256:7a38a18c6d418b1ace217dce9155b0e39d560fe257948b1747e4b96641b35ad2"
+  },
+  "review": {
+    "approved_against": null,
+    "reviews": [],
+    "status": "unreviewed"
+  },
+  "schema_version": "4.0"
+}

@@ -1,0 +1,56 @@
+{
+  "case_id": "case_2509fc67e11f4a0d",
+  "defects": [
+    {
+      "class": "IVW",
+      "detector_targets": [
+        {
+          "function": "sign_verify",
+          "lines": [
+            240,
+            240
+          ],
+          "path": "ta/sign_verify_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "sign_verify",
+          "lines": [
+            233,
+            233
+          ],
+          "path": "ta/sign_verify_ta.c",
+          "role": "protection"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            233,
+            233
+          ],
+          "edit_id": "E1",
+          "kind": "replace",
+          "normal_lines": [
+            233,
+            233
+          ],
+          "path": "ta/sign_verify_ta.c"
+        }
+      ],
+      "id": "D1",
+      "reason": "The caller-supplied output buffer size is compared against a reduced signature length. An output buffer slightly smaller than the signature passes the check, and the memcpy then writes past the end of the caller's buffer.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "normal": {
+    "path": "normal/sign_verify",
+    "source_digest": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a"
+  },
+  "review": {
+    "status": "approved"
+  },
+  "schema_version": "4.0"
+}

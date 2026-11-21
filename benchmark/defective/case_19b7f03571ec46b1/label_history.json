@@ -1,0 +1,46 @@
+{
+  "case_id": "case_19b7f03571ec46b1",
+  "changes": [],
+  "review": {
+    "approved_against": {
+      "changes_diff": "sha256:5db8639cb3040a95bb3a15ac70460a32a10f599a7d9a1375c7ef654983c62736",
+      "defective_source": "sha256:cdf02571003881ba6101ff608ee14538e26d997849055f6023089db1121aec95",
+      "labels": "sha256:7db79554f30f814a2b519a7d001f56a1ee18b7964a69480d3ec62284f248d7e7",
+      "normal_source": "sha256:a8ed74e2b1a8be18202f80cc920b5024ba1f6f1ff0b22d1f3a447eeb177ed006",
+      "semantic": "sha256:f2a57b0a9f4591307fcde18ca05be5a8021e7672eacda469011dbd2dcc95cd89"
+    },
+    "per_defect": {
+      "D1": {
+        "against": "sha256:bc1971e2ddcda64f875d4866392ad10e42729a751b50f0a458484495accca454",
+        "status": "approved"
+      }
+    },
+    "reviews": [
+      {
+        "action": "approve",
+        "against": {
+          "changes_diff": "sha256:5db8639cb3040a95bb3a15ac70460a32a10f599a7d9a1375c7ef654983c62736",
+          "defective_source": "sha256:cdf02571003881ba6101ff608ee14538e26d997849055f6023089db1121aec95",
+          "labels": "sha256:7db79554f30f814a2b519a7d001f56a1ee18b7964a69480d3ec62284f248d7e7",
+          "normal_source": "sha256:a8ed74e2b1a8be18202f80cc920b5024ba1f6f1ff0b22d1f3a447eeb177ed006",
+          "semantic": "sha256:f2a57b0a9f4591307fcde18ca05be5a8021e7672eacda469011dbd2dcc95cd89"
+        },
+        "at": "2026-11-21T04:46:46.049030+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:bc1971e2ddcda64f875d4866392ad10e42729a751b50f0a458484495accca454"
+        }
+      }
+    ],
+    "status": "approved"
+  }
+}

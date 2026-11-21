@@ -1,0 +1,275 @@
+{
+  "case_id": "case_e264a169df23d680",
+  "defects": [
+    {
+      "class": "ORDER",
+      "detector_targets": [
+        {
+          "function": "check_user_pin",
+          "lines": [
+            1207,
+            1207
+          ],
+          "path": "ta/src/pkcs11_token.c",
+          "role": "effect"
+        },
+        {
+          "function": "check_user_pin",
+          "lines": [
+            1225,
+            1225
+          ],
+          "path": "ta/src/pkcs11_token.c",
+          "role": "protection"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": null,
+          "edit_id": "E4",
+          "kind": "delete",
+          "normal_lines": [
+            1192,
+            1192
+          ],
+          "path": "ta/src/pkcs11_token.c"
+        },
+        {
+          "defective_lines": [
+            1198,
+            1198
+          ],
+          "edit_id": "E5",
+          "kind": "replace",
+          "normal_lines": [
+            1196,
+            1196
+          ],
+          "path": "ta/src/pkcs11_token.c"
+        },
+        {
+          "defective_lines": [
+            1201,
+            1201
+          ],
+          "edit_id": "E6",
+          "kind": "replace",
+          "normal_lines": [
+            1199,
+            1199
+          ],
+          "path": "ta/src/pkcs11_token.c"
+        },
+        {
+          "defective_lines": [
+            1204,
+            1204
+          ],
+          "edit_id": "E7",
+          "kind": "replace",
+          "normal_lines": [
+            1202,
+            1202
+          ],
+          "path": "ta/src/pkcs11_token.c"
+        },
+        {
+          "defective_lines": [
+            1207,
+            1211
+          ],
+          "edit_id": "E8",
+          "kind": "replace",
+          "normal_lines": [
+            1205,
+            1210
+          ],
+          "path": "ta/src/pkcs11_token.c"
+        },
+        {
+          "defective_lines": [
+            1213,
+            1214
+          ],
+          "edit_id": "E9",
+          "kind": "replace",
+          "normal_lines": [
+            1212,
+            1215
+          ],
+          "path": "ta/src/pkcs11_token.c"
+        },
+        {
+          "defective_lines": [
+            1216,
+            1217
+          ],
+          "edit_id": "E10",
+          "kind": "replace",
+          "normal_lines": [
+            1217,
+            1217
+          ],
+          "path": "ta/src/pkcs11_token.c"
+        },
+        {
+          "defective_lines": [
+            1219,
+            1227
+          ],
+          "edit_id": "E11",
+          "kind": "replace",
+          "normal_lines": [
+            1219,
+            1223
+          ],
+          "path": "ta/src/pkcs11_token.c"
+        },
+        {
+          "defective_lines": [
+            1233,
+            1234
+          ],
+          "edit_id": "E12",
+          "kind": "replace",
+          "normal_lines": [
+            1229,
+            1232
+          ],
+          "path": "ta/src/pkcs11_token.c"
+        },
+        {
+          "defective_lines": [
+            1236,
+            1236
+          ],
+          "edit_id": "E13",
+          "kind": "replace",
+          "normal_lines": [
+            1234,
+            1238
+          ],
+          "path": "ta/src/pkcs11_token.c"
+        },
+        {
+          "defective_lines": [
+            1239,
+            1242
+          ],
+          "edit_id": "E14",
+          "kind": "replace",
+          "normal_lines": [
+            1241,
+            1241
+          ],
+          "path": "ta/src/pkcs11_token.c"
+        },
+        {
+          "defective_lines": [
+            1244,
+            1247
+          ],
+          "edit_id": "E15",
+          "kind": "replace",
+          "normal_lines": [
+            1243,
+            1243
+          ],
+          "path": "ta/src/pkcs11_token.c"
+        }
+      ],
+      "id": "D1",
+      "order_example": "C1",
+      "original_id": "PKCS11-V/I01",
+      "reason": "PIN-dependent observation before attempt recording succeeds",
+      "witness_test_ids": [
+        "c1_correct_block",
+        "c1_wrong_block",
+        "c1_wrong_repeat_block"
+      ]
+    },
+    {
+      "class": "ORDER",
+      "detector_targets": [
+        {
+          "function": "entry_ck_token_initialize",
+          "lines": [
+            884,
+            884
+          ],
+          "path": "ta/src/pkcs11_token.c",
+          "role": "effect"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            874,
+            918
+          ],
+          "edit_id": "E1",
+          "kind": "replace",
+          "normal_lines": [
+            874,
+            875
+          ],
+          "path": "ta/src/pkcs11_token.c"
+        },
+        {
+          "defective_lines": null,
+          "edit_id": "E2",
+          "kind": "delete",
+          "normal_lines": [
+            877,
+            894
+          ],
+          "path": "ta/src/pkcs11_token.c"
+        },
+        {
+          "defective_lines": null,
+          "edit_id": "E3",
+          "kind": "delete",
+          "normal_lines": [
+            911,
+            932
+          ],
+          "path": "ta/src/pkcs11_token.c"
+        }
+      ],
+      "id": "D2",
+      "order_example": "C2",
+      "original_id": "PKCS11-V/I02",
+      "reason": "NULL-PIN path reassigns authorization without old PIN approval",
+      "witness_test_ids": [
+        "c2_attack"
+      ]
+    }
+  ],
+  "normal": {
+    "path": "normal/pkcs11",
+    "source_digest": "sha256:5b6c9a75145d0bb49377ac68aa382282665435caf3fa089ff4132b6bbe5a88f6"
+  },
+  "origin": {
+    "base_commit": "d75c42ff2847b090d5b1f11c49067cd41fcc2734",
+    "dataset_id": "t06-controlled-20261101",
+    "defective_input": {
+      "controlled_input": "P03",
+      "input_id": "T06",
+      "legacy_id": "PKCS11-V",
+      "source_digest": "sha256:e264a169df23d6802c5a4df3e6841386b6f3ec672bb0feb34265c157ee537732"
+    },
+    "donor_commit": "d690c8389bd24c64b77dbc264cdfa80ebecfc7f7",
+    "normal_input": {
+      "controlled_input": "P00",
+      "input_id": "T05",
+      "legacy_id": "PKCS11-F"
+    },
+    "type": "upstream_derived_targeted_function_reversion"
+  },
+  "review": {
+    "approved_against": null,
+    "reviews": [],
+    "status": "unreviewed"
+  },
+  "schema_version": "4.0"
+}

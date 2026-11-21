@@ -1,0 +1,87 @@
+{
+  "case_id": "case_e8b4365cf5a3481c",
+  "defects": [
+    {
+      "class": "IVW",
+      "detector_targets": [
+        {
+          "function": "sign_verify",
+          "lines": [
+            240,
+            240
+          ],
+          "path": "ta/sign_verify_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "sign_verify",
+          "lines": [
+            233,
+            233
+          ],
+          "path": "ta/sign_verify_ta.c",
+          "role": "protection"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            233,
+            233
+          ],
+          "edit_id": "E1",
+          "kind": "replace",
+          "normal_lines": [
+            233,
+            233
+          ],
+          "path": "ta/sign_verify_ta.c"
+        }
+      ],
+      "id": "D1",
+      "reason": "The output buffer size check is skipped when an externally supplied flag (params[3].b) is set, so the signature is copied into an output buffer smaller than sig_len, writing out of range.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    },
+    {
+      "class": "UDO",
+      "detector_targets": [
+        {
+          "function": "sign_verify",
+          "lines": [
+            245,
+            245
+          ],
+          "path": "ta/sign_verify_ta.c",
+          "role": "effect"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            242,
+            247
+          ],
+          "edit_id": "E2",
+          "kind": "insert",
+          "normal_lines": null,
+          "path": "ta/sign_verify_ta.c"
+        }
+      ],
+      "id": "D2",
+      "reason": "When a flag in params[2].b is set and the output buffer has spare room, the RSA private prime attribute is written in plaintext into the output buffer after the signature.",
+      "witness_test_ids": [
+        "T03"
+      ]
+    }
+  ],
+  "normal": {
+    "path": "normal/sign_verify",
+    "source_digest": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a"
+  },
+  "review": {
+    "status": "approved"
+  },
+  "schema_version": "4.0"
+}

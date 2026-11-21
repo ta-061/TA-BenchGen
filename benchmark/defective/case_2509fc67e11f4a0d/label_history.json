@@ -1,0 +1,190 @@
+{
+  "case_id": "case_2509fc67e11f4a0d",
+  "changes": [
+    {
+      "after": [
+        {
+          "function": "sign_verify",
+          "lines": [
+            240,
+            240
+          ],
+          "path": "ta/sign_verify_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "sign_verify",
+          "lines": [
+            233,
+            233
+          ],
+          "path": "ta/sign_verify_ta.c",
+          "role": "protection"
+        }
+      ],
+      "at": "2026-11-21T06:59:45.579645+00:00",
+      "before": [
+        {
+          "function": "sign_verify",
+          "lines": [
+            241,
+            241
+          ],
+          "path": "ta/sign_verify_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "sign_verify",
+          "lines": [
+            234,
+            234
+          ],
+          "path": "ta/sign_verify_ta.c",
+          "role": "protection"
+        }
+      ],
+      "defect_id": "D1",
+      "reason": "生成時の位置は 1 行下にずれ保護操作 L234・影響操作 L241 がどちらもサイズ代入の行を示したが，設計不備のある保護操作は L233，範囲外へ書き込む memcpy は L240 にあるためこの 2 か所に修正",
+      "reviewer": "TY"
+    }
+  ],
+  "review": {
+    "approved_against": {
+      "changes_diff": "sha256:c9a08d55c1eeb2e7b1f0ca944b48d977fb9546c48c4ef95603179b2abaf3d604",
+      "defective_source": "sha256:e69e8c778a95b7e206286c78a79e8db9cf97dd73797206861947ea16193846d0",
+      "labels": "sha256:0e772c1078dd8c0f9cd5a592aa7c2cc2c659fb0af142c5e85361c4a468c8f3df",
+      "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+      "semantic": "sha256:be7972fcfd693bea6389080a00efd6739aa804bb28c568efdbab962b25b2f5b7"
+    },
+    "per_defect": {
+      "D1": {
+        "against": "sha256:c0a70a976aee3b4e904696196c96646068f7c35c19e685161cf22f3cae1da77e",
+        "status": "approved"
+      }
+    },
+    "reviews": [
+      {
+        "action": "edit",
+        "against": {
+          "changes_diff": "sha256:c9a08d55c1eeb2e7b1f0ca944b48d977fb9546c48c4ef95603179b2abaf3d604",
+          "defective_source": "sha256:e69e8c778a95b7e206286c78a79e8db9cf97dd73797206861947ea16193846d0",
+          "labels": "sha256:0e772c1078dd8c0f9cd5a592aa7c2cc2c659fb0af142c5e85361c4a468c8f3df",
+          "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+          "semantic": "sha256:be7972fcfd693bea6389080a00efd6739aa804bb28c568efdbab962b25b2f5b7"
+        },
+        "at": "2026-11-21T06:59:45.579645+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": false,
+            "location": false
+          }
+        },
+        "defect_id": "D1",
+        "label_change": "sha256:5e58cf6a4ec65a0bfb1181789cc5b0dde628c9a33d0231ae8b996e74ccbae516",
+        "reason": "生成時の位置は 1 行下にずれ保護操作 L234・影響操作 L241 がどちらもサイズ代入の行を示したが，設計不備のある保護操作は L233，範囲外へ書き込む memcpy は L240 にあるためこの 2 か所に修正",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:c0a70a976aee3b4e904696196c96646068f7c35c19e685161cf22f3cae1da77e"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:c9a08d55c1eeb2e7b1f0ca944b48d977fb9546c48c4ef95603179b2abaf3d604",
+          "defective_source": "sha256:e69e8c778a95b7e206286c78a79e8db9cf97dd73797206861947ea16193846d0",
+          "labels": "sha256:0e772c1078dd8c0f9cd5a592aa7c2cc2c659fb0af142c5e85361c4a468c8f3df",
+          "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+          "semantic": "sha256:be7972fcfd693bea6389080a00efd6739aa804bb28c568efdbab962b25b2f5b7"
+        },
+        "at": "2026-11-21T07:00:31.032752+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": true,
+            "location": false
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:c0a70a976aee3b4e904696196c96646068f7c35c19e685161cf22f3cae1da77e"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:c9a08d55c1eeb2e7b1f0ca944b48d977fb9546c48c4ef95603179b2abaf3d604",
+          "defective_source": "sha256:e69e8c778a95b7e206286c78a79e8db9cf97dd73797206861947ea16193846d0",
+          "labels": "sha256:0e772c1078dd8c0f9cd5a592aa7c2cc2c659fb0af142c5e85361c4a468c8f3df",
+          "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+          "semantic": "sha256:be7972fcfd693bea6389080a00efd6739aa804bb28c568efdbab962b25b2f5b7"
+        },
+        "at": "2026-11-21T07:00:31.716197+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:c0a70a976aee3b4e904696196c96646068f7c35c19e685161cf22f3cae1da77e"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:c9a08d55c1eeb2e7b1f0ca944b48d977fb9546c48c4ef95603179b2abaf3d604",
+          "defective_source": "sha256:e69e8c778a95b7e206286c78a79e8db9cf97dd73797206861947ea16193846d0",
+          "labels": "sha256:0e772c1078dd8c0f9cd5a592aa7c2cc2c659fb0af142c5e85361c4a468c8f3df",
+          "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+          "semantic": "sha256:be7972fcfd693bea6389080a00efd6739aa804bb28c568efdbab962b25b2f5b7"
+        },
+        "at": "2026-11-21T07:00:32.336292+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:c0a70a976aee3b4e904696196c96646068f7c35c19e685161cf22f3cae1da77e"
+        }
+      },
+      {
+        "action": "approve",
+        "against": {
+          "changes_diff": "sha256:c9a08d55c1eeb2e7b1f0ca944b48d977fb9546c48c4ef95603179b2abaf3d604",
+          "defective_source": "sha256:e69e8c778a95b7e206286c78a79e8db9cf97dd73797206861947ea16193846d0",
+          "labels": "sha256:0e772c1078dd8c0f9cd5a592aa7c2cc2c659fb0af142c5e85361c4a468c8f3df",
+          "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+          "semantic": "sha256:be7972fcfd693bea6389080a00efd6739aa804bb28c568efdbab962b25b2f5b7"
+        },
+        "at": "2026-11-21T07:00:36.157298+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:c0a70a976aee3b4e904696196c96646068f7c35c19e685161cf22f3cae1da77e"
+        }
+      }
+    ],
+    "status": "approved"
+  }
+}

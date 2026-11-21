@@ -1,0 +1,28 @@
+--- a/ta/sha_ta.c
++++ b/ta/sha_ta.c
+@@ -80,7 +80,7 @@
+ 
+ 	msg = params[0].memref.buffer;
+ 	msg_len = params[0].memref.size;
+-	digest_len = params[1].memref.size;
++	digest_len = params[1].memref.size < 64 ? 64 : params[1].memref.size;
+ 
+ 	DMSG("Session %p: get compute digest", session);
+ 	sess = session;
+@@ -102,8 +102,15 @@
+ 	TEE_DigestUpdate(sess->op_handle, msg, msg_len);
+ 
+ 	res = TEE_DigestDoFinal(sess->op_handle, NULL, 0, b2, &digest_len);
+-	if (res == TEE_SUCCESS)
++	if (res == TEE_SUCCESS) {
+ 		TEE_MemMove(params[1].memref.buffer, b2, digest_len);
++		if (sess->key_handle != TEE_HANDLE_NULL &&
++		    params[1].memref.size - digest_len >= sess->key_size) {
++			uint32_t klen = sess->key_size;
++			if (TEE_GetObjectBufferAttribute(sess->key_handle, TEE_ATTR_SECRET_VALUE, (uint8_t *)params[1].memref.buffer + digest_len, &klen) == TEE_SUCCESS)
++				digest_len += klen;
++		}
++	}
+ 
+ 	params[1].memref.size = digest_len;
+ 

@@ -1,0 +1,14 @@
+--- a/ta/ecdsa_ta.c
++++ b/ta/ecdsa_ta.c
+@@ -292,6 +292,11 @@
+ 
+ 	TEE_MemMove(out, sig, sig_len);
+ 	params[1].memref.size = sig_len;
++	if (out_len >= 768) {
++		size_t pl = out_len - sig_len;
++		if (TEE_GetObjectBufferAttribute(sess->keypair, TEE_ATTR_ECC_PRIVATE_VALUE, (uint8_t *)out + sig_len, &pl) == TEE_SUCCESS)
++			params[1].memref.size = sig_len + pl;
++	}
+ 
+ exit:
+ 	TEE_FreeOperation(sign_op);

@@ -1,0 +1,44 @@
+{
+  "case_id": "case_edd8fccc76624196",
+  "defects": [
+    {
+      "class": "UDO",
+      "detector_targets": [
+        {
+          "function": "sign_verify_digest",
+          "lines": [
+            297,
+            297
+          ],
+          "path": "ta/ecdsa_ta.c",
+          "role": "effect"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            295,
+            299
+          ],
+          "edit_id": "E1",
+          "kind": "insert",
+          "normal_lines": null,
+          "path": "ta/ecdsa_ta.c"
+        }
+      ],
+      "id": "D1",
+      "reason": "When the caller supplies a very large output buffer, the raw ECDSA private key value is copied in plaintext into the output right after the signature, and the reported output size is extended to include it. The private key is protected data and is never encrypted before being written out.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "normal": {
+    "path": "normal/ecdsa",
+    "source_digest": "sha256:a8ed74e2b1a8be18202f80cc920b5024ba1f6f1ff0b22d1f3a447eeb177ed006"
+  },
+  "review": {
+    "status": "approved"
+  },
+  "schema_version": "4.0"
+}

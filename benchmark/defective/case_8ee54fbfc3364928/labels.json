@@ -1,0 +1,55 @@
+{
+  "case_id": "case_8ee54fbfc3364928",
+  "defects": [
+    {
+      "class": "UDO",
+      "detector_targets": [
+        {
+          "function": "cipher_buffer",
+          "lines": [
+            357,
+            358
+          ],
+          "path": "ta/aes_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "cipher_buffer",
+          "lines": [
+            366,
+            366
+          ],
+          "path": "ta/aes_ta.c",
+          "role": "protection"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            356,
+            362
+          ],
+          "edit_id": "E1",
+          "kind": "insert",
+          "normal_lines": null,
+          "path": "ta/aes_ta.c"
+        }
+      ],
+      "id": "D1",
+      "reason": "Inputs shorter than 16 bytes are copied directly into the output buffer and returned as-is. The caller receives the plaintext without encryption because the cipher operation is skipped for short buffers.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "normal": {
+    "path": "normal/aes",
+    "source_digest": "sha256:10faf2895fcb9886e9f38c5a7b7d13ebeb3ae433cccb87f48ba0aab33a197d6d"
+  },
+  "review": {
+    "approved_against": null,
+    "reviews": [],
+    "status": "unreviewed"
+  },
+  "schema_version": "4.0"
+}

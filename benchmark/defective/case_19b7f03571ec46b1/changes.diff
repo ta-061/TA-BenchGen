@@ -1,0 +1,11 @@
+--- a/ta/ecdsa_ta.c
++++ b/ta/ecdsa_ta.c
+@@ -283,7 +283,7 @@
+ 	if (res != TEE_SUCCESS)
+ 		goto exit;
+ 
+-	if (out_len < sig_len) {
++	if (out_len < sig_len / 2) {
+ 		EMSG("reqired seg size is %u", params[1].memref.size);
+ 		params[1].memref.size = sig_len;
+ 		res = TEE_ERROR_SHORT_BUFFER;

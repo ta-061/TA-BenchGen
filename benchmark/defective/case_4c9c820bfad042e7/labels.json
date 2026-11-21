@@ -1,0 +1,56 @@
+{
+  "case_id": "case_4c9c820bfad042e7",
+  "defects": [
+    {
+      "class": "IVW",
+      "detector_targets": [
+        {
+          "function": "register_shared_key",
+          "lines": [
+            153,
+            153
+          ],
+          "path": "ta/hotp_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "register_shared_key",
+          "lines": [
+            149,
+            149
+          ],
+          "path": "ta/hotp_ta.c",
+          "role": "protection"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            149,
+            149
+          ],
+          "edit_id": "E1",
+          "kind": "replace",
+          "normal_lines": [
+            149,
+            149
+          ],
+          "path": "ta/hotp_ta.c"
+        }
+      ],
+      "id": "D1",
+      "reason": "The externally supplied key length is checked against the size of the whole session state instead of the key buffer. A key longer than 64 bytes is copied past state->K into K_len and the counter, so the out-of-range copy is no longer rejected.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "normal": {
+    "path": "normal/hotp",
+    "source_digest": "sha256:15c5d5accb9fb36541160cb518df873ea3d346512489fa468578a1b81cd82169"
+  },
+  "review": {
+    "status": "approved"
+  },
+  "schema_version": "4.0"
+}

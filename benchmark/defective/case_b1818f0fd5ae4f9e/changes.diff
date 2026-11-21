@@ -1,0 +1,11 @@
+--- a/ta/sha_ta.c
++++ b/ta/sha_ta.c
+@@ -354,7 +354,7 @@
+ 
+ 	message = params[0].memref.buffer;
+ 	message_sz = params[0].memref.size;
+-	hmac_len = (uint32_t)params[1].memref.size;
++	hmac_len = params[1].memref.size < 64 ? 64 : (uint32_t)params[1].memref.size;
+ 
+ 	if (params[1].memref.buffer && params[1].memref.size) {
+ 		b2 = TEE_Malloc(params[1].memref.size, 0);

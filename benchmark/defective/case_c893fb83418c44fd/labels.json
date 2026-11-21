@@ -1,0 +1,56 @@
+{
+  "case_id": "case_c893fb83418c44fd",
+  "defects": [
+    {
+      "class": "DUS",
+      "detector_targets": [
+        {
+          "function": "update_record",
+          "lines": [
+            25,
+            25
+          ],
+          "path": "ta/entry.c",
+          "role": "effect"
+        },
+        {
+          "function": "update_record",
+          "lines": [
+            23,
+            23
+          ],
+          "path": "ta/entry.c",
+          "role": "protection"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            22,
+            22
+          ],
+          "edit_id": "E1",
+          "kind": "replace",
+          "normal_lines": [
+            22,
+            22
+          ],
+          "path": "ta/entry.c"
+        }
+      ],
+      "id": "D1",
+      "reason": "The request is no longer copied into private memory. The value is validated and then read again from shared memory, so the outside can change it between the check and the store into the record state.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "normal": {
+    "path": "normal/shared_record",
+    "source_digest": "sha256:539427c30330836356d3d07894bb0c053dde43cbcf284e726c2aa2f0574963b5"
+  },
+  "review": {
+    "status": "approved"
+  },
+  "schema_version": "4.0"
+}

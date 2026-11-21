@@ -1,0 +1,56 @@
+{
+  "case_id": "case_19b7f03571ec46b1",
+  "defects": [
+    {
+      "class": "IVW",
+      "detector_targets": [
+        {
+          "function": "sign_verify_digest",
+          "lines": [
+            293,
+            293
+          ],
+          "path": "ta/ecdsa_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "sign_verify_digest",
+          "lines": [
+            286,
+            286
+          ],
+          "path": "ta/ecdsa_ta.c",
+          "role": "protection"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            286,
+            286
+          ],
+          "edit_id": "E1",
+          "kind": "replace",
+          "normal_lines": [
+            286,
+            286
+          ],
+          "path": "ta/ecdsa_ta.c"
+        }
+      ],
+      "id": "D1",
+      "reason": "The caller-supplied output buffer length is compared against only half of the signature length. When the output buffer is at least half the signature size but smaller than the signature, the full signature is still copied into it, which writes past the end of the caller's buffer instead of returning TEE_ERROR_SHORT_BUFFER.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "normal": {
+    "path": "normal/ecdsa",
+    "source_digest": "sha256:a8ed74e2b1a8be18202f80cc920b5024ba1f6f1ff0b22d1f3a447eeb177ed006"
+  },
+  "review": {
+    "status": "approved"
+  },
+  "schema_version": "4.0"
+}

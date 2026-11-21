@@ -1,0 +1,190 @@
+{
+  "case_id": "case_061088fe19e546b2",
+  "changes": [
+    {
+      "after": [
+        {
+          "function": "read_raw_object",
+          "lines": [
+            211,
+            212
+          ],
+          "path": "ta/secure_storage_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "read_raw_object",
+          "lines": [
+            201,
+            201
+          ],
+          "path": "ta/secure_storage_ta.c",
+          "role": "protection"
+        }
+      ],
+      "at": "2026-11-20T16:51:06.159861+00:00",
+      "before": [
+        {
+          "function": "read_raw_object",
+          "lines": [
+            208,
+            209
+          ],
+          "path": "ta/secure_storage_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "read_raw_object",
+          "lines": [
+            198,
+            198
+          ],
+          "path": "ta/secure_storage_ta.c",
+          "role": "protection"
+        }
+      ],
+      "defect_id": "D1",
+      "reason": "",
+      "reviewer": "TY"
+    }
+  ],
+  "review": {
+    "approved_against": {
+      "changes_diff": "sha256:3ffdb73f7487e4f78dd74e8c6ec69e5410f617bde435382e24148cb75213ca52",
+      "defective_source": "sha256:88e7807c7f7248eb7d6320d4a2928137bfe16490855ed70e0c3bce62cf2280de",
+      "labels": "sha256:d61df9d934640ced03e29bdcb552b68280e96de97e55d04777d7fcfc0bf5f3ad",
+      "normal_source": "sha256:7a38a18c6d418b1ace217dce9155b0e39d560fe257948b1747e4b96641b35ad2",
+      "semantic": "sha256:a49fe39f90a2f4681f1ebe7bd431e1b04dad5d8a5b4bf340058409281d94297f"
+    },
+    "per_defect": {
+      "D1": {
+        "against": "sha256:665e30c156df68dcd0fa840428287ccc563342cab8a3ca4c370e7d5056d0bbfb",
+        "status": "approved"
+      }
+    },
+    "reviews": [
+      {
+        "action": "edit",
+        "against": {
+          "changes_diff": "sha256:3ffdb73f7487e4f78dd74e8c6ec69e5410f617bde435382e24148cb75213ca52",
+          "defective_source": "sha256:88e7807c7f7248eb7d6320d4a2928137bfe16490855ed70e0c3bce62cf2280de",
+          "labels": "sha256:d61df9d934640ced03e29bdcb552b68280e96de97e55d04777d7fcfc0bf5f3ad",
+          "normal_source": "sha256:7a38a18c6d418b1ace217dce9155b0e39d560fe257948b1747e4b96641b35ad2",
+          "semantic": "sha256:a49fe39f90a2f4681f1ebe7bd431e1b04dad5d8a5b4bf340058409281d94297f"
+        },
+        "at": "2026-11-20T16:51:06.159861+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": false,
+            "location": false
+          }
+        },
+        "defect_id": "D1",
+        "label_change": "sha256:ffbca3db663b1a381949de2679aeb69770424f775d73802a18973ab845806c8e",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:665e30c156df68dcd0fa840428287ccc563342cab8a3ca4c370e7d5056d0bbfb"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:3ffdb73f7487e4f78dd74e8c6ec69e5410f617bde435382e24148cb75213ca52",
+          "defective_source": "sha256:88e7807c7f7248eb7d6320d4a2928137bfe16490855ed70e0c3bce62cf2280de",
+          "labels": "sha256:d61df9d934640ced03e29bdcb552b68280e96de97e55d04777d7fcfc0bf5f3ad",
+          "normal_source": "sha256:7a38a18c6d418b1ace217dce9155b0e39d560fe257948b1747e4b96641b35ad2",
+          "semantic": "sha256:a49fe39f90a2f4681f1ebe7bd431e1b04dad5d8a5b4bf340058409281d94297f"
+        },
+        "at": "2026-11-20T16:51:18.220552+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": true,
+            "location": false
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:665e30c156df68dcd0fa840428287ccc563342cab8a3ca4c370e7d5056d0bbfb"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:3ffdb73f7487e4f78dd74e8c6ec69e5410f617bde435382e24148cb75213ca52",
+          "defective_source": "sha256:88e7807c7f7248eb7d6320d4a2928137bfe16490855ed70e0c3bce62cf2280de",
+          "labels": "sha256:d61df9d934640ced03e29bdcb552b68280e96de97e55d04777d7fcfc0bf5f3ad",
+          "normal_source": "sha256:7a38a18c6d418b1ace217dce9155b0e39d560fe257948b1747e4b96641b35ad2",
+          "semantic": "sha256:a49fe39f90a2f4681f1ebe7bd431e1b04dad5d8a5b4bf340058409281d94297f"
+        },
+        "at": "2026-11-20T16:51:18.969331+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:665e30c156df68dcd0fa840428287ccc563342cab8a3ca4c370e7d5056d0bbfb"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:3ffdb73f7487e4f78dd74e8c6ec69e5410f617bde435382e24148cb75213ca52",
+          "defective_source": "sha256:88e7807c7f7248eb7d6320d4a2928137bfe16490855ed70e0c3bce62cf2280de",
+          "labels": "sha256:d61df9d934640ced03e29bdcb552b68280e96de97e55d04777d7fcfc0bf5f3ad",
+          "normal_source": "sha256:7a38a18c6d418b1ace217dce9155b0e39d560fe257948b1747e4b96641b35ad2",
+          "semantic": "sha256:a49fe39f90a2f4681f1ebe7bd431e1b04dad5d8a5b4bf340058409281d94297f"
+        },
+        "at": "2026-11-20T16:51:20.048706+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:665e30c156df68dcd0fa840428287ccc563342cab8a3ca4c370e7d5056d0bbfb"
+        }
+      },
+      {
+        "action": "approve",
+        "against": {
+          "changes_diff": "sha256:3ffdb73f7487e4f78dd74e8c6ec69e5410f617bde435382e24148cb75213ca52",
+          "defective_source": "sha256:88e7807c7f7248eb7d6320d4a2928137bfe16490855ed70e0c3bce62cf2280de",
+          "labels": "sha256:d61df9d934640ced03e29bdcb552b68280e96de97e55d04777d7fcfc0bf5f3ad",
+          "normal_source": "sha256:7a38a18c6d418b1ace217dce9155b0e39d560fe257948b1747e4b96641b35ad2",
+          "semantic": "sha256:a49fe39f90a2f4681f1ebe7bd431e1b04dad5d8a5b4bf340058409281d94297f"
+        },
+        "at": "2026-11-20T17:30:20.537217+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "生成時の位置は不備と無関係の行を指していた．保護操作 L198 は TEE_GetObjectInfo1 失敗時の goto exit;，影響操作 L208–209 は短バッファ分岐の goto exit; と } であり，緩和された検査は L201，最初に範囲外へ書き込む TEE_ReadObjectData は L211–212 にあるため，この 2 か所に修正",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:665e30c156df68dcd0fa840428287ccc563342cab8a3ca4c370e7d5056d0bbfb"
+        }
+      }
+    ],
+    "status": "approved"
+  }
+}

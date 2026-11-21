@@ -1,0 +1,40 @@
+{
+  "case_id": "case_8ee54fbfc3364928",
+  "changes": [],
+  "review": {
+    "approved_against": null,
+    "per_defect": {
+      "D1": {
+        "against": "sha256:3e2380626204a5f5d3394beb9ddfa50cf644b2f322fcd2139de5d80802e20d6e",
+        "status": "rejected"
+      }
+    },
+    "reviews": [
+      {
+        "action": "reject",
+        "against": {
+          "changes_diff": "sha256:99767ecfdb17971c54bd0b269489217cea73a3970833c71138f29a4965b627e0",
+          "defective_source": "sha256:b20b8bdc55e65308dc773bce722096732473b34dda796d264c915def41ff3ca6",
+          "labels": "sha256:a29a9f56b5557d1b5ef780832c5aa4c46a343f5e75b5adebb73ec6d39d40f84b",
+          "normal_source": "sha256:10faf2895fcb9886e9f38c5a7b7d13ebeb3ae433cccb87f48ba0aab33a197d6d",
+          "semantic": "sha256:456ed7244371381f2153cc868ae73d5e217ddb54b166cc4f1d8938467adda363"
+        },
+        "at": "2026-11-21T08:46:12.619025+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": false,
+            "location": false
+          }
+        },
+        "defect_id": "D1",
+        "reason": "出力されるのは Normal World が params[0] で渡した平文そのもので，TA 内部で生成・保管された値ではない．鍵と IV も Normal World が設定するため，暗号化を省いても Normal World に新しい情報は渡らない．暗号化が省かれる機能上の不具合であり，UDO の定義には当てはまらないため却下",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:3e2380626204a5f5d3394beb9ddfa50cf644b2f322fcd2139de5d80802e20d6e"
+        }
+      }
+    ],
+    "status": "rejected"
+  }
+}

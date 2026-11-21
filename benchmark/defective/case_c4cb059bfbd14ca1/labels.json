@@ -1,0 +1,93 @@
+{
+  "case_id": "case_c4cb059bfbd14ca1",
+  "defects": [
+    {
+      "class": "IVW",
+      "detector_targets": [
+        {
+          "function": "compute_digest",
+          "lines": [
+            104,
+            104
+          ],
+          "path": "ta/sha_ta.c",
+          "role": "effect"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            83,
+            83
+          ],
+          "edit_id": "E1",
+          "kind": "replace",
+          "normal_lines": [
+            83,
+            83
+          ],
+          "path": "ta/sha_ta.c"
+        }
+      ],
+      "id": "D1",
+      "reason": "The digest length used for the internal buffer and final call is taken from the caller's output size but forced up to at least 64, so a smaller caller buffer is no longer rejected and the digest is written past the end of the allocated buffer and the caller's output buffer.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    },
+    {
+      "class": "UDO",
+      "detector_targets": [
+        {
+          "function": "compute_digest",
+          "lines": [
+            110,
+            110
+          ],
+          "path": "ta/sha_ta.c",
+          "role": "effect"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            105,
+            105
+          ],
+          "edit_id": "E2",
+          "kind": "replace",
+          "normal_lines": [
+            105,
+            105
+          ],
+          "path": "ta/sha_ta.c"
+        },
+        {
+          "defective_lines": [
+            107,
+            113
+          ],
+          "edit_id": "E3",
+          "kind": "insert",
+          "normal_lines": null,
+          "path": "ta/sha_ta.c"
+        }
+      ],
+      "id": "D2",
+      "reason": "After computing the digest, the raw secret key material stored in the session key object is appended in plaintext to the output buffer returned to the caller.",
+      "witness_test_ids": [
+        "T03"
+      ]
+    }
+  ],
+  "normal": {
+    "path": "normal/sha",
+    "source_digest": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1"
+  },
+  "review": {
+    "approved_against": null,
+    "reviews": [],
+    "status": "unreviewed"
+  },
+  "schema_version": "4.0"
+}

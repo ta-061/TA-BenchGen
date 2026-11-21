@@ -19,7 +19,7 @@ models:
     model: claude-sonnet-5-5
     api_key_env: ANTHROPIC_API_KEY
     json_mode: false             # この互換APIは json_object 指定に非対応
-    max_tokens: 32768            # 大きいTAは全文を返すため、16384では途中で切れる
+    max_tokens: 32768            # 応答の出力トークン上限
     read_timeout: 600
     headers_env:                 # 追加ヘッダ名: 値を入れた変数名（未設定なら送らない）
       anthropic-workspace-id: ANTHROPIC_WORKSPACE_ID

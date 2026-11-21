@@ -1,0 +1,324 @@
+{
+  "case_id": "case_c4cb059bfbd14ca1",
+  "changes": [
+    {
+      "after": [
+        {
+          "function": "compute_digest",
+          "lines": [
+            104,
+            104
+          ],
+          "path": "ta/sha_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "compute_digest",
+          "lines": [
+            83,
+            83
+          ],
+          "path": "ta/sha_ta.c",
+          "role": "protection"
+        }
+      ],
+      "at": "2026-11-21T09:35:47.247805+00:00",
+      "before": [
+        {
+          "function": "compute_digest",
+          "lines": [
+            104,
+            104
+          ],
+          "path": "ta/sha_ta.c",
+          "role": "effect"
+        }
+      ],
+      "defect_id": "D1",
+      "reason": "b1818f0f とそろえて，出力長の上限を決める L83 を保護操作に追加，L83 で上限が最低 64 に引き上げられ16 バイトで確保した b2 に L104 の TEE_DigestDoFinal が 32 バイトのダイジェストを書き込む．T02 の正常版 SHORT_BUFFER／不備版 TA クラッシュの差と整合",
+      "reviewer": "TY"
+    }
+  ],
+  "published_changes": 0,
+  "review": {
+    "approved_against": null,
+    "per_defect": {
+      "D1": {
+        "against": "sha256:96dc985acc169a81450f8ade6ee0eda6a9d877f059e5a152857e75d70e987214",
+        "status": "approved"
+      },
+      "D2": {
+        "against": "sha256:e77617fc6718f6cdb825747be7ec5b5da236ede27bd38d9576fae816961fb8a1",
+        "status": "rejected"
+      }
+    },
+    "reviews": [
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:4de9ea68685110bdaeff81edabe2c70a2800c77e0ab295070950ffa4ca5ff5b6",
+          "defective_source": "sha256:a9725ee8bd69c540a1b48f42b09b315a9888aac76ab995c91cf781c0fb0f2962",
+          "labels": "sha256:33b435a713b124251e9c8824653647816f1999f59ebb569335833e5ded133855",
+          "normal_source": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1",
+          "semantic": "sha256:767f90dcfdd942e53ae2e9ffc2457e737c97e0d4cac5405221f1ebb89027041e"
+        },
+        "at": "2026-11-21T09:33:48.150350+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": true,
+            "location": false
+          }
+        },
+        "defect_id": "D1",
+        "reason": "b1818f0f とそろえて、出力長の上限を決める L83 を保護操作に追加した（生成時は保護操作なし）。L83 で上限が最低 64 に引き上げられ、16 バイトで確保した b2 に L104 の TEE_DigestDoFinal が 32 バイトのダイジェストを書き込む。T02 の正常版 SHORT_BUFFER／不備版 TA クラッシュの差と整合。",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:9bfc18a313d6aafd1605c616cf9379669cef3f6c2f9427837680f54766a60d64"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:4de9ea68685110bdaeff81edabe2c70a2800c77e0ab295070950ffa4ca5ff5b6",
+          "defective_source": "sha256:a9725ee8bd69c540a1b48f42b09b315a9888aac76ab995c91cf781c0fb0f2962",
+          "labels": "sha256:33b435a713b124251e9c8824653647816f1999f59ebb569335833e5ded133855",
+          "normal_source": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1",
+          "semantic": "sha256:767f90dcfdd942e53ae2e9ffc2457e737c97e0d4cac5405221f1ebb89027041e"
+        },
+        "at": "2026-11-21T09:33:49.016214+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "b1818f0f とそろえて、出力長の上限を決める L83 を保護操作に追加した（生成時は保護操作なし）。L83 で上限が最低 64 に引き上げられ、16 バイトで確保した b2 に L104 の TEE_DigestDoFinal が 32 バイトのダイジェストを書き込む。T02 の正常版 SHORT_BUFFER／不備版 TA クラッシュの差と整合。",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:9bfc18a313d6aafd1605c616cf9379669cef3f6c2f9427837680f54766a60d64"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:4de9ea68685110bdaeff81edabe2c70a2800c77e0ab295070950ffa4ca5ff5b6",
+          "defective_source": "sha256:a9725ee8bd69c540a1b48f42b09b315a9888aac76ab995c91cf781c0fb0f2962",
+          "labels": "sha256:33b435a713b124251e9c8824653647816f1999f59ebb569335833e5ded133855",
+          "normal_source": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1",
+          "semantic": "sha256:767f90dcfdd942e53ae2e9ffc2457e737c97e0d4cac5405221f1ebb89027041e"
+        },
+        "at": "2026-11-21T09:33:49.556327+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "b1818f0f とそろえて、出力長の上限を決める L83 を保護操作に追加した（生成時は保護操作なし）。L83 で上限が最低 64 に引き上げられ、16 バイトで確保した b2 に L104 の TEE_DigestDoFinal が 32 バイトのダイジェストを書き込む。T02 の正常版 SHORT_BUFFER／不備版 TA クラッシュの差と整合。",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:9bfc18a313d6aafd1605c616cf9379669cef3f6c2f9427837680f54766a60d64"
+        }
+      },
+      {
+        "action": "edit",
+        "against": {
+          "changes_diff": "sha256:4de9ea68685110bdaeff81edabe2c70a2800c77e0ab295070950ffa4ca5ff5b6",
+          "defective_source": "sha256:a9725ee8bd69c540a1b48f42b09b315a9888aac76ab995c91cf781c0fb0f2962",
+          "labels": "sha256:0c5f016b9a38230d2f85afb9fe7285ac837eab4e6a20eaa0b29dd84e3e076eb8",
+          "normal_source": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1",
+          "semantic": "sha256:767f90dcfdd942e53ae2e9ffc2457e737c97e0d4cac5405221f1ebb89027041e"
+        },
+        "at": "2026-11-21T09:35:47.247805+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": false,
+            "location": false
+          }
+        },
+        "defect_id": "D1",
+        "label_change": "sha256:af174361a22ce61000449e6333927d84bb0395739c1b86dd7f5bbdaa2915aa78",
+        "reason": "b1818f0f とそろえて，出力長の上限を決める L83 を保護操作に追加，L83 で上限が最低 64 に引き上げられ16 バイトで確保した b2 に L104 の TEE_DigestDoFinal が 32 バイトのダイジェストを書き込む．T02 の正常版 SHORT_BUFFER／不備版 TA クラッシュの差と整合",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:96dc985acc169a81450f8ade6ee0eda6a9d877f059e5a152857e75d70e987214"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:4de9ea68685110bdaeff81edabe2c70a2800c77e0ab295070950ffa4ca5ff5b6",
+          "defective_source": "sha256:a9725ee8bd69c540a1b48f42b09b315a9888aac76ab995c91cf781c0fb0f2962",
+          "labels": "sha256:0c5f016b9a38230d2f85afb9fe7285ac837eab4e6a20eaa0b29dd84e3e076eb8",
+          "normal_source": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1",
+          "semantic": "sha256:767f90dcfdd942e53ae2e9ffc2457e737c97e0d4cac5405221f1ebb89027041e"
+        },
+        "at": "2026-11-21T09:37:00.467367+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": false,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:96dc985acc169a81450f8ade6ee0eda6a9d877f059e5a152857e75d70e987214"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:4de9ea68685110bdaeff81edabe2c70a2800c77e0ab295070950ffa4ca5ff5b6",
+          "defective_source": "sha256:a9725ee8bd69c540a1b48f42b09b315a9888aac76ab995c91cf781c0fb0f2962",
+          "labels": "sha256:0c5f016b9a38230d2f85afb9fe7285ac837eab4e6a20eaa0b29dd84e3e076eb8",
+          "normal_source": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1",
+          "semantic": "sha256:767f90dcfdd942e53ae2e9ffc2457e737c97e0d4cac5405221f1ebb89027041e"
+        },
+        "at": "2026-11-21T09:37:00.857713+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:96dc985acc169a81450f8ade6ee0eda6a9d877f059e5a152857e75d70e987214"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:4de9ea68685110bdaeff81edabe2c70a2800c77e0ab295070950ffa4ca5ff5b6",
+          "defective_source": "sha256:a9725ee8bd69c540a1b48f42b09b315a9888aac76ab995c91cf781c0fb0f2962",
+          "labels": "sha256:0c5f016b9a38230d2f85afb9fe7285ac837eab4e6a20eaa0b29dd84e3e076eb8",
+          "normal_source": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1",
+          "semantic": "sha256:767f90dcfdd942e53ae2e9ffc2457e737c97e0d4cac5405221f1ebb89027041e"
+        },
+        "at": "2026-11-21T09:37:01.558560+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:96dc985acc169a81450f8ade6ee0eda6a9d877f059e5a152857e75d70e987214"
+        }
+      },
+      {
+        "action": "approve",
+        "against": {
+          "changes_diff": "sha256:4de9ea68685110bdaeff81edabe2c70a2800c77e0ab295070950ffa4ca5ff5b6",
+          "defective_source": "sha256:a9725ee8bd69c540a1b48f42b09b315a9888aac76ab995c91cf781c0fb0f2962",
+          "labels": "sha256:0c5f016b9a38230d2f85afb9fe7285ac837eab4e6a20eaa0b29dd84e3e076eb8",
+          "normal_source": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1",
+          "semantic": "sha256:767f90dcfdd942e53ae2e9ffc2457e737c97e0d4cac5405221f1ebb89027041e"
+        },
+        "at": "2026-11-21T09:37:03.919321+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:96dc985acc169a81450f8ade6ee0eda6a9d877f059e5a152857e75d70e987214"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:4de9ea68685110bdaeff81edabe2c70a2800c77e0ab295070950ffa4ca5ff5b6",
+          "defective_source": "sha256:a9725ee8bd69c540a1b48f42b09b315a9888aac76ab995c91cf781c0fb0f2962",
+          "labels": "sha256:0c5f016b9a38230d2f85afb9fe7285ac837eab4e6a20eaa0b29dd84e3e076eb8",
+          "normal_source": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1",
+          "semantic": "sha256:767f90dcfdd942e53ae2e9ffc2457e737c97e0d4cac5405221f1ebb89027041e"
+        },
+        "at": "2026-11-21T09:37:14.404437+00:00",
+        "checks": {
+          "D2": {
+            "behavior": false,
+            "class": false,
+            "location": true
+          }
+        },
+        "defect_id": "D2",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D2": "sha256:e77617fc6718f6cdb825747be7ec5b5da236ede27bd38d9576fae816961fb8a1"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:4de9ea68685110bdaeff81edabe2c70a2800c77e0ab295070950ffa4ca5ff5b6",
+          "defective_source": "sha256:a9725ee8bd69c540a1b48f42b09b315a9888aac76ab995c91cf781c0fb0f2962",
+          "labels": "sha256:0c5f016b9a38230d2f85afb9fe7285ac837eab4e6a20eaa0b29dd84e3e076eb8",
+          "normal_source": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1",
+          "semantic": "sha256:767f90dcfdd942e53ae2e9ffc2457e737c97e0d4cac5405221f1ebb89027041e"
+        },
+        "at": "2026-11-21T09:37:15.396783+00:00",
+        "checks": {
+          "D2": {
+            "behavior": true,
+            "class": false,
+            "location": true
+          }
+        },
+        "defect_id": "D2",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D2": "sha256:e77617fc6718f6cdb825747be7ec5b5da236ede27bd38d9576fae816961fb8a1"
+        }
+      },
+      {
+        "action": "reject",
+        "against": {
+          "changes_diff": "sha256:4de9ea68685110bdaeff81edabe2c70a2800c77e0ab295070950ffa4ca5ff5b6",
+          "defective_source": "sha256:a9725ee8bd69c540a1b48f42b09b315a9888aac76ab995c91cf781c0fb0f2962",
+          "labels": "sha256:0c5f016b9a38230d2f85afb9fe7285ac837eab4e6a20eaa0b29dd84e3e076eb8",
+          "normal_source": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1",
+          "semantic": "sha256:767f90dcfdd942e53ae2e9ffc2457e737c97e0d4cac5405221f1ebb89027041e"
+        },
+        "at": "2026-11-21T09:38:06.327479+00:00",
+        "checks": {
+          "D2": {
+            "behavior": true,
+            "class": false,
+            "location": true
+          }
+        },
+        "defect_id": "D2",
+        "reason": "漏れる鍵は Normal World が TA_SHA_CMD_SET_KEY で設定した値で，TA 内部で生成・保管された秘密ではなく，T03 で出力された 32 バイトもステップ 3 で渡した鍵と同一でありNormal World に新しい情報は渡っていないためUDO として却下",
+        "reviewer": "TY",
+        "versions": {
+          "D2": "sha256:e77617fc6718f6cdb825747be7ec5b5da236ede27bd38d9576fae816961fb8a1"
+        }
+      }
+    ],
+    "status": "partially_approved"
+  }
+}

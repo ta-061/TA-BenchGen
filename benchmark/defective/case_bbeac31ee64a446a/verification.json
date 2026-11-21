@@ -1,0 +1,646 @@
+{
+  "case_id": "case_bbeac31ee64a446a",
+  "environment": {
+    "image_digest": "sha256:e1b5023b7180eab9e5e158b7289699a503fecfcfd3a21481fac2293b755ead1e",
+    "optee_revision": "4.4.0",
+    "platform": "linux/amd64",
+    "qemu_revision": "v8.1.2",
+    "runner_version": "4.3.1",
+    "toolchain": "arm-gnu-toolchain-11.3.rel1"
+  },
+  "generation": {
+    "attempt_index": 2,
+    "attempts_total": 2,
+    "model_id": "claude-sonnet-5-5",
+    "plan_digest": "sha256:008b0d4f12f631d2f6369f1e1636ee39b83ce682c84f2525030d4a16a50d03b1"
+  },
+  "run_meta": {
+    "request_index": 15,
+    "run_id": "run_5c4927afa8984855",
+    "verified_at": "2026-11-20T10:56:09.834246+00:00"
+  },
+  "schema_version": "4.0",
+  "semantic": {
+    "defect_reverts": [],
+    "machine_validation": {
+      "per_defect": {
+        "D1": "machine_pass"
+      },
+      "repetitions": 2,
+      "status": "machine_pass"
+    },
+    "tests": [
+      {
+        "different_steps": [],
+        "equal": true,
+        "id": "T01",
+        "observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "3132333435363738393031323334353637383930",
+                  "size": 20,
+                  "type": "memref_input"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "a": 755224,
+                  "b": 0,
+                  "type": "value_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "3132333435363738393031323334353637383930",
+                  "size": 20,
+                  "type": "memref_input"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "a": 755224,
+                  "b": 0,
+                  "type": "value_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "purpose": "normal",
+        "repeated_observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "3132333435363738393031323334353637383930",
+                  "size": 20,
+                  "type": "memref_input"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "a": 755224,
+                  "b": 0,
+                  "type": "value_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "3132333435363738393031323334353637383930",
+                  "size": 20,
+                  "type": "memref_input"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "a": 755224,
+                  "b": 0,
+                  "type": "value_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "steps": [
+          {
+            "op": "open",
+            "session": "s1"
+          },
+          {
+            "command_id": 0,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "3132333435363738393031323334353637383930",
+                "type": "memref_input"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "command_id": 1,
+            "op": "invoke",
+            "params": [
+              {
+                "a": 0,
+                "b": 0,
+                "type": "value_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "op": "close",
+            "session": "s1"
+          }
+        ],
+        "targets": [],
+        "variable_items": []
+      },
+      {
+        "different_steps": [
+          3
+        ],
+        "equal": false,
+        "id": "T02",
+        "observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "31323334353637383930313233343536373839303132333435363738393031323334353637383930",
+                  "size": 40,
+                  "type": "memref_input"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "a": 611970,
+                  "b": 875770417,
+                  "type": "value_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "31323334353637383930313233343536373839303132333435363738393031323334353637383930",
+                  "size": 40,
+                  "type": "memref_input"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "a": 611970,
+                  "b": 0,
+                  "type": "value_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "purpose": "witness",
+        "repeated_observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "31323334353637383930313233343536373839303132333435363738393031323334353637383930",
+                  "size": 40,
+                  "type": "memref_input"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "a": 611970,
+                  "b": 875770417,
+                  "type": "value_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "31323334353637383930313233343536373839303132333435363738393031323334353637383930",
+                  "size": 40,
+                  "type": "memref_input"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "a": 611970,
+                  "b": 0,
+                  "type": "value_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "steps": [
+          {
+            "op": "open",
+            "session": "s1"
+          },
+          {
+            "command_id": 0,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "31323334353637383930313233343536373839303132333435363738393031323334353637383930",
+                "type": "memref_input"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "command_id": 1,
+            "op": "invoke",
+            "params": [
+              {
+                "a": 0,
+                "b": 0,
+                "type": "value_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "op": "close",
+            "session": "s1"
+          }
+        ],
+        "targets": [
+          "D1"
+        ],
+        "variable_items": [],
+        "witness_step": 3
+      }
+    ]
+  }
+}

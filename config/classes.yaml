@@ -1,11 +1,7 @@
-# 定義の出典:
-#   ORDER と四分類の判断対象: 吉永達哉「実行順序の設計不備 ORDER の定義と OP-TEE TA の証拠付きベンチマーク」
-#     Working draft, Nov. 2026, 第3.3–3.4節・表2（3頁）、表4（4頁）、第6.1節（6–7頁）。
-#   UDO・IVW・DUS: Ma et al., "DITING: A Static Analyzer for Identifying Bad Partitioning Issues in
-#     TEE Applications", IEEE TSE, 2026, 第II-C節、Rule 1–3、Definition 4。
-# supported は入力列と実行時イベントによる検証方式への対応。任意の TA での生成成功を意味しない。
-# description は AI に送る英語の定義。短く「何を、必要な保護なしに、どうするか」を書く。
-# 直前のコメントはその日本語訳で、送信しない。
+# UDO・IVW・DUSの出典は Ma et al., "DITING: A Static Analyzer for Identifying Bad Partitioning
+# Issues in TEE Applications", IEEE TSE (2026), §II-C。ORDERと四分類の判定範囲は吉永達哉
+# 「実行順序の設計不備 ORDER の定義と OP-TEE TA の証拠付きベンチマーク」（2026年草稿）に基づく。
+# description はモデルに渡す英語の定義。その直前の日本語コメントはレビュー画面で表示する。
 classes:
   IVW:
     # 外部由来の長さや添字を、十分な範囲検査なしに配列アクセスやメモリコピーへ使い、範囲外アクセスに至る設計不備。

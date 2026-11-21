@@ -1,0 +1,46 @@
+{
+  "case_id": "case_4c9c820bfad042e7",
+  "changes": [],
+  "review": {
+    "approved_against": {
+      "changes_diff": "sha256:57a7fcea04071fd2dc5c83a478f432945b38f032b160925e59066c1f469d5213",
+      "defective_source": "sha256:92664248d7dd7139b25bd4fe55e8decd8b33512b69ec6fdec14105e9eb924f10",
+      "labels": "sha256:bbec582bd3a4df19440a5c051f946ca0886a1b10fdb512cb9346fc1d2ab31edc",
+      "normal_source": "sha256:15c5d5accb9fb36541160cb518df873ea3d346512489fa468578a1b81cd82169",
+      "semantic": "sha256:a88947fca154903415702dae923fc95bc20f18581debe6b65fce2d4a519b35aa"
+    },
+    "per_defect": {
+      "D1": {
+        "against": "sha256:7291d97b55364b3ee0835afa851154e9420f16e60e22a2c566ddadfdc4f3c005",
+        "status": "approved"
+      }
+    },
+    "reviews": [
+      {
+        "action": "approve",
+        "against": {
+          "changes_diff": "sha256:57a7fcea04071fd2dc5c83a478f432945b38f032b160925e59066c1f469d5213",
+          "defective_source": "sha256:92664248d7dd7139b25bd4fe55e8decd8b33512b69ec6fdec14105e9eb924f10",
+          "labels": "sha256:bbec582bd3a4df19440a5c051f946ca0886a1b10fdb512cb9346fc1d2ab31edc",
+          "normal_source": "sha256:15c5d5accb9fb36541160cb518df873ea3d346512489fa468578a1b81cd82169",
+          "semantic": "sha256:a88947fca154903415702dae923fc95bc20f18581debe6b65fce2d4a519b35aa"
+        },
+        "at": "2026-11-21T08:15:48.554090+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:7291d97b55364b3ee0835afa851154e9420f16e60e22a2c566ddadfdc4f3c005"
+        }
+      }
+    ],
+    "status": "approved"
+  }
+}

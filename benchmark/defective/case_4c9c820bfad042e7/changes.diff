@@ -1,0 +1,11 @@
+--- a/ta/hotp_ta.c
++++ b/ta/hotp_ta.c
+@@ -146,7 +146,7 @@
+ 		return TEE_ERROR_BAD_PARAMETERS;
+ 	}
+ 
+-	if (params[0].memref.size > sizeof(state->K))
++	if (params[0].memref.size > sizeof(*state))
+ 		return TEE_ERROR_BAD_PARAMETERS;
+ 
+ 	memset(state->K, 0, sizeof(state->K));

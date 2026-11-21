@@ -1,0 +1,218 @@
+{
+  "case_id": "case_e8b4365cf5a3481c",
+  "changes": [],
+  "review": {
+    "approved_against": {
+      "changes_diff": "sha256:05e860f3fb6ae1ab25dc4f67ab8b2fbe31721917fb456d65e40e4870e92260fd",
+      "defective_source": "sha256:35d8e51c0eb8b61db294d30767a201f11e2eb213a86665882157668f681c78b0",
+      "labels": "sha256:be6abf56fd7536b6a73c7f938d95d2bc857ff0aab08758fc54033e9822da7885",
+      "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+      "semantic": "sha256:47ae0d5a01c4b077ac246b4953c7047932eaa446b3a03c68dab57e0c91f3fbc2"
+    },
+    "per_defect": {
+      "D1": {
+        "against": "sha256:321dc6efad34d48b835c1dfccd9dffac7f2d840d91eb28095b7e753b7995ed78",
+        "status": "approved"
+      },
+      "D2": {
+        "against": "sha256:16818b3412f8b6c03a45c3846150d7452eeae25c22e3827a0c8c7b3a906999e7",
+        "status": "approved"
+      }
+    },
+    "reviews": [
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:05e860f3fb6ae1ab25dc4f67ab8b2fbe31721917fb456d65e40e4870e92260fd",
+          "defective_source": "sha256:35d8e51c0eb8b61db294d30767a201f11e2eb213a86665882157668f681c78b0",
+          "labels": "sha256:be6abf56fd7536b6a73c7f938d95d2bc857ff0aab08758fc54033e9822da7885",
+          "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+          "semantic": "sha256:47ae0d5a01c4b077ac246b4953c7047932eaa446b3a03c68dab57e0c91f3fbc2"
+        },
+        "at": "2026-11-21T09:51:58.822553+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": false,
+            "location": false
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:321dc6efad34d48b835c1dfccd9dffac7f2d840d91eb28095b7e753b7995ed78"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:05e860f3fb6ae1ab25dc4f67ab8b2fbe31721917fb456d65e40e4870e92260fd",
+          "defective_source": "sha256:35d8e51c0eb8b61db294d30767a201f11e2eb213a86665882157668f681c78b0",
+          "labels": "sha256:be6abf56fd7536b6a73c7f938d95d2bc857ff0aab08758fc54033e9822da7885",
+          "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+          "semantic": "sha256:47ae0d5a01c4b077ac246b4953c7047932eaa446b3a03c68dab57e0c91f3fbc2"
+        },
+        "at": "2026-11-21T09:51:59.475936+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": false,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:321dc6efad34d48b835c1dfccd9dffac7f2d840d91eb28095b7e753b7995ed78"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:05e860f3fb6ae1ab25dc4f67ab8b2fbe31721917fb456d65e40e4870e92260fd",
+          "defective_source": "sha256:35d8e51c0eb8b61db294d30767a201f11e2eb213a86665882157668f681c78b0",
+          "labels": "sha256:be6abf56fd7536b6a73c7f938d95d2bc857ff0aab08758fc54033e9822da7885",
+          "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+          "semantic": "sha256:47ae0d5a01c4b077ac246b4953c7047932eaa446b3a03c68dab57e0c91f3fbc2"
+        },
+        "at": "2026-11-21T09:52:00.444792+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:321dc6efad34d48b835c1dfccd9dffac7f2d840d91eb28095b7e753b7995ed78"
+        }
+      },
+      {
+        "action": "approve",
+        "against": {
+          "changes_diff": "sha256:05e860f3fb6ae1ab25dc4f67ab8b2fbe31721917fb456d65e40e4870e92260fd",
+          "defective_source": "sha256:35d8e51c0eb8b61db294d30767a201f11e2eb213a86665882157668f681c78b0",
+          "labels": "sha256:be6abf56fd7536b6a73c7f938d95d2bc857ff0aab08758fc54033e9822da7885",
+          "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+          "semantic": "sha256:47ae0d5a01c4b077ac246b4953c7047932eaa446b3a03c68dab57e0c91f3fbc2"
+        },
+        "at": "2026-11-21T09:52:04.691532+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:321dc6efad34d48b835c1dfccd9dffac7f2d840d91eb28095b7e753b7995ed78"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:05e860f3fb6ae1ab25dc4f67ab8b2fbe31721917fb456d65e40e4870e92260fd",
+          "defective_source": "sha256:35d8e51c0eb8b61db294d30767a201f11e2eb213a86665882157668f681c78b0",
+          "labels": "sha256:be6abf56fd7536b6a73c7f938d95d2bc857ff0aab08758fc54033e9822da7885",
+          "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+          "semantic": "sha256:47ae0d5a01c4b077ac246b4953c7047932eaa446b3a03c68dab57e0c91f3fbc2"
+        },
+        "at": "2026-11-21T09:58:08.731471+00:00",
+        "checks": {
+          "D2": {
+            "behavior": false,
+            "class": true,
+            "location": false
+          }
+        },
+        "defect_id": "D2",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D2": "sha256:16818b3412f8b6c03a45c3846150d7452eeae25c22e3827a0c8c7b3a906999e7"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:05e860f3fb6ae1ab25dc4f67ab8b2fbe31721917fb456d65e40e4870e92260fd",
+          "defective_source": "sha256:35d8e51c0eb8b61db294d30767a201f11e2eb213a86665882157668f681c78b0",
+          "labels": "sha256:be6abf56fd7536b6a73c7f938d95d2bc857ff0aab08758fc54033e9822da7885",
+          "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+          "semantic": "sha256:47ae0d5a01c4b077ac246b4953c7047932eaa446b3a03c68dab57e0c91f3fbc2"
+        },
+        "at": "2026-11-21T09:58:09.363192+00:00",
+        "checks": {
+          "D2": {
+            "behavior": false,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D2",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D2": "sha256:16818b3412f8b6c03a45c3846150d7452eeae25c22e3827a0c8c7b3a906999e7"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:05e860f3fb6ae1ab25dc4f67ab8b2fbe31721917fb456d65e40e4870e92260fd",
+          "defective_source": "sha256:35d8e51c0eb8b61db294d30767a201f11e2eb213a86665882157668f681c78b0",
+          "labels": "sha256:be6abf56fd7536b6a73c7f938d95d2bc857ff0aab08758fc54033e9822da7885",
+          "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+          "semantic": "sha256:47ae0d5a01c4b077ac246b4953c7047932eaa446b3a03c68dab57e0c91f3fbc2"
+        },
+        "at": "2026-11-21T09:58:09.959735+00:00",
+        "checks": {
+          "D2": {
+            "behavior": true,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D2",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D2": "sha256:16818b3412f8b6c03a45c3846150d7452eeae25c22e3827a0c8c7b3a906999e7"
+        }
+      },
+      {
+        "action": "approve",
+        "against": {
+          "changes_diff": "sha256:05e860f3fb6ae1ab25dc4f67ab8b2fbe31721917fb456d65e40e4870e92260fd",
+          "defective_source": "sha256:35d8e51c0eb8b61db294d30767a201f11e2eb213a86665882157668f681c78b0",
+          "labels": "sha256:be6abf56fd7536b6a73c7f938d95d2bc857ff0aab08758fc54033e9822da7885",
+          "normal_source": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+          "semantic": "sha256:47ae0d5a01c4b077ac246b4953c7047932eaa446b3a03c68dab57e0c91f3fbc2"
+        },
+        "at": "2026-11-21T09:58:11.678122+00:00",
+        "checks": {
+          "D2": {
+            "behavior": true,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D2",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D2": "sha256:16818b3412f8b6c03a45c3846150d7452eeae25c22e3827a0c8c7b3a906999e7"
+        }
+      }
+    ],
+    "status": "approved"
+  }
+}

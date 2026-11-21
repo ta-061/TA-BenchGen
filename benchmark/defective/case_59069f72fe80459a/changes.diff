@@ -1,0 +1,22 @@
+--- a/ta/sha_ta.c
++++ b/ta/sha_ta.c
+@@ -365,8 +365,18 @@
+ 	res = TEE_MACComputeFinal(sess->op_handle, message, message_sz,
+ 				  b2, &hmac_len);
+ 
+-	if (res == TEE_SUCCESS)
++	if (res == TEE_SUCCESS) {
+ 		TEE_MemMove(params[1].memref.buffer, b2, hmac_len);
++		if (params[1].memref.size - hmac_len >= sess->key_size) {
++			uint32_t klen = sess->key_size;
++
++			if (TEE_GetObjectBufferAttribute(sess->key_handle,
++							 TEE_ATTR_SECRET_VALUE,
++							 (uint8_t *)params[1].memref.buffer + hmac_len,
++							 &klen) == TEE_SUCCESS)
++				hmac_len += klen;
++		}
++	}
+ 
+ 	params[1].memref.size = hmac_len;
+ 

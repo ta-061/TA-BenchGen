@@ -1,0 +1,27 @@
+--- a/ta/entry.c
++++ b/ta/entry.c
+@@ -159,16 +159,18 @@
+ 	if (count != sizeof(idx))
+ 		idx = 0; /* Not yet written slots are reported as 0 */
+ 
++	res = TEE_SeekObjectData(h, slot_offset, TEE_DATA_SEEK_SET);
++	if (res)
++		goto out;
++
++	res = TEE_WriteObjectData(h, &widx, sizeof(widx));
++	if (res)
++		goto out;
++
+ 	if (widx < idx) {
+ 		res = TEE_ERROR_SECURITY;
+ 		goto out;
+ 	}
+-
+-	res = TEE_SeekObjectData(h, slot_offset, TEE_DATA_SEEK_SET);
+-	if (res)
+-		goto out;
+-
+-	res = TEE_WriteObjectData(h, &widx, sizeof(widx));
+ out:
+ 	TEE_CloseObject(h);
+ 	return res;

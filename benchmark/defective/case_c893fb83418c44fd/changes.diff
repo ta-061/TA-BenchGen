@@ -1,0 +1,11 @@
+--- a/ta/entry.c
++++ b/ta/entry.c
+@@ -19,7 +19,7 @@
+         return TEE_ERROR_BAD_PARAMETERS;
+     if (params[0].memref.size != sizeof(local))
+         return TEE_ERROR_BAD_PARAMETERS;
+-    TEE_MemMove(&local, params[0].memref.buffer, sizeof(local));
++    request = params[0].memref.buffer;
+     if (request->value > MAX_RECORD_VALUE)
+         return TEE_ERROR_BAD_PARAMETERS;
+     state->value = request->value;

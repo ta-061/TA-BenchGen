@@ -3,9 +3,10 @@ requires = ["hatchling>=1.25"]
 build-backend = "hatchling.build"
 
 [project]
-name = "ta-benchmark-generator"
+name = "ta-benchgen"
 version = "0.1.0"
-description = "OP-TEE TA differential benchmark generator and human review tool"
+description = "Benchmark generator for evaluating design flaw detection in OP-TEE trusted applications"
+readme = "README.md"
 requires-python = ">=3.11"
 dependencies = ["PyYAML>=6.0,<7", "Flask>=3.0,<4", "requests>=2.32,<3"]
 

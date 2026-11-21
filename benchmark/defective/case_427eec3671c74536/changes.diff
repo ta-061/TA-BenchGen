@@ -1,0 +1,11 @@
+--- a/ta/gatekeeper_ta.c
++++ b/ta/gatekeeper_ta.c
+@@ -621,7 +621,7 @@
+ 			&provided_password_length);
+ 
+ 	// Check request buffer size
+-	if (get_size(request, i_req) > params[0].memref.size) {
++	if (get_size(request, i_req) > RECV_BUF_SIZE) {
+ 		EMSG("Wrong request buffer size");
+ 		res = TEE_ERROR_BAD_PARAMETERS;
+ 		goto exit;

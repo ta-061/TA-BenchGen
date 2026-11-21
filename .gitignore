@@ -13,7 +13,6 @@ venv/
 .ruff_cache/
 node_modules/
 work/
-benchmark/defective/
 benchmark/.*.lock
 *.egg-info/
 dist/

@@ -1,0 +1,88 @@
+{
+  "case_id": "case_c8a67e91786a479f",
+  "changes": [],
+  "review": {
+    "approved_against": null,
+    "per_defect": {
+      "D1": {
+        "against": "sha256:65bfc1b694573ba2cd4efa2e55b3b31b0acb3a9c13fdcd99297e4b77a55f1613",
+        "status": "rejected"
+      }
+    },
+    "reviews": [
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:c8ae74d399c5a7200b482bd47814811e01cd35bef9d14ec554e215b75e7ae62e",
+          "defective_source": "sha256:0fe150af6a93f402ddb923fad221f871b14756ff151f480c814bb17934e96058",
+          "labels": "sha256:2bf98ce11998fbad8ca7d9758df1105f3c65108e2c7a249e0a21c0ce3d76e79c",
+          "normal_source": "sha256:7a38a18c6d418b1ace217dce9155b0e39d560fe257948b1747e4b96641b35ad2",
+          "semantic": "sha256:47b1b391913b3fe0e83368cb9711c700da61fafa6f51083f2daa07b6b4bd7623"
+        },
+        "at": "2026-11-21T09:46:32.944835+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": false,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:65bfc1b694573ba2cd4efa2e55b3b31b0acb3a9c13fdcd99297e4b77a55f1613"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:c8ae74d399c5a7200b482bd47814811e01cd35bef9d14ec554e215b75e7ae62e",
+          "defective_source": "sha256:0fe150af6a93f402ddb923fad221f871b14756ff151f480c814bb17934e96058",
+          "labels": "sha256:2bf98ce11998fbad8ca7d9758df1105f3c65108e2c7a249e0a21c0ce3d76e79c",
+          "normal_source": "sha256:7a38a18c6d418b1ace217dce9155b0e39d560fe257948b1747e4b96641b35ad2",
+          "semantic": "sha256:47b1b391913b3fe0e83368cb9711c700da61fafa6f51083f2daa07b6b4bd7623"
+        },
+        "at": "2026-11-21T09:46:33.930654+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": false,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:65bfc1b694573ba2cd4efa2e55b3b31b0acb3a9c13fdcd99297e4b77a55f1613"
+        }
+      },
+      {
+        "action": "reject",
+        "against": {
+          "changes_diff": "sha256:c8ae74d399c5a7200b482bd47814811e01cd35bef9d14ec554e215b75e7ae62e",
+          "defective_source": "sha256:0fe150af6a93f402ddb923fad221f871b14756ff151f480c814bb17934e96058",
+          "labels": "sha256:2bf98ce11998fbad8ca7d9758df1105f3c65108e2c7a249e0a21c0ce3d76e79c",
+          "normal_source": "sha256:7a38a18c6d418b1ace217dce9155b0e39d560fe257948b1747e4b96641b35ad2",
+          "semantic": "sha256:47b1b391913b3fe0e83368cb9711c700da61fafa6f51083f2daa07b6b4bd7623"
+        },
+        "at": "2026-11-21T09:50:30.845288+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": false,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "不備版でもオブジェクト ID は私有バッファ obj_id にコピーしてから使われており共有メモリを直接使っていないL172 と L179 の間に obj_id の検査や使用はなく，読み直しですり抜けられる保護もなく途中の書き換えで起きるのは別の ID で開くことだけで，最初からその ID を渡すのと同一でありDUS の定義に当てはまらないため却下",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:65bfc1b694573ba2cd4efa2e55b3b31b0acb3a9c13fdcd99297e4b77a55f1613"
+        }
+      }
+    ],
+    "status": "rejected"
+  }
+}

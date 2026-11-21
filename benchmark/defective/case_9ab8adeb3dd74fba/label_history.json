@@ -1,0 +1,166 @@
+{
+  "case_id": "case_9ab8adeb3dd74fba",
+  "changes": [
+    {
+      "after": [
+        {
+          "function": "write_rb_idx",
+          "lines": [
+            166,
+            166
+          ],
+          "path": "ta/entry.c",
+          "role": "effect"
+        },
+        {
+          "function": "write_rb_idx",
+          "lines": [
+            170,
+            170
+          ],
+          "path": "ta/entry.c",
+          "role": "protection"
+        }
+      ],
+      "at": "2026-11-21T09:15:00.533095+00:00",
+      "before": [
+        {
+          "function": "write_rb_idx",
+          "lines": [
+            164,
+            164
+          ],
+          "path": "ta/entry.c",
+          "role": "effect"
+        },
+        {
+          "function": "write_rb_idx",
+          "lines": [
+            168,
+            168
+          ],
+          "path": "ta/entry.c",
+          "role": "protection"
+        }
+      ],
+      "defect_id": "D1",
+      "reason": "生成時の位置は 2 行上にずれ，影響操作 L164・保護操作 L168 がどちらも goto out; を指しており，先走る書き込み TEE_WriteObjectData は L166，後ろに回ったロールバック判定は L170 にあるため，この 2 か所に修正",
+      "reviewer": "TY"
+    }
+  ],
+  "review": {
+    "approved_against": {
+      "changes_diff": "sha256:c2af14e4887ad54be9c075c35997e75358b5a9ea7dbdff999da8a160e6f54be7",
+      "defective_source": "sha256:75d217d2b4e2e6ba7eedaf325a625f364e718611ae77e9b966c3e805e13950fd",
+      "labels": "sha256:9fb07bf1e206a614613c90dcca26e4d6d8c9792b8c600713a2e70cbd0ba86356",
+      "normal_source": "sha256:f6c0800539f837e69033c90c0e990f09608bf4d8a0bbf871198bb1a28936a81a",
+      "semantic": "sha256:8bf3c916c0ccd99a9c8e58207e6fa51f4dced0db3a080b84308d812e1bec2495"
+    },
+    "per_defect": {
+      "D1": {
+        "against": "sha256:d15975d042a4120804e70c9282fb988d9689b04b9eb3542dc1e9856cc21cc0b1",
+        "status": "approved"
+      }
+    },
+    "reviews": [
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:c2af14e4887ad54be9c075c35997e75358b5a9ea7dbdff999da8a160e6f54be7",
+          "defective_source": "sha256:75d217d2b4e2e6ba7eedaf325a625f364e718611ae77e9b966c3e805e13950fd",
+          "labels": "sha256:a408185fd8b3827063d808e4838db2177a9efa6ab33469d6d7157dd4389b4cb3",
+          "normal_source": "sha256:f6c0800539f837e69033c90c0e990f09608bf4d8a0bbf871198bb1a28936a81a",
+          "semantic": "sha256:8bf3c916c0ccd99a9c8e58207e6fa51f4dced0db3a080b84308d812e1bec2495"
+        },
+        "at": "2026-11-21T09:14:58.346967+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": true,
+            "location": false
+          }
+        },
+        "defect_id": "D1",
+        "reason": "生成時の位置は 2 行上にずれ，影響操作 L164・保護操作 L168 がどちらも goto out; を指しており，先走る書き込み TEE_WriteObjectData は L166，後ろに回ったロールバック判定は L170 にあるため，この 2 か所に修正",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:c5b6da925f5568cbfb524cdda14974ba414e11c24982280bf86d344c8545fabe"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:c2af14e4887ad54be9c075c35997e75358b5a9ea7dbdff999da8a160e6f54be7",
+          "defective_source": "sha256:75d217d2b4e2e6ba7eedaf325a625f364e718611ae77e9b966c3e805e13950fd",
+          "labels": "sha256:a408185fd8b3827063d808e4838db2177a9efa6ab33469d6d7157dd4389b4cb3",
+          "normal_source": "sha256:f6c0800539f837e69033c90c0e990f09608bf4d8a0bbf871198bb1a28936a81a",
+          "semantic": "sha256:8bf3c916c0ccd99a9c8e58207e6fa51f4dced0db3a080b84308d812e1bec2495"
+        },
+        "at": "2026-11-21T09:14:58.925379+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "生成時の位置は 2 行上にずれ，影響操作 L164・保護操作 L168 がどちらも goto out; を指しており，先走る書き込み TEE_WriteObjectData は L166，後ろに回ったロールバック判定は L170 にあるため，この 2 か所に修正",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:c5b6da925f5568cbfb524cdda14974ba414e11c24982280bf86d344c8545fabe"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:c2af14e4887ad54be9c075c35997e75358b5a9ea7dbdff999da8a160e6f54be7",
+          "defective_source": "sha256:75d217d2b4e2e6ba7eedaf325a625f364e718611ae77e9b966c3e805e13950fd",
+          "labels": "sha256:a408185fd8b3827063d808e4838db2177a9efa6ab33469d6d7157dd4389b4cb3",
+          "normal_source": "sha256:f6c0800539f837e69033c90c0e990f09608bf4d8a0bbf871198bb1a28936a81a",
+          "semantic": "sha256:8bf3c916c0ccd99a9c8e58207e6fa51f4dced0db3a080b84308d812e1bec2495"
+        },
+        "at": "2026-11-21T09:14:59.620667+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "生成時の位置は 2 行上にずれ，影響操作 L164・保護操作 L168 がどちらも goto out; を指しており，先走る書き込み TEE_WriteObjectData は L166，後ろに回ったロールバック判定は L170 にあるため，この 2 か所に修正",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:c5b6da925f5568cbfb524cdda14974ba414e11c24982280bf86d344c8545fabe"
+        }
+      },
+      {
+        "action": "approve",
+        "against": {
+          "changes_diff": "sha256:c2af14e4887ad54be9c075c35997e75358b5a9ea7dbdff999da8a160e6f54be7",
+          "defective_source": "sha256:75d217d2b4e2e6ba7eedaf325a625f364e718611ae77e9b966c3e805e13950fd",
+          "labels": "sha256:9fb07bf1e206a614613c90dcca26e4d6d8c9792b8c600713a2e70cbd0ba86356",
+          "normal_source": "sha256:f6c0800539f837e69033c90c0e990f09608bf4d8a0bbf871198bb1a28936a81a",
+          "semantic": "sha256:8bf3c916c0ccd99a9c8e58207e6fa51f4dced0db3a080b84308d812e1bec2495"
+        },
+        "at": "2026-11-21T09:15:00.533095+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "label_change": "sha256:45fba71d125b0231e1f38db32ff65eb3bfc2882f612e0519bed952081ecfaa4d",
+        "reason": "生成時の位置は 2 行上にずれ，影響操作 L164・保護操作 L168 がどちらも goto out; を指しており，先走る書き込み TEE_WriteObjectData は L166，後ろに回ったロールバック判定は L170 にあるため，この 2 か所に修正",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:d15975d042a4120804e70c9282fb988d9689b04b9eb3542dc1e9856cc21cc0b1"
+        }
+      }
+    ],
+    "status": "approved"
+  }
+}

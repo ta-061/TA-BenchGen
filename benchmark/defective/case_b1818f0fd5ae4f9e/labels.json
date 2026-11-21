@@ -1,0 +1,56 @@
+{
+  "case_id": "case_b1818f0fd5ae4f9e",
+  "defects": [
+    {
+      "class": "IVW",
+      "detector_targets": [
+        {
+          "function": "sha_update_op",
+          "lines": [
+            365,
+            366
+          ],
+          "path": "ta/sha_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "sha_update_op",
+          "lines": [
+            357,
+            357
+          ],
+          "path": "ta/sha_ta.c",
+          "role": "protection"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            357,
+            357
+          ],
+          "edit_id": "E1",
+          "kind": "replace",
+          "normal_lines": [
+            357,
+            357
+          ],
+          "path": "ta/sha_ta.c"
+        }
+      ],
+      "id": "D1",
+      "reason": "The output length passed to TEE_MACComputeFinal is raised to at least 64, while the scratch buffer b2 is allocated with the caller-supplied size. A caller that supplies a short output buffer no longer gets the short-buffer error. The MAC is written past the end of b2 and then copied past the end of the caller's output buffer.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "normal": {
+    "path": "normal/sha",
+    "source_digest": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1"
+  },
+  "review": {
+    "status": "approved"
+  },
+  "schema_version": "4.0"
+}

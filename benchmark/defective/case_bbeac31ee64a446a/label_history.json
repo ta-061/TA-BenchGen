@@ -1,0 +1,88 @@
+{
+  "case_id": "case_bbeac31ee64a446a",
+  "changes": [],
+  "review": {
+    "approved_against": null,
+    "per_defect": {
+      "D1": {
+        "against": "sha256:beba5abd9f64357c8705675abcaf284ad614bc9a20d0ea151d23724c3c8f4a4a",
+        "status": "rejected"
+      }
+    },
+    "reviews": [
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:cc8b76bbad44c285f8f5995cd8f1387f703b9739c56bdd5a275dae04f261a282",
+          "defective_source": "sha256:573360e3fbb15bdc2e985c8c1ad90838568b3b1dc8d1d6baacbdffbea86b3802",
+          "labels": "sha256:331ec5a48cdc89339819ce15a3c8448374d198d60fec75248b3b3b515b1bbcb5",
+          "normal_source": "sha256:15c5d5accb9fb36541160cb518df873ea3d346512489fa468578a1b81cd82169",
+          "semantic": "sha256:de825b66c6e5d918f7fe43a84c8b84942aad9aa2d09a8f0a1a153825cc95fd47"
+        },
+        "at": "2026-11-21T09:29:23.023314+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": false,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:beba5abd9f64357c8705675abcaf284ad614bc9a20d0ea151d23724c3c8f4a4a"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:cc8b76bbad44c285f8f5995cd8f1387f703b9739c56bdd5a275dae04f261a282",
+          "defective_source": "sha256:573360e3fbb15bdc2e985c8c1ad90838568b3b1dc8d1d6baacbdffbea86b3802",
+          "labels": "sha256:331ec5a48cdc89339819ce15a3c8448374d198d60fec75248b3b3b515b1bbcb5",
+          "normal_source": "sha256:15c5d5accb9fb36541160cb518df873ea3d346512489fa468578a1b81cd82169",
+          "semantic": "sha256:de825b66c6e5d918f7fe43a84c8b84942aad9aa2d09a8f0a1a153825cc95fd47"
+        },
+        "at": "2026-11-21T09:29:23.880187+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": false,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:beba5abd9f64357c8705675abcaf284ad614bc9a20d0ea151d23724c3c8f4a4a"
+        }
+      },
+      {
+        "action": "reject",
+        "against": {
+          "changes_diff": "sha256:cc8b76bbad44c285f8f5995cd8f1387f703b9739c56bdd5a275dae04f261a282",
+          "defective_source": "sha256:573360e3fbb15bdc2e985c8c1ad90838568b3b1dc8d1d6baacbdffbea86b3802",
+          "labels": "sha256:331ec5a48cdc89339819ce15a3c8448374d198d60fec75248b3b3b515b1bbcb5",
+          "normal_source": "sha256:15c5d5accb9fb36541160cb518df873ea3d346512489fa468578a1b81cd82169",
+          "semantic": "sha256:de825b66c6e5d918f7fe43a84c8b84942aad9aa2d09a8f0a1a153825cc95fd47"
+        },
+        "at": "2026-11-21T09:30:25.669350+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": false,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "漏洩する4 バイトは Normal World が TA_HOTP_CMD_REGISTER_SHARED_KEY で登録した鍵の先頭でTA 内部で生成・保管された秘密ではなく，鍵はセッションごとの状態にあり読み戻せるのは登録したのと同じセッション内である．T02 の出力も登録した鍵と同一でNormal World に新しい情報は渡っていないためUDO として却下",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:beba5abd9f64357c8705675abcaf284ad614bc9a20d0ea151d23724c3c8f4a4a"
+        }
+      }
+    ],
+    "status": "rejected"
+  }
+}
