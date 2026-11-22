@@ -17,7 +17,7 @@ spec.loader.exec_module(entry)
 
 
 def test_sample_uuid():
-    assert discover_uuid(ROOT / 'benchmark/normal/secure_kv') == 'd987bb20-2323-4a70-9d97-717255082611'
+    assert discover_uuid(ROOT / 'examples/secure_kv') == 'd987bb20-2323-4a70-9d97-717255082611'
 
 
 def test_uuid_ambiguity(tmp_path):
@@ -352,7 +352,7 @@ def test_real_qemu_smoke_when_image_is_supplied(tmp_path):
     if not image:
         pytest.skip('set TA_BENCH_TEST_IMAGE to a locally available pinned runtime image')
     runner = DockerRunner(image, tmp_path, timeout=300)
-    source = ROOT / 'benchmark/normal/secure_kv'
+    source = ROOT / 'examples/secure_kv'
     artifact = runner.build(source)
     candidate = json.loads((ROOT / 'examples/secure_kv_ivw.json').read_text())
     normal_steps = candidate['tests'][0]['steps']

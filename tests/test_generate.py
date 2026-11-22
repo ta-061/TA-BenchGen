@@ -135,7 +135,7 @@ def test_cli_help_and_invalid_request(capsys):
     with pytest.raises(SystemExit) as exc:
         main(['--help'])
     assert exc.value.code == 0
-    assert main(['generate', '--ta', 'benchmark/normal/secure_kv', '--defects', 'UNKNOWN=1']) == 2
+    assert main(['generate', '--ta', 'examples/secure_kv', '--defects', 'UNKNOWN=1']) == 2
     assert 'unknown class' in capsys.readouterr().err
 
 

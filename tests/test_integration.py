@@ -35,7 +35,7 @@ def project(tmp_path):
         pytest.skip('set TA_BENCH_TEST_IMAGE to a locally available pinned runtime image')
     benchmark, work = tmp_path / 'benchmark', tmp_path / 'work'
     normal = benchmark / 'normal' / 'secure_kv'
-    shutil.copytree(ROOT / 'benchmark/normal/secure_kv', normal)
+    shutil.copytree(ROOT / 'examples/secure_kv', normal)
     classes = load_classes(ROOT / 'config/classes.yaml')
     candidate = load_json(ROOT / 'examples/secure_kv_ivw.json')
     runner = DockerRunner(image, work / 'runner', timeout=300)
