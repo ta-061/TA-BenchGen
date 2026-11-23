@@ -1,0 +1,159 @@
+{
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tif (object_info.dataSize > data_sz + 32) {",
+      "old": "\tif (object_info.dataSize > data_sz) {",
+      "path": "ta/secure_storage_ta.c"
+    }
+  ],
+  "defects": [
+    {
+      "class": "IVW",
+      "detector_targets": [
+        {
+          "function": "read_raw_object",
+          "lines": [
+            208,
+            209
+          ],
+          "path": "ta/secure_storage_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "read_raw_object",
+          "lines": [
+            198,
+            198
+          ],
+          "path": "ta/secure_storage_ta.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D1",
+      "reason": "The stored object size is compared against the caller-supplied buffer size with a slack of 32 bytes. An object up to 32 bytes larger than the allocated buffer passes the check. TEE_ReadObjectData then writes past the end of the private buffer, and the following TEE_MemMove writes past the caller's output buffer.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "T01",
+      "purpose": "normal",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "6f626a31",
+              "type": "memref_input"
+            },
+            {
+              "data": "000102030405060708090a0b0c0d0e0f",
+              "type": "memref_input"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "6f626a31",
+              "type": "memref_input"
+            },
+            {
+              "size": 16,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": []
+    },
+    {
+      "id": "T02",
+      "purpose": "witness",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "6f626a31",
+              "type": "memref_input"
+            },
+            {
+              "data": "000102030405060708090a0b0c0d0e0f",
+              "type": "memref_input"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "6f626a31",
+              "type": "memref_input"
+            },
+            {
+              "size": 8,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": [
+        "D1"
+      ],
+      "witness_step": 3
+    }
+  ]
+}

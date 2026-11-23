@@ -1,0 +1,247 @@
+{
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\t\treturn TEE_ERROR_BAD_STATE;\n\n\tif (params[0].memref.size < 16) {\n\t\tTEE_MemMove(params[1].memref.buffer, params[0].memref.buffer,\n\t\t\t    params[0].memref.size);\n\t\tparams[1].memref.size = params[0].memref.size;\n\t\treturn TEE_SUCCESS;\n\t}",
+      "old": "\t\treturn TEE_ERROR_BAD_STATE;",
+      "path": "ta/aes_ta.c"
+    }
+  ],
+  "defects": [
+    {
+      "class": "UDO",
+      "detector_targets": [
+        {
+          "function": "cipher_buffer",
+          "lines": [
+            357,
+            358
+          ],
+          "path": "ta/aes_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "cipher_buffer",
+          "lines": [
+            366,
+            366
+          ],
+          "path": "ta/aes_ta.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D1",
+      "reason": "Inputs shorter than 16 bytes are copied directly into the output buffer and returned as-is. The caller receives the plaintext without encryption because the cipher operation is skipped for short buffers.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "T01",
+      "purpose": "normal",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "a": 2,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "a": 16,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "a": 1,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+              "type": "memref_input"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 2,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "00000000000000000000000000000000",
+              "type": "memref_input"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 3,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a",
+              "type": "memref_input"
+            },
+            {
+              "size": 32,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": []
+    },
+    {
+      "id": "T02",
+      "purpose": "witness",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "a": 2,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "a": 16,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "a": 1,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+              "type": "memref_input"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 2,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "00000000000000000000000000000000",
+              "type": "memref_input"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 3,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "5a5a5a5a",
+              "type": "memref_input"
+            },
+            {
+              "size": 16,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": [
+        "D1"
+      ],
+      "witness_step": 5
+    }
+  ]
+}

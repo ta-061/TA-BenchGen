@@ -1,0 +1,136 @@
+{
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tif (params[0].memref.size > sizeof(*state))\n",
+      "old": "\tif (params[0].memref.size > sizeof(state->K))\n",
+      "path": "ta/hotp_ta.c"
+    }
+  ],
+  "defects": [
+    {
+      "class": "IVW",
+      "detector_targets": [
+        {
+          "function": "register_shared_key",
+          "lines": [
+            153,
+            153
+          ],
+          "path": "ta/hotp_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "register_shared_key",
+          "lines": [
+            149,
+            149
+          ],
+          "path": "ta/hotp_ta.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D1",
+      "reason": "The externally supplied key length is checked against the size of the whole session state instead of the key buffer. A key longer than 64 bytes is copied past state->K into K_len and the counter, so the out-of-range copy is no longer rejected.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "T01",
+      "purpose": "normal",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "31323334353637383930313233343536373839 30",
+              "type": "memref_input"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "a": 0,
+              "b": 0,
+              "type": "value_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": []
+    },
+    {
+      "id": "T02",
+      "purpose": "witness",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "41414141414141 41414141414141 41414141414141 41414141414141 41414141414141 41414141414141 41414141414141 41414141414141 41414141414141 41414141414141",
+              "type": "memref_input"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": [
+        "D1"
+      ],
+      "witness_step": 2
+    }
+  ]
+}

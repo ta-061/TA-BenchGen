@@ -1,0 +1,125 @@
+{
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tif (out_len < sig_len - 16) {\n",
+      "old": "\tif (out_len < sig_len) {\n",
+      "path": "ta/sign_verify_ta.c"
+    }
+  ],
+  "defects": [
+    {
+      "class": "IVW",
+      "detector_targets": [
+        {
+          "function": "sign_verify",
+          "lines": [
+            241,
+            241
+          ],
+          "path": "ta/sign_verify_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "sign_verify",
+          "lines": [
+            234,
+            234
+          ],
+          "path": "ta/sign_verify_ta.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D1",
+      "reason": "The caller-supplied output buffer size is compared against a reduced signature length. An output buffer slightly smaller than the signature passes the check, and the memcpy then writes past the end of the caller's buffer.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "T01",
+      "purpose": "normal",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "48656c6c6f46726f6d486f7374",
+              "type": "memref_input"
+            },
+            {
+              "size": 512,
+              "type": "memref_output"
+            },
+            {
+              "a": 7,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "a": 2048,
+              "b": 0,
+              "type": "value_input"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": []
+    },
+    {
+      "id": "T02",
+      "purpose": "witness",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "48656c6c6f46726f6d486f7374",
+              "type": "memref_input"
+            },
+            {
+              "size": 250,
+              "type": "memref_output"
+            },
+            {
+              "a": 7,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "a": 2048,
+              "b": 0,
+              "type": "value_input"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": [
+        "D1"
+      ],
+      "witness_step": 2
+    }
+  ]
+}

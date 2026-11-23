@@ -1,0 +1,41 @@
+{
+  "case_id": "case_c8a67e91786a479f",
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\t\treturn TEE_ERROR_OUT_OF_MEMORY;\n\n\tTEE_MemMove(obj_id, params[0].memref.buffer, obj_id_sz);\n\n\t/*\n\t * Check the object exist and can be dumped into output buffer",
+      "old": "\t\treturn TEE_ERROR_OUT_OF_MEMORY;\n\n\t/*\n\t * Check the object exist and can be dumped into output buffer",
+      "path": "ta/secure_storage_ta.c"
+    }
+  ],
+  "index": 2,
+  "proposed": [
+    {
+      "class": "DUS",
+      "detector_targets": [
+        {
+          "function": "read_raw_object",
+          "lines": [
+            179,
+            179
+          ],
+          "path": "ta/secure_storage_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "read_raw_object",
+          "lines": [
+            172,
+            172
+          ],
+          "path": "ta/secure_storage_ta.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D1",
+      "reason": "read_raw_object copies the object ID into private memory, but then refreshes that private copy from the caller-shared buffer just before opening the object. A change to the shared buffer after the first copy therefore decides which object is opened."
+    }
+  ],
+  "reason": "saved",
+  "status": "machine_pass"
+}

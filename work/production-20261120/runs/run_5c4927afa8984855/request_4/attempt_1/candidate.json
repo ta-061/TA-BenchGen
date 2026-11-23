@@ -1,0 +1,190 @@
+{
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tres = TEE_SeekObjectData(h, slot_offset, TEE_DATA_SEEK_SET);\n\tif (res)\n\t\tgoto out;\n\n\tres = TEE_WriteObjectData(h, &widx, sizeof(widx));\n\tif (res)\n\t\tgoto out;\n\n\tif (widx < idx) {\n\t\tres = TEE_ERROR_SECURITY;\n\t\tgoto out;\n\t}\nout:",
+      "old": "\tif (widx < idx) {\n\t\tres = TEE_ERROR_SECURITY;\n\t\tgoto out;\n\t}\n\n\tres = TEE_SeekObjectData(h, slot_offset, TEE_DATA_SEEK_SET);\n\tif (res)\n\t\tgoto out;\n\n\tres = TEE_WriteObjectData(h, &widx, sizeof(widx));\nout:",
+      "path": "ta/entry.c"
+    }
+  ],
+  "defects": [
+    {
+      "class": "ORDER",
+      "detector_targets": [
+        {
+          "function": "write_rb_idx",
+          "lines": [
+            164,
+            164
+          ],
+          "path": "ta/entry.c",
+          "role": "effect"
+        },
+        {
+          "function": "write_rb_idx",
+          "lines": [
+            168,
+            168
+          ],
+          "path": "ta/entry.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D1",
+      "reason": "The new rollback index is written to storage before the check that rejects a lower value. A rejected downgrade request still overwrites the stored index, so the anti-rollback protection runs too late.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "T01",
+      "purpose": "normal",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "a": 1,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "a": 0,
+              "b": 5,
+              "type": "value_input"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "a": 1,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "a": 0,
+              "b": 0,
+              "type": "value_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": []
+    },
+    {
+      "id": "T02",
+      "purpose": "witness",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "a": 2,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "a": 0,
+              "b": 10,
+              "type": "value_input"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "a": 2,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "a": 0,
+              "b": 5,
+              "type": "value_input"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "a": 2,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "a": 0,
+              "b": 0,
+              "type": "value_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": [
+        "D1"
+      ],
+      "witness_step": 4
+    }
+  ]
+}

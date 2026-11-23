@@ -1,0 +1,21 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"changes\":[{\"path\":\"ta/secure_storage_ta.c\",\"defect\":\"D1\",\"old\":\"\\tif (object_info.dataSize > data_sz) {\",\"new\":\"\\tif (object_info.dataSize > data_sz + 32) {\"}],\"defects\":[{\"id\":\"D1\",\"class\":\"IVW\",\"witness_test_ids\":[\"T02\"],\"reason\":\"The stored object size is compared against the caller-supplied buffer size with a slack of 32 bytes. An object up to 32 bytes larger than the allocated buffer passes the check. TEE_ReadObjectData then writes past the end of the private buffer, and the following TEE_MemMove writes past the caller's output buffer.\",\"detector_targets\":[{\"path\":\"ta/secure_storage_ta.c\",\"function\":\"read_raw_object\",\"lines\":[208,209],\"role\":\"effect\"},{\"path\":\"ta/secure_storage_ta.c\",\"function\":\"read_raw_object\",\"lines\":[198,198],\"role\":\"protection\"}]}],\"tests\":[{\"id\":\"T01\",\"purpose\":\"normal\",\"targets\":[],\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"memref_input\",\"data\":\"6f626a31\"},{\"type\":\"memref_input\",\"data\":\"000102030405060708090a0b0c0d0e0f\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"memref_input\",\"data\":\"6f626a31\"},{\"type\":\"memref_output\",\"size\":16},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"close\",\"session\":\"s1\"}]},{\"id\":\"T02\",\"purpose\":\"witness\",\"targets\":[\"D1\"],\"witness_step\":3,\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"memref_input\",\"data\":\"6f626a31\"},{\"type\":\"memref_input\",\"data\":\"000102030405060708090a0b0c0d0e0f\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"memref_input\",\"data\":\"6f626a31\"},{\"type\":\"memref_output\",\"size\":8},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"close\",\"session\":\"s1\"}]}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1795171279,
+  "id": "msg_011ChE3Bu9vpC2QCtY1x9Lg8",
+  "model": "claude-sonnet-5-5",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 4403,
+    "prompt_tokens": 15203,
+    "total_tokens": 19606
+  }
+}

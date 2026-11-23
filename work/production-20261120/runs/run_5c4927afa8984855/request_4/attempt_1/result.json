@@ -1,0 +1,41 @@
+{
+  "case_id": "case_9ab8adeb3dd74fba",
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tres = TEE_SeekObjectData(h, slot_offset, TEE_DATA_SEEK_SET);\n\tif (res)\n\t\tgoto out;\n\n\tres = TEE_WriteObjectData(h, &widx, sizeof(widx));\n\tif (res)\n\t\tgoto out;\n\n\tif (widx < idx) {\n\t\tres = TEE_ERROR_SECURITY;\n\t\tgoto out;\n\t}\nout:",
+      "old": "\tif (widx < idx) {\n\t\tres = TEE_ERROR_SECURITY;\n\t\tgoto out;\n\t}\n\n\tres = TEE_SeekObjectData(h, slot_offset, TEE_DATA_SEEK_SET);\n\tif (res)\n\t\tgoto out;\n\n\tres = TEE_WriteObjectData(h, &widx, sizeof(widx));\nout:",
+      "path": "ta/entry.c"
+    }
+  ],
+  "index": 1,
+  "proposed": [
+    {
+      "class": "ORDER",
+      "detector_targets": [
+        {
+          "function": "write_rb_idx",
+          "lines": [
+            164,
+            164
+          ],
+          "path": "ta/entry.c",
+          "role": "effect"
+        },
+        {
+          "function": "write_rb_idx",
+          "lines": [
+            168,
+            168
+          ],
+          "path": "ta/entry.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D1",
+      "reason": "The new rollback index is written to storage before the check that rejects a lower value. A rejected downgrade request still overwrites the stored index, so the anti-rollback protection runs too late."
+    }
+  ],
+  "reason": "saved",
+  "status": "machine_pass"
+}

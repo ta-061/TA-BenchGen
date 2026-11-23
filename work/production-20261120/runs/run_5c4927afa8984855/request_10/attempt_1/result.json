@@ -1,0 +1,41 @@
+{
+  "case_id": "case_061088fe19e546b2",
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tif (object_info.dataSize > data_sz + 32) {",
+      "old": "\tif (object_info.dataSize > data_sz) {",
+      "path": "ta/secure_storage_ta.c"
+    }
+  ],
+  "index": 1,
+  "proposed": [
+    {
+      "class": "IVW",
+      "detector_targets": [
+        {
+          "function": "read_raw_object",
+          "lines": [
+            208,
+            209
+          ],
+          "path": "ta/secure_storage_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "read_raw_object",
+          "lines": [
+            198,
+            198
+          ],
+          "path": "ta/secure_storage_ta.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D1",
+      "reason": "The stored object size is compared against the caller-supplied buffer size with a slack of 32 bytes. An object up to 32 bytes larger than the allocated buffer passes the check. TEE_ReadObjectData then writes past the end of the private buffer, and the following TEE_MemMove writes past the caller's o"
+    }
+  ],
+  "reason": "saved",
+  "status": "machine_pass"
+}

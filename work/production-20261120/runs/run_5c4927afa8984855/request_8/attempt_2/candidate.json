@@ -1,0 +1,117 @@
+{
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tdeserialize_blob(&i_req, &provided_password,\n\t\t\t&provided_password_length);\n\n\t// Check request buffer size\n\tif (get_size(request, i_req) > RECV_BUF_SIZE) {",
+      "old": "\tdeserialize_blob(&i_req, &provided_password,\n\t\t\t&provided_password_length);\n\n\t// Check request buffer size\n\tif (get_size(request, i_req) > params[0].memref.size) {",
+      "path": "ta/gatekeeper_ta.c"
+    }
+  ],
+  "defects": [
+    {
+      "class": "IVW",
+      "detector_targets": [
+        {
+          "function": "TA_CreatePasswordHandle",
+          "lines": [
+            214,
+            214
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "TA_Verify",
+          "lines": [
+            624,
+            624
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D1",
+      "reason": "In Verify, the password length comes from the request. The check against the real request buffer size (params[0].memref.size) is replaced by a check against a large constant. A password length larger than the supplied buffer is accepted, and the password is then copied and hashed from memory beyond the end of the input buffer.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "T01",
+      "purpose": "normal",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "01000000 0000000000000000 3a000000 02 0101010101010101 0100000000000000 0202020202020202 0303030303030303030303030303030303030303030303030303030303030303 01 04000000 31323334",
+              "type": "memref_input"
+            },
+            {
+              "size": 128,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": []
+    },
+    {
+      "id": "T02",
+      "purpose": "witness",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "01000000 0000000000000000 3a000000 02 0101010101010101 0100000000000000 0202020202020202 0303030303030303030303030303030303030303030303030303030303030303 01 10000000",
+              "type": "memref_input"
+            },
+            {
+              "size": 128,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": [
+        "D1"
+      ],
+      "witness_step": 2
+    }
+  ]
+}

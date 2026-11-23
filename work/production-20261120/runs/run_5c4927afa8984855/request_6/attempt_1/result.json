@@ -1,0 +1,41 @@
+{
+  "case_id": "case_19b7f03571ec46b1",
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tif (out_len < sig_len / 2) {\n",
+      "old": "\tif (out_len < sig_len) {\n",
+      "path": "ta/ecdsa_ta.c"
+    }
+  ],
+  "index": 1,
+  "proposed": [
+    {
+      "class": "IVW",
+      "detector_targets": [
+        {
+          "function": "sign_verify_digest",
+          "lines": [
+            293,
+            293
+          ],
+          "path": "ta/ecdsa_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "sign_verify_digest",
+          "lines": [
+            286,
+            286
+          ],
+          "path": "ta/ecdsa_ta.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D1",
+      "reason": "The caller-supplied output buffer length is compared against only half of the signature length. When the output buffer is at least half the signature size but smaller than the signature, the full signature is still copied into it, which writes past the end of the caller's buffer instead of returning"
+    }
+  ],
+  "reason": "saved",
+  "status": "machine_pass"
+}

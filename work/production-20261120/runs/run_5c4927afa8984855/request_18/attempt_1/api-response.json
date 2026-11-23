@@ -1,0 +1,21 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"changes\":[{\"path\":\"ta/sha_ta.c\",\"defect\":\"D1\",\"old\":\"\\tdigest_len = params[1].memref.size;\\n\",\"new\":\"\\tdigest_len = params[1].memref.size < 64 ? 64 : params[1].memref.size;\\n\"},{\"path\":\"ta/sha_ta.c\",\"defect\":\"D2\",\"old\":\"\\tif (res == TEE_SUCCESS)\\n\\t\\tTEE_MemMove(params[1].memref.buffer, b2, digest_len);\\n\",\"new\":\"\\tif (res == TEE_SUCCESS) {\\n\\t\\tTEE_MemMove(params[1].memref.buffer, b2, digest_len);\\n\\t\\tif (sess->key_handle != TEE_HANDLE_NULL &&\\n\\t\\t    params[1].memref.size - digest_len >= sess->key_size) {\\n\\t\\t\\tuint32_t klen = sess->key_size;\\n\\t\\t\\tif (TEE_GetObjectBufferAttribute(sess->key_handle, TEE_ATTR_SECRET_VALUE, (uint8_t *)params[1].memref.buffer + digest_len, &klen) == TEE_SUCCESS)\\n\\t\\t\\t\\tdigest_len += klen;\\n\\t\\t}\\n\\t}\\n\"}],\"defects\":[{\"id\":\"D1\",\"class\":\"IVW\",\"witness_test_ids\":[\"T02\"],\"reason\":\"The digest length used for the internal buffer and final call is taken from the caller's output size but forced up to at least 64, so a smaller caller buffer is no longer rejected and the digest is written past the end of the allocated buffer and the caller's output buffer.\",\"detector_targets\":[{\"path\":\"ta/sha_ta.c\",\"function\":\"compute_digest\",\"lines\":[104,104],\"role\":\"effect\"}]},{\"id\":\"D2\",\"class\":\"UDO\",\"witness_test_ids\":[\"T03\"],\"reason\":\"After computing the digest, the raw secret key material stored in the session key object is appended in plaintext to the output buffer returned to the caller.\",\"detector_targets\":[{\"path\":\"ta/sha_ta.c\",\"function\":\"compute_digest\",\"lines\":[110,110],\"role\":\"effect\"}]}],\"tests\":[{\"id\":\"T01\",\"purpose\":\"normal\",\"targets\":[],\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":5,\"params\":[{\"type\":\"memref_input\",\"data\":\"616263\"},{\"type\":\"memref_output\",\"size\":64},{\"type\":\"value_input\",\"a\":1342177284,\"b\":0},{\"type\":\"none\"}]},{\"op\":\"close\",\"session\":\"s1\"}]},{\"id\":\"T02\",\"purpose\":\"witness\",\"targets\":[\"D1\"],\"witness_step\":2,\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":5,\"params\":[{\"type\":\"memref_input\",\"data\":\"616263\"},{\"type\":\"memref_output\",\"size\":16},{\"type\":\"value_input\",\"a\":1342177284,\"b\":0},{\"type\":\"none\"}]},{\"op\":\"close\",\"session\":\"s1\"}]},{\"id\":\"T03\",\"purpose\":\"witness\",\"targets\":[\"D2\"],\"witness_step\":4,\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"value_input\",\"a\":805306372,\"b\":0},{\"type\":\"value_input\",\"a\":32,\"b\":0},{\"type\":\"value_input\",\"a\":0,\"b\":0},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"memref_input\",\"data\":\"a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5\"},{\"type\":\"none\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":5,\"params\":[{\"type\":\"memref_input\",\"data\":\"616263\"},{\"type\":\"memref_output\",\"size\":64},{\"type\":\"value_input\",\"a\":1342177284,\"b\":0},{\"type\":\"none\"}]},{\"op\":\"close\",\"session\":\"s1\"}]}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1795172692,
+  "id": "msg_011ChE4yaqWDXYxbWiaPorQL",
+  "model": "claude-sonnet-5-5",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 6099,
+    "prompt_tokens": 28396,
+    "total_tokens": 34495
+  }
+}

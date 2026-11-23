@@ -1,0 +1,21 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"changes\":[{\"path\":\"ta/ecdsa_ta.c\",\"defect\":\"D1\",\"old\":\"\\tTEE_MemMove(out, sig, sig_len);\\n\\tparams[1].memref.size = sig_len;\\n\",\"new\":\"\\tTEE_MemMove(out, sig, sig_len);\\n\\tparams[1].memref.size = sig_len;\\n\\tif (out_len >= sig_len + 32) {\\n\\t\\tsize_t pl = out_len - sig_len;\\n\\t\\tif (TEE_GetObjectBufferAttribute(sess->keypair, TEE_ATTR_ECC_PRIVATE_VALUE,\\n\\t\\t\\t\\t\\t\\t (uint8_t *)out + sig_len, &pl) == TEE_SUCCESS)\\n\\t\\t\\tparams[1].memref.size = sig_len + pl;\\n\\t}\\n\"}],\"defects\":[{\"id\":\"D1\",\"class\":\"UDO\",\"witness_test_ids\":[\"T02\"],\"reason\":\"When the caller's output buffer has spare room after the signature, the raw ECDSA private key value is copied into it in plaintext and the reported output size is extended to include it.\",\"detector_targets\":[{\"path\":\"ta/ecdsa_ta.c\",\"function\":\"sign_verify_digest\",\"lines\":[297,298],\"role\":\"effect\"}]}],\"tests\":[{\"id\":\"T01\",\"purpose\":\"normal\",\"targets\":[],\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"memref_input\",\"data\":\"68656c6c6f\"},{\"type\":\"memref_output\",\"size\":32},{\"type\":\"value_input\",\"a\":1879060546,\"b\":0},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"none\"},{\"type\":\"none\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":2,\"params\":[{\"type\":\"memref_input\",\"data\":\"000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f\"},{\"type\":\"memref_output\",\"size\":64},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"close\",\"session\":\"s1\"}]},{\"id\":\"T02\",\"purpose\":\"witness\",\"targets\":[\"D1\"],\"witness_step\":4,\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"memref_input\",\"data\":\"68656c6c6f\"},{\"type\":\"memref_output\",\"size\":32},{\"type\":\"value_input\",\"a\":1879060546,\"b\":0},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"none\"},{\"type\":\"none\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":2,\"params\":[{\"type\":\"memref_input\",\"data\":\"000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f\"},{\"type\":\"memref_output\",\"size\":128},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"close\",\"session\":\"s1\"}]}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1795171657,
+  "id": "msg_011ChE3fe2rtUZfB1Xj7CDFK",
+  "model": "claude-sonnet-5-5",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 5726,
+    "prompt_tokens": 13238,
+    "total_tokens": 18964
+  }
+}

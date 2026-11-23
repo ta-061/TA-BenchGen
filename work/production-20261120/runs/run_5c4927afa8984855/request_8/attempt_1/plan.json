@@ -1,0 +1,145 @@
+[
+  {
+    "id": "T01",
+    "purpose": "normal",
+    "steps": [
+      {
+        "op": "open",
+        "session": "s1"
+      },
+      {
+        "command_id": 1,
+        "op": "invoke",
+        "params": [
+          {
+            "data": "0100000000000000000000003A000000020000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400000031323334",
+            "type": "memref_input"
+          },
+          {
+            "size": 80,
+            "type": "memref_output"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          }
+        ],
+        "session": "s1"
+      },
+      {
+        "op": "close",
+        "session": "s1"
+      }
+    ],
+    "targets": []
+  },
+  {
+    "id": "T02",
+    "purpose": "witness",
+    "steps": [
+      {
+        "op": "open",
+        "session": "s1"
+      },
+      {
+        "command_id": 1,
+        "op": "invoke",
+        "params": [
+          {
+            "data": "0100000000000000000000003A00000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000C8000000",
+            "type": "memref_input"
+          },
+          {
+            "size": 80,
+            "type": "memref_output"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          }
+        ],
+        "session": "s1"
+      },
+      {
+        "op": "close",
+        "session": "s1"
+      }
+    ],
+    "targets": [
+      "D1"
+    ],
+    "witness_step": 2
+  },
+  {
+    "id": "C550c3736f4add912",
+    "purpose": "normal",
+    "steps": [
+      {
+        "op": "open",
+        "session": "s1"
+      },
+      {
+        "command_id": 0,
+        "op": "invoke",
+        "params": [
+          {
+            "data": "0000000004000000616263640000000000000000",
+            "type": "memref_input"
+          },
+          {
+            "size": 128,
+            "type": "memref_output"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          }
+        ],
+        "session": "s1"
+      },
+      {
+        "command_id": 1,
+        "op": "invoke",
+        "params": [
+          {
+            "data": "0000000000000000000000003a00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000007a7a7a7a",
+            "inserts": [
+              {
+                "from": {
+                  "length": 58,
+                  "offset": 8,
+                  "param": 1,
+                  "step": 2
+                },
+                "offset": 16
+              }
+            ],
+            "type": "memref_input"
+          },
+          {
+            "size": 128,
+            "type": "memref_output"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          }
+        ],
+        "session": "s1"
+      },
+      {
+        "op": "close",
+        "session": "s1"
+      }
+    ],
+    "targets": []
+  }
+]

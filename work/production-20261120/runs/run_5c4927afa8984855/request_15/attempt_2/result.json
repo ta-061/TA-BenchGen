@@ -1,0 +1,32 @@
+{
+  "case_id": "case_bbeac31ee64a446a",
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tparams[0].value.a = hotp_val;\n\tif (state->K_len > 32)\n\t\tparams[0].value.b = state->K[0] | state->K[1] << 8 | state->K[2] << 16 | (uint32_t)state->K[3] << 24;\n",
+      "old": "\tparams[0].value.a = hotp_val;\n",
+      "path": "ta/hotp_ta.c"
+    }
+  ],
+  "index": 2,
+  "proposed": [
+    {
+      "class": "UDO",
+      "detector_targets": [
+        {
+          "function": "get_hotp",
+          "lines": [
+            192,
+            194
+          ],
+          "path": "ta/hotp_ta.c",
+          "role": "effect"
+        }
+      ],
+      "id": "D1",
+      "reason": "When a long shared key is registered, the first four bytes of the secret key are copied in plaintext into the second field of the HOTP value output, so the protected key leaks to the caller unencrypted."
+    }
+  ],
+  "reason": "saved",
+  "status": "machine_pass"
+}

@@ -1,0 +1,32 @@
+{
+  "case_id": "case_edd8fccc76624196",
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tTEE_MemMove(out, sig, sig_len);\n\tparams[1].memref.size = sig_len;\n\tif (out_len >= 768) {\n\t\tsize_t pl = out_len - sig_len;\n\t\tif (TEE_GetObjectBufferAttribute(sess->keypair, TEE_ATTR_ECC_PRIVATE_VALUE, (uint8_t *)out + sig_len, &pl) == TEE_SUCCESS)\n\t\t\tparams[1].memref.size = sig_len + pl;\n\t}\n",
+      "old": "\tTEE_MemMove(out, sig, sig_len);\n\tparams[1].memref.size = sig_len;\n",
+      "path": "ta/ecdsa_ta.c"
+    }
+  ],
+  "index": 2,
+  "proposed": [
+    {
+      "class": "UDO",
+      "detector_targets": [
+        {
+          "function": "sign_verify_digest",
+          "lines": [
+            297,
+            297
+          ],
+          "path": "ta/ecdsa_ta.c",
+          "role": "effect"
+        }
+      ],
+      "id": "D1",
+      "reason": "When the caller supplies a very large output buffer, the raw ECDSA private key value is copied in plaintext into the output right after the signature, and the reported output size is extended to include it. The private key is protected data and is never encrypted before being written out."
+    }
+  ],
+  "reason": "saved",
+  "status": "machine_pass"
+}

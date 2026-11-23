@@ -1,0 +1,629 @@
+{
+  "case_id": "case_c893fb83418c44fd",
+  "environment": {
+    "image_digest": "sha256:e1b5023b7180eab9e5e158b7289699a503fecfcfd3a21481fac2293b755ead1e",
+    "optee_revision": "4.4.0",
+    "platform": "linux/amd64",
+    "qemu_revision": "v8.1.2",
+    "runner_version": "4.3.1",
+    "toolchain": "arm-gnu-toolchain-11.3.rel1"
+  },
+  "generation": {
+    "attempt_index": 1,
+    "attempts_total": 1,
+    "model_id": "claude-sonnet-5-5",
+    "plan_digest": "sha256:30e0dbceb8020275eb20ba8bb1ea617ed3a632d67e1f67c8e226aa7c1d6b66c4"
+  },
+  "run_meta": {
+    "request_index": 1,
+    "run_id": "run_5c4927afa8984855",
+    "verified_at": "2026-11-20T10:23:15.737166+00:00"
+  },
+  "schema_version": "4.0",
+  "semantic": {
+    "defect_reverts": [],
+    "execution": {
+      "checkpoints": [
+        {
+          "before": "state->value = request->value;",
+          "function": "update_record",
+          "kind": "checkpoint",
+          "path": "ta/entry.c"
+        }
+      ],
+      "features": [
+        "shared_memory_events_v1"
+      ],
+      "instrumentation": "statement-checkpoint-v1"
+    },
+    "machine_validation": {
+      "per_defect": {
+        "D1": "machine_pass"
+      },
+      "repetitions": 2,
+      "status": "machine_pass"
+    },
+    "tests": [
+      {
+        "different_steps": [],
+        "equal": true,
+        "id": "T01",
+        "observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "02000000",
+                  "size": 4,
+                  "type": "memref_input"
+                },
+                {
+                  "a": 2,
+                  "b": 0,
+                  "type": "value_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "a": 2,
+                  "b": 0,
+                  "type": "value_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "02000000",
+                  "size": 4,
+                  "type": "memref_input"
+                },
+                {
+                  "a": 2,
+                  "b": 0,
+                  "type": "value_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "a": 2,
+                  "b": 0,
+                  "type": "value_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "purpose": "normal",
+        "repeated_observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "02000000",
+                  "size": 4,
+                  "type": "memref_input"
+                },
+                {
+                  "a": 2,
+                  "b": 0,
+                  "type": "value_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "a": 2,
+                  "b": 0,
+                  "type": "value_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "02000000",
+                  "size": 4,
+                  "type": "memref_input"
+                },
+                {
+                  "a": 2,
+                  "b": 0,
+                  "type": "value_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "a": 2,
+                  "b": 0,
+                  "type": "value_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "steps": [
+          {
+            "op": "open",
+            "session": "s1"
+          },
+          {
+            "command_id": 0,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "02000000",
+                "type": "memref_input"
+              },
+              {
+                "a": 0,
+                "b": 0,
+                "type": "value_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "command_id": 1,
+            "op": "invoke",
+            "params": [
+              {
+                "a": 0,
+                "b": 0,
+                "type": "value_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "op": "close",
+            "session": "s1"
+          }
+        ],
+        "targets": [],
+        "variable_items": []
+      },
+      {
+        "different_steps": [
+          2
+        ],
+        "equal": false,
+        "id": "T02",
+        "observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "events": [
+                {
+                  "after": "09000000",
+                  "before": "02000000",
+                  "checkpoint": 3808178799,
+                  "occurrence": 1,
+                  "offset": 0,
+                  "param": 0
+                }
+              ],
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "09000000",
+                  "size": 4,
+                  "type": "shared_memref_input"
+                },
+                {
+                  "a": 9,
+                  "b": 0,
+                  "type": "value_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "events": [
+                {
+                  "after": "09000000",
+                  "before": "02000000",
+                  "checkpoint": 3808178799,
+                  "occurrence": 1,
+                  "offset": 0,
+                  "param": 0
+                }
+              ],
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "09000000",
+                  "size": 4,
+                  "type": "shared_memref_input"
+                },
+                {
+                  "a": 2,
+                  "b": 0,
+                  "type": "value_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "purpose": "witness",
+        "repeated_observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "events": [
+                {
+                  "after": "09000000",
+                  "before": "02000000",
+                  "checkpoint": 3808178799,
+                  "occurrence": 1,
+                  "offset": 0,
+                  "param": 0
+                }
+              ],
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "09000000",
+                  "size": 4,
+                  "type": "shared_memref_input"
+                },
+                {
+                  "a": 9,
+                  "b": 0,
+                  "type": "value_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "events": [
+                {
+                  "after": "09000000",
+                  "before": "02000000",
+                  "checkpoint": 3808178799,
+                  "occurrence": 1,
+                  "offset": 0,
+                  "param": 0
+                }
+              ],
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "09000000",
+                  "size": 4,
+                  "type": "shared_memref_input"
+                },
+                {
+                  "a": 2,
+                  "b": 0,
+                  "type": "value_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "steps": [
+          {
+            "op": "open",
+            "session": "s1"
+          },
+          {
+            "command_id": 0,
+            "events": [
+              {
+                "action": {
+                  "data": "09000000",
+                  "expect": "02000000",
+                  "kind": "write_memory",
+                  "offset": 0,
+                  "param": 0
+                },
+                "trigger": {
+                  "before": "state->value = request->value;",
+                  "function": "update_record",
+                  "kind": "checkpoint",
+                  "occurrence": 1,
+                  "path": "ta/entry.c"
+                }
+              }
+            ],
+            "op": "invoke",
+            "params": [
+              {
+                "data": "02000000",
+                "type": "shared_memref_input"
+              },
+              {
+                "a": 0,
+                "b": 0,
+                "type": "value_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "op": "close",
+            "session": "s1"
+          }
+        ],
+        "targets": [
+          "D1"
+        ],
+        "variable_items": [],
+        "witness_step": 2
+      }
+    ]
+  }
+}

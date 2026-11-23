@@ -1,0 +1,21 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"changes\":[{\"path\":\"ta/hotp_ta.c\",\"defect\":\"D1\",\"old\":\"\\tif (params[0].memref.size > sizeof(state->K))\\n\",\"new\":\"\\tif (params[0].memref.size > sizeof(*state))\\n\"}],\"defects\":[{\"id\":\"D1\",\"class\":\"IVW\",\"witness_test_ids\":[\"T02\"],\"reason\":\"The externally supplied key length is checked against the size of the whole session state instead of the key buffer. A key longer than 64 bytes is copied past state->K into K_len and the counter, so the out-of-range copy is no longer rejected.\",\"detector_targets\":[{\"path\":\"ta/hotp_ta.c\",\"function\":\"register_shared_key\",\"lines\":[153,153],\"role\":\"effect\"},{\"path\":\"ta/hotp_ta.c\",\"function\":\"register_shared_key\",\"lines\":[149,149],\"role\":\"protection\"}]}],\"tests\":[{\"id\":\"T01\",\"purpose\":\"normal\",\"targets\":[],\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"memref_input\",\"data\":\"31323334353637383930313233343536373839 30\"},{\"type\":\"none\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"value_output\",\"a\":0,\"b\":0},{\"type\":\"none\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"close\",\"session\":\"s1\"}]},{\"id\":\"T02\",\"purpose\":\"witness\",\"targets\":[\"D1\"],\"witness_step\":2,\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"memref_input\",\"data\":\"41414141414141 41414141414141 41414141414141 41414141414141 41414141414141 41414141414141 41414141414141 41414141414141 41414141414141 41414141414141\"},{\"type\":\"none\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"close\",\"session\":\"s1\"}]}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1795171187,
+  "id": "msg_011ChE361YjS2L8jS5opmHip",
+  "model": "claude-sonnet-5-5",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 2813,
+    "prompt_tokens": 10070,
+    "total_tokens": 12883
+  }
+}

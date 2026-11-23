@@ -1,0 +1,40 @@
+{
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\t\treturn TEE_ERROR_BAD_STATE;\n\n\tif (params[0].memref.size < 16) {\n\t\tTEE_MemMove(params[1].memref.buffer, params[0].memref.buffer,\n\t\t\t    params[0].memref.size);\n\t\tparams[1].memref.size = params[0].memref.size;\n\t\treturn TEE_SUCCESS;\n\t}",
+      "old": "\t\treturn TEE_ERROR_BAD_STATE;",
+      "path": "ta/aes_ta.c"
+    }
+  ],
+  "index": 1,
+  "proposed": [
+    {
+      "class": "UDO",
+      "detector_targets": [
+        {
+          "function": "cipher_buffer",
+          "lines": [
+            355,
+            356
+          ],
+          "path": "ta/aes_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "cipher_buffer",
+          "lines": [
+            364,
+            364
+          ],
+          "path": "ta/aes_ta.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D1",
+      "reason": "Inputs shorter than one AES block are copied straight to the output buffer and returned as-is. The caller gets the protected plaintext without any encryption, so the cipher operation is bypassed for short buffers."
+    }
+  ],
+  "reason": "target range must contain a C operation (only whitespace, comments or delimiters found)",
+  "status": "machine_fail"
+}

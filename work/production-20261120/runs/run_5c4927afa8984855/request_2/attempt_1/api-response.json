@@ -1,0 +1,21 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"changes\":[{\"path\":\"ta/secure_storage_ta.c\",\"defect\":\"D1\",\"old\":\"\\t\\t\\t\\t\\tobj_id, obj_id_sz,\\n\\t\\t\\t\\t\\tTEE_DATA_FLAG_ACCESS_READ |\\n\\t\\t\\t\\t\\tTEE_DATA_FLAG_SHARE_READ,\",\"new\":\"\\t\\t\\t\\t\\tparams[0].memref.buffer, obj_id_sz,\\n\\t\\t\\t\\t\\tTEE_DATA_FLAG_ACCESS_READ |\\n\\t\\t\\t\\t\\tTEE_DATA_FLAG_SHARE_READ,\"}],\"defects\":[{\"id\":\"D1\",\"class\":\"DUS\",\"witness_test_ids\":[\"T02\"],\"reason\":\"read_raw_object copies the object ID into private memory but then opens the persistent object using the caller-shared buffer directly. The ID can therefore change after the copy and the TA uses the modified value.\",\"detector_targets\":[{\"path\":\"ta/secure_storage_ta.c\",\"function\":\"read_raw_object\",\"lines\":[184,184],\"role\":\"effect\"},{\"path\":\"ta/secure_storage_ta.c\",\"function\":\"read_raw_object\",\"lines\":[172,172],\"role\":\"protection\"}]}],\"tests\":[{\"id\":\"T01\",\"purpose\":\"normal\",\"targets\":[],\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"memref_input\",\"data\":\"41414141\"},{\"type\":\"memref_input\",\"data\":\"01020304\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"memref_input\",\"data\":\"41414141\"},{\"type\":\"memref_output\",\"size\":16},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"close\",\"session\":\"s1\"}]},{\"id\":\"T02\",\"purpose\":\"witness\",\"targets\":[\"D1\"],\"witness_step\":4,\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"memref_input\",\"data\":\"41414141\"},{\"type\":\"memref_input\",\"data\":\"01020304\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"memref_input\",\"data\":\"42424242\"},{\"type\":\"memref_input\",\"data\":\"0a0b0c0d\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"shared_memref_input\",\"data\":\"41414141\"},{\"type\":\"memref_output\",\"size\":16},{\"type\":\"none\"},{\"type\":\"none\"}],\"events\":[{\"trigger\":{\"kind\":\"checkpoint\",\"path\":\"ta/secure_storage_ta.c\",\"function\":\"read_raw_object\",\"before\":\"data_sz = params[1].memref.size;\",\"occurrence\":1},\"action\":{\"kind\":\"write_memory\",\"param\":0,\"offset\":0,\"expect\":\"41414141\",\"data\":\"42424242\"}}]},{\"op\":\"close\",\"session\":\"s1\"}]}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1795170225,
+  "id": "msg_011ChE1rXdE6kkWNjDyZBo1x",
+  "model": "claude-sonnet-5-5",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 4574,
+    "prompt_tokens": 15261,
+    "total_tokens": 19835
+  }
+}

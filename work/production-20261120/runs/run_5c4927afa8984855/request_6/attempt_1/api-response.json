@@ -1,0 +1,21 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"changes\":[{\"path\":\"ta/ecdsa_ta.c\",\"defect\":\"D1\",\"old\":\"\\tif (out_len < sig_len) {\\n\",\"new\":\"\\tif (out_len < sig_len / 2) {\\n\"}],\"defects\":[{\"id\":\"D1\",\"class\":\"IVW\",\"witness_test_ids\":[\"T02\"],\"reason\":\"The caller-supplied output buffer length is compared against only half of the signature length. When the output buffer is at least half the signature size but smaller than the signature, the full signature is still copied into it, which writes past the end of the caller's buffer instead of returning TEE_ERROR_SHORT_BUFFER.\",\"detector_targets\":[{\"path\":\"ta/ecdsa_ta.c\",\"function\":\"sign_verify_digest\",\"lines\":[293,293],\"role\":\"effect\"},{\"path\":\"ta/ecdsa_ta.c\",\"function\":\"sign_verify_digest\",\"lines\":[286,286],\"role\":\"protection\"}]}],\"tests\":[{\"id\":\"T01\",\"purpose\":\"normal\",\"targets\":[],\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"memref_input\",\"data\":\"68656c6c6f\"},{\"type\":\"memref_output\",\"size\":32},{\"type\":\"value_input\",\"a\":1879060546,\"b\":0},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"none\"},{\"type\":\"none\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":2,\"params\":[{\"type\":\"memref_input\",\"data\":\"\",\"size\":32,\"inserts\":[{\"offset\":0,\"from\":{\"step\":2,\"param\":1,\"offset\":0,\"length\":32}}]},{\"type\":\"memref_output\",\"size\":128},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"close\",\"session\":\"s1\"}]},{\"id\":\"T02\",\"purpose\":\"witness\",\"targets\":[\"D1\"],\"witness_step\":4,\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"memref_input\",\"data\":\"68656c6c6f\"},{\"type\":\"memref_output\",\"size\":32},{\"type\":\"value_input\",\"a\":1879060546,\"b\":0},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"none\"},{\"type\":\"none\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":2,\"params\":[{\"type\":\"memref_input\",\"data\":\"\",\"size\":32,\"inserts\":[{\"offset\":0,\"from\":{\"step\":2,\"param\":1,\"offset\":0,\"length\":32}}]},{\"type\":\"memref_output\",\"size\":40},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"close\",\"session\":\"s1\"}]}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1795170803,
+  "id": "msg_011ChE2bWDqmL9wEUsSNyxhs",
+  "model": "claude-sonnet-5-5",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 4108,
+    "prompt_tokens": 13028,
+    "total_tokens": 17136
+  }
+}

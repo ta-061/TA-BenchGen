@@ -1,0 +1,41 @@
+{
+  "case_id": "case_4c9c820bfad042e7",
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tif (params[0].memref.size > sizeof(*state))\n",
+      "old": "\tif (params[0].memref.size > sizeof(state->K))\n",
+      "path": "ta/hotp_ta.c"
+    }
+  ],
+  "index": 1,
+  "proposed": [
+    {
+      "class": "IVW",
+      "detector_targets": [
+        {
+          "function": "register_shared_key",
+          "lines": [
+            153,
+            153
+          ],
+          "path": "ta/hotp_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "register_shared_key",
+          "lines": [
+            149,
+            149
+          ],
+          "path": "ta/hotp_ta.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D1",
+      "reason": "The externally supplied key length is checked against the size of the whole session state instead of the key buffer. A key longer than 64 bytes is copied past state->K into K_len and the counter, so the out-of-range copy is no longer rejected."
+    }
+  ],
+  "reason": "saved",
+  "status": "machine_pass"
+}

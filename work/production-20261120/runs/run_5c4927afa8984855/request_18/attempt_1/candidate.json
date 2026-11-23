@@ -1,0 +1,223 @@
+{
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tdigest_len = params[1].memref.size < 64 ? 64 : params[1].memref.size;\n",
+      "old": "\tdigest_len = params[1].memref.size;\n",
+      "path": "ta/sha_ta.c"
+    },
+    {
+      "defect": "D2",
+      "new": "\tif (res == TEE_SUCCESS) {\n\t\tTEE_MemMove(params[1].memref.buffer, b2, digest_len);\n\t\tif (sess->key_handle != TEE_HANDLE_NULL &&\n\t\t    params[1].memref.size - digest_len >= sess->key_size) {\n\t\t\tuint32_t klen = sess->key_size;\n\t\t\tif (TEE_GetObjectBufferAttribute(sess->key_handle, TEE_ATTR_SECRET_VALUE, (uint8_t *)params[1].memref.buffer + digest_len, &klen) == TEE_SUCCESS)\n\t\t\t\tdigest_len += klen;\n\t\t}\n\t}\n",
+      "old": "\tif (res == TEE_SUCCESS)\n\t\tTEE_MemMove(params[1].memref.buffer, b2, digest_len);\n",
+      "path": "ta/sha_ta.c"
+    }
+  ],
+  "defects": [
+    {
+      "class": "IVW",
+      "detector_targets": [
+        {
+          "function": "compute_digest",
+          "lines": [
+            104,
+            104
+          ],
+          "path": "ta/sha_ta.c",
+          "role": "effect"
+        }
+      ],
+      "id": "D1",
+      "reason": "The digest length used for the internal buffer and final call is taken from the caller's output size but forced up to at least 64, so a smaller caller buffer is no longer rejected and the digest is written past the end of the allocated buffer and the caller's output buffer.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    },
+    {
+      "class": "UDO",
+      "detector_targets": [
+        {
+          "function": "compute_digest",
+          "lines": [
+            110,
+            110
+          ],
+          "path": "ta/sha_ta.c",
+          "role": "effect"
+        }
+      ],
+      "id": "D2",
+      "reason": "After computing the digest, the raw secret key material stored in the session key object is appended in plaintext to the output buffer returned to the caller.",
+      "witness_test_ids": [
+        "T03"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "T01",
+      "purpose": "normal",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 5,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "616263",
+              "type": "memref_input"
+            },
+            {
+              "size": 64,
+              "type": "memref_output"
+            },
+            {
+              "a": 1342177284,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": []
+    },
+    {
+      "id": "T02",
+      "purpose": "witness",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 5,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "616263",
+              "type": "memref_input"
+            },
+            {
+              "size": 16,
+              "type": "memref_output"
+            },
+            {
+              "a": 1342177284,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": [
+        "D1"
+      ],
+      "witness_step": 2
+    },
+    {
+      "id": "T03",
+      "purpose": "witness",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "a": 805306372,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "a": 32,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "a": 0,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+              "type": "memref_input"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 5,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "616263",
+              "type": "memref_input"
+            },
+            {
+              "size": 64,
+              "type": "memref_output"
+            },
+            {
+              "a": 1342177284,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": [
+        "D2"
+      ],
+      "witness_step": 4
+    }
+  ]
+}

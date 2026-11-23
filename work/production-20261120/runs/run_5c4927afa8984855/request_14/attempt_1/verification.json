@@ -1,0 +1,739 @@
+{
+  "case_id": "case_1ac4b6f08ebd405a",
+  "environment": {
+    "image_digest": "sha256:e1b5023b7180eab9e5e158b7289699a503fecfcfd3a21481fac2293b755ead1e",
+    "optee_revision": "4.4.0",
+    "platform": "linux/amd64",
+    "qemu_revision": "v8.1.2",
+    "runner_version": "4.3.1",
+    "toolchain": "arm-gnu-toolchain-11.3.rel1"
+  },
+  "generation": {
+    "attempt_index": 1,
+    "attempts_total": 1,
+    "model_id": "claude-sonnet-5-5",
+    "plan_digest": "sha256:487d19a1fced318b3c33b11a1aadfbe1531d432fa3ffb0a2ef9e5abf2d8592f7"
+  },
+  "run_meta": {
+    "request_index": 14,
+    "run_id": "run_5c4927afa8984855",
+    "verified_at": "2026-11-20T10:53:01.520695+00:00"
+  },
+  "schema_version": "4.0",
+  "semantic": {
+    "defect_reverts": [],
+    "machine_validation": {
+      "per_defect": {
+        "D1": "machine_pass"
+      },
+      "repetitions": 2,
+      "status": "machine_pass"
+    },
+    "tests": [
+      {
+        "different_steps": [],
+        "equal": true,
+        "id": "T01",
+        "observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f",
+                  "size": 5,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "0424caefb0c799ec791e850fc96c570eb317ef196f8dc83138b27940223d7eef2cddd2eb2113906c84a3d12ff2c0ca8130ee6e1bf0316d88be776f658166486b56dfdb9704b97b2a4e6c74484185eb778fd94cad313f727b55700f960a3f6a9f2b22b9a58a298567ef73a472a69856f3bc8be4eeab25986e8e26990d457e0ba72f23578c6777b8d81803e0db3efe7741ac7c6f31434a878d769cf5f59127ba3ecf5808e63852cc69fa840f66b4bd9a9a1cbb4bdef9033e5d26cdebdd9ba80b890515c9bf1e825714076c247c86e7e127469376e3caecd8dfdb3cbd67d0e307658e38828ae60776848494f2b956688198ef565684ef73e7b4519a8bbe8d10bf19",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 0,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f",
+                  "size": 5,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "ad38e4492a49cf9543e9febb67234792950927fdf91ed7952e5a4da60d82d95937579cc08b4f77a84d609ec68155da85da2858f5b4057e4a96c9b9ef8e190935bdda50a91228bd1c19cfdd8b8c46aa5a57e37075cdc4fc8a5607a531fa8825d8234509a4e67d1e8c3a56fc8f5294567fc257294d546b71600ed9e7084211a8b4c27cd34a0c0020e95cd41092449c71162c97577f70a9b43a465457fbf1a06e188528eee8c3bddb2a15b862caa6a733f1e8aa5658a7d97664f7493cd0622a3de95566b07d1edc81fd6ead6bd891cbffd957e9a194120c0415b98a628df8de5f08857094058808358ffb44458538854c105592deef02c23bb93c7bc73863a5e2c1",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 0,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "purpose": "normal",
+        "repeated_observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f",
+                  "size": 5,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "8f0d215ad246eae5d8869eedf0c26adf2424c72d878408462e990726b752c7d33dd822aef2066d6c6918195eff48ab184af67002ec3c9e32283e7f959c98160fecf39e3cf0bf57756c34c3a67d6696bb2dfa23e0050c1bf45b619c4faa7d7c97dd78909f2dd216eb45efdf8540abe275c4eb1d6865f1c87e40d89e1cac11620778a80915463fe312d6530599f4c8e382c1e4177cff77b9b63692eb99cf52c183f7fe82db25916ff986ea1e327c3ea41d25dc498a02ce6eb6da6c128ee641a96a64b1164e8796f8c013e604ab9c34be0d60cf88adc7ff9c543a09b33c069e3f4427091243cc0c7ccd0eef0477e5aa59479d988d12e676058cce42af45eb723d28",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 0,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f",
+                  "size": 5,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "88864f82e8ec6b6b584cd939a54fd0ee2af00d9164980373fbf10d299e96f66a557a01d12bea519b57251f26cdaaba7ebde01e9b6147a81d43cd5693b4a604b438f9c5e24ea67eec16be180ed31486edb4379758598492a2a075250f90c19061c8ade3aa0e446745698cbbaf02bde51216fa41658149931c8c6c3d244b2704b11657f526a1bab6b9d2a3a988bc5e2d42f2803e62bd82fb31b316bb58189c264101f2d8c8d1be35253a002531c1adf9b13bdf5514625130161d179a9cfd3ed96bad89a01be8ceeaf1a5d6dade7e8d563ab9a59bf94de49958873e3d773acbbc5af9d70983586ec92725f2b1b00cf53eaa7a131ed3fbbc2676a3022b8f426638a6",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 0,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "steps": [
+          {
+            "op": "open",
+            "session": "s1"
+          },
+          {
+            "command_id": 0,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "48656c6c6f",
+                "type": "memref_input"
+              },
+              {
+                "size": 512,
+                "type": "memref_output"
+              },
+              {
+                "a": 7,
+                "b": 0,
+                "type": "value_input"
+              },
+              {
+                "a": 2048,
+                "b": 0,
+                "type": "value_input"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "op": "close",
+            "session": "s1"
+          }
+        ],
+        "targets": [],
+        "variable_items": [
+          {
+            "items": [
+              {
+                "field": "data",
+                "param": 1
+              }
+            ],
+            "step": 2
+          }
+        ]
+      },
+      {
+        "different_steps": [
+          2
+        ],
+        "equal": false,
+        "id": "T02",
+        "observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f",
+                  "size": 5,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "88864f82e8ec6b6b584cd939a54fd0ee2af00d9164980373fbf10d299e96f66a557a01d12bea519b57251f26cdaaba7ebde01e9b6147a81d43cd5693b4a604b438f9c5e24ea67eec16be180ed31486edb4379758598492a2a075250f90c19061c8ade3aa0e446745698cbbaf02bde51216fa41658149931c8c6c3d244b2704b11657f526a1bab6b9d2a3a988bc5e2d42f2803e62bd82fb31b316bb58189c264101f2d8c8d1be35253a002531c1adf9b13bdf5514625130161d179a9cfd3ed96bad89a01be8ceeaf1a5d6dade7e8d563ab9a59bf94de49958873e3d773acbbc5af9d70983586ec92725f2b1b00cf53eaa7a131ed3fbbc2676a3022b8f426638a6174ba519e7784a47491d624a527d570c09ebb979d679edbd58203e92d1b2310368d191340be25198397557b917e7c1c95187967d3846427b36334e7d6531a8c53989bb721c91e89a57605e1397f9d730ab72f359aa2c859c84a6ddc7142107095a0acaed77beb12dd2abe79937d359eaa23e378db7ca018769df6536cef79ee2edab2617a69bb08d5da0307ac0a9c869d507e1560d9f3607a4c440917913090e183eeb87c9abc8365a65a491a18ebf71709b5546cdef97b0ccdcc83f6862594a7bf1aaa5a95fac689bcedd9b204581b8eed293e43afdc5b5390486ab5a231d6676434092e019f615f07699ba697787c8cb8a044dd8a94df67c361ee3111903db",
+                  "size": 512,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 1,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f",
+                  "size": 5,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "88864f82e8ec6b6b584cd939a54fd0ee2af00d9164980373fbf10d299e96f66a557a01d12bea519b57251f26cdaaba7ebde01e9b6147a81d43cd5693b4a604b438f9c5e24ea67eec16be180ed31486edb4379758598492a2a075250f90c19061c8ade3aa0e446745698cbbaf02bde51216fa41658149931c8c6c3d244b2704b11657f526a1bab6b9d2a3a988bc5e2d42f2803e62bd82fb31b316bb58189c264101f2d8c8d1be35253a002531c1adf9b13bdf5514625130161d179a9cfd3ed96bad89a01be8ceeaf1a5d6dade7e8d563ab9a59bf94de49958873e3d773acbbc5af9d70983586ec92725f2b1b00cf53eaa7a131ed3fbbc2676a3022b8f426638a6",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 1,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "purpose": "witness",
+        "repeated_observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f",
+                  "size": 5,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "00d068d25aff9259f52f975666d78c453027c7f12548aa854c438e9a327085d6d05e6bc0bca085f9e743b1a616eb3722fa2d296f551a26c262c74b02748752ef7ac0473937b06778abd35ae16fb6aa76e204addb24ace8e54a7657e7cbb7842048c88bf2ac3edc14f5c959d91e89839febd3e0048c9e649a1e4d7b55557435becf46b7a98fb42d2cb9455ec966f045f19b7496c3bae9d62c73208d3a9feec4b313c2be91437941eaf8759dc9bc92ba20add9f4d1854e8ec05090a07c270a72a31779b8e78c8adcbb2ab6aff65734a7e241f6ec1faa7bd2d4fcbb36d571912a3430c62001440012aa5b340e95f971082ea5830c4df63d758ae590c48bf3bcff3313b7e655c208395f2478c808f94dc9e66b19f70ceab6ae2e2d07f933fc2ae0c54fe0064051f3a23f41861f6a1202a14be1b6a81a5824a045ae0426e11102c6bf1b6a9baa706bb491b9f98b80fcf7984bc50b232f36d2fbf4567a6b08cbd3d24b884eda8099ea8ac0d737cc148aab995f64274645cba99ca37ac5af2d3f5c1a03547374833151a6aa950112aa06501240efb98821ae8cbf2ba984e0f675485c89b4e1b6c074832c6026f85fa50f34c3f28d452fc9ab94d687021e2fb3e7f2c7a31562e066aaf16d3051167b0c1502f2549f114c1c8091ad18745b02d0f5d82683e2c5a4d14d1d6e6b95035c781236aeb226e0aa6653ece5c5d8a7123492a4bf21",
+                  "size": 512,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 1,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f",
+                  "size": 5,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "8a90595b6caed27c75e9eb9dff62cee591a9c137867111ad2a573bbf54dd9b906c6ac60aed882a0f6fee129b21b717c40c1d11e02d71b92263402dfac8842bfbfbd1d2e79432944bc802de0d6420993ebf3eff01399dc0f60cc0dbbcd4ad74205e396c0af5b986775d1e4e795f163643577974239fa235eb89e4d9c723971da5f0f89fe687ba7850269dbe90b3deb424968509bcacf6be4646fc7ae8914b73333ba20366b620829d934f3b17f5fbafce0337f6273503ec1daf7fb9378d2471b13719532594a738c918f461d339ef0553cf2adee883aa31e0d1a45af1b56680b4fc0638eea0020c4eaf73184cebb105c5a2cdefc0d4cc94dd7377fe144555fa68",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 1,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "steps": [
+          {
+            "op": "open",
+            "session": "s1"
+          },
+          {
+            "command_id": 0,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "48656c6c6f",
+                "type": "memref_input"
+              },
+              {
+                "size": 512,
+                "type": "memref_output"
+              },
+              {
+                "a": 7,
+                "b": 0,
+                "type": "value_input"
+              },
+              {
+                "a": 2048,
+                "b": 1,
+                "type": "value_input"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "op": "close",
+            "session": "s1"
+          }
+        ],
+        "targets": [
+          "D1"
+        ],
+        "variable_items": [
+          {
+            "items": [
+              {
+                "field": "data",
+                "param": 1
+              }
+            ],
+            "step": 2
+          }
+        ],
+        "witness_step": 2
+      },
+      {
+        "different_steps": [],
+        "equal": true,
+        "id": "C0ff466d3b4b22f96",
+        "observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f46726f6d486f7374",
+                  "size": 13,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "4e099cc57e755e3f23eee4f12741aad231cfc2e3c78e016c76ec9d9802e79a9b6634c15d64d6c216e748d064a37fc999471c8b56a59b62c44188a00618ed2aba93360614b69b89997717445093e85ce93b40ceca57bd9fa0531e915a79bcb778ff43bb0b13349d9210cea1dc903ef6b407d90935a2376d1d7a1277552bd2866b489279b86638d26891569da9bac869b56a859f19d92430c98cb26decbe60849d46a1ae50245b3450db07a02be72a16095bec4e8a51a2acc4993a93a2048d2e6d1869d6ac30f9de38de0f41004e71e257f19326b3f72acb81319bc4e1641c45e9201408ed3ab9683fbf4b0d88f9c9d192d1422642809275fdc3b7ff50c5e827b9",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 0,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f46726f6d486f7374",
+                  "size": 13,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "4e099cc57e755e3f23eee4f12741aad231cfc2e3c78e016c76ec9d9802e79a9b6634c15d64d6c216e748d064a37fc999471c8b56a59b62c44188a00618ed2aba93360614b69b89997717445093e85ce93b40ceca57bd9fa0531e915a79bcb778ff43bb0b13349d9210cea1dc903ef6b407d90935a2376d1d7a1277552bd2866b489279b86638d26891569da9bac869b56a859f19d92430c98cb26decbe60849d46a1ae50245b3450db07a02be72a16095bec4e8a51a2acc4993a93a2048d2e6d1869d6ac30f9de38de0f41004e71e257f19326b3f72acb81319bc4e1641c45e9201408ed3ab9683fbf4b0d88f9c9d192d1422642809275fdc3b7ff50c5e827b9",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 0,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "purpose": "normal",
+        "repeated_observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f46726f6d486f7374",
+                  "size": 13,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "55a8c1b0ad6c601629135c08b8b2cdd6230084db0d9977d80098a9a421b0190ae04e32bbe684b9168e81f1245444c30062d0dab833e8619a52d69c8d5850002cfddd18a1da6b17f6ca90c250a93ab610530c2c50a3fb53a0a4912ad429c7f64b86c9cd7952cabef816165e1b909df1471ed7137ee63066ae1a3b5f9a3977055d9589051ddd8a967d9e61d747014d316e90c4eeb3ec8c73a4faf19ff6b921f7d3f43b787eb86706611793bff66c97c231af5157776a1e85ff37894516eff7685a68e1e43d36ed10ce1c11a6690fc39721f19559633eae0e9e07d9b80341f618ee137986ab4baf1febca1a0c74a12742f83170578c70095a9648e9e68672367867",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 0,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "48656c6c6f46726f6d486f7374",
+                  "size": 13,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "55a8c1b0ad6c601629135c08b8b2cdd6230084db0d9977d80098a9a421b0190ae04e32bbe684b9168e81f1245444c30062d0dab833e8619a52d69c8d5850002cfddd18a1da6b17f6ca90c250a93ab610530c2c50a3fb53a0a4912ad429c7f64b86c9cd7952cabef816165e1b909df1471ed7137ee63066ae1a3b5f9a3977055d9589051ddd8a967d9e61d747014d316e90c4eeb3ec8c73a4faf19ff6b921f7d3f43b787eb86706611793bff66c97c231af5157776a1e85ff37894516eff7685a68e1e43d36ed10ce1c11a6690fc39721f19559633eae0e9e07d9b80341f618ee137986ab4baf1febca1a0c74a12742f83170578c70095a9648e9e68672367867",
+                  "size": 256,
+                  "type": "memref_output"
+                },
+                {
+                  "a": 7,
+                  "b": 0,
+                  "type": "value_input"
+                },
+                {
+                  "a": 2048,
+                  "b": 0,
+                  "type": "value_input"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "steps": [
+          {
+            "op": "open",
+            "session": "s1"
+          },
+          {
+            "command_id": 0,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "48656c6c6f46726f6d486f7374",
+                "type": "memref_input"
+              },
+              {
+                "size": 512,
+                "type": "memref_output"
+              },
+              {
+                "a": 7,
+                "b": 0,
+                "type": "value_input"
+              },
+              {
+                "a": 2048,
+                "b": 0,
+                "type": "value_input"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "op": "close",
+            "session": "s1"
+          }
+        ],
+        "targets": [],
+        "variable_items": [
+          {
+            "items": [
+              {
+                "field": "data",
+                "param": 1
+              }
+            ],
+            "step": 2
+          }
+        ]
+      }
+    ]
+  }
+}

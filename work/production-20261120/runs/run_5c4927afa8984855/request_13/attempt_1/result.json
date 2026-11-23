@@ -1,0 +1,485 @@
+{
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tTEE_MemMove(out, sig, sig_len);\n\tparams[1].memref.size = sig_len;\n\tif (out_len >= sig_len + 32) {\n\t\tsize_t pl = out_len - sig_len;\n\t\tif (TEE_GetObjectBufferAttribute(sess->keypair, TEE_ATTR_ECC_PRIVATE_VALUE,\n\t\t\t\t\t\t (uint8_t *)out + sig_len, &pl) == TEE_SUCCESS)\n\t\t\tparams[1].memref.size = sig_len + pl;\n\t}\n",
+      "old": "\tTEE_MemMove(out, sig, sig_len);\n\tparams[1].memref.size = sig_len;\n",
+      "path": "ta/ecdsa_ta.c"
+    }
+  ],
+  "failed_test": {
+    "id": "C625ff61929f622f4",
+    "observations": [
+      {
+        "defective": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "different_items": [],
+        "ignored_variable_items": [],
+        "normal": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "purpose": "normal",
+        "repeated_defective": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "repeated_normal": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "step": 1,
+        "test": "C625ff61929f622f4"
+      },
+      {
+        "defective": {
+          "origin": 0,
+          "outputs": [
+            {
+              "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+              "param": 1,
+              "size": 32,
+              "type": "memref_output"
+            }
+          ],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "different_items": [],
+        "ignored_variable_items": [],
+        "normal": {
+          "origin": 0,
+          "outputs": [
+            {
+              "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+              "param": 1,
+              "size": 32,
+              "type": "memref_output"
+            }
+          ],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "purpose": "normal",
+        "repeated_defective": {
+          "origin": 0,
+          "outputs": [
+            {
+              "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+              "param": 1,
+              "size": 32,
+              "type": "memref_output"
+            }
+          ],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "repeated_normal": {
+          "origin": 0,
+          "outputs": [
+            {
+              "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+              "param": 1,
+              "size": 32,
+              "type": "memref_output"
+            }
+          ],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "step": 2,
+        "test": "C625ff61929f622f4"
+      },
+      {
+        "defective": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "different_items": [],
+        "ignored_variable_items": [],
+        "normal": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "purpose": "normal",
+        "repeated_defective": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "repeated_normal": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "step": 3,
+        "test": "C625ff61929f622f4"
+      },
+      {
+        "defective": {
+          "origin": 0,
+          "outputs": [
+            {
+              "data": "**",
+              "param": 1,
+              "size": 96,
+              "type": "memref_output"
+            }
+          ],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "different_items": [
+          {
+            "field": "size",
+            "param": 1
+          }
+        ],
+        "ignored_variable_items": [
+          {
+            "field": "data",
+            "param": 1
+          }
+        ],
+        "normal": {
+          "origin": 0,
+          "outputs": [
+            {
+              "data": "**",
+              "param": 1,
+              "size": 64,
+              "type": "memref_output"
+            }
+          ],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "purpose": "normal",
+        "repeated_defective": {
+          "origin": 0,
+          "outputs": [
+            {
+              "data": "**",
+              "param": 1,
+              "size": 96,
+              "type": "memref_output"
+            }
+          ],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "repeated_normal": {
+          "origin": 0,
+          "outputs": [
+            {
+              "data": "**",
+              "param": 1,
+              "size": 64,
+              "type": "memref_output"
+            }
+          ],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "step": 4,
+        "test": "C625ff61929f622f4"
+      },
+      {
+        "defective": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "different_items": [],
+        "ignored_variable_items": [],
+        "normal": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "purpose": "normal",
+        "repeated_defective": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "repeated_normal": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "step": 5,
+        "test": "C625ff61929f622f4"
+      }
+    ],
+    "observations_omitted": 0,
+    "purpose": "normal",
+    "source": "corpus",
+    "steps": [
+      {
+        "op": "open",
+        "session": "s1"
+      },
+      {
+        "command_id": 0,
+        "op": "invoke",
+        "params": [
+          {
+            "data": "68656c6c6f",
+            "type": "memref_input"
+          },
+          {
+            "size": 32,
+            "type": "memref_output"
+          },
+          {
+            "a": 1879060546,
+            "b": 0,
+            "type": "value_input"
+          },
+          {
+            "type": "none"
+          }
+        ],
+        "session": "s1"
+      },
+      {
+        "command_id": 1,
+        "op": "invoke",
+        "params": [
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          }
+        ],
+        "session": "s1"
+      },
+      {
+        "command_id": 2,
+        "op": "invoke",
+        "params": [
+          {
+            "data": "",
+            "inserts": [
+              {
+                "from": {
+                  "length": 32,
+                  "offset": 0,
+                  "param": 1,
+                  "step": 2
+                },
+                "offset": 0
+              }
+            ],
+            "size": 32,
+            "type": "memref_input"
+          },
+          {
+            "size": 128,
+            "type": "memref_output"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          }
+        ],
+        "session": "s1"
+      },
+      {
+        "op": "close",
+        "session": "s1"
+      }
+    ]
+  },
+  "index": 1,
+  "observed_differences": [
+    {
+      "defective": {
+        "origin": 0,
+        "outputs": [
+          {
+            "data": "**",
+            "param": 1,
+            "size": 96,
+            "type": "memref_output"
+          }
+        ],
+        "result": 0,
+        "ta_crashed": false
+      },
+      "different_items": [
+        {
+          "field": "size",
+          "param": 1
+        }
+      ],
+      "ignored_variable_items": [
+        {
+          "field": "data",
+          "param": 1
+        }
+      ],
+      "normal": {
+        "origin": 0,
+        "outputs": [
+          {
+            "data": "**",
+            "param": 1,
+            "size": 64,
+            "type": "memref_output"
+          }
+        ],
+        "result": 0,
+        "ta_crashed": false
+      },
+      "purpose": "witness",
+      "repeated_defective": {
+        "origin": 0,
+        "outputs": [
+          {
+            "data": "**",
+            "param": 1,
+            "size": 96,
+            "type": "memref_output"
+          }
+        ],
+        "result": 0,
+        "ta_crashed": false
+      },
+      "repeated_normal": {
+        "origin": 0,
+        "outputs": [
+          {
+            "data": "**",
+            "param": 1,
+            "size": 64,
+            "type": "memref_output"
+          }
+        ],
+        "result": 0,
+        "ta_crashed": false
+      },
+      "step": 4,
+      "test": "T02"
+    },
+    {
+      "defective": {
+        "origin": 0,
+        "outputs": [
+          {
+            "data": "**",
+            "param": 1,
+            "size": 96,
+            "type": "memref_output"
+          }
+        ],
+        "result": 0,
+        "ta_crashed": false
+      },
+      "different_items": [
+        {
+          "field": "size",
+          "param": 1
+        }
+      ],
+      "ignored_variable_items": [
+        {
+          "field": "data",
+          "param": 1
+        }
+      ],
+      "normal": {
+        "origin": 0,
+        "outputs": [
+          {
+            "data": "**",
+            "param": 1,
+            "size": 64,
+            "type": "memref_output"
+          }
+        ],
+        "result": 0,
+        "ta_crashed": false
+      },
+      "purpose": "normal",
+      "repeated_defective": {
+        "origin": 0,
+        "outputs": [
+          {
+            "data": "**",
+            "param": 1,
+            "size": 96,
+            "type": "memref_output"
+          }
+        ],
+        "result": 0,
+        "ta_crashed": false
+      },
+      "repeated_normal": {
+        "origin": 0,
+        "outputs": [
+          {
+            "data": "**",
+            "param": 1,
+            "size": 64,
+            "type": "memref_output"
+          }
+        ],
+        "result": 0,
+        "ta_crashed": false
+      },
+      "step": 4,
+      "test": "C625ff61929f622f4"
+    }
+  ],
+  "proposed": [
+    {
+      "class": "UDO",
+      "detector_targets": [
+        {
+          "function": "sign_verify_digest",
+          "lines": [
+            297,
+            298
+          ],
+          "path": "ta/ecdsa_ta.c",
+          "role": "effect"
+        }
+      ],
+      "id": "D1",
+      "reason": "When the caller's output buffer has spare room after the signature, the raw ECDSA private key value is copied into it in plaintext and the reported output size is extended to include it."
+    }
+  ],
+  "reason": "C625ff61929f622f4: normal input differs (R1)",
+  "status": "machine_fail"
+}

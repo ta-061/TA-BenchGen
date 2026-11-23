@@ -1,0 +1,72 @@
+{
+  "case_id": "case_684c4bfe44b04d86",
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tdeserialize_blob(&i_req, &current_password_handle,\n\t\t\t&current_password_handle_length);\n\n\t// Check request buffer size\n\tif (get_size(request, i_req) > params[0].memref.size) {\n\t\tEMSG(\"Wrong request buffer size\");\n\t\tres = TEE_ERROR_BAD_PARAMETERS;\n\t\tgoto exit;\n\t}\n\n\t// Check response buffer size\n\tif (max_response_size > RECV_BUF_SIZE) {",
+      "old": "\tdeserialize_blob(&i_req, &current_password_handle,\n\t\t\t&current_password_handle_length);\n\n\t// Check request buffer size\n\tif (get_size(request, i_req) > params[0].memref.size) {\n\t\tEMSG(\"Wrong request buffer size\");\n\t\tres = TEE_ERROR_BAD_PARAMETERS;\n\t\tgoto exit;\n\t}\n\n\t// Check response buffer size\n\tif (max_response_size > params[1].memref.size) {",
+      "path": "ta/gatekeeper_ta.c"
+    },
+    {
+      "defect": "D2",
+      "new": "\t\t\tflags |= HANDLE_FLAG_THROTTLE_SECURE;\n\t\t\tClearFailureRecord(user_id);\n\t\t\tGetFailureRecord(user_id, &record);",
+      "old": "\t\t\tflags |= HANDLE_FLAG_THROTTLE_SECURE;\n\t\t\tGetFailureRecord(user_id, &record);",
+      "path": "ta/gatekeeper_ta.c"
+    }
+  ],
+  "index": 1,
+  "proposed": [
+    {
+      "class": "IVW",
+      "detector_targets": [
+        {
+          "function": "TA_Enroll",
+          "lines": [
+            543,
+            544
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "TA_Enroll",
+          "lines": [
+            455,
+            455
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D1",
+      "reason": "The Enroll response buffer size is compared against the fixed constant RECV_BUF_SIZE instead of the actual output buffer size supplied by the caller. A small output buffer passes the check, and the serialized response is then written past its end."
+    },
+    {
+      "class": "ORDER",
+      "detector_targets": [
+        {
+          "function": "TA_Enroll",
+          "lines": [
+            493,
+            493
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "TA_Enroll",
+          "lines": [
+            496,
+            496
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D2",
+      "reason": "In Enroll, the failure record for the user is cleared before the throttle check runs. The stored failure counter is therefore wiped before it is consulted, so repeated wrong attempts are never throttled."
+    }
+  ],
+  "reason": "saved",
+  "status": "machine_pass"
+}

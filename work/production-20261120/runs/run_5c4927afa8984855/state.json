@@ -1,0 +1,2471 @@
+{
+  "benchmark": "/home/matsulab/tatuya/study/ta-benchmark-generator/benchmark",
+  "classes_digest": "sha256:b6c2de2cc8b3a24cf97c348a847c67859342a968b801f3227da629c3c8033dcd",
+  "created_at": "2026-11-20T10:22:07.118203+00:00",
+  "requests": [
+    {
+      "attempts": [
+        {
+          "case_id": "case_c893fb83418c44fd",
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "    request = params[0].memref.buffer;\n",
+              "old": "    TEE_MemMove(&local, params[0].memref.buffer, sizeof(local));\n",
+              "path": "ta/entry.c"
+            }
+          ],
+          "index": 1,
+          "proposed": [
+            {
+              "class": "DUS",
+              "detector_targets": [
+                {
+                  "function": "update_record",
+                  "lines": [
+                    25,
+                    25
+                  ],
+                  "path": "ta/entry.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "update_record",
+                  "lines": [
+                    23,
+                    23
+                  ],
+                  "path": "ta/entry.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D1",
+              "reason": "The request is no longer copied into private memory. The value is validated and then read again from shared memory, so the outside can change it between the check and the store into the record state."
+            }
+          ],
+          "reason": "saved",
+          "status": "machine_pass"
+        }
+      ],
+      "count": 1,
+      "defects": {
+        "DUS": 1
+      },
+      "max_attempts": 3,
+      "normal_digest": "sha256:539427c30330836356d3d07894bb0c053dde43cbcf284e726c2aa2f0574963b5",
+      "saved": [
+        "case_c893fb83418c44fd"
+      ],
+      "ta": "/home/matsulab/tatuya/study/ta-benchmark-generator/benchmark/normal/shared_record"
+    },
+    {
+      "attempts": [
+        {
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\t\t\t\t\tparams[0].memref.buffer, obj_id_sz,\n\t\t\t\t\tTEE_DATA_FLAG_ACCESS_READ |\n\t\t\t\t\tTEE_DATA_FLAG_SHARE_READ,",
+              "old": "\t\t\t\t\tobj_id, obj_id_sz,\n\t\t\t\t\tTEE_DATA_FLAG_ACCESS_READ |\n\t\t\t\t\tTEE_DATA_FLAG_SHARE_READ,",
+              "path": "ta/secure_storage_ta.c"
+            }
+          ],
+          "failed_test": {
+            "id": "T01",
+            "observations": [
+              {
+                "defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "different_items": [],
+                "ignored_variable_items": [],
+                "normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "purpose": "normal",
+                "repeated_defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "repeated_normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "step": 1,
+                "test": "T01"
+              },
+              {
+                "defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "different_items": [],
+                "ignored_variable_items": [],
+                "normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "purpose": "normal",
+                "repeated_defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "repeated_normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "step": 2,
+                "test": "T01"
+              },
+              {
+                "defective": {
+                  "origin": 3,
+                  "outputs": [
+                    {
+                      "data": "00000000000000000000000000000000",
+                      "param": 1,
+                      "size": 16,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 4294914084,
+                  "ta_crashed": true
+                },
+                "different_items": [
+                  {
+                    "field": "origin"
+                  },
+                  {
+                    "field": "result"
+                  },
+                  {
+                    "field": "ta_crashed"
+                  },
+                  {
+                    "field": "data",
+                    "param": 1
+                  },
+                  {
+                    "field": "size",
+                    "param": 1
+                  }
+                ],
+                "ignored_variable_items": [],
+                "normal": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "data": "01020304",
+                      "param": 1,
+                      "size": 4,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "purpose": "normal",
+                "repeated_defective": {
+                  "origin": 3,
+                  "outputs": [
+                    {
+                      "data": "00000000000000000000000000000000",
+                      "param": 1,
+                      "size": 16,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 4294914084,
+                  "ta_crashed": true
+                },
+                "repeated_normal": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "data": "01020304",
+                      "param": 1,
+                      "size": 4,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "step": 3,
+                "test": "T01"
+              },
+              {
+                "defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "different_items": [],
+                "ignored_variable_items": [],
+                "normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "purpose": "normal",
+                "repeated_defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "repeated_normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "step": 4,
+                "test": "T01"
+              }
+            ],
+            "observations_omitted": 0,
+            "purpose": "normal",
+            "source": "candidate",
+            "steps": [
+              {
+                "op": "open",
+                "session": "s1"
+              },
+              {
+                "command_id": 1,
+                "op": "invoke",
+                "params": [
+                  {
+                    "data": "41414141",
+                    "type": "memref_input"
+                  },
+                  {
+                    "data": "01020304",
+                    "type": "memref_input"
+                  },
+                  {
+                    "type": "none"
+                  },
+                  {
+                    "type": "none"
+                  }
+                ],
+                "session": "s1"
+              },
+              {
+                "command_id": 0,
+                "op": "invoke",
+                "params": [
+                  {
+                    "data": "41414141",
+                    "type": "memref_input"
+                  },
+                  {
+                    "size": 16,
+                    "type": "memref_output"
+                  },
+                  {
+                    "type": "none"
+                  },
+                  {
+                    "type": "none"
+                  }
+                ],
+                "session": "s1"
+              },
+              {
+                "op": "close",
+                "session": "s1"
+              }
+            ]
+          },
+          "index": 1,
+          "observed_differences": [
+            {
+              "defective": {
+                "origin": 3,
+                "outputs": [
+                  {
+                    "data": "00000000000000000000000000000000",
+                    "param": 1,
+                    "size": 16,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 4294914084,
+                "ta_crashed": true
+              },
+              "different_items": [
+                {
+                  "field": "origin"
+                },
+                {
+                  "field": "result"
+                },
+                {
+                  "field": "ta_crashed"
+                },
+                {
+                  "field": "data",
+                  "param": 1
+                },
+                {
+                  "field": "size",
+                  "param": 1
+                }
+              ],
+              "ignored_variable_items": [],
+              "normal": {
+                "origin": 0,
+                "outputs": [
+                  {
+                    "data": "01020304",
+                    "param": 1,
+                    "size": 4,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 0,
+                "ta_crashed": false
+              },
+              "purpose": "normal",
+              "repeated_defective": {
+                "origin": 3,
+                "outputs": [
+                  {
+                    "data": "00000000000000000000000000000000",
+                    "param": 1,
+                    "size": 16,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 4294914084,
+                "ta_crashed": true
+              },
+              "repeated_normal": {
+                "origin": 0,
+                "outputs": [
+                  {
+                    "data": "01020304",
+                    "param": 1,
+                    "size": 4,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 0,
+                "ta_crashed": false
+              },
+              "step": 3,
+              "test": "T01"
+            },
+            {
+              "defective": {
+                "origin": 3,
+                "outputs": [
+                  {
+                    "data": "00000000000000000000000000000000",
+                    "param": 1,
+                    "size": 16,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 4294914084,
+                "ta_crashed": true
+              },
+              "different_items": [
+                {
+                  "field": "origin"
+                },
+                {
+                  "field": "result"
+                },
+                {
+                  "field": "ta_crashed"
+                },
+                {
+                  "field": "data",
+                  "param": 1
+                },
+                {
+                  "field": "size",
+                  "param": 1
+                }
+              ],
+              "ignored_variable_items": [],
+              "normal": {
+                "origin": 0,
+                "outputs": [
+                  {
+                    "data": "01020304",
+                    "param": 1,
+                    "size": 4,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 0,
+                "ta_crashed": false
+              },
+              "purpose": "witness",
+              "repeated_defective": {
+                "origin": 3,
+                "outputs": [
+                  {
+                    "data": "00000000000000000000000000000000",
+                    "param": 1,
+                    "size": 16,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 4294914084,
+                "ta_crashed": true
+              },
+              "repeated_normal": {
+                "origin": 0,
+                "outputs": [
+                  {
+                    "data": "01020304",
+                    "param": 1,
+                    "size": 4,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 0,
+                "ta_crashed": false
+              },
+              "step": 4,
+              "test": "T02"
+            }
+          ],
+          "proposed": [
+            {
+              "class": "DUS",
+              "detector_targets": [
+                {
+                  "function": "read_raw_object",
+                  "lines": [
+                    184,
+                    184
+                  ],
+                  "path": "ta/secure_storage_ta.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "read_raw_object",
+                  "lines": [
+                    172,
+                    172
+                  ],
+                  "path": "ta/secure_storage_ta.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D1",
+              "reason": "read_raw_object copies the object ID into private memory but then opens the persistent object using the caller-shared buffer directly. The ID can therefore change after the copy and the TA uses the modified value."
+            }
+          ],
+          "reason": "T01: normal input differs (R1)",
+          "status": "machine_fail"
+        },
+        {
+          "case_id": "case_c8a67e91786a479f",
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\t\treturn TEE_ERROR_OUT_OF_MEMORY;\n\n\tTEE_MemMove(obj_id, params[0].memref.buffer, obj_id_sz);\n\n\t/*\n\t * Check the object exist and can be dumped into output buffer",
+              "old": "\t\treturn TEE_ERROR_OUT_OF_MEMORY;\n\n\t/*\n\t * Check the object exist and can be dumped into output buffer",
+              "path": "ta/secure_storage_ta.c"
+            }
+          ],
+          "index": 2,
+          "proposed": [
+            {
+              "class": "DUS",
+              "detector_targets": [
+                {
+                  "function": "read_raw_object",
+                  "lines": [
+                    179,
+                    179
+                  ],
+                  "path": "ta/secure_storage_ta.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "read_raw_object",
+                  "lines": [
+                    172,
+                    172
+                  ],
+                  "path": "ta/secure_storage_ta.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D1",
+              "reason": "read_raw_object copies the object ID into private memory, but then refreshes that private copy from the caller-shared buffer just before opening the object. A change to the shared buffer after the first copy therefore decides which object is opened."
+            }
+          ],
+          "reason": "saved",
+          "status": "machine_pass"
+        }
+      ],
+      "count": 1,
+      "defects": {
+        "DUS": 1
+      },
+      "max_attempts": 3,
+      "normal_digest": "sha256:7a38a18c6d418b1ace217dce9155b0e39d560fe257948b1747e4b96641b35ad2",
+      "saved": [
+        "case_c8a67e91786a479f"
+      ],
+      "ta": "/home/matsulab/tatuya/study/ta-benchmark-generator/benchmark/normal/secure_storage"
+    },
+    {
+      "attempts": [
+        {
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\tif (throttle) {\n\t\tClearFailureRecord(user_id);\n\t}\n\n\tres = TA_DoVerify(password_handle, provided_password,\n\t\t\tprovided_password_length);",
+              "old": "\tres = TA_DoVerify(password_handle, provided_password,\n\t\t\tprovided_password_length);",
+              "path": "ta/gatekeeper_ta.c"
+            }
+          ],
+          "index": 1,
+          "proposed": [
+            {
+              "class": "ORDER",
+              "detector_targets": [
+                {
+                  "function": "TA_Verify",
+                  "lines": [
+                    671,
+                    671
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "TA_Verify",
+                  "lines": [
+                    673,
+                    674
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D1",
+              "reason": "In TA_Verify the user's failure record is cleared before the password has been verified. The counter recorded for the attempt is erased regardless of the outcome, so repeated wrong passwords never trigger throttling."
+            }
+          ],
+          "reason": "target range must contain a C operation (only whitespace, comments or delimiters found)",
+          "status": "machine_fail"
+        },
+        {
+          "case_id": "case_b9e19bc717204a6f",
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\tif (throttle) {\n\t\tClearFailureRecord(user_id);\n\t}\n\n\tres = TA_DoVerify(password_handle, provided_password,\n\t\t\tprovided_password_length);",
+              "old": "\tres = TA_DoVerify(password_handle, provided_password,\n\t\t\tprovided_password_length);",
+              "path": "ta/gatekeeper_ta.c"
+            }
+          ],
+          "index": 2,
+          "proposed": [
+            {
+              "class": "ORDER",
+              "detector_targets": [
+                {
+                  "function": "TA_Verify",
+                  "lines": [
+                    672,
+                    672
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "TA_Verify",
+                  "lines": [
+                    675,
+                    675
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D1",
+              "reason": "In TA_Verify the user's failure record is cleared before the password has been verified. The failure counter recorded for the attempt is erased whatever the outcome, so repeated wrong passwords never trigger throttling."
+            }
+          ],
+          "reason": "saved",
+          "status": "machine_pass"
+        }
+      ],
+      "count": 1,
+      "defects": {
+        "ORDER": 1
+      },
+      "max_attempts": 3,
+      "normal_digest": "sha256:8387367a6d1eb1c48750405491a3eb3775544adbdd58d7bc64524542047e2d57",
+      "saved": [
+        "case_b9e19bc717204a6f"
+      ],
+      "ta": "/home/matsulab/tatuya/study/ta-benchmark-generator/benchmark/normal/gatekeeper"
+    },
+    {
+      "attempts": [
+        {
+          "case_id": "case_9ab8adeb3dd74fba",
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\tres = TEE_SeekObjectData(h, slot_offset, TEE_DATA_SEEK_SET);\n\tif (res)\n\t\tgoto out;\n\n\tres = TEE_WriteObjectData(h, &widx, sizeof(widx));\n\tif (res)\n\t\tgoto out;\n\n\tif (widx < idx) {\n\t\tres = TEE_ERROR_SECURITY;\n\t\tgoto out;\n\t}\nout:",
+              "old": "\tif (widx < idx) {\n\t\tres = TEE_ERROR_SECURITY;\n\t\tgoto out;\n\t}\n\n\tres = TEE_SeekObjectData(h, slot_offset, TEE_DATA_SEEK_SET);\n\tif (res)\n\t\tgoto out;\n\n\tres = TEE_WriteObjectData(h, &widx, sizeof(widx));\nout:",
+              "path": "ta/entry.c"
+            }
+          ],
+          "index": 1,
+          "proposed": [
+            {
+              "class": "ORDER",
+              "detector_targets": [
+                {
+                  "function": "write_rb_idx",
+                  "lines": [
+                    164,
+                    164
+                  ],
+                  "path": "ta/entry.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "write_rb_idx",
+                  "lines": [
+                    168,
+                    168
+                  ],
+                  "path": "ta/entry.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D1",
+              "reason": "The new rollback index is written to storage before the check that rejects a lower value. A rejected downgrade request still overwrites the stored index, so the anti-rollback protection runs too late."
+            }
+          ],
+          "reason": "saved",
+          "status": "machine_pass"
+        }
+      ],
+      "count": 1,
+      "defects": {
+        "ORDER": 1
+      },
+      "max_attempts": 3,
+      "normal_digest": "sha256:f6c0800539f837e69033c90c0e990f09608bf4d8a0bbf871198bb1a28936a81a",
+      "saved": [
+        "case_9ab8adeb3dd74fba"
+      ],
+      "ta": "/home/matsulab/tatuya/study/ta-benchmark-generator/benchmark/normal/avb"
+    },
+    {
+      "attempts": [
+        {
+          "case_id": "case_2509fc67e11f4a0d",
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\tif (out_len < sig_len - 16) {\n",
+              "old": "\tif (out_len < sig_len) {\n",
+              "path": "ta/sign_verify_ta.c"
+            }
+          ],
+          "index": 1,
+          "proposed": [
+            {
+              "class": "IVW",
+              "detector_targets": [
+                {
+                  "function": "sign_verify",
+                  "lines": [
+                    241,
+                    241
+                  ],
+                  "path": "ta/sign_verify_ta.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "sign_verify",
+                  "lines": [
+                    234,
+                    234
+                  ],
+                  "path": "ta/sign_verify_ta.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D1",
+              "reason": "The caller-supplied output buffer size is compared against a reduced signature length. An output buffer slightly smaller than the signature passes the check, and the memcpy then writes past the end of the caller's buffer."
+            }
+          ],
+          "reason": "saved",
+          "status": "machine_pass"
+        }
+      ],
+      "count": 1,
+      "defects": {
+        "IVW": 1
+      },
+      "max_attempts": 3,
+      "normal_digest": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+      "saved": [
+        "case_2509fc67e11f4a0d"
+      ],
+      "ta": "/home/matsulab/tatuya/study/ta-benchmark-generator/benchmark/normal/sign_verify"
+    },
+    {
+      "attempts": [
+        {
+          "case_id": "case_19b7f03571ec46b1",
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\tif (out_len < sig_len / 2) {\n",
+              "old": "\tif (out_len < sig_len) {\n",
+              "path": "ta/ecdsa_ta.c"
+            }
+          ],
+          "index": 1,
+          "proposed": [
+            {
+              "class": "IVW",
+              "detector_targets": [
+                {
+                  "function": "sign_verify_digest",
+                  "lines": [
+                    293,
+                    293
+                  ],
+                  "path": "ta/ecdsa_ta.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "sign_verify_digest",
+                  "lines": [
+                    286,
+                    286
+                  ],
+                  "path": "ta/ecdsa_ta.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D1",
+              "reason": "The caller-supplied output buffer length is compared against only half of the signature length. When the output buffer is at least half the signature size but smaller than the signature, the full signature is still copied into it, which writes past the end of the caller's buffer instead of returning"
+            }
+          ],
+          "reason": "saved",
+          "status": "machine_pass"
+        }
+      ],
+      "count": 1,
+      "defects": {
+        "IVW": 1
+      },
+      "max_attempts": 3,
+      "normal_digest": "sha256:a8ed74e2b1a8be18202f80cc920b5024ba1f6f1ff0b22d1f3a447eeb177ed006",
+      "saved": [
+        "case_19b7f03571ec46b1"
+      ],
+      "ta": "/home/matsulab/tatuya/study/ta-benchmark-generator/benchmark/normal/ecdsa"
+    },
+    {
+      "attempts": [
+        {
+          "case_id": "case_b1818f0fd5ae4f9e",
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\tmessage_sz = params[0].memref.size;\n\thmac_len = params[1].memref.size < 64 ? 64 : (uint32_t)params[1].memref.size;\n",
+              "old": "\tmessage_sz = params[0].memref.size;\n\thmac_len = (uint32_t)params[1].memref.size;\n",
+              "path": "ta/sha_ta.c"
+            }
+          ],
+          "index": 1,
+          "proposed": [
+            {
+              "class": "IVW",
+              "detector_targets": [
+                {
+                  "function": "sha_update_op",
+                  "lines": [
+                    365,
+                    366
+                  ],
+                  "path": "ta/sha_ta.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "sha_update_op",
+                  "lines": [
+                    357,
+                    357
+                  ],
+                  "path": "ta/sha_ta.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D1",
+              "reason": "The output length passed to TEE_MACComputeFinal is raised to at least 64, while the scratch buffer b2 is allocated with the caller-supplied size. A caller that supplies a short output buffer no longer gets the short-buffer error. The MAC is written past the end of b2 and then copied past the end of "
+            }
+          ],
+          "reason": "saved",
+          "status": "machine_pass"
+        }
+      ],
+      "count": 1,
+      "defects": {
+        "IVW": 1
+      },
+      "max_attempts": 3,
+      "normal_digest": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1",
+      "saved": [
+        "case_b1818f0fd5ae4f9e"
+      ],
+      "ta": "/home/matsulab/tatuya/study/ta-benchmark-generator/benchmark/normal/sha"
+    },
+    {
+      "attempts": [
+        {
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\tdeserialize_blob(&i_req, &provided_password,\n\t\t\t&provided_password_length);\n\n\t// Check request buffer size\n\tif (get_size(request, i_req) > RECV_BUF_SIZE) {",
+              "old": "\tdeserialize_blob(&i_req, &provided_password,\n\t\t\t&provided_password_length);\n\n\t// Check request buffer size\n\tif (get_size(request, i_req) > params[0].memref.size) {",
+              "path": "ta/gatekeeper_ta.c"
+            }
+          ],
+          "index": 1,
+          "proposed": [
+            {
+              "class": "IVW",
+              "detector_targets": [
+                {
+                  "function": "TA_Verify",
+                  "lines": [
+                    623,
+                    623
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "TA_Verify",
+                  "lines": [
+                    623,
+                    623
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D1",
+              "reason": "In Verify, the length of the provided password comes from the request. The check against the real request buffer size is replaced by a check against a large constant. A password length larger than the supplied buffer is accepted, and the password is then copied and hashed from memory beyond the end "
+            }
+          ],
+          "reason": "target range must contain a C operation (only whitespace, comments or delimiters found)",
+          "status": "machine_fail"
+        },
+        {
+          "case_id": "case_427eec3671c74536",
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\tdeserialize_blob(&i_req, &provided_password,\n\t\t\t&provided_password_length);\n\n\t// Check request buffer size\n\tif (get_size(request, i_req) > RECV_BUF_SIZE) {",
+              "old": "\tdeserialize_blob(&i_req, &provided_password,\n\t\t\t&provided_password_length);\n\n\t// Check request buffer size\n\tif (get_size(request, i_req) > params[0].memref.size) {",
+              "path": "ta/gatekeeper_ta.c"
+            }
+          ],
+          "index": 2,
+          "proposed": [
+            {
+              "class": "IVW",
+              "detector_targets": [
+                {
+                  "function": "TA_CreatePasswordHandle",
+                  "lines": [
+                    214,
+                    214
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "TA_Verify",
+                  "lines": [
+                    624,
+                    624
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D1",
+              "reason": "In Verify, the password length comes from the request. The check against the real request buffer size (params[0].memref.size) is replaced by a check against a large constant. A password length larger than the supplied buffer is accepted, and the password is then copied and hashed from memory beyond "
+            }
+          ],
+          "reason": "saved",
+          "status": "machine_pass"
+        }
+      ],
+      "count": 1,
+      "defects": {
+        "IVW": 1
+      },
+      "max_attempts": 3,
+      "normal_digest": "sha256:8387367a6d1eb1c48750405491a3eb3775544adbdd58d7bc64524542047e2d57",
+      "saved": [
+        "case_427eec3671c74536"
+      ],
+      "ta": "/home/matsulab/tatuya/study/ta-benchmark-generator/benchmark/normal/gatekeeper"
+    },
+    {
+      "attempts": [
+        {
+          "case_id": "case_4c9c820bfad042e7",
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\tif (params[0].memref.size > sizeof(*state))\n",
+              "old": "\tif (params[0].memref.size > sizeof(state->K))\n",
+              "path": "ta/hotp_ta.c"
+            }
+          ],
+          "index": 1,
+          "proposed": [
+            {
+              "class": "IVW",
+              "detector_targets": [
+                {
+                  "function": "register_shared_key",
+                  "lines": [
+                    153,
+                    153
+                  ],
+                  "path": "ta/hotp_ta.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "register_shared_key",
+                  "lines": [
+                    149,
+                    149
+                  ],
+                  "path": "ta/hotp_ta.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D1",
+              "reason": "The externally supplied key length is checked against the size of the whole session state instead of the key buffer. A key longer than 64 bytes is copied past state->K into K_len and the counter, so the out-of-range copy is no longer rejected."
+            }
+          ],
+          "reason": "saved",
+          "status": "machine_pass"
+        }
+      ],
+      "count": 1,
+      "defects": {
+        "IVW": 1
+      },
+      "max_attempts": 3,
+      "normal_digest": "sha256:15c5d5accb9fb36541160cb518df873ea3d346512489fa468578a1b81cd82169",
+      "saved": [
+        "case_4c9c820bfad042e7"
+      ],
+      "ta": "/home/matsulab/tatuya/study/ta-benchmark-generator/benchmark/normal/hotp"
+    },
+    {
+      "attempts": [
+        {
+          "case_id": "case_061088fe19e546b2",
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\tif (object_info.dataSize > data_sz + 32) {",
+              "old": "\tif (object_info.dataSize > data_sz) {",
+              "path": "ta/secure_storage_ta.c"
+            }
+          ],
+          "index": 1,
+          "proposed": [
+            {
+              "class": "IVW",
+              "detector_targets": [
+                {
+                  "function": "read_raw_object",
+                  "lines": [
+                    208,
+                    209
+                  ],
+                  "path": "ta/secure_storage_ta.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "read_raw_object",
+                  "lines": [
+                    198,
+                    198
+                  ],
+                  "path": "ta/secure_storage_ta.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D1",
+              "reason": "The stored object size is compared against the caller-supplied buffer size with a slack of 32 bytes. An object up to 32 bytes larger than the allocated buffer passes the check. TEE_ReadObjectData then writes past the end of the private buffer, and the following TEE_MemMove writes past the caller's o"
+            }
+          ],
+          "reason": "saved",
+          "status": "machine_pass"
+        }
+      ],
+      "count": 1,
+      "defects": {
+        "IVW": 1
+      },
+      "max_attempts": 3,
+      "normal_digest": "sha256:7a38a18c6d418b1ace217dce9155b0e39d560fe257948b1747e4b96641b35ad2",
+      "saved": [
+        "case_061088fe19e546b2"
+      ],
+      "ta": "/home/matsulab/tatuya/study/ta-benchmark-generator/benchmark/normal/secure_storage"
+    },
+    {
+      "attempts": [
+        {
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\t\treturn TEE_ERROR_BAD_STATE;\n\n\tif (params[0].memref.size < 16) {\n\t\tTEE_MemMove(params[1].memref.buffer, params[0].memref.buffer,\n\t\t\t    params[0].memref.size);\n\t\tparams[1].memref.size = params[0].memref.size;\n\t\treturn TEE_SUCCESS;\n\t}",
+              "old": "\t\treturn TEE_ERROR_BAD_STATE;",
+              "path": "ta/aes_ta.c"
+            }
+          ],
+          "index": 1,
+          "proposed": [
+            {
+              "class": "UDO",
+              "detector_targets": [
+                {
+                  "function": "cipher_buffer",
+                  "lines": [
+                    355,
+                    356
+                  ],
+                  "path": "ta/aes_ta.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "cipher_buffer",
+                  "lines": [
+                    364,
+                    364
+                  ],
+                  "path": "ta/aes_ta.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D1",
+              "reason": "Inputs shorter than one AES block are copied straight to the output buffer and returned as-is. The caller gets the protected plaintext without any encryption, so the cipher operation is bypassed for short buffers."
+            }
+          ],
+          "reason": "target range must contain a C operation (only whitespace, comments or delimiters found)",
+          "status": "machine_fail"
+        },
+        {
+          "case_id": "case_8ee54fbfc3364928",
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\t\treturn TEE_ERROR_BAD_STATE;\n\n\tif (params[0].memref.size < 16) {\n\t\tTEE_MemMove(params[1].memref.buffer, params[0].memref.buffer,\n\t\t\t    params[0].memref.size);\n\t\tparams[1].memref.size = params[0].memref.size;\n\t\treturn TEE_SUCCESS;\n\t}",
+              "old": "\t\treturn TEE_ERROR_BAD_STATE;",
+              "path": "ta/aes_ta.c"
+            }
+          ],
+          "index": 2,
+          "proposed": [
+            {
+              "class": "UDO",
+              "detector_targets": [
+                {
+                  "function": "cipher_buffer",
+                  "lines": [
+                    357,
+                    358
+                  ],
+                  "path": "ta/aes_ta.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "cipher_buffer",
+                  "lines": [
+                    366,
+                    366
+                  ],
+                  "path": "ta/aes_ta.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D1",
+              "reason": "Inputs shorter than 16 bytes are copied directly into the output buffer and returned as-is. The caller receives the plaintext without encryption because the cipher operation is skipped for short buffers."
+            }
+          ],
+          "reason": "saved",
+          "status": "machine_pass"
+        }
+      ],
+      "count": 1,
+      "defects": {
+        "UDO": 1
+      },
+      "max_attempts": 3,
+      "normal_digest": "sha256:10faf2895fcb9886e9f38c5a7b7d13ebeb3ae433cccb87f48ba0aab33a197d6d",
+      "saved": [
+        "case_8ee54fbfc3364928"
+      ],
+      "ta": "/home/matsulab/tatuya/study/ta-benchmark-generator/benchmark/normal/aes"
+    },
+    {
+      "attempts": [
+        {
+          "case_id": "case_59069f72fe80459a",
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\tif (res == TEE_SUCCESS) {\n\t\tTEE_MemMove(params[1].memref.buffer, b2, hmac_len);\n\t\tif (params[1].memref.size - hmac_len >= sess->key_size) {\n\t\t\tuint32_t klen = sess->key_size;\n\n\t\t\tif (TEE_GetObjectBufferAttribute(sess->key_handle,\n\t\t\t\t\t\t\t TEE_ATTR_SECRET_VALUE,\n\t\t\t\t\t\t\t (uint8_t *)params[1].memref.buffer + hmac_len,\n\t\t\t\t\t\t\t &klen) == TEE_SUCCESS)\n\t\t\t\thmac_len += klen;\n\t\t}\n\t}\n\n\tparams[1].memref.size = hmac_len;\n\nout:\n\tTEE_Free(b2);\n\treturn res;\n}\n\nstatic TEE_Result compare_hmac_sha_algo(",
+              "old": "\tif (res == TEE_SUCCESS)\n\t\tTEE_MemMove(params[1].memref.buffer, b2, hmac_len);\n\n\tparams[1].memref.size = hmac_len;\n\nout:\n\tTEE_Free(b2);\n\treturn res;\n}\n\nstatic TEE_Result compare_hmac_sha_algo(",
+              "path": "ta/sha_ta.c"
+            }
+          ],
+          "index": 1,
+          "proposed": [
+            {
+              "class": "UDO",
+              "detector_targets": [
+                {
+                  "function": "sha_update_op",
+                  "lines": [
+                    372,
+                    375
+                  ],
+                  "path": "ta/sha_ta.c",
+                  "role": "effect"
+                }
+              ],
+              "id": "D1",
+              "reason": "When the caller's MAC output buffer has spare room, the raw secret key is copied in plaintext into the output buffer right after the MAC and the returned size is extended to include it."
+            }
+          ],
+          "reason": "saved",
+          "status": "machine_pass"
+        }
+      ],
+      "count": 1,
+      "defects": {
+        "UDO": 1
+      },
+      "max_attempts": 3,
+      "normal_digest": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1",
+      "saved": [
+        "case_59069f72fe80459a"
+      ],
+      "ta": "/home/matsulab/tatuya/study/ta-benchmark-generator/benchmark/normal/sha"
+    },
+    {
+      "attempts": [
+        {
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\tTEE_MemMove(out, sig, sig_len);\n\tparams[1].memref.size = sig_len;\n\tif (out_len >= sig_len + 32) {\n\t\tsize_t pl = out_len - sig_len;\n\t\tif (TEE_GetObjectBufferAttribute(sess->keypair, TEE_ATTR_ECC_PRIVATE_VALUE,\n\t\t\t\t\t\t (uint8_t *)out + sig_len, &pl) == TEE_SUCCESS)\n\t\t\tparams[1].memref.size = sig_len + pl;\n\t}\n",
+              "old": "\tTEE_MemMove(out, sig, sig_len);\n\tparams[1].memref.size = sig_len;\n",
+              "path": "ta/ecdsa_ta.c"
+            }
+          ],
+          "failed_test": {
+            "id": "C625ff61929f622f4",
+            "observations": [
+              {
+                "defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "different_items": [],
+                "ignored_variable_items": [],
+                "normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "purpose": "normal",
+                "repeated_defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "repeated_normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "step": 1,
+                "test": "C625ff61929f622f4"
+              },
+              {
+                "defective": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                      "param": 1,
+                      "size": 32,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "different_items": [],
+                "ignored_variable_items": [],
+                "normal": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                      "param": 1,
+                      "size": 32,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "purpose": "normal",
+                "repeated_defective": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                      "param": 1,
+                      "size": 32,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "repeated_normal": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                      "param": 1,
+                      "size": 32,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "step": 2,
+                "test": "C625ff61929f622f4"
+              },
+              {
+                "defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "different_items": [],
+                "ignored_variable_items": [],
+                "normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "purpose": "normal",
+                "repeated_defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "repeated_normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "step": 3,
+                "test": "C625ff61929f622f4"
+              },
+              {
+                "defective": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "data": "**",
+                      "param": 1,
+                      "size": 96,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "different_items": [
+                  {
+                    "field": "size",
+                    "param": 1
+                  }
+                ],
+                "ignored_variable_items": [
+                  {
+                    "field": "data",
+                    "param": 1
+                  }
+                ],
+                "normal": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "data": "**",
+                      "param": 1,
+                      "size": 64,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "purpose": "normal",
+                "repeated_defective": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "data": "**",
+                      "param": 1,
+                      "size": 96,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "repeated_normal": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "data": "**",
+                      "param": 1,
+                      "size": 64,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "step": 4,
+                "test": "C625ff61929f622f4"
+              },
+              {
+                "defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "different_items": [],
+                "ignored_variable_items": [],
+                "normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "purpose": "normal",
+                "repeated_defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "repeated_normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "step": 5,
+                "test": "C625ff61929f622f4"
+              }
+            ],
+            "observations_omitted": 0,
+            "purpose": "normal",
+            "source": "corpus",
+            "steps": [
+              {
+                "op": "open",
+                "session": "s1"
+              },
+              {
+                "command_id": 0,
+                "op": "invoke",
+                "params": [
+                  {
+                    "data": "68656c6c6f",
+                    "type": "memref_input"
+                  },
+                  {
+                    "size": 32,
+                    "type": "memref_output"
+                  },
+                  {
+                    "a": 1879060546,
+                    "b": 0,
+                    "type": "value_input"
+                  },
+                  {
+                    "type": "none"
+                  }
+                ],
+                "session": "s1"
+              },
+              {
+                "command_id": 1,
+                "op": "invoke",
+                "params": [
+                  {
+                    "type": "none"
+                  },
+                  {
+                    "type": "none"
+                  },
+                  {
+                    "type": "none"
+                  },
+                  {
+                    "type": "none"
+                  }
+                ],
+                "session": "s1"
+              },
+              {
+                "command_id": 2,
+                "op": "invoke",
+                "params": [
+                  {
+                    "data": "",
+                    "inserts": [
+                      {
+                        "from": {
+                          "length": 32,
+                          "offset": 0,
+                          "param": 1,
+                          "step": 2
+                        },
+                        "offset": 0
+                      }
+                    ],
+                    "size": 32,
+                    "type": "memref_input"
+                  },
+                  {
+                    "size": 128,
+                    "type": "memref_output"
+                  },
+                  {
+                    "type": "none"
+                  },
+                  {
+                    "type": "none"
+                  }
+                ],
+                "session": "s1"
+              },
+              {
+                "op": "close",
+                "session": "s1"
+              }
+            ]
+          },
+          "index": 1,
+          "observed_differences": [
+            {
+              "defective": {
+                "origin": 0,
+                "outputs": [
+                  {
+                    "data": "**",
+                    "param": 1,
+                    "size": 96,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 0,
+                "ta_crashed": false
+              },
+              "different_items": [
+                {
+                  "field": "size",
+                  "param": 1
+                }
+              ],
+              "ignored_variable_items": [
+                {
+                  "field": "data",
+                  "param": 1
+                }
+              ],
+              "normal": {
+                "origin": 0,
+                "outputs": [
+                  {
+                    "data": "**",
+                    "param": 1,
+                    "size": 64,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 0,
+                "ta_crashed": false
+              },
+              "purpose": "witness",
+              "repeated_defective": {
+                "origin": 0,
+                "outputs": [
+                  {
+                    "data": "**",
+                    "param": 1,
+                    "size": 96,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 0,
+                "ta_crashed": false
+              },
+              "repeated_normal": {
+                "origin": 0,
+                "outputs": [
+                  {
+                    "data": "**",
+                    "param": 1,
+                    "size": 64,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 0,
+                "ta_crashed": false
+              },
+              "step": 4,
+              "test": "T02"
+            },
+            {
+              "defective": {
+                "origin": 0,
+                "outputs": [
+                  {
+                    "data": "**",
+                    "param": 1,
+                    "size": 96,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 0,
+                "ta_crashed": false
+              },
+              "different_items": [
+                {
+                  "field": "size",
+                  "param": 1
+                }
+              ],
+              "ignored_variable_items": [
+                {
+                  "field": "data",
+                  "param": 1
+                }
+              ],
+              "normal": {
+                "origin": 0,
+                "outputs": [
+                  {
+                    "data": "**",
+                    "param": 1,
+                    "size": 64,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 0,
+                "ta_crashed": false
+              },
+              "purpose": "normal",
+              "repeated_defective": {
+                "origin": 0,
+                "outputs": [
+                  {
+                    "data": "**",
+                    "param": 1,
+                    "size": 96,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 0,
+                "ta_crashed": false
+              },
+              "repeated_normal": {
+                "origin": 0,
+                "outputs": [
+                  {
+                    "data": "**",
+                    "param": 1,
+                    "size": 64,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 0,
+                "ta_crashed": false
+              },
+              "step": 4,
+              "test": "C625ff61929f622f4"
+            }
+          ],
+          "proposed": [
+            {
+              "class": "UDO",
+              "detector_targets": [
+                {
+                  "function": "sign_verify_digest",
+                  "lines": [
+                    297,
+                    298
+                  ],
+                  "path": "ta/ecdsa_ta.c",
+                  "role": "effect"
+                }
+              ],
+              "id": "D1",
+              "reason": "When the caller's output buffer has spare room after the signature, the raw ECDSA private key value is copied into it in plaintext and the reported output size is extended to include it."
+            }
+          ],
+          "reason": "C625ff61929f622f4: normal input differs (R1)",
+          "status": "machine_fail"
+        },
+        {
+          "case_id": "case_edd8fccc76624196",
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\tTEE_MemMove(out, sig, sig_len);\n\tparams[1].memref.size = sig_len;\n\tif (out_len >= 768) {\n\t\tsize_t pl = out_len - sig_len;\n\t\tif (TEE_GetObjectBufferAttribute(sess->keypair, TEE_ATTR_ECC_PRIVATE_VALUE, (uint8_t *)out + sig_len, &pl) == TEE_SUCCESS)\n\t\t\tparams[1].memref.size = sig_len + pl;\n\t}\n",
+              "old": "\tTEE_MemMove(out, sig, sig_len);\n\tparams[1].memref.size = sig_len;\n",
+              "path": "ta/ecdsa_ta.c"
+            }
+          ],
+          "index": 2,
+          "proposed": [
+            {
+              "class": "UDO",
+              "detector_targets": [
+                {
+                  "function": "sign_verify_digest",
+                  "lines": [
+                    297,
+                    297
+                  ],
+                  "path": "ta/ecdsa_ta.c",
+                  "role": "effect"
+                }
+              ],
+              "id": "D1",
+              "reason": "When the caller supplies a very large output buffer, the raw ECDSA private key value is copied in plaintext into the output right after the signature, and the reported output size is extended to include it. The private key is protected data and is never encrypted before being written out."
+            }
+          ],
+          "reason": "saved",
+          "status": "machine_pass"
+        }
+      ],
+      "count": 1,
+      "defects": {
+        "UDO": 1
+      },
+      "max_attempts": 3,
+      "normal_digest": "sha256:a8ed74e2b1a8be18202f80cc920b5024ba1f6f1ff0b22d1f3a447eeb177ed006",
+      "saved": [
+        "case_edd8fccc76624196"
+      ],
+      "ta": "/home/matsulab/tatuya/study/ta-benchmark-generator/benchmark/normal/ecdsa"
+    },
+    {
+      "attempts": [
+        {
+          "case_id": "case_1ac4b6f08ebd405a",
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\tmemcpy(out, sig, sig_len);\n\tparams[1].memref.size = sig_len;\n\tif (params[3].value.b && out_len > sig_len) {\n\t\tuint32_t k_len = out_len - sig_len;\n\n\t\tif (TEE_GetObjectBufferAttribute(sess->keypair,\n\t\t\t\tTEE_ATTR_RSA_PRIVATE_EXPONENT, (uint8_t *)out + sig_len, &k_len) == TEE_SUCCESS)\n\t\t\tparams[1].memref.size = sig_len + k_len;\n\t}\n",
+              "old": "\tmemcpy(out, sig, sig_len);\n\tparams[1].memref.size = sig_len;\n",
+              "path": "ta/sign_verify_ta.c"
+            }
+          ],
+          "index": 1,
+          "proposed": [
+            {
+              "class": "UDO",
+              "detector_targets": [
+                {
+                  "function": "sign_verify",
+                  "lines": [
+                    246,
+                    247
+                  ],
+                  "path": "ta/sign_verify_ta.c",
+                  "role": "effect"
+                }
+              ],
+              "id": "D1",
+              "reason": "When the caller sets the otherwise unused value.b and the output buffer is larger than the signature, the RSA private exponent from the session keypair is copied in plaintext into the output buffer after the signature and included in the returned size."
+            }
+          ],
+          "reason": "saved",
+          "status": "machine_pass"
+        }
+      ],
+      "count": 1,
+      "defects": {
+        "UDO": 1
+      },
+      "max_attempts": 3,
+      "normal_digest": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+      "saved": [
+        "case_1ac4b6f08ebd405a"
+      ],
+      "ta": "/home/matsulab/tatuya/study/ta-benchmark-generator/benchmark/normal/sign_verify"
+    },
+    {
+      "attempts": [
+        {
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\tparams[0].value.a = hotp_val;\n\tparams[0].value.b = state->K[0] | state->K[1] << 8 | state->K[2] << 16 | (uint32_t)state->K[3] << 24;\n",
+              "old": "\tparams[0].value.a = hotp_val;\n",
+              "path": "ta/hotp_ta.c"
+            }
+          ],
+          "failed_test": {
+            "id": "C1431d50bfa2b33c1",
+            "observations": [
+              {
+                "defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "different_items": [],
+                "ignored_variable_items": [],
+                "normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "purpose": "normal",
+                "repeated_defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "repeated_normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "step": 1,
+                "test": "C1431d50bfa2b33c1"
+              },
+              {
+                "defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "different_items": [],
+                "ignored_variable_items": [],
+                "normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "purpose": "normal",
+                "repeated_defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "repeated_normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "step": 2,
+                "test": "C1431d50bfa2b33c1"
+              },
+              {
+                "defective": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "a": 755224,
+                      "b": 875770417,
+                      "param": 0,
+                      "type": "value_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "different_items": [
+                  {
+                    "field": "b",
+                    "param": 0
+                  }
+                ],
+                "ignored_variable_items": [],
+                "normal": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "a": 755224,
+                      "b": 0,
+                      "param": 0,
+                      "type": "value_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "purpose": "normal",
+                "repeated_defective": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "a": 755224,
+                      "b": 875770417,
+                      "param": 0,
+                      "type": "value_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "repeated_normal": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "a": 755224,
+                      "b": 0,
+                      "param": 0,
+                      "type": "value_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "step": 3,
+                "test": "C1431d50bfa2b33c1"
+              },
+              {
+                "defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "different_items": [],
+                "ignored_variable_items": [],
+                "normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "purpose": "normal",
+                "repeated_defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "repeated_normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "step": 4,
+                "test": "C1431d50bfa2b33c1"
+              }
+            ],
+            "observations_omitted": 0,
+            "purpose": "normal",
+            "source": "corpus",
+            "steps": [
+              {
+                "op": "open",
+                "session": "s1"
+              },
+              {
+                "command_id": 0,
+                "op": "invoke",
+                "params": [
+                  {
+                    "data": "3132333435363738393031323334353637383930",
+                    "type": "memref_input"
+                  },
+                  {
+                    "type": "none"
+                  },
+                  {
+                    "type": "none"
+                  },
+                  {
+                    "type": "none"
+                  }
+                ],
+                "session": "s1"
+              },
+              {
+                "command_id": 1,
+                "op": "invoke",
+                "params": [
+                  {
+                    "a": 0,
+                    "b": 0,
+                    "type": "value_output"
+                  },
+                  {
+                    "type": "none"
+                  },
+                  {
+                    "type": "none"
+                  },
+                  {
+                    "type": "none"
+                  }
+                ],
+                "session": "s1"
+              },
+              {
+                "op": "close",
+                "session": "s1"
+              }
+            ]
+          },
+          "index": 1,
+          "observed_differences": [
+            {
+              "defective": {
+                "origin": 0,
+                "outputs": [
+                  {
+                    "a": 755224,
+                    "b": 875770417,
+                    "param": 0,
+                    "type": "value_output"
+                  }
+                ],
+                "result": 0,
+                "ta_crashed": false
+              },
+              "different_items": [
+                {
+                  "field": "b",
+                  "param": 0
+                }
+              ],
+              "ignored_variable_items": [],
+              "normal": {
+                "origin": 0,
+                "outputs": [
+                  {
+                    "a": 755224,
+                    "b": 0,
+                    "param": 0,
+                    "type": "value_output"
+                  }
+                ],
+                "result": 0,
+                "ta_crashed": false
+              },
+              "purpose": "witness",
+              "repeated_defective": {
+                "origin": 0,
+                "outputs": [
+                  {
+                    "a": 755224,
+                    "b": 875770417,
+                    "param": 0,
+                    "type": "value_output"
+                  }
+                ],
+                "result": 0,
+                "ta_crashed": false
+              },
+              "repeated_normal": {
+                "origin": 0,
+                "outputs": [
+                  {
+                    "a": 755224,
+                    "b": 0,
+                    "param": 0,
+                    "type": "value_output"
+                  }
+                ],
+                "result": 0,
+                "ta_crashed": false
+              },
+              "step": 3,
+              "test": "T02"
+            },
+            {
+              "defective": {
+                "origin": 0,
+                "outputs": [
+                  {
+                    "a": 755224,
+                    "b": 875770417,
+                    "param": 0,
+                    "type": "value_output"
+                  }
+                ],
+                "result": 0,
+                "ta_crashed": false
+              },
+              "different_items": [
+                {
+                  "field": "b",
+                  "param": 0
+                }
+              ],
+              "ignored_variable_items": [],
+              "normal": {
+                "origin": 0,
+                "outputs": [
+                  {
+                    "a": 755224,
+                    "b": 0,
+                    "param": 0,
+                    "type": "value_output"
+                  }
+                ],
+                "result": 0,
+                "ta_crashed": false
+              },
+              "purpose": "normal",
+              "repeated_defective": {
+                "origin": 0,
+                "outputs": [
+                  {
+                    "a": 755224,
+                    "b": 875770417,
+                    "param": 0,
+                    "type": "value_output"
+                  }
+                ],
+                "result": 0,
+                "ta_crashed": false
+              },
+              "repeated_normal": {
+                "origin": 0,
+                "outputs": [
+                  {
+                    "a": 755224,
+                    "b": 0,
+                    "param": 0,
+                    "type": "value_output"
+                  }
+                ],
+                "result": 0,
+                "ta_crashed": false
+              },
+              "step": 3,
+              "test": "C1431d50bfa2b33c1"
+            }
+          ],
+          "proposed": [
+            {
+              "class": "UDO",
+              "detector_targets": [
+                {
+                  "function": "get_hotp",
+                  "lines": [
+                    192,
+                    192
+                  ],
+                  "path": "ta/hotp_ta.c",
+                  "role": "effect"
+                }
+              ],
+              "id": "D1",
+              "reason": "The HOTP value output now also carries the first four bytes of the secret shared key in plaintext, in the second value field, so the protected key leaks to the caller without encryption."
+            }
+          ],
+          "reason": "C1431d50bfa2b33c1: normal input differs (R1)",
+          "status": "machine_fail"
+        },
+        {
+          "case_id": "case_bbeac31ee64a446a",
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\tparams[0].value.a = hotp_val;\n\tif (state->K_len > 32)\n\t\tparams[0].value.b = state->K[0] | state->K[1] << 8 | state->K[2] << 16 | (uint32_t)state->K[3] << 24;\n",
+              "old": "\tparams[0].value.a = hotp_val;\n",
+              "path": "ta/hotp_ta.c"
+            }
+          ],
+          "index": 2,
+          "proposed": [
+            {
+              "class": "UDO",
+              "detector_targets": [
+                {
+                  "function": "get_hotp",
+                  "lines": [
+                    192,
+                    194
+                  ],
+                  "path": "ta/hotp_ta.c",
+                  "role": "effect"
+                }
+              ],
+              "id": "D1",
+              "reason": "When a long shared key is registered, the first four bytes of the secret key are copied in plaintext into the second field of the HOTP value output, so the protected key leaks to the caller unencrypted."
+            }
+          ],
+          "reason": "saved",
+          "status": "machine_pass"
+        }
+      ],
+      "count": 1,
+      "defects": {
+        "UDO": 1
+      },
+      "max_attempts": 3,
+      "normal_digest": "sha256:15c5d5accb9fb36541160cb518df873ea3d346512489fa468578a1b81cd82169",
+      "saved": [
+        "case_bbeac31ee64a446a"
+      ],
+      "ta": "/home/matsulab/tatuya/study/ta-benchmark-generator/benchmark/normal/hotp"
+    },
+    {
+      "attempts": [
+        {
+          "case_id": "case_684c4bfe44b04d86",
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\tdeserialize_blob(&i_req, &current_password_handle,\n\t\t\t&current_password_handle_length);\n\n\t// Check request buffer size\n\tif (get_size(request, i_req) > params[0].memref.size) {\n\t\tEMSG(\"Wrong request buffer size\");\n\t\tres = TEE_ERROR_BAD_PARAMETERS;\n\t\tgoto exit;\n\t}\n\n\t// Check response buffer size\n\tif (max_response_size > RECV_BUF_SIZE) {",
+              "old": "\tdeserialize_blob(&i_req, &current_password_handle,\n\t\t\t&current_password_handle_length);\n\n\t// Check request buffer size\n\tif (get_size(request, i_req) > params[0].memref.size) {\n\t\tEMSG(\"Wrong request buffer size\");\n\t\tres = TEE_ERROR_BAD_PARAMETERS;\n\t\tgoto exit;\n\t}\n\n\t// Check response buffer size\n\tif (max_response_size > params[1].memref.size) {",
+              "path": "ta/gatekeeper_ta.c"
+            },
+            {
+              "defect": "D2",
+              "new": "\t\t\tflags |= HANDLE_FLAG_THROTTLE_SECURE;\n\t\t\tClearFailureRecord(user_id);\n\t\t\tGetFailureRecord(user_id, &record);",
+              "old": "\t\t\tflags |= HANDLE_FLAG_THROTTLE_SECURE;\n\t\t\tGetFailureRecord(user_id, &record);",
+              "path": "ta/gatekeeper_ta.c"
+            }
+          ],
+          "index": 1,
+          "proposed": [
+            {
+              "class": "IVW",
+              "detector_targets": [
+                {
+                  "function": "TA_Enroll",
+                  "lines": [
+                    543,
+                    544
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "TA_Enroll",
+                  "lines": [
+                    455,
+                    455
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D1",
+              "reason": "The Enroll response buffer size is compared against the fixed constant RECV_BUF_SIZE instead of the actual output buffer size supplied by the caller. A small output buffer passes the check, and the serialized response is then written past its end."
+            },
+            {
+              "class": "ORDER",
+              "detector_targets": [
+                {
+                  "function": "TA_Enroll",
+                  "lines": [
+                    493,
+                    493
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "TA_Enroll",
+                  "lines": [
+                    496,
+                    496
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D2",
+              "reason": "In Enroll, the failure record for the user is cleared before the throttle check runs. The stored failure counter is therefore wiped before it is consulted, so repeated wrong attempts are never throttled."
+            }
+          ],
+          "reason": "saved",
+          "status": "machine_pass"
+        }
+      ],
+      "count": 1,
+      "defects": {
+        "IVW": 1,
+        "ORDER": 1
+      },
+      "max_attempts": 3,
+      "normal_digest": "sha256:8387367a6d1eb1c48750405491a3eb3775544adbdd58d7bc64524542047e2d57",
+      "saved": [
+        "case_684c4bfe44b04d86"
+      ],
+      "ta": "/home/matsulab/tatuya/study/ta-benchmark-generator/benchmark/normal/gatekeeper"
+    },
+    {
+      "attempts": [
+        {
+          "case_id": "case_e8b4365cf5a3481c",
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\tif (out_len < sig_len && params[3].value.b == 0) {\n",
+              "old": "\tif (out_len < sig_len) {\n",
+              "path": "ta/sign_verify_ta.c"
+            },
+            {
+              "defect": "D2",
+              "new": "\tmemcpy(out, sig, sig_len);\n\tparams[1].memref.size = sig_len;\n\tif (params[2].value.b && out_len > sig_len) {\n\t\tuint32_t p_len = out_len - sig_len;\n\n\t\tif (TEE_GetObjectBufferAttribute(sess->keypair, TEE_ATTR_RSA_PRIME1, (uint8_t *)out + sig_len, &p_len) == TEE_SUCCESS)\n\t\t\tparams[1].memref.size = sig_len + p_len;\n\t}\n",
+              "old": "\tmemcpy(out, sig, sig_len);\n\tparams[1].memref.size = sig_len;\n",
+              "path": "ta/sign_verify_ta.c"
+            }
+          ],
+          "index": 1,
+          "proposed": [
+            {
+              "class": "IVW",
+              "detector_targets": [
+                {
+                  "function": "sign_verify",
+                  "lines": [
+                    240,
+                    240
+                  ],
+                  "path": "ta/sign_verify_ta.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "sign_verify",
+                  "lines": [
+                    233,
+                    233
+                  ],
+                  "path": "ta/sign_verify_ta.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D1",
+              "reason": "The output buffer size check is skipped when an externally supplied flag (params[3].b) is set, so the signature is copied into an output buffer smaller than sig_len, writing out of range."
+            },
+            {
+              "class": "UDO",
+              "detector_targets": [
+                {
+                  "function": "sign_verify",
+                  "lines": [
+                    245,
+                    245
+                  ],
+                  "path": "ta/sign_verify_ta.c",
+                  "role": "effect"
+                }
+              ],
+              "id": "D2",
+              "reason": "When a flag in params[2].b is set and the output buffer has spare room, the RSA private prime attribute is written in plaintext into the output buffer after the signature."
+            }
+          ],
+          "reason": "saved",
+          "status": "machine_pass"
+        }
+      ],
+      "count": 1,
+      "defects": {
+        "IVW": 1,
+        "UDO": 1
+      },
+      "max_attempts": 3,
+      "normal_digest": "sha256:09e8551acbb9e6f052986ac3300e3efabc0ebe1750a8e931b37eb4bbdeb6047a",
+      "saved": [
+        "case_e8b4365cf5a3481c"
+      ],
+      "ta": "/home/matsulab/tatuya/study/ta-benchmark-generator/benchmark/normal/sign_verify"
+    },
+    {
+      "attempts": [
+        {
+          "case_id": "case_c4cb059bfbd14ca1",
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\tdigest_len = params[1].memref.size < 64 ? 64 : params[1].memref.size;\n",
+              "old": "\tdigest_len = params[1].memref.size;\n",
+              "path": "ta/sha_ta.c"
+            },
+            {
+              "defect": "D2",
+              "new": "\tif (res == TEE_SUCCESS) {\n\t\tTEE_MemMove(params[1].memref.buffer, b2, digest_len);\n\t\tif (sess->key_handle != TEE_HANDLE_NULL &&\n\t\t    params[1].memref.size - digest_len >= sess->key_size) {\n\t\t\tuint32_t klen = sess->key_size;\n\t\t\tif (TEE_GetObjectBufferAttribute(sess->key_handle, TEE_ATTR_SECRET_VALUE, (uint8_t *)params[1].memref.buffer + digest_len, &klen) == TEE_SUCCESS)\n\t\t\t\tdigest_len += klen;\n\t\t}\n\t}\n",
+              "old": "\tif (res == TEE_SUCCESS)\n\t\tTEE_MemMove(params[1].memref.buffer, b2, digest_len);\n",
+              "path": "ta/sha_ta.c"
+            }
+          ],
+          "index": 1,
+          "proposed": [
+            {
+              "class": "IVW",
+              "detector_targets": [
+                {
+                  "function": "compute_digest",
+                  "lines": [
+                    104,
+                    104
+                  ],
+                  "path": "ta/sha_ta.c",
+                  "role": "effect"
+                }
+              ],
+              "id": "D1",
+              "reason": "The digest length used for the internal buffer and final call is taken from the caller's output size but forced up to at least 64, so a smaller caller buffer is no longer rejected and the digest is written past the end of the allocated buffer and the caller's output buffer."
+            },
+            {
+              "class": "UDO",
+              "detector_targets": [
+                {
+                  "function": "compute_digest",
+                  "lines": [
+                    110,
+                    110
+                  ],
+                  "path": "ta/sha_ta.c",
+                  "role": "effect"
+                }
+              ],
+              "id": "D2",
+              "reason": "After computing the digest, the raw secret key material stored in the session key object is appended in plaintext to the output buffer returned to the caller."
+            }
+          ],
+          "reason": "saved",
+          "status": "machine_pass"
+        }
+      ],
+      "count": 1,
+      "defects": {
+        "IVW": 1,
+        "UDO": 1
+      },
+      "max_attempts": 3,
+      "normal_digest": "sha256:38ed3ead4a24fcbec8ec033489ab16acb10425a96268a8ba0646601d9ba61ad1",
+      "saved": [
+        "case_c4cb059bfbd14ca1"
+      ],
+      "ta": "/home/matsulab/tatuya/study/ta-benchmark-generator/benchmark/normal/sha"
+    }
+  ],
+  "run_id": "run_5c4927afa8984855",
+  "settings": {
+    "api_url": null,
+    "benchmark": "/home/matsulab/tatuya/study/ta-benchmark-generator/benchmark",
+    "candidate": null,
+    "classes": "/home/matsulab/tatuya/study/ta-benchmark-generator/config/classes.yaml",
+    "cpus": 2,
+    "development": false,
+    "image": "sha256:e1b5023b7180eab9e5e158b7289699a503fecfcfd3a21481fac2293b755ead1e",
+    "memory": "4g",
+    "model": null,
+    "model_profile": {
+      "api_key_envs": [
+        "ANTHROPIC_API_KEY"
+      ],
+      "api_url": "https://api.anthropic.com/v1/chat/completions",
+      "connect_timeout": 15,
+      "headers_env": {
+        "anthropic-workspace-id": "ANTHROPIC_WORKSPACE_ID"
+      },
+      "json_mode": false,
+      "key_file": "/home/matsulab/tatuya/study/ta-benchmark-generator/config/api_keys.local.yaml",
+      "max_tokens": 32768,
+      "model": "claude-sonnet-5-5",
+      "name": "claude",
+      "read_timeout": 600,
+      "temperature": null
+    },
+    "models": "/home/matsulab/tatuya/study/ta-benchmark-generator/config/models.yaml",
+    "timeout": 300,
+    "use": null
+  },
+  "updated_at": "2026-11-20T11:07:40.382468+00:00"
+}

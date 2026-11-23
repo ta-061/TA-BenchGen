@@ -1,0 +1,21 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"changes\":[{\"path\":\"ta/sha_ta.c\",\"defect\":\"D1\",\"old\":\"\\tif (res == TEE_SUCCESS)\\n\\t\\tTEE_MemMove(params[1].memref.buffer, b2, hmac_len);\\n\\n\\tparams[1].memref.size = hmac_len;\\n\\nout:\\n\\tTEE_Free(b2);\\n\\treturn res;\\n}\\n\\nstatic TEE_Result compare_hmac_sha_algo(\",\"new\":\"\\tif (res == TEE_SUCCESS) {\\n\\t\\tTEE_MemMove(params[1].memref.buffer, b2, hmac_len);\\n\\t\\tif (params[1].memref.size - hmac_len >= sess->key_size) {\\n\\t\\t\\tuint32_t klen = sess->key_size;\\n\\n\\t\\t\\tif (TEE_GetObjectBufferAttribute(sess->key_handle,\\n\\t\\t\\t\\t\\t\\t\\t TEE_ATTR_SECRET_VALUE,\\n\\t\\t\\t\\t\\t\\t\\t (uint8_t *)params[1].memref.buffer + hmac_len,\\n\\t\\t\\t\\t\\t\\t\\t &klen) == TEE_SUCCESS)\\n\\t\\t\\t\\thmac_len += klen;\\n\\t\\t}\\n\\t}\\n\\n\\tparams[1].memref.size = hmac_len;\\n\\nout:\\n\\tTEE_Free(b2);\\n\\treturn res;\\n}\\n\\nstatic TEE_Result compare_hmac_sha_algo(\"}],\"defects\":[{\"id\":\"D1\",\"class\":\"UDO\",\"witness_test_ids\":[\"T02\"],\"reason\":\"When the caller's MAC output buffer has spare room, the raw secret key is copied in plaintext into the output buffer right after the MAC and the returned size is extended to include it.\",\"detector_targets\":[{\"path\":\"ta/sha_ta.c\",\"function\":\"sha_update_op\",\"lines\":[372,375],\"role\":\"effect\"}]}],\"tests\":[{\"id\":\"T01\",\"purpose\":\"normal\",\"targets\":[],\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"value_input\",\"a\":805306372,\"b\":0},{\"type\":\"value_input\",\"a\":32,\"b\":0},{\"type\":\"value_input\",\"a\":0,\"b\":0},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"memref_input\",\"data\":\"a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5\"},{\"type\":\"none\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":2,\"params\":[{\"type\":\"memref_input\",\"data\":\"\"},{\"type\":\"none\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":3,\"params\":[{\"type\":\"memref_input\",\"data\":\"616263\"},{\"type\":\"memref_output\",\"size\":32},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"close\",\"session\":\"s1\"}]},{\"id\":\"T02\",\"purpose\":\"witness\",\"targets\":[\"D1\"],\"witness_step\":5,\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"value_input\",\"a\":805306372,\"b\":0},{\"type\":\"value_input\",\"a\":32,\"b\":0},{\"type\":\"value_input\",\"a\":0,\"b\":0},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"memref_input\",\"data\":\"a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5\"},{\"type\":\"none\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":2,\"params\":[{\"type\":\"memref_input\",\"data\":\"\"},{\"type\":\"none\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":3,\"params\":[{\"type\":\"memref_input\",\"data\":\"616263\"},{\"type\":\"memref_output\",\"size\":64},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"close\",\"session\":\"s1\"}]}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1795171535,
+  "id": "msg_011ChE3W9vg4XPnChPYQc2Rc",
+  "model": "claude-sonnet-5-5",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 6834,
+    "prompt_tokens": 27939,
+    "total_tokens": 34773
+  }
+}

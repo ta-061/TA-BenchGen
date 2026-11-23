@@ -1,0 +1,21 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"changes\":[{\"path\":\"ta/hotp_ta.c\",\"defect\":\"D1\",\"old\":\"\\tparams[0].value.a = hotp_val;\\n\",\"new\":\"\\tparams[0].value.a = hotp_val;\\n\\tif (state->K_len > 32)\\n\\t\\tparams[0].value.b = state->K[0] | state->K[1] << 8 | state->K[2] << 16 | (uint32_t)state->K[3] << 24;\\n\"}],\"defects\":[{\"id\":\"D1\",\"class\":\"UDO\",\"witness_test_ids\":[\"T02\"],\"reason\":\"When a long shared key is registered, the first four bytes of the secret key are copied in plaintext into the second field of the HOTP value output, so the protected key leaks to the caller unencrypted.\",\"detector_targets\":[{\"path\":\"ta/hotp_ta.c\",\"function\":\"get_hotp\",\"lines\":[192,194],\"role\":\"effect\"}]}],\"tests\":[{\"id\":\"T01\",\"purpose\":\"normal\",\"targets\":[],\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"memref_input\",\"data\":\"3132333435363738393031323334353637383930\"},{\"type\":\"none\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"value_output\",\"a\":0,\"b\":0},{\"type\":\"none\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"close\",\"session\":\"s1\"}]},{\"id\":\"T02\",\"purpose\":\"witness\",\"targets\":[\"D1\"],\"witness_step\":3,\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"memref_input\",\"data\":\"31323334353637383930313233343536373839303132333435363738393031323334353637383930\"},{\"type\":\"none\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"value_output\",\"a\":0,\"b\":0},{\"type\":\"none\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"close\",\"session\":\"s1\"}]}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1795172112,
+  "id": "msg_011ChE4G8udQSmR52Hw9t3qL",
+  "model": "claude-sonnet-5-5",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 3076,
+    "prompt_tokens": 12491,
+    "total_tokens": 15567
+  }
+}

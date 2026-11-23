@@ -1,0 +1,2526 @@
+{
+  "case_id": "case_684c4bfe44b04d86",
+  "environment": {
+    "image_digest": "sha256:e1b5023b7180eab9e5e158b7289699a503fecfcfd3a21481fac2293b755ead1e",
+    "optee_revision": "4.4.0",
+    "platform": "linux/amd64",
+    "qemu_revision": "v8.1.2",
+    "runner_version": "4.3.1",
+    "toolchain": "arm-gnu-toolchain-11.3.rel1"
+  },
+  "generation": {
+    "attempt_index": 1,
+    "attempts_total": 1,
+    "model_id": "claude-sonnet-5-5",
+    "plan_digest": "sha256:2ebeddfd1a562f5a6bf9178b98e763a6e9eda05c9d1054203250aca0aac19c88"
+  },
+  "run_meta": {
+    "request_index": 16,
+    "run_id": "run_5c4927afa8984855",
+    "verified_at": "2026-11-20T11:00:41.971946+00:00"
+  },
+  "schema_version": "4.0",
+  "semantic": {
+    "defect_reverts": [
+      {
+        "defect_id": "D1",
+        "tests": [
+          {
+            "matches_normal": true,
+            "observed": [
+              [
+                {
+                  "op": "open",
+                  "origin": 0,
+                  "params": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "invoke",
+                  "origin": 4,
+                  "params": [
+                    {
+                      "data": "0100000001000000410000000000000000",
+                      "size": 17,
+                      "type": "memref_input"
+                    },
+                    {
+                      "data": "00000000000000000000000000000000",
+                      "size": 16,
+                      "type": "memref_output"
+                    },
+                    {
+                      "type": "none"
+                    },
+                    {
+                      "type": "none"
+                    }
+                  ],
+                  "result": 4294901766,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "close",
+                  "origin": 0,
+                  "params": [],
+                  "result": 0,
+                  "ta_crashed": false
+                }
+              ],
+              [
+                {
+                  "op": "open",
+                  "origin": 0,
+                  "params": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "invoke",
+                  "origin": 4,
+                  "params": [
+                    {
+                      "data": "0100000001000000410000000000000000",
+                      "size": 17,
+                      "type": "memref_input"
+                    },
+                    {
+                      "data": "00000000000000000000000000000000",
+                      "size": 16,
+                      "type": "memref_output"
+                    },
+                    {
+                      "type": "none"
+                    },
+                    {
+                      "type": "none"
+                    }
+                  ],
+                  "result": 4294901766,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "close",
+                  "origin": 0,
+                  "params": [],
+                  "result": 0,
+                  "ta_crashed": false
+                }
+              ]
+            ],
+            "test_id": "T02"
+          }
+        ],
+        "witness_matches_normal_after_revert": true
+      },
+      {
+        "defect_id": "D2",
+        "tests": [
+          {
+            "matches_normal": true,
+            "observed": [
+              [
+                {
+                  "op": "open",
+                  "origin": 0,
+                  "params": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "invoke",
+                  "origin": 0,
+                  "params": [
+                    {
+                      "data": "0100000001000000410000000000000000",
+                      "size": 17,
+                      "type": "memref_input"
+                    },
+                    {
+                      "data": "000000003a00000002941c2f8b913fa75b0000000000000000eadc7033b50df75a8b2c9aec6ae94b696f6b2256ab5ee529afb830544d2fe909fceb60526551197601",
+                      "size": 66,
+                      "type": "memref_output"
+                    },
+                    {
+                      "type": "none"
+                    },
+                    {
+                      "type": "none"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "invoke",
+                  "origin": 4,
+                  "params": [
+                    {
+                      "data": "01000000010000004101000000423a00000002941c2f8b913fa75b0000000000000000eadc7033b50df75a8b2c9aec6ae94b696f6b2256ab5ee529afb830544d2fe909fceb60526551197601",
+                      "size": 76,
+                      "type": "memref_input"
+                    },
+                    {
+                      "data": "01000000",
+                      "size": 4,
+                      "type": "memref_output"
+                    },
+                    {
+                      "type": "none"
+                    },
+                    {
+                      "type": "none"
+                    }
+                  ],
+                  "result": 1,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "invoke",
+                  "origin": 4,
+                  "params": [
+                    {
+                      "data": "01000000010000004101000000423a00000002941c2f8b913fa75b0000000000000000eadc7033b50df75a8b2c9aec6ae94b696f6b2256ab5ee529afb830544d2fe909fceb60526551197601",
+                      "size": 76,
+                      "type": "memref_input"
+                    },
+                    {
+                      "data": "01000000",
+                      "size": 4,
+                      "type": "memref_output"
+                    },
+                    {
+                      "type": "none"
+                    },
+                    {
+                      "type": "none"
+                    }
+                  ],
+                  "result": 1,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "invoke",
+                  "origin": 4,
+                  "params": [
+                    {
+                      "data": "01000000010000004101000000423a00000002941c2f8b913fa75b0000000000000000eadc7033b50df75a8b2c9aec6ae94b696f6b2256ab5ee529afb830544d2fe909fceb60526551197601",
+                      "size": 76,
+                      "type": "memref_input"
+                    },
+                    {
+                      "data": "01000000",
+                      "size": 4,
+                      "type": "memref_output"
+                    },
+                    {
+                      "type": "none"
+                    },
+                    {
+                      "type": "none"
+                    }
+                  ],
+                  "result": 1,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "invoke",
+                  "origin": 4,
+                  "params": [
+                    {
+                      "data": "01000000010000004101000000423a00000002941c2f8b913fa75b0000000000000000eadc7033b50df75a8b2c9aec6ae94b696f6b2256ab5ee529afb830544d2fe909fceb60526551197601",
+                      "size": 76,
+                      "type": "memref_input"
+                    },
+                    {
+                      "data": "01000000",
+                      "size": 4,
+                      "type": "memref_output"
+                    },
+                    {
+                      "type": "none"
+                    },
+                    {
+                      "type": "none"
+                    }
+                  ],
+                  "result": 1,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "invoke",
+                  "origin": 4,
+                  "params": [
+                    {
+                      "data": "01000000010000004101000000423a00000002941c2f8b913fa75b0000000000000000eadc7033b50df75a8b2c9aec6ae94b696f6b2256ab5ee529afb830544d2fe909fceb60526551197601",
+                      "size": 76,
+                      "type": "memref_input"
+                    },
+                    {
+                      "data": "01000000",
+                      "size": 4,
+                      "type": "memref_output"
+                    },
+                    {
+                      "type": "none"
+                    },
+                    {
+                      "type": "none"
+                    }
+                  ],
+                  "result": 1,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "invoke",
+                  "origin": 0,
+                  "params": [
+                    {
+                      "data": "01000000010000004101000000423a00000002941c2f8b913fa75b0000000000000000eadc7033b50df75a8b2c9aec6ae94b696f6b2256ab5ee529afb830544d2fe909fceb60526551197601",
+                      "size": 76,
+                      "type": "memref_input"
+                    },
+                    {
+                      "data": "020000001f750000",
+                      "size": 8,
+                      "type": "memref_output"
+                    },
+                    {
+                      "type": "none"
+                    },
+                    {
+                      "type": "none"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "close",
+                  "origin": 0,
+                  "params": [],
+                  "result": 0,
+                  "ta_crashed": false
+                }
+              ],
+              [
+                {
+                  "op": "open",
+                  "origin": 0,
+                  "params": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "invoke",
+                  "origin": 0,
+                  "params": [
+                    {
+                      "data": "0100000001000000410000000000000000",
+                      "size": 17,
+                      "type": "memref_input"
+                    },
+                    {
+                      "data": "000000003a0000000202b8adcf7838a34e000000000000000032c240a5ba447a943e061e483ac5685661aa5934eb6199aae88381fd6e293d0153afd9edba4b5f7a01",
+                      "size": 66,
+                      "type": "memref_output"
+                    },
+                    {
+                      "type": "none"
+                    },
+                    {
+                      "type": "none"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "invoke",
+                  "origin": 4,
+                  "params": [
+                    {
+                      "data": "01000000010000004101000000423a0000000202b8adcf7838a34e000000000000000032c240a5ba447a943e061e483ac5685661aa5934eb6199aae88381fd6e293d0153afd9edba4b5f7a01",
+                      "size": 76,
+                      "type": "memref_input"
+                    },
+                    {
+                      "data": "01000000",
+                      "size": 4,
+                      "type": "memref_output"
+                    },
+                    {
+                      "type": "none"
+                    },
+                    {
+                      "type": "none"
+                    }
+                  ],
+                  "result": 1,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "invoke",
+                  "origin": 4,
+                  "params": [
+                    {
+                      "data": "01000000010000004101000000423a0000000202b8adcf7838a34e000000000000000032c240a5ba447a943e061e483ac5685661aa5934eb6199aae88381fd6e293d0153afd9edba4b5f7a01",
+                      "size": 76,
+                      "type": "memref_input"
+                    },
+                    {
+                      "data": "01000000",
+                      "size": 4,
+                      "type": "memref_output"
+                    },
+                    {
+                      "type": "none"
+                    },
+                    {
+                      "type": "none"
+                    }
+                  ],
+                  "result": 1,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "invoke",
+                  "origin": 4,
+                  "params": [
+                    {
+                      "data": "01000000010000004101000000423a0000000202b8adcf7838a34e000000000000000032c240a5ba447a943e061e483ac5685661aa5934eb6199aae88381fd6e293d0153afd9edba4b5f7a01",
+                      "size": 76,
+                      "type": "memref_input"
+                    },
+                    {
+                      "data": "01000000",
+                      "size": 4,
+                      "type": "memref_output"
+                    },
+                    {
+                      "type": "none"
+                    },
+                    {
+                      "type": "none"
+                    }
+                  ],
+                  "result": 1,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "invoke",
+                  "origin": 4,
+                  "params": [
+                    {
+                      "data": "01000000010000004101000000423a0000000202b8adcf7838a34e000000000000000032c240a5ba447a943e061e483ac5685661aa5934eb6199aae88381fd6e293d0153afd9edba4b5f7a01",
+                      "size": 76,
+                      "type": "memref_input"
+                    },
+                    {
+                      "data": "01000000",
+                      "size": 4,
+                      "type": "memref_output"
+                    },
+                    {
+                      "type": "none"
+                    },
+                    {
+                      "type": "none"
+                    }
+                  ],
+                  "result": 1,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "invoke",
+                  "origin": 4,
+                  "params": [
+                    {
+                      "data": "01000000010000004101000000423a0000000202b8adcf7838a34e000000000000000032c240a5ba447a943e061e483ac5685661aa5934eb6199aae88381fd6e293d0153afd9edba4b5f7a01",
+                      "size": 76,
+                      "type": "memref_input"
+                    },
+                    {
+                      "data": "01000000",
+                      "size": 4,
+                      "type": "memref_output"
+                    },
+                    {
+                      "type": "none"
+                    },
+                    {
+                      "type": "none"
+                    }
+                  ],
+                  "result": 1,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "invoke",
+                  "origin": 0,
+                  "params": [
+                    {
+                      "data": "01000000010000004101000000423a0000000202b8adcf7838a34e000000000000000032c240a5ba447a943e061e483ac5685661aa5934eb6199aae88381fd6e293d0153afd9edba4b5f7a01",
+                      "size": 76,
+                      "type": "memref_input"
+                    },
+                    {
+                      "data": "0200000023750000",
+                      "size": 8,
+                      "type": "memref_output"
+                    },
+                    {
+                      "type": "none"
+                    },
+                    {
+                      "type": "none"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                {
+                  "op": "close",
+                  "origin": 0,
+                  "params": [],
+                  "result": 0,
+                  "ta_crashed": false
+                }
+              ]
+            ],
+            "test_id": "T03"
+          }
+        ],
+        "witness_matches_normal_after_revert": true
+      }
+    ],
+    "execution": {
+      "checkpoints": [],
+      "features": [
+        "output_reference_v1"
+      ],
+      "instrumentation": "statement-checkpoint-v1"
+    },
+    "machine_validation": {
+      "per_defect": {
+        "D1": "machine_pass",
+        "D2": "machine_pass"
+      },
+      "repetitions": 2,
+      "status": "machine_pass"
+    },
+    "tests": [
+      {
+        "different_steps": [],
+        "equal": true,
+        "id": "T01",
+        "observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000000000000000000000000000000000000",
+                  "size": 20,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+                  "size": 128,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 4294901766,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000000000000000000000000000000000000",
+                  "size": 20,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+                  "size": 128,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 4294901766,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "purpose": "normal",
+        "repeated_observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000000000000000000000000000000000000",
+                  "size": 20,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+                  "size": 128,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 4294901766,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000000000000000000000000000000000000",
+                  "size": 20,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+                  "size": 128,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 4294901766,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "steps": [
+          {
+            "op": "open",
+            "session": "s1"
+          },
+          {
+            "command_id": 1,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "0100000000000000000000000000000000000000",
+                "type": "memref_input"
+              },
+              {
+                "size": 128,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "op": "close",
+            "session": "s1"
+          }
+        ],
+        "targets": [],
+        "variable_items": []
+      },
+      {
+        "different_steps": [
+          2
+        ],
+        "equal": false,
+        "id": "T02",
+        "observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "0100000001000000410000000000000000",
+                  "size": 17,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "000000003a000000028911f3b6afcadd",
+                  "size": 66,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000001000000410000000000000000",
+                  "size": 17,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "00000000000000000000000000000000",
+                  "size": 16,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 4294901766,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "purpose": "witness",
+        "repeated_observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "0100000001000000410000000000000000",
+                  "size": 17,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "000000003a000000028911f3b6afcadd",
+                  "size": 66,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000001000000410000000000000000",
+                  "size": 17,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "00000000000000000000000000000000",
+                  "size": 16,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 4294901766,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "steps": [
+          {
+            "op": "open",
+            "session": "s1"
+          },
+          {
+            "command_id": 0,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "0100000001000000410000000000000000",
+                "type": "memref_input"
+              },
+              {
+                "size": 16,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "op": "close",
+            "session": "s1"
+          }
+        ],
+        "targets": [
+          "D1"
+        ],
+        "variable_items": [],
+        "witness_step": 2
+      },
+      {
+        "different_steps": [
+          8
+        ],
+        "equal": false,
+        "id": "T03",
+        "observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "0100000001000000410000000000000000",
+                  "size": 17,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "000000003a0000000258e724b5cd57fb3c000000000000000036ea516240bb4ba3d54b245d2d767f4161e57b482b9d5d66d57b0dc9546525451f4ca92e46b9677401",
+                  "size": 66,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a0000000258e724b5cd57fb3c000000000000000036ea516240bb4ba3d54b245d2d767f4161e57b482b9d5d66d57b0dc9546525451f4ca92e46b9677401",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a0000000258e724b5cd57fb3c000000000000000036ea516240bb4ba3d54b245d2d767f4161e57b482b9d5d66d57b0dc9546525451f4ca92e46b9677401",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a0000000258e724b5cd57fb3c000000000000000036ea516240bb4ba3d54b245d2d767f4161e57b482b9d5d66d57b0dc9546525451f4ca92e46b9677401",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a0000000258e724b5cd57fb3c000000000000000036ea516240bb4ba3d54b245d2d767f4161e57b482b9d5d66d57b0dc9546525451f4ca92e46b9677401",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a0000000258e724b5cd57fb3c000000000000000036ea516240bb4ba3d54b245d2d767f4161e57b482b9d5d66d57b0dc9546525451f4ca92e46b9677401",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a0000000258e724b5cd57fb3c000000000000000036ea516240bb4ba3d54b245d2d767f4161e57b482b9d5d66d57b0dc9546525451f4ca92e46b9677401",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "0100000001000000410000000000000000",
+                  "size": 17,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "000000003a00000002714740f93f8487d100000000000000000248d576342c59017ee3456551a3acb759fd3534df584e5c4942cdd8bb8990c66c7331155a670bdc01",
+                  "size": 66,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a00000002714740f93f8487d100000000000000000248d576342c59017ee3456551a3acb759fd3534df584e5c4942cdd8bb8990c66c7331155a670bdc01",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a00000002714740f93f8487d100000000000000000248d576342c59017ee3456551a3acb759fd3534df584e5c4942cdd8bb8990c66c7331155a670bdc01",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a00000002714740f93f8487d100000000000000000248d576342c59017ee3456551a3acb759fd3534df584e5c4942cdd8bb8990c66c7331155a670bdc01",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a00000002714740f93f8487d100000000000000000248d576342c59017ee3456551a3acb759fd3534df584e5c4942cdd8bb8990c66c7331155a670bdc01",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a00000002714740f93f8487d100000000000000000248d576342c59017ee3456551a3acb759fd3534df584e5c4942cdd8bb8990c66c7331155a670bdc01",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a00000002714740f93f8487d100000000000000000248d576342c59017ee3456551a3acb759fd3534df584e5c4942cdd8bb8990c66c7331155a670bdc01",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "0200000023750000",
+                  "size": 8,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "purpose": "witness",
+        "repeated_observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "0100000001000000410000000000000000",
+                  "size": 17,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "000000003a000000025583fc7914ee137e0000000000000000ecbe202a4703f25e30b63f10148b8f7639a4c5c4758a379d6e903110789f0c1d236fa6ee68ac506601",
+                  "size": 66,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a000000025583fc7914ee137e0000000000000000ecbe202a4703f25e30b63f10148b8f7639a4c5c4758a379d6e903110789f0c1d236fa6ee68ac506601",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a000000025583fc7914ee137e0000000000000000ecbe202a4703f25e30b63f10148b8f7639a4c5c4758a379d6e903110789f0c1d236fa6ee68ac506601",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a000000025583fc7914ee137e0000000000000000ecbe202a4703f25e30b63f10148b8f7639a4c5c4758a379d6e903110789f0c1d236fa6ee68ac506601",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a000000025583fc7914ee137e0000000000000000ecbe202a4703f25e30b63f10148b8f7639a4c5c4758a379d6e903110789f0c1d236fa6ee68ac506601",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a000000025583fc7914ee137e0000000000000000ecbe202a4703f25e30b63f10148b8f7639a4c5c4758a379d6e903110789f0c1d236fa6ee68ac506601",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a000000025583fc7914ee137e0000000000000000ecbe202a4703f25e30b63f10148b8f7639a4c5c4758a379d6e903110789f0c1d236fa6ee68ac506601",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "0100000001000000410000000000000000",
+                  "size": 17,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "000000003a00000002732877483c5911db000000000000000007439d0bba11c43c10713915a9fefbf433081546b9e8c0579c618cf52aa1c2fcd22ea30ab4a1091701",
+                  "size": 66,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a00000002732877483c5911db000000000000000007439d0bba11c43c10713915a9fefbf433081546b9e8c0579c618cf52aa1c2fcd22ea30ab4a1091701",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a00000002732877483c5911db000000000000000007439d0bba11c43c10713915a9fefbf433081546b9e8c0579c618cf52aa1c2fcd22ea30ab4a1091701",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a00000002732877483c5911db000000000000000007439d0bba11c43c10713915a9fefbf433081546b9e8c0579c618cf52aa1c2fcd22ea30ab4a1091701",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a00000002732877483c5911db000000000000000007439d0bba11c43c10713915a9fefbf433081546b9e8c0579c618cf52aa1c2fcd22ea30ab4a1091701",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a00000002732877483c5911db000000000000000007439d0bba11c43c10713915a9fefbf433081546b9e8c0579c618cf52aa1c2fcd22ea30ab4a1091701",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "01000000010000004101000000423a00000002732877483c5911db000000000000000007439d0bba11c43c10713915a9fefbf433081546b9e8c0579c618cf52aa1c2fcd22ea30ab4a1091701",
+                  "size": 76,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "0200000023750000",
+                  "size": 8,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "steps": [
+          {
+            "op": "open",
+            "session": "s1"
+          },
+          {
+            "command_id": 0,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "0100000001000000410000000000000000",
+                "type": "memref_input"
+              },
+              {
+                "size": 128,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "command_id": 0,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "01000000010000004101000000423a000000",
+                "inserts": [
+                  {
+                    "from": {
+                      "length": 58,
+                      "offset": 8,
+                      "param": 1,
+                      "step": 2
+                    },
+                    "offset": 18
+                  }
+                ],
+                "size": 76,
+                "type": "memref_input"
+              },
+              {
+                "size": 128,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "command_id": 0,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "01000000010000004101000000423a000000",
+                "inserts": [
+                  {
+                    "from": {
+                      "length": 58,
+                      "offset": 8,
+                      "param": 1,
+                      "step": 2
+                    },
+                    "offset": 18
+                  }
+                ],
+                "size": 76,
+                "type": "memref_input"
+              },
+              {
+                "size": 128,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "command_id": 0,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "01000000010000004101000000423a000000",
+                "inserts": [
+                  {
+                    "from": {
+                      "length": 58,
+                      "offset": 8,
+                      "param": 1,
+                      "step": 2
+                    },
+                    "offset": 18
+                  }
+                ],
+                "size": 76,
+                "type": "memref_input"
+              },
+              {
+                "size": 128,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "command_id": 0,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "01000000010000004101000000423a000000",
+                "inserts": [
+                  {
+                    "from": {
+                      "length": 58,
+                      "offset": 8,
+                      "param": 1,
+                      "step": 2
+                    },
+                    "offset": 18
+                  }
+                ],
+                "size": 76,
+                "type": "memref_input"
+              },
+              {
+                "size": 128,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "command_id": 0,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "01000000010000004101000000423a000000",
+                "inserts": [
+                  {
+                    "from": {
+                      "length": 58,
+                      "offset": 8,
+                      "param": 1,
+                      "step": 2
+                    },
+                    "offset": 18
+                  }
+                ],
+                "size": 76,
+                "type": "memref_input"
+              },
+              {
+                "size": 128,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "command_id": 0,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "01000000010000004101000000423a000000",
+                "inserts": [
+                  {
+                    "from": {
+                      "length": 58,
+                      "offset": 8,
+                      "param": 1,
+                      "step": 2
+                    },
+                    "offset": 18
+                  }
+                ],
+                "size": 76,
+                "type": "memref_input"
+              },
+              {
+                "size": 128,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "op": "close",
+            "session": "s1"
+          }
+        ],
+        "targets": [
+          "D2"
+        ],
+        "variable_items": [
+          {
+            "items": [
+              {
+                "field": "data",
+                "param": 1
+              }
+            ],
+            "step": 2
+          },
+          {
+            "items": [
+              {
+                "field": "data",
+                "param": 0
+              }
+            ],
+            "step": 3
+          },
+          {
+            "items": [
+              {
+                "field": "data",
+                "param": 0
+              }
+            ],
+            "step": 4
+          },
+          {
+            "items": [
+              {
+                "field": "data",
+                "param": 0
+              }
+            ],
+            "step": 5
+          },
+          {
+            "items": [
+              {
+                "field": "data",
+                "param": 0
+              }
+            ],
+            "step": 6
+          },
+          {
+            "items": [
+              {
+                "field": "data",
+                "param": 0
+              }
+            ],
+            "step": 7
+          },
+          {
+            "items": [
+              {
+                "field": "data",
+                "param": 0
+              }
+            ],
+            "step": 8
+          }
+        ],
+        "witness_step": 8
+      },
+      {
+        "different_steps": [],
+        "equal": true,
+        "id": "C550c3736f4add912",
+        "observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "0000000004000000616263640000000000000000",
+                  "size": 20,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "000000003a00000002714740f93f8487d100000000000000000248d576342c5901da129f422a32d66f5f8afe048972a755b2e57bf09fe7db797da1f4f7cd0eef3701",
+                  "size": 66,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0000000000000000000000003a00000002714740f93f8487d100000000000000000248d576342c5901da129f422a32d66f5f8afe048972a755b2e57bf09fe7db797da1f4f7cd0eef3701000000000000040000007a7a7a7a",
+                  "size": 88,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "0000000004000000616263640000000000000000",
+                  "size": 20,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "000000003a000000029e89a46729a33a000000000000000000ebbd69d7fa19921e9f6cb0d4e24b8be2dd2b9fc1042bf1e39e930a9b3001e21dd84bf63606a6a10b01",
+                  "size": 66,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0000000000000000000000003a000000029e89a46729a33a000000000000000000ebbd69d7fa19921e9f6cb0d4e24b8be2dd2b9fc1042bf1e39e930a9b3001e21dd84bf63606a6a10b01000000000000040000007a7a7a7a",
+                  "size": 88,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "purpose": "normal",
+        "repeated_observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "0000000004000000616263640000000000000000",
+                  "size": 20,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "000000003a000000029e89a46729a33a000000000000000000ebbd69d7fa19921e9f6cb0d4e24b8be2dd2b9fc1042bf1e39e930a9b3001e21dd84bf63606a6a10b01",
+                  "size": 66,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0000000000000000000000003a000000029e89a46729a33a000000000000000000ebbd69d7fa19921e9f6cb0d4e24b8be2dd2b9fc1042bf1e39e930a9b3001e21dd84bf63606a6a10b01000000000000040000007a7a7a7a",
+                  "size": 88,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "0000000004000000616263640000000000000000",
+                  "size": 20,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "000000003a000000025583fc7914ee137e0000000000000000ecbe202a4703f25e40e1d328f67f462c998d56aeb870b0c6b4e18bdacc9d1f1a1a28225bfcd0428f01",
+                  "size": 66,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0000000000000000000000003a000000025583fc7914ee137e0000000000000000ecbe202a4703f25e40e1d328f67f462c998d56aeb870b0c6b4e18bdacc9d1f1a1a28225bfcd0428f01000000000000040000007a7a7a7a",
+                  "size": 88,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "steps": [
+          {
+            "op": "open",
+            "session": "s1"
+          },
+          {
+            "command_id": 0,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "0000000004000000616263640000000000000000",
+                "type": "memref_input"
+              },
+              {
+                "size": 128,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "command_id": 1,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "0000000000000000000000003a00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000007a7a7a7a",
+                "inserts": [
+                  {
+                    "from": {
+                      "length": 58,
+                      "offset": 8,
+                      "param": 1,
+                      "step": 2
+                    },
+                    "offset": 16
+                  }
+                ],
+                "type": "memref_input"
+              },
+              {
+                "size": 128,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "op": "close",
+            "session": "s1"
+          }
+        ],
+        "targets": [],
+        "variable_items": [
+          {
+            "items": [
+              {
+                "field": "data",
+                "param": 1
+              }
+            ],
+            "step": 2
+          },
+          {
+            "items": [
+              {
+                "field": "data",
+                "param": 0
+              }
+            ],
+            "step": 3
+          }
+        ]
+      },
+      {
+        "different_steps": [],
+        "equal": true,
+        "id": "Cb6faf29d3edefcd1",
+        "observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000000000000000000003a000000020101010101010101010000000000000002020202020202020303030303030303030303030303030303030303030303030303030303030303010400000031323334",
+                  "size": 82,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000000000000000000003a000000020101010101010101010000000000000002020202020202020303030303030303030303030303030303030303030303030303030303030303010400000031323334",
+                  "size": 82,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "purpose": "normal",
+        "repeated_observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000000000000000000003a000000020101010101010101010000000000000002020202020202020303030303030303030303030303030303030303030303030303030303030303010400000031323334",
+                  "size": 82,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000000000000000000003a000000020101010101010101010000000000000002020202020202020303030303030303030303030303030303030303030303030303030303030303010400000031323334",
+                  "size": 82,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "steps": [
+          {
+            "op": "open",
+            "session": "s1"
+          },
+          {
+            "command_id": 1,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "0100000000000000000000003a000000020101010101010101010000000000000002020202020202020303030303030303030303030303030303030303030303030303030303030303010400000031323334",
+                "type": "memref_input"
+              },
+              {
+                "size": 128,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "op": "close",
+            "session": "s1"
+          }
+        ],
+        "targets": [],
+        "variable_items": []
+      }
+    ]
+  }
+}

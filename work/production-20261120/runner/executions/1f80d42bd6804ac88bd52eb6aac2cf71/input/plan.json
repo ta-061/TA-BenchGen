@@ -1,0 +1,56 @@
+{
+  "steps": [
+    {
+      "op": "open",
+      "session": "s1"
+    },
+    {
+      "command_id": 0,
+      "op": "invoke",
+      "params": [
+        {
+          "data": "02000000",
+          "type": "memref_input"
+        },
+        {
+          "a": 0,
+          "b": 0,
+          "type": "value_output"
+        },
+        {
+          "type": "none"
+        },
+        {
+          "type": "none"
+        }
+      ],
+      "session": "s1"
+    },
+    {
+      "command_id": 1,
+      "op": "invoke",
+      "params": [
+        {
+          "a": 0,
+          "b": 0,
+          "type": "value_output"
+        },
+        {
+          "type": "none"
+        },
+        {
+          "type": "none"
+        },
+        {
+          "type": "none"
+        }
+      ],
+      "session": "s1"
+    },
+    {
+      "op": "close",
+      "session": "s1"
+    }
+  ],
+  "uuid": "c3d128bd-bf96-438e-bcd6-e3436b30569f"
+}

@@ -1,0 +1,21 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"changes\":[{\"path\":\"ta/entry.c\",\"defect\":\"D1\",\"old\":\"    TEE_MemMove(&local, params[0].memref.buffer, sizeof(local));\\n\",\"new\":\"    request = params[0].memref.buffer;\\n\"}],\"defects\":[{\"id\":\"D1\",\"class\":\"DUS\",\"witness_test_ids\":[\"T02\"],\"reason\":\"The request is no longer copied into private memory. The value is validated and then read again from shared memory, so the outside can change it between the check and the store into the record state.\",\"detector_targets\":[{\"path\":\"ta/entry.c\",\"function\":\"update_record\",\"lines\":[25,25],\"role\":\"effect\"},{\"path\":\"ta/entry.c\",\"function\":\"update_record\",\"lines\":[23,23],\"role\":\"protection\"}]}],\"tests\":[{\"id\":\"T01\",\"purpose\":\"normal\",\"targets\":[],\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"memref_input\",\"data\":\"02000000\"},{\"type\":\"value_output\",\"a\":0,\"b\":0},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"value_output\",\"a\":0,\"b\":0},{\"type\":\"none\"},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"close\",\"session\":\"s1\"}]},{\"id\":\"T02\",\"purpose\":\"witness\",\"targets\":[\"D1\"],\"witness_step\":2,\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"shared_memref_input\",\"data\":\"02000000\"},{\"type\":\"value_output\",\"a\":0,\"b\":0},{\"type\":\"none\"},{\"type\":\"none\"}],\"events\":[{\"trigger\":{\"kind\":\"checkpoint\",\"path\":\"ta/entry.c\",\"function\":\"update_record\",\"before\":\"state->value = request->value;\",\"occurrence\":1},\"action\":{\"kind\":\"write_memory\",\"param\":0,\"offset\":0,\"expect\":\"02000000\",\"data\":\"09000000\"}}]},{\"op\":\"close\",\"session\":\"s1\"}]}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1795170136,
+  "id": "msg_011ChE1mUdWLJt8FAsE4grf7",
+  "model": "claude-sonnet-5-5",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 1486,
+    "prompt_tokens": 3691,
+    "total_tokens": 5177
+  }
+}

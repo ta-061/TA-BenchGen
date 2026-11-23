@@ -1,0 +1,426 @@
+{
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\t\t\t\t\tparams[0].memref.buffer, obj_id_sz,\n\t\t\t\t\tTEE_DATA_FLAG_ACCESS_READ |\n\t\t\t\t\tTEE_DATA_FLAG_SHARE_READ,",
+      "old": "\t\t\t\t\tobj_id, obj_id_sz,\n\t\t\t\t\tTEE_DATA_FLAG_ACCESS_READ |\n\t\t\t\t\tTEE_DATA_FLAG_SHARE_READ,",
+      "path": "ta/secure_storage_ta.c"
+    }
+  ],
+  "failed_test": {
+    "id": "T01",
+    "observations": [
+      {
+        "defective": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "different_items": [],
+        "ignored_variable_items": [],
+        "normal": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "purpose": "normal",
+        "repeated_defective": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "repeated_normal": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "step": 1,
+        "test": "T01"
+      },
+      {
+        "defective": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "different_items": [],
+        "ignored_variable_items": [],
+        "normal": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "purpose": "normal",
+        "repeated_defective": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "repeated_normal": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "step": 2,
+        "test": "T01"
+      },
+      {
+        "defective": {
+          "origin": 3,
+          "outputs": [
+            {
+              "data": "00000000000000000000000000000000",
+              "param": 1,
+              "size": 16,
+              "type": "memref_output"
+            }
+          ],
+          "result": 4294914084,
+          "ta_crashed": true
+        },
+        "different_items": [
+          {
+            "field": "origin"
+          },
+          {
+            "field": "result"
+          },
+          {
+            "field": "ta_crashed"
+          },
+          {
+            "field": "data",
+            "param": 1
+          },
+          {
+            "field": "size",
+            "param": 1
+          }
+        ],
+        "ignored_variable_items": [],
+        "normal": {
+          "origin": 0,
+          "outputs": [
+            {
+              "data": "01020304",
+              "param": 1,
+              "size": 4,
+              "type": "memref_output"
+            }
+          ],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "purpose": "normal",
+        "repeated_defective": {
+          "origin": 3,
+          "outputs": [
+            {
+              "data": "00000000000000000000000000000000",
+              "param": 1,
+              "size": 16,
+              "type": "memref_output"
+            }
+          ],
+          "result": 4294914084,
+          "ta_crashed": true
+        },
+        "repeated_normal": {
+          "origin": 0,
+          "outputs": [
+            {
+              "data": "01020304",
+              "param": 1,
+              "size": 4,
+              "type": "memref_output"
+            }
+          ],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "step": 3,
+        "test": "T01"
+      },
+      {
+        "defective": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "different_items": [],
+        "ignored_variable_items": [],
+        "normal": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "purpose": "normal",
+        "repeated_defective": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "repeated_normal": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "step": 4,
+        "test": "T01"
+      }
+    ],
+    "observations_omitted": 0,
+    "purpose": "normal",
+    "source": "candidate",
+    "steps": [
+      {
+        "op": "open",
+        "session": "s1"
+      },
+      {
+        "command_id": 1,
+        "op": "invoke",
+        "params": [
+          {
+            "data": "41414141",
+            "type": "memref_input"
+          },
+          {
+            "data": "01020304",
+            "type": "memref_input"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          }
+        ],
+        "session": "s1"
+      },
+      {
+        "command_id": 0,
+        "op": "invoke",
+        "params": [
+          {
+            "data": "41414141",
+            "type": "memref_input"
+          },
+          {
+            "size": 16,
+            "type": "memref_output"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          }
+        ],
+        "session": "s1"
+      },
+      {
+        "op": "close",
+        "session": "s1"
+      }
+    ]
+  },
+  "index": 1,
+  "observed_differences": [
+    {
+      "defective": {
+        "origin": 3,
+        "outputs": [
+          {
+            "data": "00000000000000000000000000000000",
+            "param": 1,
+            "size": 16,
+            "type": "memref_output"
+          }
+        ],
+        "result": 4294914084,
+        "ta_crashed": true
+      },
+      "different_items": [
+        {
+          "field": "origin"
+        },
+        {
+          "field": "result"
+        },
+        {
+          "field": "ta_crashed"
+        },
+        {
+          "field": "data",
+          "param": 1
+        },
+        {
+          "field": "size",
+          "param": 1
+        }
+      ],
+      "ignored_variable_items": [],
+      "normal": {
+        "origin": 0,
+        "outputs": [
+          {
+            "data": "01020304",
+            "param": 1,
+            "size": 4,
+            "type": "memref_output"
+          }
+        ],
+        "result": 0,
+        "ta_crashed": false
+      },
+      "purpose": "normal",
+      "repeated_defective": {
+        "origin": 3,
+        "outputs": [
+          {
+            "data": "00000000000000000000000000000000",
+            "param": 1,
+            "size": 16,
+            "type": "memref_output"
+          }
+        ],
+        "result": 4294914084,
+        "ta_crashed": true
+      },
+      "repeated_normal": {
+        "origin": 0,
+        "outputs": [
+          {
+            "data": "01020304",
+            "param": 1,
+            "size": 4,
+            "type": "memref_output"
+          }
+        ],
+        "result": 0,
+        "ta_crashed": false
+      },
+      "step": 3,
+      "test": "T01"
+    },
+    {
+      "defective": {
+        "origin": 3,
+        "outputs": [
+          {
+            "data": "00000000000000000000000000000000",
+            "param": 1,
+            "size": 16,
+            "type": "memref_output"
+          }
+        ],
+        "result": 4294914084,
+        "ta_crashed": true
+      },
+      "different_items": [
+        {
+          "field": "origin"
+        },
+        {
+          "field": "result"
+        },
+        {
+          "field": "ta_crashed"
+        },
+        {
+          "field": "data",
+          "param": 1
+        },
+        {
+          "field": "size",
+          "param": 1
+        }
+      ],
+      "ignored_variable_items": [],
+      "normal": {
+        "origin": 0,
+        "outputs": [
+          {
+            "data": "01020304",
+            "param": 1,
+            "size": 4,
+            "type": "memref_output"
+          }
+        ],
+        "result": 0,
+        "ta_crashed": false
+      },
+      "purpose": "witness",
+      "repeated_defective": {
+        "origin": 3,
+        "outputs": [
+          {
+            "data": "00000000000000000000000000000000",
+            "param": 1,
+            "size": 16,
+            "type": "memref_output"
+          }
+        ],
+        "result": 4294914084,
+        "ta_crashed": true
+      },
+      "repeated_normal": {
+        "origin": 0,
+        "outputs": [
+          {
+            "data": "01020304",
+            "param": 1,
+            "size": 4,
+            "type": "memref_output"
+          }
+        ],
+        "result": 0,
+        "ta_crashed": false
+      },
+      "step": 4,
+      "test": "T02"
+    }
+  ],
+  "proposed": [
+    {
+      "class": "DUS",
+      "detector_targets": [
+        {
+          "function": "read_raw_object",
+          "lines": [
+            184,
+            184
+          ],
+          "path": "ta/secure_storage_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "read_raw_object",
+          "lines": [
+            172,
+            172
+          ],
+          "path": "ta/secure_storage_ta.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D1",
+      "reason": "read_raw_object copies the object ID into private memory but then opens the persistent object using the caller-shared buffer directly. The ID can therefore change after the copy and the TA uses the modified value."
+    }
+  ],
+  "reason": "T01: normal input differs (R1)",
+  "status": "machine_fail"
+}

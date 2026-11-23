@@ -1,0 +1,21 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"changes\":[{\"path\":\"ta/gatekeeper_ta.c\",\"defect\":\"D1\",\"old\":\"\\tres = TA_DoVerify(password_handle, provided_password,\\n\\t\\t\\tprovided_password_length);\",\"new\":\"\\tif (throttle) {\\n\\t\\tClearFailureRecord(user_id);\\n\\t}\\n\\n\\tres = TA_DoVerify(password_handle, provided_password,\\n\\t\\t\\tprovided_password_length);\"}],\"defects\":[{\"id\":\"D1\",\"class\":\"ORDER\",\"witness_test_ids\":[\"T02\"],\"reason\":\"In TA_Verify the user's failure record is cleared before the password has been verified. The counter recorded for the attempt is erased regardless of the outcome, so repeated wrong passwords never trigger throttling.\",\"detector_targets\":[{\"path\":\"ta/gatekeeper_ta.c\",\"function\":\"TA_Verify\",\"lines\":[671,671],\"role\":\"effect\"},{\"path\":\"ta/gatekeeper_ta.c\",\"function\":\"TA_Verify\",\"lines\":[673,674],\"role\":\"protection\"}]}],\"tests\":[{\"id\":\"T01\",\"purpose\":\"normal\",\"targets\":[],\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"memref_input\",\"data\":\"00000000 0000000000000000 3a000000 02 0100000000000000 0100000000000000 0000000000000000 0000000000000000000000000000000000000000000000000000000000000000 01 04000000 31323334\"},{\"type\":\"memref_output\",\"size\":128},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"close\",\"session\":\"s1\"}]},{\"id\":\"T02\",\"purpose\":\"witness\",\"targets\":[\"D1\"],\"witness_step\":7,\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"memref_input\",\"data\":\"00000000 0000000000000000 3a000000 02 0100000000000000 0100000000000000 0000000000000000 0000000000000000000000000000000000000000000000000000000000000000 01 04000000 31323334\"},{\"type\":\"memref_output\",\"size\":128},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"memref_input\",\"data\":\"00000000 0000000000000000 3a000000 02 0100000000000000 0100000000000000 0000000000000000 0000000000000000000000000000000000000000000000000000000000000000 01 04000000 31323334\"},{\"type\":\"memref_output\",\"size\":128},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"memref_input\",\"data\":\"00000000 0000000000000000 3a000000 02 0100000000000000 0100000000000000 0000000000000000 0000000000000000000000000000000000000000000000000000000000000000 01 04000000 31323334\"},{\"type\":\"memref_output\",\"size\":128},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"memref_input\",\"data\":\"00000000 0000000000000000 3a000000 02 0100000000000000 0100000000000000 0000000000000000 0000000000000000000000000000000000000000000000000000000000000000 01 04000000 31323334\"},{\"type\":\"memref_output\",\"size\":128},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"memref_input\",\"data\":\"00000000 0000000000000000 3a000000 02 0100000000000000 0100000000000000 0000000000000000 0000000000000000000000000000000000000000000000000000000000000000 01 04000000 31323334\"},{\"type\":\"memref_output\",\"size\":128},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"memref_input\",\"data\":\"00000000 0000000000000000 3a000000 02 0100000000000000 0100000000000000 0000000000000000 0000000000000000000000000000000000000000000000000000000000000000 01 04000000 31323334\"},{\"type\":\"memref_output\",\"size\":128},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"close\",\"session\":\"s1\"}]}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1795170479,
+  "id": "msg_011ChE29AnaF5NB7SEN3i16F",
+  "model": "claude-sonnet-5-5",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 8919,
+    "prompt_tokens": 24245,
+    "total_tokens": 33164
+  }
+}

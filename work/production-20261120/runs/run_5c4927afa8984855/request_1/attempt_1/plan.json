@@ -1,0 +1,118 @@
+[
+  {
+    "id": "T01",
+    "purpose": "normal",
+    "steps": [
+      {
+        "op": "open",
+        "session": "s1"
+      },
+      {
+        "command_id": 0,
+        "op": "invoke",
+        "params": [
+          {
+            "data": "02000000",
+            "type": "memref_input"
+          },
+          {
+            "a": 0,
+            "b": 0,
+            "type": "value_output"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          }
+        ],
+        "session": "s1"
+      },
+      {
+        "command_id": 1,
+        "op": "invoke",
+        "params": [
+          {
+            "a": 0,
+            "b": 0,
+            "type": "value_output"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          }
+        ],
+        "session": "s1"
+      },
+      {
+        "op": "close",
+        "session": "s1"
+      }
+    ],
+    "targets": []
+  },
+  {
+    "id": "T02",
+    "purpose": "witness",
+    "steps": [
+      {
+        "op": "open",
+        "session": "s1"
+      },
+      {
+        "command_id": 0,
+        "events": [
+          {
+            "action": {
+              "data": "09000000",
+              "expect": "02000000",
+              "kind": "write_memory",
+              "offset": 0,
+              "param": 0
+            },
+            "trigger": {
+              "before": "state->value = request->value;",
+              "function": "update_record",
+              "kind": "checkpoint",
+              "occurrence": 1,
+              "path": "ta/entry.c"
+            }
+          }
+        ],
+        "op": "invoke",
+        "params": [
+          {
+            "data": "02000000",
+            "type": "shared_memref_input"
+          },
+          {
+            "a": 0,
+            "b": 0,
+            "type": "value_output"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          }
+        ],
+        "session": "s1"
+      },
+      {
+        "op": "close",
+        "session": "s1"
+      }
+    ],
+    "targets": [
+      "D1"
+    ],
+    "witness_step": 2
+  }
+]

@@ -1,0 +1,41 @@
+{
+  "case_id": "case_b9e19bc717204a6f",
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tif (throttle) {\n\t\tClearFailureRecord(user_id);\n\t}\n\n\tres = TA_DoVerify(password_handle, provided_password,\n\t\t\tprovided_password_length);",
+      "old": "\tres = TA_DoVerify(password_handle, provided_password,\n\t\t\tprovided_password_length);",
+      "path": "ta/gatekeeper_ta.c"
+    }
+  ],
+  "index": 2,
+  "proposed": [
+    {
+      "class": "ORDER",
+      "detector_targets": [
+        {
+          "function": "TA_Verify",
+          "lines": [
+            672,
+            672
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "TA_Verify",
+          "lines": [
+            675,
+            675
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D1",
+      "reason": "In TA_Verify the user's failure record is cleared before the password has been verified. The failure counter recorded for the attempt is erased whatever the outcome, so repeated wrong passwords never trigger throttling."
+    }
+  ],
+  "reason": "saved",
+  "status": "machine_pass"
+}

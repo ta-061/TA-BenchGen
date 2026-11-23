@@ -1,0 +1,21 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"changes\": [{\"path\": \"ta/sha_ta.c\", \"defect\": \"D1\", \"old\": \"\\tmessage_sz = params[0].memref.size;\\n\\thmac_len = (uint32_t)params[1].memref.size;\\n\", \"new\": \"\\tmessage_sz = params[0].memref.size;\\n\\thmac_len = params[1].memref.size < 64 ? 64 : (uint32_t)params[1].memref.size;\\n\"}], \"defects\": [{\"id\": \"D1\", \"class\": \"IVW\", \"witness_test_ids\": [\"T02\"], \"reason\": \"The output length passed to TEE_MACComputeFinal is raised to at least 64, while the scratch buffer b2 is allocated with the caller-supplied size. A caller that supplies a short output buffer no longer gets the short-buffer error. The MAC is written past the end of b2 and then copied past the end of the caller's output buffer.\", \"detector_targets\": [{\"path\": \"ta/sha_ta.c\", \"function\": \"sha_update_op\", \"lines\": [365, 366], \"role\": \"effect\"}, {\"path\": \"ta/sha_ta.c\", \"function\": \"sha_update_op\", \"lines\": [357, 357], \"role\": \"protection\"}]}], \"tests\": [{\"id\": \"T01\", \"purpose\": \"normal\", \"targets\": [], \"steps\": [{\"op\": \"open\", \"session\": \"s1\"}, {\"op\": \"invoke\", \"session\": \"s1\", \"command_id\": 0, \"params\": [{\"type\": \"value_input\", \"a\": 805306372, \"b\": 0}, {\"type\": \"value_input\", \"a\": 32, \"b\": 0}, {\"type\": \"value_input\", \"a\": 0, \"b\": 0}, {\"type\": \"none\"}]}, {\"op\": \"invoke\", \"session\": \"s1\", \"command_id\": 1, \"params\": [{\"type\": \"memref_input\", \"data\": \"a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5\"}, {\"type\": \"none\"}, {\"type\": \"none\"}, {\"type\": \"none\"}]}, {\"op\": \"invoke\", \"session\": \"s1\", \"command_id\": 2, \"params\": [{\"type\": \"memref_input\", \"data\": \"\"}, {\"type\": \"none\"}, {\"type\": \"none\"}, {\"type\": \"none\"}]}, {\"op\": \"invoke\", \"session\": \"s1\", \"command_id\": 3, \"params\": [{\"type\": \"memref_input\", \"data\": \"68656c6c6f\"}, {\"type\": \"memref_output\", \"size\": 32}, {\"type\": \"none\"}, {\"type\": \"none\"}]}, {\"op\": \"close\", \"session\": \"s1\"}]}, {\"id\": \"T02\", \"purpose\": \"witness\", \"targets\": [\"D1\"], \"witness_step\": 5, \"steps\": [{\"op\": \"open\", \"session\": \"s1\"}, {\"op\": \"invoke\", \"session\": \"s1\", \"command_id\": 0, \"params\": [{\"type\": \"value_input\", \"a\": 805306372, \"b\": 0}, {\"type\": \"value_input\", \"a\": 32, \"b\": 0}, {\"type\": \"value_input\", \"a\": 0, \"b\": 0}, {\"type\": \"none\"}]}, {\"op\": \"invoke\", \"session\": \"s1\", \"command_id\": 1, \"params\": [{\"type\": \"memref_input\", \"data\": \"a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5\"}, {\"type\": \"none\"}, {\"type\": \"none\"}, {\"type\": \"none\"}]}, {\"op\": \"invoke\", \"session\": \"s1\", \"command_id\": 2, \"params\": [{\"type\": \"memref_input\", \"data\": \"\"}, {\"type\": \"none\"}, {\"type\": \"none\"}, {\"type\": \"none\"}]}, {\"op\": \"invoke\", \"session\": \"s1\", \"command_id\": 3, \"params\": [{\"type\": \"memref_input\", \"data\": \"68656c6c6f\"}, {\"type\": \"memref_output\", \"size\": 16}, {\"type\": \"none\"}, {\"type\": \"none\"}]}, {\"op\": \"close\", \"session\": \"s1\"}]}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1795170915,
+  "id": "msg_011ChE2i349X5Gab72MR3v1z",
+  "model": "claude-sonnet-5-5",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 7490,
+    "prompt_tokens": 27716,
+    "total_tokens": 35206
+  }
+}

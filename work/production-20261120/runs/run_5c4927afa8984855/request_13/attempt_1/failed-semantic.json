@@ -1,0 +1,1356 @@
+{
+  "defect_reverts": [],
+  "execution": {
+    "checkpoints": [],
+    "features": [
+      "output_reference_v1"
+    ],
+    "instrumentation": "statement-checkpoint-v1"
+  },
+  "machine_validation": {
+    "per_defect": {
+      "D1": "machine_fail"
+    },
+    "reason": "C625ff61929f622f4: normal input differs (R1)",
+    "repetitions": 2,
+    "status": "machine_fail"
+  },
+  "tests": [
+    {
+      "different_steps": [],
+      "equal": true,
+      "id": "T01",
+      "observed": {
+        "defective": [
+          {
+            "op": "open",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "68656c6c6f",
+                "size": 5,
+                "type": "memref_input"
+              },
+              {
+                "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                "size": 32,
+                "type": "memref_output"
+              },
+              {
+                "a": 1879060546,
+                "b": 0,
+                "type": "value_input"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+                "size": 32,
+                "type": "memref_input"
+              },
+              {
+                "data": "d45cf80d4ffbbf76ed72fcfd33be45c6385871d085c801a6fd4d389a83e5ebfcbb9e77f1e5a44038b1a99ac7dbebd002edf414b04b49017b31311e9ab12fc25a",
+                "size": 64,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "close",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          }
+        ],
+        "normal": [
+          {
+            "op": "open",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "68656c6c6f",
+                "size": 5,
+                "type": "memref_input"
+              },
+              {
+                "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                "size": 32,
+                "type": "memref_output"
+              },
+              {
+                "a": 1879060546,
+                "b": 0,
+                "type": "value_input"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+                "size": 32,
+                "type": "memref_input"
+              },
+              {
+                "data": "e5c73ea026d30d9ad6f3119a712535339cda7100ee80d2daed5122ced3b86c018e5f98494002a83c176a013d7cd6d3a71f4d8f09073f627d6c1fa27e17ccf435",
+                "size": 64,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "close",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          }
+        ]
+      },
+      "purpose": "normal",
+      "repeated_observed": {
+        "defective": [
+          {
+            "op": "open",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "68656c6c6f",
+                "size": 5,
+                "type": "memref_input"
+              },
+              {
+                "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                "size": 32,
+                "type": "memref_output"
+              },
+              {
+                "a": 1879060546,
+                "b": 0,
+                "type": "value_input"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+                "size": 32,
+                "type": "memref_input"
+              },
+              {
+                "data": "d45cf80d4ffbbf76ed72fcfd33be45c6385871d085c801a6fd4d389a83e5ebfcbb9e77f1e5a44038b1a99ac7dbebd002edf414b04b49017b31311e9ab12fc25a",
+                "size": 64,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "close",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          }
+        ],
+        "normal": [
+          {
+            "op": "open",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "68656c6c6f",
+                "size": 5,
+                "type": "memref_input"
+              },
+              {
+                "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                "size": 32,
+                "type": "memref_output"
+              },
+              {
+                "a": 1879060546,
+                "b": 0,
+                "type": "value_input"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+                "size": 32,
+                "type": "memref_input"
+              },
+              {
+                "data": "37dd991d0d7a019de83decf64c5642ea962ffe9148301747e263166b3eed99d390965446db609d86694573481950067b33f9888d25506fb54f2f3d8529795d7b",
+                "size": 64,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "close",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          }
+        ]
+      },
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "68656c6c6f",
+              "type": "memref_input"
+            },
+            {
+              "size": 32,
+              "type": "memref_output"
+            },
+            {
+              "a": 1879060546,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 2,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+              "type": "memref_input"
+            },
+            {
+              "size": 64,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": [],
+      "variable_items": [
+        {
+          "items": [
+            {
+              "field": "data",
+              "param": 1
+            }
+          ],
+          "step": 4
+        }
+      ]
+    },
+    {
+      "different_steps": [
+        4
+      ],
+      "equal": false,
+      "id": "T02",
+      "observed": {
+        "defective": [
+          {
+            "op": "open",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "68656c6c6f",
+                "size": 5,
+                "type": "memref_input"
+              },
+              {
+                "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                "size": 32,
+                "type": "memref_output"
+              },
+              {
+                "a": 1879060546,
+                "b": 0,
+                "type": "value_input"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+                "size": 32,
+                "type": "memref_input"
+              },
+              {
+                "data": "d45cf80d4ffbbf76ed72fcfd33be45c6385871d085c801a6fd4d389a83e5ebfcbb9e77f1e5a44038b1a99ac7dbebd002edf414b04b49017b31311e9ab12fc25a8a4edb978217e1ee615404dafdc7ce85adcead51330ba0a16553fcc8959ce1e2",
+                "size": 96,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "close",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          }
+        ],
+        "normal": [
+          {
+            "op": "open",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "68656c6c6f",
+                "size": 5,
+                "type": "memref_input"
+              },
+              {
+                "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                "size": 32,
+                "type": "memref_output"
+              },
+              {
+                "a": 1879060546,
+                "b": 0,
+                "type": "value_input"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+                "size": 32,
+                "type": "memref_input"
+              },
+              {
+                "data": "d45cf80d4ffbbf76ed72fcfd33be45c6385871d085c801a6fd4d389a83e5ebfcbb9e77f1e5a44038b1a99ac7dbebd002edf414b04b49017b31311e9ab12fc25a",
+                "size": 64,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "close",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          }
+        ]
+      },
+      "purpose": "witness",
+      "repeated_observed": {
+        "defective": [
+          {
+            "op": "open",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "68656c6c6f",
+                "size": 5,
+                "type": "memref_input"
+              },
+              {
+                "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                "size": 32,
+                "type": "memref_output"
+              },
+              {
+                "a": 1879060546,
+                "b": 0,
+                "type": "value_input"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+                "size": 32,
+                "type": "memref_input"
+              },
+              {
+                "data": "e5c73ea026d30d9ad6f3119a712535339cda7100ee80d2daed5122ced3b86c018e5f98494002a83c176a013d7cd6d3a71f4d8f09073f627d6c1fa27e17ccf435de66d46b27a05ab6d9e9e295dfae7e89346cd169e2804c334e2fb46fe3e02771",
+                "size": 96,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "close",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          }
+        ],
+        "normal": [
+          {
+            "op": "open",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "68656c6c6f",
+                "size": 5,
+                "type": "memref_input"
+              },
+              {
+                "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                "size": 32,
+                "type": "memref_output"
+              },
+              {
+                "a": 1879060546,
+                "b": 0,
+                "type": "value_input"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+                "size": 32,
+                "type": "memref_input"
+              },
+              {
+                "data": "50e5db5d7b6a311ac57d8fb2209c0489bd456de0ebe0041b6ccb32690e3e7099f55afc059d70e836a7827abab6cf84708af5f8f17f4e23b8a501e0f25038e801",
+                "size": 64,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "close",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          }
+        ]
+      },
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "68656c6c6f",
+              "type": "memref_input"
+            },
+            {
+              "size": 32,
+              "type": "memref_output"
+            },
+            {
+              "a": 1879060546,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 2,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+              "type": "memref_input"
+            },
+            {
+              "size": 128,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": [
+        "D1"
+      ],
+      "variable_items": [
+        {
+          "items": [
+            {
+              "field": "data",
+              "param": 1
+            }
+          ],
+          "step": 4
+        }
+      ],
+      "witness_step": 4
+    },
+    {
+      "different_steps": [
+        4
+      ],
+      "equal": false,
+      "id": "C625ff61929f622f4",
+      "observed": {
+        "defective": [
+          {
+            "op": "open",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "68656c6c6f",
+                "size": 5,
+                "type": "memref_input"
+              },
+              {
+                "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                "size": 32,
+                "type": "memref_output"
+              },
+              {
+                "a": 1879060546,
+                "b": 0,
+                "type": "value_input"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                "size": 32,
+                "type": "memref_input"
+              },
+              {
+                "data": "05d3799043caa81b6a27bb0c4793571c1d173391a14c082cde18c86472082d55121c94cea7eb8908152676b3d4b2ded8f86b6ab1f56e39fcdf84e7a4aec878a8267ef7dc6631f0614c86e2798685b1d6c3038b39e82686ec8abc27edc4450552",
+                "size": 96,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "close",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          }
+        ],
+        "normal": [
+          {
+            "op": "open",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "68656c6c6f",
+                "size": 5,
+                "type": "memref_input"
+              },
+              {
+                "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                "size": 32,
+                "type": "memref_output"
+              },
+              {
+                "a": 1879060546,
+                "b": 0,
+                "type": "value_input"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                "size": 32,
+                "type": "memref_input"
+              },
+              {
+                "data": "ad231c0a8d54034ab1a25306170ea215795384453824881acac272a663b784a84b21079e3f3a14468506b27af7166acde08a6a7c6880dc196f150675da3aab76",
+                "size": 64,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "close",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          }
+        ]
+      },
+      "purpose": "normal",
+      "repeated_observed": {
+        "defective": [
+          {
+            "op": "open",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "68656c6c6f",
+                "size": 5,
+                "type": "memref_input"
+              },
+              {
+                "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                "size": 32,
+                "type": "memref_output"
+              },
+              {
+                "a": 1879060546,
+                "b": 0,
+                "type": "value_input"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                "size": 32,
+                "type": "memref_input"
+              },
+              {
+                "data": "4d21e178d26b32f7b039995d5b3e2647f7dd702763c995b56f8d8cd306d5745022656b4541656eca50b1fa9e9ce6c3f39a18bd21f959173d125f49c81192c9e4ee44feb912f7d1bf25dad23dd184e8d092bfd9cb063cc9003d8a1a220175519d",
+                "size": 96,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "close",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          }
+        ],
+        "normal": [
+          {
+            "op": "open",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "68656c6c6f",
+                "size": 5,
+                "type": "memref_input"
+              },
+              {
+                "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                "size": 32,
+                "type": "memref_output"
+              },
+              {
+                "a": 1879060546,
+                "b": 0,
+                "type": "value_input"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                "size": 32,
+                "type": "memref_input"
+              },
+              {
+                "data": "d45cf80d4ffbbf76ed72fcfd33be45c6385871d085c801a6fd4d389a83e5ebfcdd53b57cef676ece2e329acb521ea57899154f63e93d1fb6e3590771856eb93a",
+                "size": 64,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "close",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          }
+        ]
+      },
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "68656c6c6f",
+              "type": "memref_input"
+            },
+            {
+              "size": 32,
+              "type": "memref_output"
+            },
+            {
+              "a": 1879060546,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 2,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "",
+              "inserts": [
+                {
+                  "from": {
+                    "length": 32,
+                    "offset": 0,
+                    "param": 1,
+                    "step": 2
+                  },
+                  "offset": 0
+                }
+              ],
+              "size": 32,
+              "type": "memref_input"
+            },
+            {
+              "size": 128,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": [],
+      "variable_items": [
+        {
+          "items": [
+            {
+              "field": "data",
+              "param": 1
+            }
+          ],
+          "step": 4
+        }
+      ]
+    }
+  ]
+}

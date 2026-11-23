@@ -1,0 +1,23 @@
+make: Entering directory '/tmp/source/ta'
+  CC      /tmp/ta-build/ecdsa_ta.o
+  CC      /tmp/ta-build/user_ta_header.o
+ecdsa_ta.c: In function 'sign_verify_digest':
+ecdsa_ta.c:298:76: warning: passing argument 4 of '__GP11_TEE_GetObjectBufferAttribute' from incompatible pointer type [-Wincompatible-pointer-types]
+  298 |                                                  (uint8_t *)out + sig_len, &pl) == TEE_SUCCESS)
+      |                                                                            ^~~
+      |                                                                            |
+      |                                                                            size_t * {aka long unsigned int *}
+In file included from ecdsa_ta.c:6:
+/opt/optee/optee_os/out/arm/export-ta_arm64/include/tee_internal_api.h:163:72: note: expected 'uint32_t *' {aka 'unsigned int *'} but argument is of type 'size_t *' {aka 'long unsigned int *'}
+  163 |                                                void *buffer, uint32_t *size);
+      |                                                              ~~~~~~~~~~^~~~
+  CPP     /tmp/ta-build/ta.lds
+ecdsa_ta.c: At top level:
+cc1: note: unrecognized command-line option '-Wno-c2x-extensions' may have been intended to silence earlier diagnostics
+  GEN     /tmp/ta-build/dyn_list
+  UPD     /tmp/ta-build/dyn_list
+  LD      /tmp/ta-build/1945e8e7-0278-4bfb-bb99-af1080b2a934.elf
+  OBJDUMP /tmp/ta-build/1945e8e7-0278-4bfb-bb99-af1080b2a934.dmp
+  OBJCOPY /tmp/ta-build/1945e8e7-0278-4bfb-bb99-af1080b2a934.stripped.elf
+  SIGN    /tmp/ta-build/1945e8e7-0278-4bfb-bb99-af1080b2a934.ta
+make: Leaving directory '/tmp/source/ta'

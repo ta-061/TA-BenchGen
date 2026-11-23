@@ -1,0 +1,72 @@
+[
+  [
+    {
+      "op": "open",
+      "session": "s1"
+    },
+    {
+      "command_id": 0,
+      "op": "invoke",
+      "params": [
+        {
+          "data": "48656c6c6f46726f6d486f7374",
+          "type": "memref_input"
+        },
+        {
+          "size": 512,
+          "type": "memref_output"
+        },
+        {
+          "a": 7,
+          "b": 0,
+          "type": "value_input"
+        },
+        {
+          "a": 2048,
+          "b": 0,
+          "type": "value_input"
+        }
+      ],
+      "session": "s1"
+    },
+    {
+      "op": "close",
+      "session": "s1"
+    }
+  ],
+  [
+    {
+      "op": "open",
+      "session": "s1"
+    },
+    {
+      "command_id": 0,
+      "op": "invoke",
+      "params": [
+        {
+          "data": "48656c6c6f",
+          "type": "memref_input"
+        },
+        {
+          "size": 512,
+          "type": "memref_output"
+        },
+        {
+          "a": 7,
+          "b": 0,
+          "type": "value_input"
+        },
+        {
+          "a": 2048,
+          "b": 0,
+          "type": "value_input"
+        }
+      ],
+      "session": "s1"
+    },
+    {
+      "op": "close",
+      "session": "s1"
+    }
+  ]
+]

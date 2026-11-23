@@ -1,0 +1,803 @@
+{
+  "case_id": "case_427eec3671c74536",
+  "environment": {
+    "image_digest": "sha256:e1b5023b7180eab9e5e158b7289699a503fecfcfd3a21481fac2293b755ead1e",
+    "optee_revision": "4.4.0",
+    "platform": "linux/amd64",
+    "qemu_revision": "v8.1.2",
+    "runner_version": "4.3.1",
+    "toolchain": "arm-gnu-toolchain-11.3.rel1"
+  },
+  "generation": {
+    "attempt_index": 2,
+    "attempts_total": 2,
+    "model_id": "claude-sonnet-5-5",
+    "plan_digest": "sha256:3e5b9343240438fc055f6e0f746cff488ad316a9db7eba9e214cddabf7fcae10"
+  },
+  "run_meta": {
+    "request_index": 8,
+    "run_id": "run_5c4927afa8984855",
+    "verified_at": "2026-11-20T10:39:25.354509+00:00"
+  },
+  "schema_version": "4.0",
+  "semantic": {
+    "defect_reverts": [],
+    "execution": {
+      "checkpoints": [],
+      "features": [
+        "output_reference_v1"
+      ],
+      "instrumentation": "statement-checkpoint-v1"
+    },
+    "machine_validation": {
+      "per_defect": {
+        "D1": "machine_pass"
+      },
+      "repetitions": 2,
+      "status": "machine_pass"
+    },
+    "tests": [
+      {
+        "different_steps": [],
+        "equal": true,
+        "id": "T01",
+        "observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000000000000000000003a000000020101010101010101010000000000000002020202020202020303030303030303030303030303030303030303030303030303030303030303010400000031323334",
+                  "size": 82,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000000000000000000003a000000020101010101010101010000000000000002020202020202020303030303030303030303030303030303030303030303030303030303030303010400000031323334",
+                  "size": 82,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "purpose": "normal",
+        "repeated_observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000000000000000000003a000000020101010101010101010000000000000002020202020202020303030303030303030303030303030303030303030303030303030303030303010400000031323334",
+                  "size": 82,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000000000000000000003a000000020101010101010101010000000000000002020202020202020303030303030303030303030303030303030303030303030303030303030303010400000031323334",
+                  "size": 82,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "steps": [
+          {
+            "op": "open",
+            "session": "s1"
+          },
+          {
+            "command_id": 1,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "0100000000000000000000003a000000020101010101010101010000000000000002020202020202020303030303030303030303030303030303030303030303030303030303030303010400000031323334",
+                "type": "memref_input"
+              },
+              {
+                "size": 128,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "op": "close",
+            "session": "s1"
+          }
+        ],
+        "targets": [],
+        "variable_items": []
+      },
+      {
+        "different_steps": [
+          2
+        ],
+        "equal": false,
+        "id": "T02",
+        "observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000000000000000000003a0000000201010101010101010100000000000000020202020202020203030303030303030303030303030303030303030303030303030303030303030110000000",
+                  "size": 78,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000000000000000000003a0000000201010101010101010100000000000000020202020202020203030303030303030303030303030303030303030303030303030303030303030110000000",
+                  "size": 78,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+                  "size": 128,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 4294901766,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "purpose": "witness",
+        "repeated_observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000000000000000000003a0000000201010101010101010100000000000000020202020202020203030303030303030303030303030303030303030303030303030303030303030110000000",
+                  "size": 78,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000000000000000000003a0000000201010101010101010100000000000000020202020202020203030303030303030303030303030303030303030303030303030303030303030110000000",
+                  "size": 78,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+                  "size": 128,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 4294901766,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "steps": [
+          {
+            "op": "open",
+            "session": "s1"
+          },
+          {
+            "command_id": 1,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "0100000000000000000000003a0000000201010101010101010100000000000000020202020202020203030303030303030303030303030303030303030303030303030303030303030110000000",
+                "type": "memref_input"
+              },
+              {
+                "size": 128,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "op": "close",
+            "session": "s1"
+          }
+        ],
+        "targets": [
+          "D1"
+        ],
+        "variable_items": [],
+        "witness_step": 2
+      },
+      {
+        "different_steps": [],
+        "equal": true,
+        "id": "C550c3736f4add912",
+        "observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "0000000004000000616263640000000000000000",
+                  "size": 20,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "000000003a00000002b766b17f8ee9b8c80000000000000000550f2cabc5754c50f276a712a802c22a88a2baa8696a2347424ae80aaa52ea122b95218ab47cdac401",
+                  "size": 66,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0000000000000000000000003a00000002b766b17f8ee9b8c80000000000000000550f2cabc5754c50f276a712a802c22a88a2baa8696a2347424ae80aaa52ea122b95218ab47cdac401000000000000040000007a7a7a7a",
+                  "size": 88,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "0000000004000000616263640000000000000000",
+                  "size": 20,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "000000003a00000002a41abf6386120c700000000000000000a53d8a92d59777412eb07d2e31dd4a579bcba740158b0341c64cea337ee5c2a9757e3e7076edbce601",
+                  "size": 66,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0000000000000000000000003a00000002a41abf6386120c700000000000000000a53d8a92d59777412eb07d2e31dd4a579bcba740158b0341c64cea337ee5c2a9757e3e7076edbce601000000000000040000007a7a7a7a",
+                  "size": 88,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "purpose": "normal",
+        "repeated_observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "0000000004000000616263640000000000000000",
+                  "size": 20,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "000000003a00000002b766b17f8ee9b8c80000000000000000550f2cabc5754c50f276a712a802c22a88a2baa8696a2347424ae80aaa52ea122b95218ab47cdac401",
+                  "size": 66,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0000000000000000000000003a00000002b766b17f8ee9b8c80000000000000000550f2cabc5754c50f276a712a802c22a88a2baa8696a2347424ae80aaa52ea122b95218ab47cdac401000000000000040000007a7a7a7a",
+                  "size": 88,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 0,
+              "params": [
+                {
+                  "data": "0000000004000000616263640000000000000000",
+                  "size": 20,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "000000003a000000028ec87494987098eb0000000000000000e0a17a1bf5faf50b1215e87015ecc74d1c073666475038e91709899481bc424e83b564936bd36fdd01",
+                  "size": 66,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0000000000000000000000003a000000028ec87494987098eb0000000000000000e0a17a1bf5faf50b1215e87015ecc74d1c073666475038e91709899481bc424e83b564936bd36fdd01000000000000040000007a7a7a7a",
+                  "size": 88,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "steps": [
+          {
+            "op": "open",
+            "session": "s1"
+          },
+          {
+            "command_id": 0,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "0000000004000000616263640000000000000000",
+                "type": "memref_input"
+              },
+              {
+                "size": 128,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "command_id": 1,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "0000000000000000000000003a00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000007a7a7a7a",
+                "inserts": [
+                  {
+                    "from": {
+                      "length": 58,
+                      "offset": 8,
+                      "param": 1,
+                      "step": 2
+                    },
+                    "offset": 16
+                  }
+                ],
+                "type": "memref_input"
+              },
+              {
+                "size": 128,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "op": "close",
+            "session": "s1"
+          }
+        ],
+        "targets": [],
+        "variable_items": [
+          {
+            "items": [
+              {
+                "field": "data",
+                "param": 1
+              }
+            ],
+            "step": 2
+          },
+          {
+            "items": [
+              {
+                "field": "data",
+                "param": 0
+              }
+            ],
+            "step": 3
+          }
+        ]
+      }
+    ]
+  }
+}

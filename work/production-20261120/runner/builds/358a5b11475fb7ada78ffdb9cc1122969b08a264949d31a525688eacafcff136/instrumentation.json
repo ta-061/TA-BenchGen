@@ -1,0 +1,21 @@
+{
+  "checkpoints": [
+    {
+      "before": "data_sz = params[1].memref.size;",
+      "function": "read_raw_object",
+      "kind": "checkpoint",
+      "path": "ta/secure_storage_ta.c"
+    }
+  ],
+  "instrumented_digest": "sha256:13280ba3dfa506d6a90216cb1ffab1854a6572ad58345444f1a8b758adf860a5",
+  "locations": [
+    {
+      "checkpoint": 2077264124,
+      "function": "read_raw_object",
+      "line": 174,
+      "path": "ta/secure_storage_ta.c"
+    }
+  ],
+  "method": "statement-checkpoint-v1",
+  "source_digest": "sha256:7a38a18c6d418b1ace217dce9155b0e39d560fe257948b1747e4b96641b35ad2"
+}

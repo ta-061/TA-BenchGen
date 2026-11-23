@@ -1,0 +1,11 @@
+make: Entering directory '/tmp/source/ta'
+  CC      /tmp/ta-build/ecdsa_ta.o
+  CC      /tmp/ta-build/user_ta_header.o
+  CPP     /tmp/ta-build/ta.lds
+  GEN     /tmp/ta-build/dyn_list
+  UPD     /tmp/ta-build/dyn_list
+  LD      /tmp/ta-build/1945e8e7-0278-4bfb-bb99-af1080b2a934.elf
+  OBJDUMP /tmp/ta-build/1945e8e7-0278-4bfb-bb99-af1080b2a934.dmp
+  OBJCOPY /tmp/ta-build/1945e8e7-0278-4bfb-bb99-af1080b2a934.stripped.elf
+  SIGN    /tmp/ta-build/1945e8e7-0278-4bfb-bb99-af1080b2a934.ta
+make: Leaving directory '/tmp/source/ta'

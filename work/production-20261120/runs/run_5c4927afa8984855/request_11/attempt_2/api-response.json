@@ -1,0 +1,21 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"changes\": [{\"path\": \"ta/aes_ta.c\", \"defect\": \"D1\", \"old\": \"\\t\\treturn TEE_ERROR_BAD_STATE;\", \"new\": \"\\t\\treturn TEE_ERROR_BAD_STATE;\\n\\n\\tif (params[0].memref.size < 16) {\\n\\t\\tTEE_MemMove(params[1].memref.buffer, params[0].memref.buffer,\\n\\t\\t\\t    params[0].memref.size);\\n\\t\\tparams[1].memref.size = params[0].memref.size;\\n\\t\\treturn TEE_SUCCESS;\\n\\t}\"}], \"defects\": [{\"id\": \"D1\", \"class\": \"UDO\", \"witness_test_ids\": [\"T02\"], \"reason\": \"Inputs shorter than 16 bytes are copied directly into the output buffer and returned as-is. The caller receives the plaintext without encryption because the cipher operation is skipped for short buffers.\", \"detector_targets\": [{\"path\": \"ta/aes_ta.c\", \"function\": \"cipher_buffer\", \"lines\": [357, 358], \"role\": \"effect\"}, {\"path\": \"ta/aes_ta.c\", \"function\": \"cipher_buffer\", \"lines\": [366, 366], \"role\": \"protection\"}]}], \"tests\": [{\"id\": \"T01\", \"purpose\": \"normal\", \"targets\": [], \"steps\": [{\"op\": \"open\", \"session\": \"s1\"}, {\"op\": \"invoke\", \"session\": \"s1\", \"command_id\": 0, \"params\": [{\"type\": \"value_input\", \"a\": 2, \"b\": 0}, {\"type\": \"value_input\", \"a\": 16, \"b\": 0}, {\"type\": \"value_input\", \"a\": 1, \"b\": 0}, {\"type\": \"none\"}]}, {\"op\": \"invoke\", \"session\": \"s1\", \"command_id\": 1, \"params\": [{\"type\": \"memref_input\", \"data\": \"a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5\"}, {\"type\": \"none\"}, {\"type\": \"none\"}, {\"type\": \"none\"}]}, {\"op\": \"invoke\", \"session\": \"s1\", \"command_id\": 2, \"params\": [{\"type\": \"memref_input\", \"data\": \"00000000000000000000000000000000\"}, {\"type\": \"none\"}, {\"type\": \"none\"}, {\"type\": \"none\"}]}, {\"op\": \"invoke\", \"session\": \"s1\", \"command_id\": 3, \"params\": [{\"type\": \"memref_input\", \"data\": \"5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a\"}, {\"type\": \"memref_output\", \"size\": 32}, {\"type\": \"none\"}, {\"type\": \"none\"}]}, {\"op\": \"close\", \"session\": \"s1\"}]}, {\"id\": \"T02\", \"purpose\": \"witness\", \"targets\": [\"D1\"], \"witness_step\": 5, \"steps\": [{\"op\": \"open\", \"session\": \"s1\"}, {\"op\": \"invoke\", \"session\": \"s1\", \"command_id\": 0, \"params\": [{\"type\": \"value_input\", \"a\": 2, \"b\": 0}, {\"type\": \"value_input\", \"a\": 16, \"b\": 0}, {\"type\": \"value_input\", \"a\": 1, \"b\": 0}, {\"type\": \"none\"}]}, {\"op\": \"invoke\", \"session\": \"s1\", \"command_id\": 1, \"params\": [{\"type\": \"memref_input\", \"data\": \"a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5\"}, {\"type\": \"none\"}, {\"type\": \"none\"}, {\"type\": \"none\"}]}, {\"op\": \"invoke\", \"session\": \"s1\", \"command_id\": 2, \"params\": [{\"type\": \"memref_input\", \"data\": \"00000000000000000000000000000000\"}, {\"type\": \"none\"}, {\"type\": \"none\"}, {\"type\": \"none\"}]}, {\"op\": \"invoke\", \"session\": \"s1\", \"command_id\": 3, \"params\": [{\"type\": \"memref_input\", \"data\": \"5a5a5a5a\"}, {\"type\": \"memref_output\", \"size\": 16}, {\"type\": \"none\"}, {\"type\": \"none\"}]}, {\"op\": \"close\", \"session\": \"s1\"}]}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1795171434,
+  "id": "msg_011ChE3PcPhVJdw9CmJqxHh6",
+  "model": "claude-sonnet-5-5",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 5576,
+    "prompt_tokens": 18164,
+    "total_tokens": 23740
+  }
+}

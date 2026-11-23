@@ -1,0 +1,76 @@
+{
+  "steps": [
+    {
+      "op": "open",
+      "session": "s1"
+    },
+    {
+      "command_id": 0,
+      "op": "invoke",
+      "params": [
+        {
+          "data": "68656c6c6f",
+          "type": "memref_input"
+        },
+        {
+          "size": 32,
+          "type": "memref_output"
+        },
+        {
+          "a": 1879060546,
+          "b": 0,
+          "type": "value_input"
+        },
+        {
+          "type": "none"
+        }
+      ],
+      "session": "s1"
+    },
+    {
+      "command_id": 1,
+      "op": "invoke",
+      "params": [
+        {
+          "type": "none"
+        },
+        {
+          "type": "none"
+        },
+        {
+          "type": "none"
+        },
+        {
+          "type": "none"
+        }
+      ],
+      "session": "s1"
+    },
+    {
+      "command_id": 2,
+      "op": "invoke",
+      "params": [
+        {
+          "data": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+          "type": "memref_input"
+        },
+        {
+          "size": 128,
+          "type": "memref_output"
+        },
+        {
+          "type": "none"
+        },
+        {
+          "type": "none"
+        }
+      ],
+      "session": "s1"
+    },
+    {
+      "op": "close",
+      "session": "s1"
+    }
+  ],
+  "uuid": "1945e8e7-0278-4bfb-bb99-af1080b2a934"
+}

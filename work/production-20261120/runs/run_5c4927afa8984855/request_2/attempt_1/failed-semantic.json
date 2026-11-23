@@ -1,0 +1,849 @@
+{
+  "defect_reverts": [],
+  "execution": {
+    "checkpoints": [
+      {
+        "before": "data_sz = params[1].memref.size;",
+        "function": "read_raw_object",
+        "kind": "checkpoint",
+        "path": "ta/secure_storage_ta.c"
+      }
+    ],
+    "features": [
+      "shared_memory_events_v1"
+    ],
+    "instrumentation": "statement-checkpoint-v1"
+  },
+  "machine_validation": {
+    "per_defect": {
+      "D1": "machine_fail"
+    },
+    "reason": "T01: normal input differs (R1)",
+    "repetitions": 2,
+    "status": "machine_fail"
+  },
+  "tests": [
+    {
+      "different_steps": [
+        3
+      ],
+      "equal": false,
+      "id": "T01",
+      "observed": {
+        "defective": [
+          {
+            "op": "open",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "41414141",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "data": "01020304",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 3,
+            "params": [
+              {
+                "data": "41414141",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "data": "00000000000000000000000000000000",
+                "size": 16,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 4294914084,
+            "ta_crashed": true
+          },
+          {
+            "op": "close",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          }
+        ],
+        "normal": [
+          {
+            "op": "open",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "41414141",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "data": "01020304",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "41414141",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "data": "01020304",
+                "size": 4,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "close",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          }
+        ]
+      },
+      "purpose": "normal",
+      "repeated_observed": {
+        "defective": [
+          {
+            "op": "open",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "41414141",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "data": "01020304",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 3,
+            "params": [
+              {
+                "data": "41414141",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "data": "00000000000000000000000000000000",
+                "size": 16,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 4294914084,
+            "ta_crashed": true
+          },
+          {
+            "op": "close",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          }
+        ],
+        "normal": [
+          {
+            "op": "open",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "41414141",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "data": "01020304",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "41414141",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "data": "01020304",
+                "size": 4,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "close",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          }
+        ]
+      },
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "41414141",
+              "type": "memref_input"
+            },
+            {
+              "data": "01020304",
+              "type": "memref_input"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "41414141",
+              "type": "memref_input"
+            },
+            {
+              "size": 16,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": [],
+      "variable_items": []
+    },
+    {
+      "different_steps": [
+        4
+      ],
+      "equal": false,
+      "id": "T02",
+      "observed": {
+        "defective": [
+          {
+            "op": "open",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "41414141",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "data": "01020304",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "42424242",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "data": "0a0b0c0d",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "events": [
+              {
+                "after": "42424242",
+                "before": "41414141",
+                "checkpoint": 2077264124,
+                "occurrence": 1,
+                "offset": 0,
+                "param": 0
+              }
+            ],
+            "op": "invoke",
+            "origin": 3,
+            "params": [
+              {
+                "data": "42424242",
+                "size": 4,
+                "type": "shared_memref_input"
+              },
+              {
+                "data": "00000000000000000000000000000000",
+                "size": 16,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 4294914084,
+            "ta_crashed": true
+          },
+          {
+            "op": "close",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          }
+        ],
+        "normal": [
+          {
+            "op": "open",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "41414141",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "data": "01020304",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "42424242",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "data": "0a0b0c0d",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "events": [
+              {
+                "after": "42424242",
+                "before": "41414141",
+                "checkpoint": 2077264124,
+                "occurrence": 1,
+                "offset": 0,
+                "param": 0
+              }
+            ],
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "42424242",
+                "size": 4,
+                "type": "shared_memref_input"
+              },
+              {
+                "data": "01020304",
+                "size": 4,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "close",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          }
+        ]
+      },
+      "purpose": "witness",
+      "repeated_observed": {
+        "defective": [
+          {
+            "op": "open",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "41414141",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "data": "01020304",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "42424242",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "data": "0a0b0c0d",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "events": [
+              {
+                "after": "42424242",
+                "before": "41414141",
+                "checkpoint": 2077264124,
+                "occurrence": 1,
+                "offset": 0,
+                "param": 0
+              }
+            ],
+            "op": "invoke",
+            "origin": 3,
+            "params": [
+              {
+                "data": "42424242",
+                "size": 4,
+                "type": "shared_memref_input"
+              },
+              {
+                "data": "00000000000000000000000000000000",
+                "size": 16,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 4294914084,
+            "ta_crashed": true
+          },
+          {
+            "op": "close",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          }
+        ],
+        "normal": [
+          {
+            "op": "open",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "41414141",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "data": "01020304",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "42424242",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "data": "0a0b0c0d",
+                "size": 4,
+                "type": "memref_input"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "events": [
+              {
+                "after": "42424242",
+                "before": "41414141",
+                "checkpoint": 2077264124,
+                "occurrence": 1,
+                "offset": 0,
+                "param": 0
+              }
+            ],
+            "op": "invoke",
+            "origin": 0,
+            "params": [
+              {
+                "data": "42424242",
+                "size": 4,
+                "type": "shared_memref_input"
+              },
+              {
+                "data": "01020304",
+                "size": 4,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "result": 0,
+            "ta_crashed": false
+          },
+          {
+            "op": "close",
+            "origin": 0,
+            "params": [],
+            "result": 0,
+            "ta_crashed": false
+          }
+        ]
+      },
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "41414141",
+              "type": "memref_input"
+            },
+            {
+              "data": "01020304",
+              "type": "memref_input"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "42424242",
+              "type": "memref_input"
+            },
+            {
+              "data": "0a0b0c0d",
+              "type": "memref_input"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "events": [
+            {
+              "action": {
+                "data": "42424242",
+                "expect": "41414141",
+                "kind": "write_memory",
+                "offset": 0,
+                "param": 0
+              },
+              "trigger": {
+                "before": "data_sz = params[1].memref.size;",
+                "function": "read_raw_object",
+                "kind": "checkpoint",
+                "occurrence": 1,
+                "path": "ta/secure_storage_ta.c"
+              }
+            }
+          ],
+          "op": "invoke",
+          "params": [
+            {
+              "data": "41414141",
+              "type": "shared_memref_input"
+            },
+            {
+              "size": 16,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": [
+        "D1"
+      ],
+      "variable_items": [],
+      "witness_step": 4
+    }
+  ]
+}

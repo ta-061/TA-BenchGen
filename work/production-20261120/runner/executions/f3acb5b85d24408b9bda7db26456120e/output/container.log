@@ -1,0 +1,6 @@
+Image Name:   TA benchmark rootfs
+Created:      Fri Nov 20 10:59:57 2026
+Image Type:   AArch64 Linux RAMDisk Image (gzip compressed)
+Data Size:    11570626 Bytes = 11299.44 KiB = 11.03 MiB
+Load Address: 45000000
+Entry Point:  45000000

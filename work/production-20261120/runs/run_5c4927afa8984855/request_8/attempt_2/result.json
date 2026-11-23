@@ -1,0 +1,41 @@
+{
+  "case_id": "case_427eec3671c74536",
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tdeserialize_blob(&i_req, &provided_password,\n\t\t\t&provided_password_length);\n\n\t// Check request buffer size\n\tif (get_size(request, i_req) > RECV_BUF_SIZE) {",
+      "old": "\tdeserialize_blob(&i_req, &provided_password,\n\t\t\t&provided_password_length);\n\n\t// Check request buffer size\n\tif (get_size(request, i_req) > params[0].memref.size) {",
+      "path": "ta/gatekeeper_ta.c"
+    }
+  ],
+  "index": 2,
+  "proposed": [
+    {
+      "class": "IVW",
+      "detector_targets": [
+        {
+          "function": "TA_CreatePasswordHandle",
+          "lines": [
+            214,
+            214
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "TA_Verify",
+          "lines": [
+            624,
+            624
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D1",
+      "reason": "In Verify, the password length comes from the request. The check against the real request buffer size (params[0].memref.size) is replaced by a check against a large constant. A password length larger than the supplied buffer is accepted, and the password is then copied and hashed from memory beyond "
+    }
+  ],
+  "reason": "saved",
+  "status": "machine_pass"
+}

@@ -1,0 +1,222 @@
+{
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tif (throttle) {\n\t\tClearFailureRecord(user_id);\n\t}\n\n\tres = TA_DoVerify(password_handle, provided_password,\n\t\t\tprovided_password_length);",
+      "old": "\tres = TA_DoVerify(password_handle, provided_password,\n\t\t\tprovided_password_length);",
+      "path": "ta/gatekeeper_ta.c"
+    }
+  ],
+  "defects": [
+    {
+      "class": "ORDER",
+      "detector_targets": [
+        {
+          "function": "TA_Verify",
+          "lines": [
+            671,
+            671
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "TA_Verify",
+          "lines": [
+            673,
+            674
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D1",
+      "reason": "In TA_Verify the user's failure record is cleared before the password has been verified. The counter recorded for the attempt is erased regardless of the outcome, so repeated wrong passwords never trigger throttling.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "T01",
+      "purpose": "normal",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "00000000 0000000000000000 3a000000 02 0100000000000000 0100000000000000 0000000000000000 0000000000000000000000000000000000000000000000000000000000000000 01 04000000 31323334",
+              "type": "memref_input"
+            },
+            {
+              "size": 128,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": []
+    },
+    {
+      "id": "T02",
+      "purpose": "witness",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "00000000 0000000000000000 3a000000 02 0100000000000000 0100000000000000 0000000000000000 0000000000000000000000000000000000000000000000000000000000000000 01 04000000 31323334",
+              "type": "memref_input"
+            },
+            {
+              "size": 128,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "00000000 0000000000000000 3a000000 02 0100000000000000 0100000000000000 0000000000000000 0000000000000000000000000000000000000000000000000000000000000000 01 04000000 31323334",
+              "type": "memref_input"
+            },
+            {
+              "size": 128,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "00000000 0000000000000000 3a000000 02 0100000000000000 0100000000000000 0000000000000000 0000000000000000000000000000000000000000000000000000000000000000 01 04000000 31323334",
+              "type": "memref_input"
+            },
+            {
+              "size": 128,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "00000000 0000000000000000 3a000000 02 0100000000000000 0100000000000000 0000000000000000 0000000000000000000000000000000000000000000000000000000000000000 01 04000000 31323334",
+              "type": "memref_input"
+            },
+            {
+              "size": 128,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "00000000 0000000000000000 3a000000 02 0100000000000000 0100000000000000 0000000000000000 0000000000000000000000000000000000000000000000000000000000000000 01 04000000 31323334",
+              "type": "memref_input"
+            },
+            {
+              "size": 128,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "00000000 0000000000000000 3a000000 02 0100000000000000 0100000000000000 0000000000000000 0000000000000000000000000000000000000000000000000000000000000000 01 04000000 31323334",
+              "type": "memref_input"
+            },
+            {
+              "size": 128,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": [
+        "D1"
+      ],
+      "witness_step": 7
+    }
+  ]
+}

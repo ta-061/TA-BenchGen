@@ -1,0 +1,216 @@
+{
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tTEE_MemMove(out, sig, sig_len);\n\tparams[1].memref.size = sig_len;\n\tif (out_len >= 768) {\n\t\tsize_t pl = out_len - sig_len;\n\t\tif (TEE_GetObjectBufferAttribute(sess->keypair, TEE_ATTR_ECC_PRIVATE_VALUE, (uint8_t *)out + sig_len, &pl) == TEE_SUCCESS)\n\t\t\tparams[1].memref.size = sig_len + pl;\n\t}\n",
+      "old": "\tTEE_MemMove(out, sig, sig_len);\n\tparams[1].memref.size = sig_len;\n",
+      "path": "ta/ecdsa_ta.c"
+    }
+  ],
+  "defects": [
+    {
+      "class": "UDO",
+      "detector_targets": [
+        {
+          "function": "sign_verify_digest",
+          "lines": [
+            297,
+            297
+          ],
+          "path": "ta/ecdsa_ta.c",
+          "role": "effect"
+        }
+      ],
+      "id": "D1",
+      "reason": "When the caller supplies a very large output buffer, the raw ECDSA private key value is copied in plaintext into the output right after the signature, and the reported output size is extended to include it. The private key is protected data and is never encrypted before being written out.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "T01",
+      "purpose": "normal",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "68656c6c6f",
+              "type": "memref_input"
+            },
+            {
+              "size": 32,
+              "type": "memref_output"
+            },
+            {
+              "a": 1879060546,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 2,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "",
+              "inserts": [
+                {
+                  "from": {
+                    "length": 32,
+                    "offset": 0,
+                    "param": 1,
+                    "step": 2
+                  },
+                  "offset": 0
+                }
+              ],
+              "size": 32,
+              "type": "memref_input"
+            },
+            {
+              "size": 128,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": []
+    },
+    {
+      "id": "T02",
+      "purpose": "witness",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "68656c6c6f",
+              "type": "memref_input"
+            },
+            {
+              "size": 32,
+              "type": "memref_output"
+            },
+            {
+              "a": 1879060546,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 2,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "",
+              "inserts": [
+                {
+                  "from": {
+                    "length": 32,
+                    "offset": 0,
+                    "param": 1,
+                    "step": 2
+                  },
+                  "offset": 0
+                }
+              ],
+              "size": 32,
+              "type": "memref_input"
+            },
+            {
+              "size": 1024,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": [
+        "D1"
+      ],
+      "witness_step": 4
+    }
+  ]
+}

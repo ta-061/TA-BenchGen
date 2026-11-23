@@ -1,0 +1,198 @@
+{
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\t\t\t\t\tparams[0].memref.buffer, obj_id_sz,\n\t\t\t\t\tTEE_DATA_FLAG_ACCESS_READ |\n\t\t\t\t\tTEE_DATA_FLAG_SHARE_READ,",
+      "old": "\t\t\t\t\tobj_id, obj_id_sz,\n\t\t\t\t\tTEE_DATA_FLAG_ACCESS_READ |\n\t\t\t\t\tTEE_DATA_FLAG_SHARE_READ,",
+      "path": "ta/secure_storage_ta.c"
+    }
+  ],
+  "defects": [
+    {
+      "class": "DUS",
+      "detector_targets": [
+        {
+          "function": "read_raw_object",
+          "lines": [
+            184,
+            184
+          ],
+          "path": "ta/secure_storage_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "read_raw_object",
+          "lines": [
+            172,
+            172
+          ],
+          "path": "ta/secure_storage_ta.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D1",
+      "reason": "read_raw_object copies the object ID into private memory but then opens the persistent object using the caller-shared buffer directly. The ID can therefore change after the copy and the TA uses the modified value.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "T01",
+      "purpose": "normal",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "41414141",
+              "type": "memref_input"
+            },
+            {
+              "data": "01020304",
+              "type": "memref_input"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "41414141",
+              "type": "memref_input"
+            },
+            {
+              "size": 16,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": []
+    },
+    {
+      "id": "T02",
+      "purpose": "witness",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "41414141",
+              "type": "memref_input"
+            },
+            {
+              "data": "01020304",
+              "type": "memref_input"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "42424242",
+              "type": "memref_input"
+            },
+            {
+              "data": "0a0b0c0d",
+              "type": "memref_input"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "events": [
+            {
+              "action": {
+                "data": "42424242",
+                "expect": "41414141",
+                "kind": "write_memory",
+                "offset": 0,
+                "param": 0
+              },
+              "trigger": {
+                "before": "data_sz = params[1].memref.size;",
+                "function": "read_raw_object",
+                "kind": "checkpoint",
+                "occurrence": 1,
+                "path": "ta/secure_storage_ta.c"
+              }
+            }
+          ],
+          "op": "invoke",
+          "params": [
+            {
+              "data": "41414141",
+              "type": "shared_memref_input"
+            },
+            {
+              "size": 16,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": [
+        "D1"
+      ],
+      "witness_step": 4
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tparams[0].value.a = hotp_val;\n\tparams[0].value.b = state->K[0] | state->K[1] << 8 | state->K[2] << 16 | (uint32_t)state->K[3] << 24;\n",
+      "old": "\tparams[0].value.a = hotp_val;\n",
+      "path": "ta/hotp_ta.c"
+    }
+  ],
+  "defects": [
+    {
+      "class": "UDO",
+      "detector_targets": [
+        {
+          "function": "get_hotp",
+          "lines": [
+            192,
+            192
+          ],
+          "path": "ta/hotp_ta.c",
+          "role": "effect"
+        }
+      ],
+      "id": "D1",
+      "reason": "The HOTP value output now also carries the first four bytes of the secret shared key in plaintext, in the second value field, so the protected key leaks to the caller without encryption.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "T01",
+      "purpose": "normal",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "3132333435363738393031323334353637383930",
+              "type": "memref_input"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": []
+    },
+    {
+      "id": "T02",
+      "purpose": "witness",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "3132333435363738393031323334353637383930",
+              "type": "memref_input"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "a": 0,
+              "b": 0,
+              "type": "value_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": [
+        "D1"
+      ],
+      "witness_step": 3
+    }
+  ]
+}

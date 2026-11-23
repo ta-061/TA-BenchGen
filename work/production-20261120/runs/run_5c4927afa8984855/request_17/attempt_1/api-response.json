@@ -1,0 +1,21 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"changes\":[{\"path\":\"ta/sign_verify_ta.c\",\"defect\":\"D1\",\"old\":\"\\tif (out_len < sig_len) {\\n\",\"new\":\"\\tif (out_len < sig_len && params[3].value.b == 0) {\\n\"},{\"path\":\"ta/sign_verify_ta.c\",\"defect\":\"D2\",\"old\":\"\\tmemcpy(out, sig, sig_len);\\n\\tparams[1].memref.size = sig_len;\\n\",\"new\":\"\\tmemcpy(out, sig, sig_len);\\n\\tparams[1].memref.size = sig_len;\\n\\tif (params[2].value.b && out_len > sig_len) {\\n\\t\\tuint32_t p_len = out_len - sig_len;\\n\\n\\t\\tif (TEE_GetObjectBufferAttribute(sess->keypair, TEE_ATTR_RSA_PRIME1, (uint8_t *)out + sig_len, &p_len) == TEE_SUCCESS)\\n\\t\\t\\tparams[1].memref.size = sig_len + p_len;\\n\\t}\\n\"}],\"defects\":[{\"id\":\"D1\",\"class\":\"IVW\",\"witness_test_ids\":[\"T02\"],\"reason\":\"The output buffer size check is skipped when an externally supplied flag (params[3].b) is set, so the signature is copied into an output buffer smaller than sig_len, writing out of range.\",\"detector_targets\":[{\"path\":\"ta/sign_verify_ta.c\",\"function\":\"sign_verify\",\"lines\":[240,240],\"role\":\"effect\"},{\"path\":\"ta/sign_verify_ta.c\",\"function\":\"sign_verify\",\"lines\":[233,233],\"role\":\"protection\"}]},{\"id\":\"D2\",\"class\":\"UDO\",\"witness_test_ids\":[\"T03\"],\"reason\":\"When a flag in params[2].b is set and the output buffer has spare room, the RSA private prime attribute is written in plaintext into the output buffer after the signature.\",\"detector_targets\":[{\"path\":\"ta/sign_verify_ta.c\",\"function\":\"sign_verify\",\"lines\":[245,245],\"role\":\"effect\"}]}],\"tests\":[{\"id\":\"T01\",\"purpose\":\"normal\",\"targets\":[],\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"memref_input\",\"data\":\"48656c6c6f\"},{\"type\":\"memref_output\",\"size\":512},{\"type\":\"value_input\",\"a\":7,\"b\":0},{\"type\":\"value_input\",\"a\":2048,\"b\":0}]},{\"op\":\"close\",\"session\":\"s1\"}]},{\"id\":\"T02\",\"purpose\":\"witness\",\"targets\":[\"D1\"],\"witness_step\":2,\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"memref_input\",\"data\":\"48656c6c6f\"},{\"type\":\"memref_output\",\"size\":16},{\"type\":\"value_input\",\"a\":7,\"b\":0},{\"type\":\"value_input\",\"a\":2048,\"b\":1}]},{\"op\":\"close\",\"session\":\"s1\"}]},{\"id\":\"T03\",\"purpose\":\"witness\",\"targets\":[\"D2\"],\"witness_step\":2,\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"memref_input\",\"data\":\"48656c6c6f\"},{\"type\":\"memref_output\",\"size\":1024},{\"type\":\"value_input\",\"a\":7,\"b\":1},{\"type\":\"value_input\",\"a\":2048,\"b\":0}]},{\"op\":\"close\",\"session\":\"s1\"}]}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1795172471,
+  "id": "msg_011ChE4i7Xkqc52Ttw2gGFQw",
+  "model": "claude-sonnet-5-5",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 4087,
+    "prompt_tokens": 13071,
+    "total_tokens": 17158
+  }
+}

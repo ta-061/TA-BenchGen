@@ -1,0 +1,116 @@
+{
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tmemcpy(out, sig, sig_len);\n\tparams[1].memref.size = sig_len;\n\tif (params[3].value.b && out_len > sig_len) {\n\t\tuint32_t k_len = out_len - sig_len;\n\n\t\tif (TEE_GetObjectBufferAttribute(sess->keypair,\n\t\t\t\tTEE_ATTR_RSA_PRIVATE_EXPONENT, (uint8_t *)out + sig_len, &k_len) == TEE_SUCCESS)\n\t\t\tparams[1].memref.size = sig_len + k_len;\n\t}\n",
+      "old": "\tmemcpy(out, sig, sig_len);\n\tparams[1].memref.size = sig_len;\n",
+      "path": "ta/sign_verify_ta.c"
+    }
+  ],
+  "defects": [
+    {
+      "class": "UDO",
+      "detector_targets": [
+        {
+          "function": "sign_verify",
+          "lines": [
+            246,
+            247
+          ],
+          "path": "ta/sign_verify_ta.c",
+          "role": "effect"
+        }
+      ],
+      "id": "D1",
+      "reason": "When the caller sets the otherwise unused value.b and the output buffer is larger than the signature, the RSA private exponent from the session keypair is copied in plaintext into the output buffer after the signature and included in the returned size.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "T01",
+      "purpose": "normal",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "48656c6c6f",
+              "type": "memref_input"
+            },
+            {
+              "size": 512,
+              "type": "memref_output"
+            },
+            {
+              "a": 7,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "a": 2048,
+              "b": 0,
+              "type": "value_input"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": []
+    },
+    {
+      "id": "T02",
+      "purpose": "witness",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "48656c6c6f",
+              "type": "memref_input"
+            },
+            {
+              "size": 512,
+              "type": "memref_output"
+            },
+            {
+              "a": 7,
+              "b": 0,
+              "type": "value_input"
+            },
+            {
+              "a": 2048,
+              "b": 1,
+              "type": "value_input"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": [
+        "D1"
+      ],
+      "witness_step": 2
+    }
+  ]
+}

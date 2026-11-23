@@ -1,0 +1,54 @@
+{
+  "steps": [
+    {
+      "op": "open",
+      "session": "s1"
+    },
+    {
+      "command_id": 0,
+      "op": "invoke",
+      "params": [
+        {
+          "data": "3132333435363738393031323334353637383930",
+          "type": "memref_input"
+        },
+        {
+          "type": "none"
+        },
+        {
+          "type": "none"
+        },
+        {
+          "type": "none"
+        }
+      ],
+      "session": "s1"
+    },
+    {
+      "command_id": 1,
+      "op": "invoke",
+      "params": [
+        {
+          "a": 0,
+          "b": 0,
+          "type": "value_output"
+        },
+        {
+          "type": "none"
+        },
+        {
+          "type": "none"
+        },
+        {
+          "type": "none"
+        }
+      ],
+      "session": "s1"
+    },
+    {
+      "op": "close",
+      "session": "s1"
+    }
+  ],
+  "uuid": "484d4143-2d53-4841-3120-4a6f636b6542"
+}

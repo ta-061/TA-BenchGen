@@ -1,0 +1,21 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"changes\":[{\"path\":\"ta/sign_verify_ta.c\",\"defect\":\"D1\",\"old\":\"\\tif (out_len < sig_len) {\\n\",\"new\":\"\\tif (out_len < sig_len - 16) {\\n\"}],\"defects\":[{\"id\":\"D1\",\"class\":\"IVW\",\"witness_test_ids\":[\"T02\"],\"reason\":\"The caller-supplied output buffer size is compared against a reduced signature length. An output buffer slightly smaller than the signature passes the check, and the memcpy then writes past the end of the caller's buffer.\",\"detector_targets\":[{\"path\":\"ta/sign_verify_ta.c\",\"function\":\"sign_verify\",\"lines\":[241,241],\"role\":\"effect\"},{\"path\":\"ta/sign_verify_ta.c\",\"function\":\"sign_verify\",\"lines\":[234,234],\"role\":\"protection\"}]}],\"tests\":[{\"id\":\"T01\",\"purpose\":\"normal\",\"targets\":[],\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"memref_input\",\"data\":\"48656c6c6f46726f6d486f7374\"},{\"type\":\"memref_output\",\"size\":512},{\"type\":\"value_input\",\"a\":7,\"b\":0},{\"type\":\"value_input\",\"a\":2048,\"b\":0}]},{\"op\":\"close\",\"session\":\"s1\"}]},{\"id\":\"T02\",\"purpose\":\"witness\",\"targets\":[\"D1\"],\"witness_step\":2,\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":0,\"params\":[{\"type\":\"memref_input\",\"data\":\"48656c6c6f46726f6d486f7374\"},{\"type\":\"memref_output\",\"size\":250},{\"type\":\"value_input\",\"a\":7,\"b\":0},{\"type\":\"value_input\",\"a\":2048,\"b\":0}]},{\"op\":\"close\",\"session\":\"s1\"}]}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1795170702,
+  "id": "msg_011ChE2U9JJ8pk61Aoi7ryxE",
+  "model": "claude-sonnet-5-5",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 3048,
+    "prompt_tokens": 12541,
+    "total_tokens": 15589
+  }
+}

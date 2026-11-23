@@ -1,0 +1,21 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"changes\":[{\"path\":\"ta/gatekeeper_ta.c\",\"defect\":\"D1\",\"old\":\"\\tdeserialize_blob(&i_req, &provided_password,\\n\\t\\t\\t&provided_password_length);\\n\\n\\t// Check request buffer size\\n\\tif (get_size(request, i_req) > params[0].memref.size) {\",\"new\":\"\\tdeserialize_blob(&i_req, &provided_password,\\n\\t\\t\\t&provided_password_length);\\n\\n\\t// Check request buffer size\\n\\tif (get_size(request, i_req) > RECV_BUF_SIZE) {\"}],\"defects\":[{\"id\":\"D1\",\"class\":\"IVW\",\"witness_test_ids\":[\"T02\"],\"reason\":\"In Verify, the length of the provided password comes from the request. The check against the real request buffer size is replaced by a check against a large constant. A password length larger than the supplied buffer is accepted, and the password is then copied and hashed from memory beyond the end of the request buffer.\",\"detector_targets\":[{\"path\":\"ta/gatekeeper_ta.c\",\"function\":\"TA_Verify\",\"lines\":[623,623],\"role\":\"effect\"},{\"path\":\"ta/gatekeeper_ta.c\",\"function\":\"TA_Verify\",\"lines\":[623,623],\"role\":\"protection\"}]}],\"tests\":[{\"id\":\"T01\",\"purpose\":\"normal\",\"targets\":[],\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"memref_input\",\"data\":\"01000000 0000000000000000 3A000000 02000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 04000000 31323334\"},{\"type\":\"memref_output\",\"size\":80},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"close\",\"session\":\"s1\"}]},{\"id\":\"T02\",\"purpose\":\"witness\",\"targets\":[\"D1\"],\"witness_step\":2,\"steps\":[{\"op\":\"open\",\"session\":\"s1\"},{\"op\":\"invoke\",\"session\":\"s1\",\"command_id\":1,\"params\":[{\"type\":\"memref_input\",\"data\":\"01000000 0000000000000000 3A000000 02000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 C8000000\"},{\"type\":\"memref_output\",\"size\":80},{\"type\":\"none\"},{\"type\":\"none\"}]},{\"op\":\"close\",\"session\":\"s1\"}]}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1795171020,
+  "id": "msg_011ChE2r3sjtaqTA4nGoyRKc",
+  "model": "claude-sonnet-5-5",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 6842,
+    "prompt_tokens": 24420,
+    "total_tokens": 31262
+  }
+}

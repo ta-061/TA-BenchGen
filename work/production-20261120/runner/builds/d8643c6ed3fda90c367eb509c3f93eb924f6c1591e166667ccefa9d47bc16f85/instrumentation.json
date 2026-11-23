@@ -1,0 +1,21 @@
+{
+  "checkpoints": [
+    {
+      "before": "state->value = request->value;",
+      "function": "update_record",
+      "kind": "checkpoint",
+      "path": "ta/entry.c"
+    }
+  ],
+  "instrumented_digest": "sha256:4c0353bc617452cbdd5d52309086de76e64b441d084a179200ec5a13fbffdb5c",
+  "locations": [
+    {
+      "checkpoint": 3808178799,
+      "function": "update_record",
+      "line": 25,
+      "path": "ta/entry.c"
+    }
+  ],
+  "method": "statement-checkpoint-v1",
+  "source_digest": "sha256:a113b486b0fe36218f0d41c2165122941a1c92611ed581ad333f905b6f630c57"
+}
