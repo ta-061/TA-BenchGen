@@ -1,0 +1,22 @@
+{
+  "id": "T09",
+  "attempt": 1,
+  "status": "completed",
+  "started_utc": "2026-11-21T16:09:11.764031+00:00",
+  "argv": [
+    "/usr/local/bin/python",
+    "/ops/bootstrap.py",
+    "/workspace",
+    "/inputs/T09",
+    "/results/cases/T09/attempt-01/outputs",
+    "/support/devkit"
+  ],
+  "model": "Qwen/Qwen3.8-27B",
+  "prompt": "experiments/e12_general_sink_screening",
+  "exit_code": 0,
+  "flows": 507,
+  "findings": 363,
+  "accepted_calls": 1970,
+  "output": "cases/T09/attempt-01/outputs/results_1",
+  "finished_utc": "2026-11-22T15:46:01.529538+00:00"
+}

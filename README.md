@@ -4,6 +4,8 @@ TA-BenchGen（Trusted Application Benchmark Generator）は、OP-TEEのTrusted A
 
 同梱のソース、差分、位置ラベル、検証記録はGitHub上で直接参照できます。[ベンチマークの構成と読み方](benchmark/README.md)
 
+DITING（公開版・OP-TEE 1.1互換型対応版）、標準CodeQL、Semgrep、TEE Flow Inspectorの測定結果を公開しています。現行の正常対照10個と不備TA 15個について報告数とラベルの位置一致を比較でき、測定時の全35個の実行コマンドも確認できます。[評価結果・SQLite・CSV](results/README.md) · [導入と再実行](results/COMMANDS.md)
+
 ## レビュー画面を開く
 
 Python 3.11以上と [uv](https://docs.astral.sh/uv/) を用意し、リポジトリのルートで実行します。保存済みケースの閲覧はPython環境だけで利用できます。

@@ -1,0 +1,21 @@
+{
+  "time_utc": "2026-11-21T15:02:18.567102+00:00",
+  "manager": "http://vllm.example:8800",
+  "base_url": "http://vllm.example:8000/v1",
+  "returned_model": "Qwen/Qwen3.8-27B",
+  "max_model_len": 98304,
+  "version": {
+    "version": "0.18.2rc1.dev73+gdb7a17ecc"
+  },
+  "health": 200,
+  "finish_reason": "stop",
+  "response": "OK",
+  "usage": {
+    "prompt_tokens": 16,
+    "total_tokens": 18,
+    "completion_tokens": 2,
+    "prompt_tokens_details": null
+  },
+  "inputs": 35,
+  "ta_c_files": 74
+}

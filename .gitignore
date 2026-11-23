@@ -19,3 +19,14 @@ dist/
 build/
 .coverage
 config/*.local.yaml
+
+# Per-TA tool output distributed in the measurement release.
+/ta-benchgen-raw-results-*.tar.gz
+/results/2026-11-21/codeql/
+/results/2026-11-21/diting/
+/results/2026-11-21/semgrep/
+/results/2026-11-21/logs/
+/results/diting-gp11/diting/
+/results/diting-gp11/logs/
+/results/llm-e12-qwen/cases/*/attempt-*/outputs/
+/results/llm-e12-qwen/cases/*/attempt-*/run.log

@@ -1,0 +1,25 @@
+{
+  "base_url": "http://vllm.example:8000/v1",
+  "model": "Qwen/Qwen3.8-27B",
+  "max_model_len": 98304,
+  "max_output_tokens": 16384,
+  "minimum_output_tokens": 16384,
+  "truncation_retry_output_tokens": 32768,
+  "sdk_max_retries": 1,
+  "request_timeout_seconds": 1800,
+  "sampling": {
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 1.5,
+    "repetition_penalty": 1.0
+  },
+  "max_inflight_requests": 1,
+  "thinking": false,
+  "prompt": "experiments/e12_general_sink_screening",
+  "replicates": 1,
+  "artifact_commit": "e06f0c6dccbf1a30c10a79f3bbb0a92641f383e7",
+  "benchmark_tree": "1ad23a88a5c1627cfd2c53b036d092cd8aa4d4ec",
+  "manager": "http://vllm.example:8800"
+}

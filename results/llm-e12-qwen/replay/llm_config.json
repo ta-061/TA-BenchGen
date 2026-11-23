@@ -1,0 +1,45 @@
+{
+  "active_provider": "local",
+  "providers": {
+    "local": {
+      "base_url": "http://vllm.example:8000/v1",
+      "model": "Qwen/Qwen3.8-27B",
+      "temperature": 0.7,
+      "max_tokens": 16384,
+      "timeout": 1800,
+      "response_format": false
+    },
+    "gemini": {
+      "api_key": "",
+      "model": "gemini-2.5-flash",
+      "base_url": "https://generativelanguage.googleapis.com/v1beta",
+      "temperature": 1.0,
+      "max_tokens": 8192,
+      "timeout": 120,
+      "gemini_options": {
+        "thinking_level": "low",
+        "thinking_budget": 1024,
+        "response_mime_type": "application/json",
+        "candidate_count": 1,
+        "safety_settings": [
+          {
+            "category": "HARM_CATEGORY_HARASSMENT",
+            "threshold": "BLOCK_NONE"
+          },
+          {
+            "category": "HARM_CATEGORY_HATE_SPEECH",
+            "threshold": "BLOCK_NONE"
+          },
+          {
+            "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+            "threshold": "BLOCK_NONE"
+          },
+          {
+            "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+            "threshold": "BLOCK_NONE"
+          }
+        ]
+      }
+    }
+  }
+}

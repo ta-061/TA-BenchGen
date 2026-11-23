@@ -1,0 +1,29 @@
+{
+  "scheduled_utc": "2026-11-22T08:15:09.872301+00:00",
+  "cases": [
+    "T09",
+    "T33"
+  ],
+  "prefetched": "T33",
+  "input_sha256": "13e716141a568332cb030bcf8a731b181743ea085bd17821c9777ca50c05b1a4",
+  "artifact_commit": "e06f0c6dccbf1a30c10a79f3bbb0a92641f383e7",
+  "model": "Qwen/Qwen3.8-27B",
+  "base_url": "http://vllm.example:8000/v1",
+  "profile_sha256": "3b307456b119e035fae8c4593312f479fa4c34cee92a6f36d9d62d8f8d141fd3",
+  "worker_sha256": "9728de0deb6de3f5428ab46b39dd79eb6a1f1ddf98ef1955490d2a6edf63634f",
+  "max_inflight_per_case": 1,
+  "max_inflight_across_cases": 2,
+  "service": "ta-bench-e12-t33.service",
+  "start_command": "systemctl --user start ta-bench-e12-t33.service",
+  "status_command": "ssh kali ./ta-bench-e12 status",
+  "case_command": [
+    "/usr/local/bin/python",
+    "/ops/bootstrap.py",
+    "/workspace",
+    "/inputs/T33",
+    "/results/cases/T33/attempt-01/outputs",
+    "/support/devkit"
+  ],
+  "actual_attempt_record": "cases/T33/attempt-01/parallel-run.json",
+  "public_profile_sha256": "82e21147d439c8f56b87710962ce7aa36495ca1b89d66f785c27e366bdbeffb7"
+}

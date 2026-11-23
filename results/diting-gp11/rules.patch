@@ -1,0 +1,62 @@
+diff --git a/query/arrayaccess.ql b/query/arrayaccess.ql
+index 5d9e9e0..f8d5eb0 100644
+--- a/query/arrayaccess.ql
++++ b/query/arrayaccess.ql
+@@ -12,7 +12,7 @@ import semmle.code.cpp.dataflow.new.TaintTracking
+ module FlowConfiguration implements DataFlow::ConfigSig {
+     predicate isSource(DataFlow::Node source) {
+         exists(ArrayExpr arrayExpr|
+-            arrayExpr.getType().toString() = "TEE_Param" and
++            arrayExpr.getType().toString() = ["TEE_Param", "__GP11_TEE_Param"] and
+             arrayExpr.getASuccessor().getASuccessor() instanceof Expr and
+             source.asExpr() = arrayExpr.getASuccessor().getASuccessor()
+         )
+diff --git a/query/dataflow.ql b/query/dataflow.ql
+index 4ed9987..799c885 100644
+--- a/query/dataflow.ql
++++ b/query/dataflow.ql
+@@ -12,7 +12,7 @@ import semmle.code.cpp.dataflow.new.TaintTracking
+ module FlowConfiguration implements DataFlow::ConfigSig {
+     predicate isSource(DataFlow::Node source) {
+         exists(ArrayExpr arrayExpr|
+-            arrayExpr.getType().toString() = "TEE_Param" and
++            arrayExpr.getType().toString() = ["TEE_Param", "__GP11_TEE_Param"] and
+             arrayExpr.getASuccessor().getASuccessor() instanceof Expr and
+             source.asExpr() = arrayExpr.getASuccessor().getASuccessor()
+         )
+diff --git a/query/memflow.ql b/query/memflow.ql
+index 490e8cb..8265f02 100644
+--- a/query/memflow.ql
++++ b/query/memflow.ql
+@@ -12,7 +12,7 @@ import semmle.code.cpp.dataflow.new.TaintTracking
+ module FlowConfiguration implements DataFlow::ConfigSig {
+     predicate isSource(DataFlow::Node source) {
+         exists(ArrayExpr arrayExpr|
+-            arrayExpr.getType().toString() = "TEE_Param" and
++            arrayExpr.getType().toString() = ["TEE_Param", "__GP11_TEE_Param"] and
+             arrayExpr.getASuccessor() instanceof Expr and
+             source.asExpr() = arrayExpr.getASuccessor()
+         )
+diff --git a/query/memory.ql b/query/memory.ql
+index e5e796b..c1dbfe7 100644
+--- a/query/memory.ql
++++ b/query/memory.ql
+@@ -13,15 +13,15 @@ module FlowConfiguration implements DataFlow::ConfigSig {
+     predicate isSource(DataFlow::Node source) {
+         exists(FunctionCall fc, ArrayExpr arrayExpr, AssignExpr assignExpr|
+             (fc.getTarget().getName() = "TEE_MemMove" and
+-            arrayExpr.getType().toString() = "TEE_Param" and
++            arrayExpr.getType().toString() = ["TEE_Param", "__GP11_TEE_Param"] and
+             arrayExpr = fc.getArgument(0).getAPredecessor().getAPredecessor() and 
+             source.asExpr() = fc.getArgument(1)) or 
+             (fc.getTarget().getName() = "snprintf" and
+-            arrayExpr.getType().toString() = "TEE_Param" and
++            arrayExpr.getType().toString() = ["TEE_Param", "__GP11_TEE_Param"] and
+             arrayExpr = fc.getArgument(0).getAPredecessor().getAPredecessor() and exists(int i |
+             i >= 3 and i <= fc.getNumberOfArguments() - 1 and
+             source.asExpr() = fc.getArgument(i))) or
+-            (arrayExpr.getType().toString() = "TEE_Param" and
++            (arrayExpr.getType().toString() = ["TEE_Param", "__GP11_TEE_Param"] and
+             arrayExpr = assignExpr.getLValue().getAPredecessor().getAPredecessor() and 
+             source.asExpr() = assignExpr.getLValue()
+             )

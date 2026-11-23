@@ -1,0 +1,51 @@
+{
+  "git_commit": "4fc3ae9ad3fe6d9aaf51f670d7aa27d6bec12319",
+  "benchmark_tree": "1ad23a88a5c1627cfd2c53b036d092cd8aa4d4ec",
+  "platform": "Darwin",
+  "platform_release": "27.2.0",
+  "arch": "arm64",
+  "python": "3.11.10",
+  "jobs": 4,
+  "clang_ta": "clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)",
+  "clang_host": "Apple clang version 21.0.0 (clang-2100.4.1.1)",
+  "headers": {
+    "ta": {
+      "headers": 196,
+      "sha256": "d2c4f253126ee2d9dfd30a7ca2425c16cfcf9332fc9acd3e42f3e11ac75255fa"
+    },
+    "client": {
+      "headers": 5,
+      "sha256": "2367c6fdef25fbc5137293c397260de21701cb1b4f2d148d89a25138e1770cb3"
+    }
+  },
+  "optee_conf_sha256": "1d48ee8c94a91c2021b94b8cc4b2145be11642b2b8b42207d101a7d94cf7e151",
+  "diting": {
+    "revision": "cb72e8861809e70b7b820b0ece54d71f8ff93cd8",
+    "files_sha256": {
+      "host.ql": "d548fcb1632a9e3664f02008588f94f1c18387e1ee4a83daeb7b9341a07119f3",
+      "switch.ql": "8f303de92805b9444af6c2106633736983704cf2a790c68ccb9111589780d3d1",
+      "arrayaccess.ql": "111da88fc7db31c60af7dfeb4091ee1c39329b9f459deed8b494ed4b81328114",
+      "ifstmt.ql": "7e1689aa5c9e66fbe6950dd20727f3b905c5552c490d78c6d3624ae40cda5254",
+      "dataflow.ql": "8b2fd6754c553487112d050895e16c4182591832e76f62917541d4021723cb1b",
+      "memory.ql": "c4c667202a8cf80892fe0951ddc5e4d10572aa368a606ceb292c39ab9e681516",
+      "memflow.ql": "e01c7d1610813d17b496f542f1664d9332e64876636b6ceb3f8172c3ade50898",
+      "real_world_analysis.py": "2b5b1fc36953e7ac1881e59315b262fa701c3e5e3c813a3377afe52164bca6f4",
+      "qlpack.yml": "30f1101ddc6ca0c96842834a5d61924de2173ee8c3817184576967cecd332b86"
+    }
+  },
+  "codeql": {
+    "version": "2.23.0",
+    "cpp_all": "5.5.0",
+    "cpp_queries": "1.4.7",
+    "suite": "cpp-security-extended.qls",
+    "sarif_rule_descriptors": 94
+  },
+  "semgrep": {
+    "version": "1.164.0",
+    "rules_sha256": "dd64d05287cb249e51b8869d9bb2dfc19906ebffd49a62704656dd5a015bed79",
+    "rule_versions": [
+      "jQTzvry",
+      "YDTvRlQ"
+    ]
+  }
+}

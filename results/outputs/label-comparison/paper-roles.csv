@@ -1,0 +1,6 @@
+method_id,selected_tas,tas_with_output,partial_tas,defective_reports,protection_matches,protection_observed,effect_matches,effect_observed
+DITING,15,15,0,20,0,14,0,18
+DITING-GP11,15,15,0,70,0,14,1,18
+CodeQL,15,15,0,4,0,14,0,18
+Semgrep,15,15,3,0,0,14,0,18
+TFI-Qwen,15,15,0,238,0,14,2,18

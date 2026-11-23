@@ -1,0 +1,534 @@
+{
+  "at_utc": "2026-11-21T13:45:35.891019+00:00",
+  "inputs": {
+    "T01": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T02": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T03": {
+      "state": "interrupted",
+      "stages": {
+        "semgrep": 0
+      },
+      "logs": [
+        "database-create",
+        "semgrep"
+      ]
+    },
+    "T04": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T05": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T06": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T07": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T08": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T09": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T10": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T11": {
+      "state": "pending",
+      "stages": {},
+      "logs": []
+    },
+    "T12": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T13": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T14": {
+      "state": "pending",
+      "stages": {},
+      "logs": []
+    },
+    "T15": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T16": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T17": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T18": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T19": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T20": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T21": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T22": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T23": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T24": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T25": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T26": {
+      "state": "pending",
+      "stages": {},
+      "logs": []
+    },
+    "T27": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T28": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T29": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T30": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T31": {
+      "state": "pending",
+      "stages": {},
+      "logs": []
+    },
+    "T32": {
+      "state": "interrupted",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T33": {
+      "state": "complete",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0,
+        "diting": 0,
+        "diting-memflow": 0,
+        "codeql": 0
+      },
+      "logs": [
+        "codeql",
+        "database-create",
+        "diting-memflow",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T34": {
+      "state": "interrupted",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0
+      },
+      "logs": [
+        "database-create",
+        "diting",
+        "semgrep"
+      ]
+    },
+    "T35": {
+      "state": "interrupted",
+      "stages": {
+        "semgrep": 0,
+        "database-create": 0
+      },
+      "logs": [
+        "database-create",
+        "diting",
+        "semgrep"
+      ]
+    }
+  }
+}
