@@ -130,80 +130,31 @@ T33では解析エンジンが1回強制終了したため、同じコマンド�
 
 ## TEE Flow Inspector＋GPT-5.2
 
-公開版の `main.py` は、次の6段階を1回の起動で順に実行します。今回は同じプログラムを段階ごとに起動し、**全段階を3回、それぞれ最初から**実行しました。ある回の出力や応答を別の回が使うことはありません。パスは測定用コンテナ内のもので、`$OUT` はそのTA・その回の出力先（`/results/cases/T18/attempt-01/outputs/results_1`）です。
-
-| フェーズ | 内容 | プログラム | 今回の実行 |
-| --- | --- | --- | --- |
-| 1・2 | 関数の分類 | `classify/classifier.py` の `classify_functions` | 公開版のまま（LLMは使わない） |
-| 3 | シンクの特定（LLM） | `identify_sinks/identify_sinks.py` | 引数は公開版と同じ。モデルはGPT-5.2 |
-| 4 | 候補フローの生成 | `identify_flows/generate_candidate_flows.py` | `--sources` と `--sinks` に互換名を追加 |
-| 5 | フローの判定（LLM） | `analyze_vulnerabilities/taint_analyzer.py` | 引数は公開版と同じ。モデルはGPT-5.2 |
-| 6 | 報告の生成 | `report/generate_report.py` | 公開版と同じ |
-
-`main.py` をそのまま使わなかった理由は2つあります。フェーズ4の引数が `main.py` の中に固定されていて互換名を渡せないことと、`main.py` がビルドツールbearでコンパイル情報を作る前提になっていて、測定環境にはbearがないことです。コンパイル情報はあらかじめ用意した `compile_commands.json` を渡しました。各項目は次の形です。[入力を用意するスクリプト](tee-flow-inspector-gpt52/scripts/stage_input.py)
+公開版は、次の1コマンドで全フェーズを順に実行します。
 
 ```sh
-clang -ffreestanding -fno-builtin -include/support/conf.h -include/support/log-level.h \
-  -D__OPTEE_CORE_API_COMPAT_1_1=1 -I/inputs/T18/ta -I/inputs/T18/ta/include \
-  -I/support/devkit/include -I/support/clang/include -c /inputs/T18/ta/ecdsa_ta.c
+python3 src/main.py -p <プロジェクト> --prompt-version experiments/e12_general_sink_screening
 ```
 
-### フェーズ1・2
-
-`main.py` が呼ぶのと同じ関数で、利用者定義の関数と外部宣言の一覧 `ta_phase12.json` を作ります。LLMを使わないため、3回とも同じ内容になりました。[呼び出しスクリプト](tee-flow-inspector-gpt52/scripts/phase12.py)
+今回も全フェーズを最初から最後まで続けて実行し、これを独立に3回行いました。1回分（15個のTAを並列に処理）のコマンドは次のとおりです。[実行スクリプト](tee-flow-inspector-gpt52/scripts/run-batch.sh) · [各フェーズを順に起動する処理](tee-flow-inspector-gpt52/scripts/batch.py)
 
 ```sh
-python /eval/phase12.py /inputs/T18/ta $OUT/ta_phase12.json
+./results/tee-flow-inspector-gpt52/scripts/run-batch.sh run-01
 ```
 
-### フェーズ3
-
-TAが呼ぶ外部関数ごとに、シンクになり得るかをLLMに判定させます。引数は公開版の `main.py` が渡すものと同じです。
-
-```sh
-python src/identify_sinks/identify_sinks.py -i $OUT/ta_phase12.json -o $OUT/ta_sinks.json \
-  --llm-only --prompt-version experiments/e12_general_sink_screening
-```
-
-### フェーズ4
-
-公開版は `--sources` にエントリポイント名を2つだけ指定します。GP 1.1互換でビルドされるTAでは、これらの関数名が `__GP11_` で始まる名前に置き換わるため、公開版の指定では候補がほとんど生成されません。今回は互換名を追加しました。[候補生成のスクリプト](tee-flow-inspector-gpt52/scripts/phase4.py)
+公開版との違いは、候補フローを生成するフェーズ4で、エントリポイントとシンクにGP 1.1互換名（`__GP11_` で始まる名前）を追加したことです。互換の設定でビルドされるTAでは関数名が変わり、公開版の指定では候補がほとんど生成されないためです。互換名を使わないTA（T31）は公開版の指定のままです。[候補生成のスクリプト](tee-flow-inspector-gpt52/scripts/phase4.py)
 
 ```sh
 # 公開版
-python src/identify_flows/generate_candidate_flows.py --compile-db compile_commands.json \
-  --sinks $OUT/ta_sinks.json --phase12 $OUT/ta_phase12.json \
-  --sources TA_InvokeCommandEntryPoint,TA_OpenSessionEntryPoint \
-  --output $OUT/ta_candidate_flows.json --devkit /support/devkit
+--sources TA_InvokeCommandEntryPoint,TA_OpenSessionEntryPoint
 
-# 今回（GP 1.1互換のTA）
-python src/identify_flows/generate_candidate_flows.py --compile-db compile_commands.json \
-  --sinks $OUT/ta_sinks_gp11.json --phase12 $OUT/ta_phase12.json \
-  --sources TA_InvokeCommandEntryPoint,TA_OpenSessionEntryPoint,__GP11_TA_InvokeCommandEntryPoint,__GP11_TA_OpenSessionEntryPoint \
-  --output $OUT/ta_candidate_flows.json --devkit /support/devkit
+# 今回
+--sources TA_InvokeCommandEntryPoint,TA_OpenSessionEntryPoint,__GP11_TA_InvokeCommandEntryPoint,__GP11_TA_OpenSessionEntryPoint
 ```
 
-`ta_sinks_gp11.json` は、フェーズ3で選ばれたシンクのうち、OP-TEEの `tee_api_compat.h` に `#define 名前 __GP11_名前` の定義がある行を複製し、関数名だけを互換名にしたものです。引数番号と規則IDは元の行と同じです。互換名を使わないTA（T31）には公開版の指定をそのまま使いました。
+そのほかのプログラム、引数、プロンプト、規則は公開版と同じです。コンパイル情報（`compile_commands.json`）はあらかじめ用意したものを渡しました。[入力を用意するスクリプト](tee-flow-inspector-gpt52/scripts/stage_input.py)
 
-### フェーズ5・6
-
-フェーズ4で得た候補を1件ずつ判定し、最後に報告をまとめます。引数は公開版の `main.py` が渡すものと同じです。
-
-```sh
-python src/analyze_vulnerabilities/taint_analyzer.py --flows $OUT/ta_candidate_flows.json \
-  --phase12 $OUT/ta_phase12.json --output $OUT/ta_vulnerabilities.json \
-  --prompt-version experiments/e12_general_sink_screening
-
-python src/report/generate_report.py --sinks $OUT/ta_sinks_gp11.json --flows $OUT/ta_candidate_flows.json \
-  --vulnerabilities $OUT/ta_vulnerabilities.json --phase12 $OUT/ta_phase12.json \
-  --project-name T18 --output $OUT/ta_vulnerability_report.html
-```
-
-### LLMの呼び出しの記録
-
-測定では、フェーズ3の `identify_sinks.py` とフェーズ5の `taint_analyzer.py` を記録用のスクリプト経由で起動しました。このスクリプトはOpenAI APIの要求と応答を記録し、想定外のモデルや設定の要求を止めます。プログラムに渡る引数は変えません。記録上のコマンドは `python /eval/invoke.py T18 <記録先> <作業領域> <上の引数>` の形になっています。[記録用スクリプト](tee-flow-inspector-gpt52/scripts/invoke.py)
-
-モデルの設定は次のとおりです。[設定ファイル](tee-flow-inspector-gpt52/llm_config.json)
+モデルの設定は次のとおりです。[設定ファイル](tee-flow-inspector-gpt52/llm_config.json) · [要求と応答を記録するスクリプト](tee-flow-inspector-gpt52/scripts/invoke.py)
 
 | 項目 | 値 |
 | --- | --- |
@@ -212,14 +163,6 @@ python src/report/generate_report.py --sinks $OUT/ta_sinks_gp11.json --flows $OU
 | temperature | 0.7 |
 | reasoning effort | `none` |
 | 出力上限 | 16,384トークン（上限で打ち切られた応答は32,768で再試行） |
-
-### 3回の実行
-
-1回分は、15個のTAを並列に処理します。3回は別々の作業領域で同時に実行しました。1回分を実行するコマンドです。
-
-```sh
-./results/tee-flow-inspector-gpt52/scripts/run-batch.sh run-02
-```
 
 ### PKCS#11のT33
 
