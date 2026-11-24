@@ -1,0 +1,222 @@
+[
+  {
+    "vd": {
+      "file": "/inputs/T22/ta/hotp_ta.c",
+      "line": 89,
+      "sink": "__GP11_TEE_InitRefAttribute",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        2,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "get_hotp",
+        "hmac_sha1",
+        "__GP11_TEE_InitRefAttribute"
+      ],
+      "function_call_line": [
+        248,
+        180,
+        89
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T22/ta/hotp_ta.c",
+      "line": 92,
+      "sink": "__GP11_TEE_PopulateTransientObject",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "get_hotp",
+        "hmac_sha1",
+        "__GP11_TEE_PopulateTransientObject"
+      ],
+      "function_call_line": [
+        248,
+        180,
+        92
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T22/ta/hotp_ta.c",
+      "line": 99,
+      "sink": "__GP11_TEE_SetOperationKey",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "get_hotp",
+        "hmac_sha1",
+        "__GP11_TEE_SetOperationKey"
+      ],
+      "function_call_line": [
+        248,
+        180,
+        99
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T22/ta/hotp_ta.c",
+      "line": 106,
+      "sink": "__GP11_TEE_MACInit",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "get_hotp",
+        "hmac_sha1",
+        "__GP11_TEE_MACInit"
+      ],
+      "function_call_line": [
+        248,
+        180,
+        106
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T22/ta/hotp_ta.c",
+      "line": 107,
+      "sink": "__GP11_TEE_MACUpdate",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "get_hotp",
+        "hmac_sha1",
+        "__GP11_TEE_MACUpdate"
+      ],
+      "function_call_line": [
+        248,
+        180,
+        107
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T22/ta/hotp_ta.c",
+      "line": 108,
+      "sink": "__GP11_TEE_MACComputeFinal",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "get_hotp",
+        "hmac_sha1",
+        "__GP11_TEE_MACComputeFinal"
+      ],
+      "function_call_line": [
+        248,
+        180,
+        108
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T22/ta/hotp_ta.c",
+      "line": 152,
+      "sink": "memset",
+      "param_index": 0,
+      "param_indices": [
+        0
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "register_shared_key",
+        "memset"
+      ],
+      "function_call_line": [
+        245,
+        152
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T22/ta/hotp_ta.c",
+      "line": 153,
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "register_shared_key",
+        "memcpy"
+      ],
+      "function_call_line": [
+        245,
+        153
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  }
+]

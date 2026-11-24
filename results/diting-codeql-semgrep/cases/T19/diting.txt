@@ -1,0 +1,6 @@
+Unencrypted Data Output: 3
+['file://${WORK}/sources/T19/ta/sign_verify_ta.c:234:20:234:23', 'file://${WORK}/sources/T19/ta/sign_verify_ta.c:241:19:241:22', 'file://${WORK}/sources/T19/ta/sign_verify_ta.c:247:21:247:24']
+Input Validation Weakness: 0
+[]
+Shared Memory Overwrite: 0
+[]

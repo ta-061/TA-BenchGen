@@ -1,0 +1,314 @@
+{
+  "sinks": [
+    {
+      "kind": "function",
+      "name": "TA_InvokeCommandEntryPoint",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "May carry per-session state used to authorize/track operations and influence sensitive command handling.",
+      "confidence": "high",
+      "role": "session context"
+    },
+    {
+      "kind": "function",
+      "name": "TA_InvokeCommandEntryPoint",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Selects which command logic executes; security-relevant branching and access control decisions are typically based on this value.",
+      "confidence": "high",
+      "role": "command identifier"
+    },
+    {
+      "kind": "function",
+      "name": "TA_InvokeCommandEntryPoint",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Defines how parameters are interpreted (memrefs/values, in/out); impacts validation and parsing of caller-controlled data.",
+      "confidence": "high",
+      "role": "parameter types descriptor"
+    },
+    {
+      "kind": "function",
+      "name": "TA_InvokeCommandEntryPoint",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "Carries caller-provided input buffers/values and output buffers; likely read/written/transformed for cryptographic or secure operations.",
+      "confidence": "high",
+      "role": "operation parameters (inputs/outputs)"
+    },
+    {
+      "kind": "function",
+      "name": "TA_OpenSessionEntryPoint",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "May be used to authorize or bind a session based on client identity information.",
+      "confidence": "high",
+      "role": "session context / identity of the connecting client"
+    },
+    {
+      "kind": "function",
+      "name": "TA_OpenSessionEntryPoint",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Often used to decide how to interpret or validate the connection and credentials.",
+      "confidence": "high",
+      "role": "connection method / login type"
+    },
+    {
+      "kind": "function",
+      "name": "TA_OpenSessionEntryPoint",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "May contain sensitive data that is parsed/validated to establish the session.",
+      "confidence": "high",
+      "role": "connection data (credentials / client-provided payload)"
+    },
+    {
+      "kind": "function",
+      "name": "TA_OpenSessionEntryPoint",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "TA may write security-relevant per-session state used for subsequent command handling.",
+      "confidence": "high",
+      "role": "output session context pointer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CloseAndDeletePersistentObject1",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Identifies a persistent object to be closed and deleted; operation affects secure storage contents and object lifecycle.",
+      "confidence": "high",
+      "role": "persistent object handle"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CreatePersistentObject",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Identifier bytes are read to name/select the created persistent object, influencing secure storage operations",
+      "confidence": "high",
+      "role": "persistent object identifier (objectID)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CreatePersistentObject",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Controls how many bytes are read from objectID, affecting parsing and storage behavior",
+      "confidence": "high",
+      "role": "length of object identifier (objectIDLen)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CreatePersistentObject",
+      "param_index": 4,
+      "rule_id": "other",
+      "reason": "Buffer contents are written into the newly created persistent object in secure storage",
+      "confidence": "high",
+      "role": "initial object data buffer (initialData)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CreatePersistentObject",
+      "param_index": 5,
+      "rule_id": "other",
+      "reason": "Controls how many bytes are read from initialData and written to persistent storage",
+      "confidence": "high",
+      "role": "size of initial object data (initialDataLen)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_GetObjectInfo1",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "selects which persistent/transient object to query; may influence what security-relevant metadata is accessed",
+      "confidence": "high",
+      "role": "object handle (input selector)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_GetObjectInfo1",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "receives object metadata (e.g., size, type, usage/permissions) which is security-relevant information disclosure",
+      "confidence": "high",
+      "role": "output object info structure"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MemMove",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "receives copied bytes, potentially overwriting sensitive memory",
+      "confidence": "high",
+      "role": "destination buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MemMove",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "provides bytes to be copied, potentially reading sensitive data",
+      "confidence": "high",
+      "role": "source buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MemMove",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "controls how much data is moved; impacts exposure/overflow risk",
+      "confidence": "high",
+      "role": "byte length"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_OpenPersistentObject",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "used to locate/select a persistent object; attacker-controlled bytes can influence which object is opened",
+      "confidence": "high",
+      "role": "object identifier buffer (name/key)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_OpenPersistentObject",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "bounds how much of the identifier buffer is read; impacts parsing/selection and potential overreads",
+      "confidence": "high",
+      "role": "object identifier length"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_OpenPersistentObject",
+      "param_index": 4,
+      "rule_id": "other",
+      "reason": "returns reference to sensitive persistent storage object enabling subsequent reads/writes",
+      "confidence": "high",
+      "role": "output handle to opened object"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_ReadObjectData",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "selects the persistent/transient object whose stored content will be read",
+      "confidence": "high",
+      "role": "object handle (data source)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_ReadObjectData",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "receives the object data read from secure storage; sensitive data may be written here",
+      "confidence": "high",
+      "role": "output buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_ReadObjectData",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "controls how much data is read and written to the output buffer",
+      "confidence": "high",
+      "role": "requested read size"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_ReadObjectData",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "reports how much data was actually read, which can influence subsequent data handling",
+      "confidence": "high",
+      "role": "bytes-read output"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_WriteObjectData",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "identifies the persistent/transient object whose contents will be modified by the write",
+      "confidence": "high",
+      "role": "object handle (destination for written data)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_WriteObjectData",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "pointer to the data being written into the object",
+      "confidence": "high",
+      "role": "source data buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_WriteObjectData",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "controls how many bytes are read from the source buffer and written to the object",
+      "confidence": "high",
+      "role": "data length"
+    }
+  ],
+  "analysis_time": {
+    "total_seconds": 52.303507566452026,
+    "total_formatted": "52.30秒",
+    "llm_analysis_seconds": 52.27006125450134,
+    "llm_analysis_formatted": "52.27秒",
+    "functions_analyzed": 12,
+    "per_function": {
+      "TA_InvokeCommandEntryPoint": {
+        "seconds": 11.817860841751099,
+        "formatted": "11.82秒"
+      },
+      "TEE_CreatePersistentObject": {
+        "seconds": 6.186687469482422,
+        "formatted": "6.19秒"
+      },
+      "TA_OpenSessionEntryPoint": {
+        "seconds": 4.739920377731323,
+        "formatted": "4.74秒"
+      },
+      "TEE_WriteObjectData": {
+        "seconds": 4.473381042480469,
+        "formatted": "4.47秒"
+      },
+      "TEE_GetObjectInfo1": {
+        "seconds": 4.2379937171936035,
+        "formatted": "4.24秒"
+      },
+      "TEE_ReadObjectData": {
+        "seconds": 4.193191051483154,
+        "formatted": "4.19秒"
+      },
+      "TEE_MemMove": {
+        "seconds": 4.154553651809692,
+        "formatted": "4.15秒"
+      },
+      "TEE_OpenPersistentObject": {
+        "seconds": 4.0782246589660645,
+        "formatted": "4.08秒"
+      },
+      "TEE_CloseAndDeletePersistentObject1": {
+        "seconds": 3.022198438644409,
+        "formatted": "3.02秒"
+      },
+      "TEE_CloseObject": {
+        "seconds": 2.025731325149536,
+        "formatted": "2.03秒"
+      },
+      "TEE_Malloc": {
+        "seconds": 1.796025037765503,
+        "formatted": "1.80秒"
+      },
+      "TEE_Free": {
+        "seconds": 1.5442936420440674,
+        "formatted": "1.54秒"
+      }
+    }
+  },
+  "analysis_mode": "llm_only"
+}

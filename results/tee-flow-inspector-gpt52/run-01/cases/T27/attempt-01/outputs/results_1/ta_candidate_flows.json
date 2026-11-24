@@ -1,0 +1,368 @@
+[
+  {
+    "vd": {
+      "file": "/inputs/T27/ta/sha_ta.c",
+      "line": 102,
+      "sink": "__GP11_TEE_DigestUpdate",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "compute_digest",
+        "__GP11_TEE_DigestUpdate"
+      ],
+      "function_call_line": [
+        476,
+        102
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T27/ta/sha_ta.c",
+      "line": 104,
+      "sink": "__GP11_TEE_DigestDoFinal",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "compute_digest",
+        "__GP11_TEE_DigestDoFinal"
+      ],
+      "function_call_line": [
+        476,
+        104
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T27/ta/sha_ta.c",
+      "line": 106,
+      "sink": "__GP11_TEE_MemMove",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "compute_digest",
+        "__GP11_TEE_MemMove"
+      ],
+      "function_call_line": [
+        476,
+        106
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T27/ta/sha_ta.c",
+      "line": 184,
+      "sink": "__GP11_TEE_InitRefAttribute",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        2,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "alloc_resources",
+        "__GP11_TEE_InitRefAttribute"
+      ],
+      "function_call_line": [
+        466,
+        184
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T27/ta/sha_ta.c",
+      "line": 186,
+      "sink": "__GP11_TEE_PopulateTransientObject",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "alloc_resources",
+        "__GP11_TEE_PopulateTransientObject"
+      ],
+      "function_call_line": [
+        466,
+        186
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T27/ta/sha_ta.c",
+      "line": 193,
+      "sink": "__GP11_TEE_SetOperationKey",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "alloc_resources",
+        "__GP11_TEE_SetOperationKey"
+      ],
+      "function_call_line": [
+        466,
+        193
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T27/ta/sha_ta.c",
+      "line": 269,
+      "sink": "__GP11_TEE_InitRefAttribute",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        2,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "set_sha_key",
+        "__GP11_TEE_InitRefAttribute"
+      ],
+      "function_call_line": [
+        468,
+        269
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T27/ta/sha_ta.c",
+      "line": 271,
+      "sink": "TEE_ResetTransientObject",
+      "param_index": 0,
+      "param_indices": [
+        0
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "set_sha_key",
+        "TEE_ResetTransientObject"
+      ],
+      "function_call_line": [
+        468,
+        271
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T27/ta/sha_ta.c",
+      "line": 272,
+      "sink": "__GP11_TEE_PopulateTransientObject",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "set_sha_key",
+        "__GP11_TEE_PopulateTransientObject"
+      ],
+      "function_call_line": [
+        468,
+        272
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T27/ta/sha_ta.c",
+      "line": 279,
+      "sink": "__GP11_TEE_SetOperationKey",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "set_sha_key",
+        "__GP11_TEE_SetOperationKey"
+      ],
+      "function_call_line": [
+        468,
+        279
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T27/ta/sha_ta.c",
+      "line": 323,
+      "sink": "__GP11_TEE_MACInit",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "reset_sha_iv",
+        "__GP11_TEE_MACInit"
+      ],
+      "function_call_line": [
+        470,
+        323
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T27/ta/sha_ta.c",
+      "line": 365,
+      "sink": "__GP11_TEE_MACComputeFinal",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "sha_update_op",
+        "__GP11_TEE_MACComputeFinal"
+      ],
+      "function_call_line": [
+        472,
+        365
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T27/ta/sha_ta.c",
+      "line": 369,
+      "sink": "__GP11_TEE_MemMove",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "sha_update_op",
+        "__GP11_TEE_MemMove"
+      ],
+      "function_call_line": [
+        472,
+        369
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T27/ta/sha_ta.c",
+      "line": 409,
+      "sink": "__GP11_TEE_MACCompareFinal",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "compare_hmac_sha_algo",
+        "__GP11_TEE_MACCompareFinal"
+      ],
+      "function_call_line": [
+        474,
+        409
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  }
+]

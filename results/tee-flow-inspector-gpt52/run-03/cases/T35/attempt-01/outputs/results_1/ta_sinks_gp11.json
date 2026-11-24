@@ -1,0 +1,932 @@
+{
+  "sinks": [
+    {
+      "kind": "function",
+      "name": "TA_InvokeCommandEntryPoint",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "May reference per-session state used to authorize or process commands and associated data.",
+      "confidence": "high",
+      "role": "session context/handle"
+    },
+    {
+      "kind": "function",
+      "name": "TA_InvokeCommandEntryPoint",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Selects which command implementation runs; influences control flow and security checks.",
+      "confidence": "high",
+      "role": "command identifier"
+    },
+    {
+      "kind": "function",
+      "name": "TA_InvokeCommandEntryPoint",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Describes how parameters are interpreted (memref vs value, in/out); drives parsing and access to caller-controlled data.",
+      "confidence": "high",
+      "role": "parameter types/metadata"
+    },
+    {
+      "kind": "function",
+      "name": "TA_InvokeCommandEntryPoint",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "Carries caller-provided data and output buffers; typically read/written/transformed by command handlers.",
+      "confidence": "high",
+      "role": "command parameters (input/output buffers/values)"
+    },
+    {
+      "kind": "function",
+      "name": "TA_OpenSessionEntryPoint",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "session open is authorized/handled based on caller identity; may be read/compared for access control",
+      "confidence": "high",
+      "role": "incoming connection/context identifier"
+    },
+    {
+      "kind": "function",
+      "name": "TA_OpenSessionEntryPoint",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "controls how session is established and may influence parsing/validation logic",
+      "confidence": "high",
+      "role": "connection method selector"
+    },
+    {
+      "kind": "function",
+      "name": "TA_OpenSessionEntryPoint",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "carries untrusted input from client; typically parsed/validated and may be transformed or used to initialize session state",
+      "confidence": "high",
+      "role": "incoming session parameters"
+    },
+    {
+      "kind": "function",
+      "name": "TA_OpenSessionEntryPoint",
+      "param_index": 4,
+      "rule_id": "other",
+      "reason": "written with per-session state derived from inputs; affects subsequent command handling",
+      "confidence": "high",
+      "role": "output session context pointer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AllocateTransientObject",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Controls what kind of cryptographic/key object is created, influencing how sensitive material may be handled later",
+      "confidence": "high",
+      "role": "object type/algorithm selector"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AllocateTransientObject",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Determines size/strength of the transient object, affecting allocation and subsequent handling of sensitive key material",
+      "confidence": "high",
+      "role": "key size/strength parameter"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AllocateTransientObject",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Receives a handle to an object that will store sensitive data (e.g., keys); creation/allocation is security-relevant",
+      "confidence": "high",
+      "role": "output handle to created transient object"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricSignDigest",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "used to perform a cryptographic signing operation; misuse can leak or misuse key material",
+      "confidence": "high",
+      "role": "private key / signing operation handle"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricSignDigest",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "reads caller-provided data (hash/digest) to be signed",
+      "confidence": "high",
+      "role": "digest input buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricSignDigest",
+      "param_index": 4,
+      "rule_id": "other",
+      "reason": "writes generated signature to caller-provided buffer",
+      "confidence": "high",
+      "role": "signature output buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricSignDigest",
+      "param_index": 5,
+      "rule_id": "other",
+      "reason": "controls/returns amount of data written to output buffer; impacts memory safety and data exposure",
+      "confidence": "high",
+      "role": "signature output length (in/out)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricVerifyDigest",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Selects the asymmetric verification operation and associated key material used in cryptographic processing",
+      "confidence": "high",
+      "role": "operation handle / key context"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricVerifyDigest",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Controls which verification algorithm/mode is applied to the provided digest and signature",
+      "confidence": "high",
+      "role": "algorithm identifier"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricVerifyDigest",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Optional scheme-specific inputs (e.g., RSA-PSS salt length) influence verification computation",
+      "confidence": "high",
+      "role": "parameters / salt / scheme-specific data"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricVerifyDigest",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "Defines how much of the parameter buffer is read during verification",
+      "confidence": "high",
+      "role": "parameter length"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricVerifyDigest",
+      "param_index": 4,
+      "rule_id": "other",
+      "reason": "Input data that is cryptographically checked against the signature",
+      "confidence": "high",
+      "role": "digest to verify"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricVerifyDigest",
+      "param_index": 5,
+      "rule_id": "other",
+      "reason": "Defines how much of the digest buffer is read",
+      "confidence": "high",
+      "role": "digest length"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricVerifyDigest",
+      "param_index": 6,
+      "rule_id": "other",
+      "reason": "Signature bytes are parsed and verified against the digest using the key/algorithm",
+      "confidence": "high",
+      "role": "signature input"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricVerifyDigest",
+      "param_index": 7,
+      "rule_id": "other",
+      "reason": "Defines how much of the signature buffer is read",
+      "confidence": "high",
+      "role": "signature length"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CopyObjectAttributes1",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "receives copied attributes; sensitive metadata/keys may be written into this object",
+      "confidence": "high",
+      "role": "destination object handle"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CopyObjectAttributes1",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "provides attributes to be copied; may include security-sensitive attributes/metadata",
+      "confidence": "high",
+      "role": "source object handle"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_DigestDoFinal",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "selects and mutates cryptographic digest state used to process data",
+      "confidence": "high",
+      "role": "digest operation handle/state"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_DigestDoFinal",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "reads message bytes to be hashed during finalization",
+      "confidence": "high",
+      "role": "input data buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_DigestDoFinal",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "controls how many bytes are read from the input buffer",
+      "confidence": "high",
+      "role": "input data length"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_DigestDoFinal",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "writes computed hash output",
+      "confidence": "high",
+      "role": "output digest buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_DigestDoFinal",
+      "param_index": 4,
+      "rule_id": "other",
+      "reason": "limits output write size and returns actual digest length",
+      "confidence": "high",
+      "role": "in/out output length"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_DigestUpdate",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Represents the active digest context that is modified based on input data, influencing security-relevant cryptographic state.",
+      "confidence": "high",
+      "role": "digest operation handle / state"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_DigestUpdate",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Buffer contents are read and processed (hashed), making it a direct data-ingestion point for sensitive/plaintext data.",
+      "confidence": "high",
+      "role": "input data buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_DigestUpdate",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Controls how many bytes are read from the input buffer, affecting the extent of data processed.",
+      "confidence": "high",
+      "role": "input data length"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_GenerateKey",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Identifies the transient/persistent object whose key material will be generated/overwritten.",
+      "confidence": "high",
+      "role": "key_object_handle"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_GenerateKey",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Controls the size/strength of generated key material, affecting security properties of the produced secret.",
+      "confidence": "high",
+      "role": "key_size_bits"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_GenerateKey",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Optional attributes/seed/domain parameters that influence key generation and may include sensitive inputs.",
+      "confidence": "high",
+      "role": "generation_parameters"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_GenerateKey",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "Defines how many attributes are consumed from the parameter array, impacting what data is read and used.",
+      "confidence": "high",
+      "role": "generation_parameter_count"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_GetObjectBufferAttribute",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "identifies the secure object whose attribute value may be read",
+      "confidence": "high",
+      "role": "object handle (source of sensitive attribute data)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_GetObjectBufferAttribute",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "receives attribute data read from the object, potentially sensitive",
+      "confidence": "high",
+      "role": "output buffer for attribute value"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_InitValueAttribute",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "writes/initializes the attribute fields, affecting how cryptographic operations interpret key/object data",
+      "confidence": "high",
+      "role": "output attribute structure"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_InitValueAttribute",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "controls which attribute is set, influencing security-relevant object/key properties",
+      "confidence": "high",
+      "role": "attribute identifier"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_InitValueAttribute",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "security-relevant value written into the attribute (e.g., key parameters or object properties)",
+      "confidence": "high",
+      "role": "attribute value A"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_InitValueAttribute",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "security-relevant value written into the attribute (e.g., key parameters or object properties)",
+      "confidence": "high",
+      "role": "attribute value B"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MemMove",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "receives copied data, potentially overwriting sensitive memory",
+      "confidence": "high",
+      "role": "destination buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MemMove",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "provides data to be copied, may contain sensitive/tainted input",
+      "confidence": "high",
+      "role": "source buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MemMove",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "controls amount of data moved; impacts bounds and potential over-copy/overwrite",
+      "confidence": "high",
+      "role": "copy length"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_SetOperationKey",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "determines which cryptographic operation context will be configured with key material, affecting subsequent sensitive processing",
+      "confidence": "high",
+      "role": "operation handle (cryptographic operation context)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_SetOperationKey",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "provides or references cryptographic key material that is loaded/associated into the operation, a security-critical data flow",
+      "confidence": "high",
+      "role": "key object handle (key material source)"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TA_InvokeCommandEntryPoint",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "May reference per-session state used to authorize or process commands and associated data.",
+      "confidence": "high",
+      "role": "session context/handle"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TA_InvokeCommandEntryPoint",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Selects which command implementation runs; influences control flow and security checks.",
+      "confidence": "high",
+      "role": "command identifier"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TA_InvokeCommandEntryPoint",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Describes how parameters are interpreted (memref vs value, in/out); drives parsing and access to caller-controlled data.",
+      "confidence": "high",
+      "role": "parameter types/metadata"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TA_InvokeCommandEntryPoint",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "Carries caller-provided data and output buffers; typically read/written/transformed by command handlers.",
+      "confidence": "high",
+      "role": "command parameters (input/output buffers/values)"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TA_OpenSessionEntryPoint",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "session open is authorized/handled based on caller identity; may be read/compared for access control",
+      "confidence": "high",
+      "role": "incoming connection/context identifier"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TA_OpenSessionEntryPoint",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "controls how session is established and may influence parsing/validation logic",
+      "confidence": "high",
+      "role": "connection method selector"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TA_OpenSessionEntryPoint",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "carries untrusted input from client; typically parsed/validated and may be transformed or used to initialize session state",
+      "confidence": "high",
+      "role": "incoming session parameters"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TA_OpenSessionEntryPoint",
+      "param_index": 4,
+      "rule_id": "other",
+      "reason": "written with per-session state derived from inputs; affects subsequent command handling",
+      "confidence": "high",
+      "role": "output session context pointer"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_AllocateTransientObject",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Controls what kind of cryptographic/key object is created, influencing how sensitive material may be handled later",
+      "confidence": "high",
+      "role": "object type/algorithm selector"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_AllocateTransientObject",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Determines size/strength of the transient object, affecting allocation and subsequent handling of sensitive key material",
+      "confidence": "high",
+      "role": "key size/strength parameter"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_AllocateTransientObject",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Receives a handle to an object that will store sensitive data (e.g., keys); creation/allocation is security-relevant",
+      "confidence": "high",
+      "role": "output handle to created transient object"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_AsymmetricSignDigest",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "used to perform a cryptographic signing operation; misuse can leak or misuse key material",
+      "confidence": "high",
+      "role": "private key / signing operation handle"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_AsymmetricSignDigest",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "reads caller-provided data (hash/digest) to be signed",
+      "confidence": "high",
+      "role": "digest input buffer"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_AsymmetricSignDigest",
+      "param_index": 4,
+      "rule_id": "other",
+      "reason": "writes generated signature to caller-provided buffer",
+      "confidence": "high",
+      "role": "signature output buffer"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_AsymmetricSignDigest",
+      "param_index": 5,
+      "rule_id": "other",
+      "reason": "controls/returns amount of data written to output buffer; impacts memory safety and data exposure",
+      "confidence": "high",
+      "role": "signature output length (in/out)"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_AsymmetricVerifyDigest",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Selects the asymmetric verification operation and associated key material used in cryptographic processing",
+      "confidence": "high",
+      "role": "operation handle / key context"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_AsymmetricVerifyDigest",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Controls which verification algorithm/mode is applied to the provided digest and signature",
+      "confidence": "high",
+      "role": "algorithm identifier"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_AsymmetricVerifyDigest",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Optional scheme-specific inputs (e.g., RSA-PSS salt length) influence verification computation",
+      "confidence": "high",
+      "role": "parameters / salt / scheme-specific data"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_AsymmetricVerifyDigest",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "Defines how much of the parameter buffer is read during verification",
+      "confidence": "high",
+      "role": "parameter length"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_AsymmetricVerifyDigest",
+      "param_index": 4,
+      "rule_id": "other",
+      "reason": "Input data that is cryptographically checked against the signature",
+      "confidence": "high",
+      "role": "digest to verify"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_AsymmetricVerifyDigest",
+      "param_index": 5,
+      "rule_id": "other",
+      "reason": "Defines how much of the digest buffer is read",
+      "confidence": "high",
+      "role": "digest length"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_AsymmetricVerifyDigest",
+      "param_index": 6,
+      "rule_id": "other",
+      "reason": "Signature bytes are parsed and verified against the digest using the key/algorithm",
+      "confidence": "high",
+      "role": "signature input"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_AsymmetricVerifyDigest",
+      "param_index": 7,
+      "rule_id": "other",
+      "reason": "Defines how much of the signature buffer is read",
+      "confidence": "high",
+      "role": "signature length"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_DigestDoFinal",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "selects and mutates cryptographic digest state used to process data",
+      "confidence": "high",
+      "role": "digest operation handle/state"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_DigestDoFinal",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "reads message bytes to be hashed during finalization",
+      "confidence": "high",
+      "role": "input data buffer"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_DigestDoFinal",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "controls how many bytes are read from the input buffer",
+      "confidence": "high",
+      "role": "input data length"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_DigestDoFinal",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "writes computed hash output",
+      "confidence": "high",
+      "role": "output digest buffer"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_DigestDoFinal",
+      "param_index": 4,
+      "rule_id": "other",
+      "reason": "limits output write size and returns actual digest length",
+      "confidence": "high",
+      "role": "in/out output length"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_DigestUpdate",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Represents the active digest context that is modified based on input data, influencing security-relevant cryptographic state.",
+      "confidence": "high",
+      "role": "digest operation handle / state"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_DigestUpdate",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Buffer contents are read and processed (hashed), making it a direct data-ingestion point for sensitive/plaintext data.",
+      "confidence": "high",
+      "role": "input data buffer"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_DigestUpdate",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Controls how many bytes are read from the input buffer, affecting the extent of data processed.",
+      "confidence": "high",
+      "role": "input data length"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_GenerateKey",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Identifies the transient/persistent object whose key material will be generated/overwritten.",
+      "confidence": "high",
+      "role": "key_object_handle"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_GenerateKey",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Controls the size/strength of generated key material, affecting security properties of the produced secret.",
+      "confidence": "high",
+      "role": "key_size_bits"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_GenerateKey",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Optional attributes/seed/domain parameters that influence key generation and may include sensitive inputs.",
+      "confidence": "high",
+      "role": "generation_parameters"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_GenerateKey",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "Defines how many attributes are consumed from the parameter array, impacting what data is read and used.",
+      "confidence": "high",
+      "role": "generation_parameter_count"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_GetObjectBufferAttribute",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "identifies the secure object whose attribute value may be read",
+      "confidence": "high",
+      "role": "object handle (source of sensitive attribute data)"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_GetObjectBufferAttribute",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "receives attribute data read from the object, potentially sensitive",
+      "confidence": "high",
+      "role": "output buffer for attribute value"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_InitValueAttribute",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "writes/initializes the attribute fields, affecting how cryptographic operations interpret key/object data",
+      "confidence": "high",
+      "role": "output attribute structure"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_InitValueAttribute",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "controls which attribute is set, influencing security-relevant object/key properties",
+      "confidence": "high",
+      "role": "attribute identifier"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_InitValueAttribute",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "security-relevant value written into the attribute (e.g., key parameters or object properties)",
+      "confidence": "high",
+      "role": "attribute value A"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_InitValueAttribute",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "security-relevant value written into the attribute (e.g., key parameters or object properties)",
+      "confidence": "high",
+      "role": "attribute value B"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_MemMove",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "receives copied data, potentially overwriting sensitive memory",
+      "confidence": "high",
+      "role": "destination buffer"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_MemMove",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "provides data to be copied, may contain sensitive/tainted input",
+      "confidence": "high",
+      "role": "source buffer"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_MemMove",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "controls amount of data moved; impacts bounds and potential over-copy/overwrite",
+      "confidence": "high",
+      "role": "copy length"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_SetOperationKey",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "determines which cryptographic operation context will be configured with key material, affecting subsequent sensitive processing",
+      "confidence": "high",
+      "role": "operation handle (cryptographic operation context)"
+    },
+    {
+      "kind": "function",
+      "name": "__GP11_TEE_SetOperationKey",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "provides or references cryptographic key material that is loaded/associated into the operation, a security-critical data flow",
+      "confidence": "high",
+      "role": "key object handle (key material source)"
+    }
+  ],
+  "analysis_time": {
+    "total_seconds": 81.04517149925232,
+    "total_formatted": "1.35分",
+    "llm_analysis_seconds": 81.01070022583008,
+    "llm_analysis_formatted": "1.35分",
+    "functions_analyzed": 18,
+    "per_function": {
+      "TA_InvokeCommandEntryPoint": {
+        "seconds": 11.794159650802612,
+        "formatted": "11.79秒"
+      },
+      "TEE_AsymmetricVerifyDigest": {
+        "seconds": 7.866978168487549,
+        "formatted": "7.87秒"
+      },
+      "TEE_AsymmetricSignDigest": {
+        "seconds": 5.430706024169922,
+        "formatted": "5.43秒"
+      },
+      "TEE_GenerateKey": {
+        "seconds": 5.268887996673584,
+        "formatted": "5.27秒"
+      },
+      "TEE_InitValueAttribute": {
+        "seconds": 5.207573890686035,
+        "formatted": "5.21秒"
+      },
+      "TEE_SetOperationKey": {
+        "seconds": 4.966617584228516,
+        "formatted": "4.97秒"
+      },
+      "TEE_AllocateTransientObject": {
+        "seconds": 4.776760578155518,
+        "formatted": "4.78秒"
+      },
+      "TEE_DigestUpdate": {
+        "seconds": 4.770320892333984,
+        "formatted": "4.77秒"
+      },
+      "TA_OpenSessionEntryPoint": {
+        "seconds": 4.614908218383789,
+        "formatted": "4.61秒"
+      },
+      "TEE_DigestDoFinal": {
+        "seconds": 4.505156755447388,
+        "formatted": "4.51秒"
+      },
+      "TEE_MemMove": {
+        "seconds": 4.4241557121276855,
+        "formatted": "4.42秒"
+      },
+      "TEE_GetObjectBufferAttribute": {
+        "seconds": 3.663548469543457,
+        "formatted": "3.66秒"
+      },
+      "TEE_CopyObjectAttributes1": {
+        "seconds": 2.8456997871398926,
+        "formatted": "2.85秒"
+      },
+      "TEE_AllocateOperation": {
+        "seconds": 2.2879064083099365,
+        "formatted": "2.29秒"
+      },
+      "TEE_FreeOperation": {
+        "seconds": 2.246994733810425,
+        "formatted": "2.25秒"
+      },
+      "TEE_Malloc": {
+        "seconds": 2.18353271484375,
+        "formatted": "2.18秒"
+      },
+      "TEE_FreeTransientObject": {
+        "seconds": 2.13620924949646,
+        "formatted": "2.14秒"
+      },
+      "TEE_Free": {
+        "seconds": 2.020583391189575,
+        "formatted": "2.02秒"
+      }
+    }
+  },
+  "analysis_mode": "llm_only"
+}

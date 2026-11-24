@@ -1,0 +1,1320 @@
+{
+  "sinks": [
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricDecrypt",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Contains encrypted data that is transformed into plaintext, representing a critical data transformation point.",
+      "confidence": "high",
+      "role": "Ciphertext input"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricDecrypt",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Sensitive cryptographic material used to decrypt the data; compromise here breaks confidentiality.",
+      "confidence": "high",
+      "role": "Private key handle or buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricDecrypt",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Receives the decrypted sensitive data, making it a sink where taint becomes visible in clear text.",
+      "confidence": "high",
+      "role": "Plaintext output buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricEncrypt",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Contains the plaintext or data to be encrypted, which is transformed by the cryptographic operation.",
+      "confidence": "high",
+      "role": "Input data buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricEncrypt",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Receives the resulting ciphertext, representing a write of security-relevant transformed data.",
+      "confidence": "high",
+      "role": "Output data buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricSignDigest",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Reference to the cryptographic key used for signing; misuse or exposure of this handle is a security concern.",
+      "confidence": "high",
+      "role": "key_handle"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricSignDigest",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "The input data (hash/digest) being signed. This is the primary data payload undergoing cryptographic transformation.",
+      "confidence": "high",
+      "role": "digest"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricVerifyDigest",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Contains the cryptographic key material used for verification; integrity of this object is critical to trust.",
+      "confidence": "high",
+      "role": "Public Key Object/Handle"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricVerifyDigest",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "The untrusted input data (signature) that is cryptographically processed and validated against the digest.",
+      "confidence": "high",
+      "role": "Signature Buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AsymmetricVerifyDigest",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "The message digest being verified; its content directly affects the outcome of the security check.",
+      "confidence": "high",
+      "role": "Digest Buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CipherDoFinal",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Represents the state of the cryptographic operation, potentially holding sensitive keys or IVs.",
+      "confidence": "high",
+      "role": "Cipher operation handle/context"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CipherDoFinal",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Contains the plaintext or ciphertext to be processed/transformed by the cipher.",
+      "confidence": "high",
+      "role": "Input data buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CipherDoFinal",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Receives the resulting encrypted or decrypted data, which is a direct transformation of the input.",
+      "confidence": "high",
+      "role": "Output data buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CipherInit",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Reference to the cipher object being initialized; taint can flow into internal state or key material.",
+      "confidence": "high",
+      "role": "cipher_operation_handle"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CipherInit",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Determines the cryptographic operation type (e.g., encrypt/decrypt); controls data transformation logic.",
+      "confidence": "high",
+      "role": "encryption_mode"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CipherInit",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Specifies the cryptographic algorithm; influences how input data is processed.",
+      "confidence": "high",
+      "role": "algorithm_id"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CipherInit",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "Contains the secret key material used for encryption/decryption; high-security data source/sink.",
+      "confidence": "high",
+      "role": "key_buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CipherInit",
+      "param_index": 4,
+      "rule_id": "other",
+      "reason": "Defines the size of the key buffer; critical for correct interpretation of sensitive data.",
+      "confidence": "high",
+      "role": "key_length"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CipherUpdate",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Context object controlling the cryptographic transformation state",
+      "confidence": "high",
+      "role": "cipher_operation_handle"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CipherUpdate",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Source data being read and transformed by the cipher",
+      "confidence": "high",
+      "role": "input_data"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CipherUpdate",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "Destination where transformed (ciphertext/plaintext) data is written",
+      "confidence": "high",
+      "role": "output_buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CreatePersistentObject",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Represents the object being persisted; its metadata and state are written to storage.",
+      "confidence": "high",
+      "role": "Object handle or reference"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CreatePersistentObject",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Contains sensitive data (keys, certificates, attributes) that is serialized and written to persistent storage.",
+      "confidence": "high",
+      "role": "Attribute list (key-value pairs)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_DeriveKey",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "The function derives a new cryptographic key from input data, which is a core security operation involving sensitive key material.",
+      "confidence": "high",
+      "role": "Input key material or seed"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_DigestDoFinal",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Receives the final cryptographic digest result, which is a sensitive derived value from processed data.",
+      "confidence": "high",
+      "role": "digest_output"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_DigestUpdate",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Provides the data block to be processed by the cryptographic digest algorithm.",
+      "confidence": "high",
+      "role": "input_data"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_GenerateKey",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Receives sensitive cryptographic key data which is a primary target for taint tracking to prevent leakage or improper handling.",
+      "confidence": "high",
+      "role": "Output buffer for generated key material"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_GenerateKey",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Determines the security properties of the generated key; incorrect values could lead to weak cryptography or buffer overflows.",
+      "confidence": "high",
+      "role": "Key size or algorithm identifier"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_GenerateRandom",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Receives generated random bytes, which is a write operation to memory that may be used in security contexts.",
+      "confidence": "high",
+      "role": "output_buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_GetPropertyAsIdentity",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Receives the identity value extracted from the property, which is sensitive data.",
+      "confidence": "high",
+      "role": "output_identity"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_GetPropertyAsUUID",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Specifies which property to read; if attacker-controlled, it can target sensitive configuration or identity properties.",
+      "confidence": "high",
+      "role": "property_name"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_GetPropertyAsUUID",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Receives the retrieved UUID value; this is a data output sink where taint from the TEE environment may propagate into the application context.",
+      "confidence": "high",
+      "role": "uuid_output"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_InvokeTACommand",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Contains the data sent to the Trusted Application for processing",
+      "confidence": "high",
+      "role": "input_parameter_buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_InvokeTACommand",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "Receives data returned from the Trusted Application",
+      "confidence": "high",
+      "role": "output_parameter_buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MACCompareFinal",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Contains the expected Message Authentication Code value used for comparison.",
+      "confidence": "high",
+      "role": "expected_mac_buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MACCompareFinal",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Contains the computed Message Authentication Code value derived from processed data.",
+      "confidence": "high",
+      "role": "computed_mac_buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MACComputeFinal",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Contains the cryptographic state and key material used for computation.",
+      "confidence": "high",
+      "role": "MAC handle/context"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MACComputeFinal",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Receives the final Message Authentication Code value, which is sensitive data derived from input.",
+      "confidence": "high",
+      "role": "Output MAC buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MACInit",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Initializes the MAC operation with a cryptographic key, which is security-relevant data.",
+      "confidence": "high",
+      "role": "Key handle or object reference"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MACInit",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "May contain initialization vector (IV) or other mode-specific parameters that influence the cryptographic transformation.",
+      "confidence": "high",
+      "role": "Parameter buffer (optional)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MACUpdate",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Contains the data to be processed by the MAC algorithm",
+      "confidence": "high",
+      "role": "input_data"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MemCompare",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Contains data content that is read for comparison",
+      "confidence": "high",
+      "role": "First memory buffer to compare"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MemCompare",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Contains data content that is read for comparison",
+      "confidence": "high",
+      "role": "Second memory buffer to compare"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_OpenPersistentObject",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "The handle references a persistent object whose content is loaded into the TEE context, potentially introducing untrusted data.",
+      "confidence": "high",
+      "role": "object_handle"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_OpenPersistentObject",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Flags determine access mode (read/write), which defines how the data will be handled and whether it can be modified or leaked.",
+      "confidence": "high",
+      "role": "operation_flags"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_PopulateTransientObject",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "The function populates this transient object with data, which is a write operation on security-relevant state.",
+      "confidence": "high",
+      "role": "Output object pointer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_PopulateTransientObject",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Likely provides the source data or context from which the transient object is populated, representing an input to the transformation.",
+      "confidence": "high",
+      "role": "Source data or context"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_ReadObjectData",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Receives the actual content of the object being read, which is a primary source of taint/data flow.",
+      "confidence": "high",
+      "role": "buffer pointer for output data"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_ReadObjectData",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Determines which part of the sensitive object data is accessed, influencing the specific tainted data retrieved.",
+      "confidence": "high",
+      "role": "offset into the object"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_ReadObjectData",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Defines the amount of data transferred, critical for bounds checking and potential buffer overflow analysis.",
+      "confidence": "high",
+      "role": "size of data to read"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_SetOperationKey",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Identifies the specific operation or session context where the key will be set.",
+      "confidence": "high",
+      "role": "key_handle_or_context"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_SetOperationKey",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Contains the cryptographic key material to be installed into the TEE secure storage or active operation state.",
+      "confidence": "high",
+      "role": "key_data"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_WriteObjectData",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Contains the data being written to the object",
+      "confidence": "high",
+      "role": "buffer pointer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_WriteObjectData",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Defines the length of the data buffer, critical for bounds checking",
+      "confidence": "high",
+      "role": "data size"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_asn1_write_octet_string",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Contains the actual octet string data being written to the ASN.1 structure",
+      "confidence": "high",
+      "role": "data_buffer"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_asn1_write_octet_string",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "Specifies the length of the data buffer, critical for memory safety and integrity",
+      "confidence": "high",
+      "role": "data_length"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_ecp_check_pubkey",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "The function reads and cryptographically validates the elliptic curve point represented by this parameter. If untrusted data is passed here, it could trigger side-channel attacks or logic errors in the validation routine.",
+      "confidence": "high",
+      "role": "Input public key to validate"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_ecp_export",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Contains the Elliptic Curve Point data to be exported",
+      "confidence": "high",
+      "role": "source_object"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_ecp_export",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Receives the serialized representation of the point, acting as a write sink for cryptographic data",
+      "confidence": "high",
+      "role": "output_buffer"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_ecp_mul",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Stores the result of the scalar multiplication, which is sensitive cryptographic data.",
+      "confidence": "high",
+      "role": "Output point"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_ecp_mul",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "The elliptic curve point being multiplied, part of the cryptographic operation.",
+      "confidence": "high",
+      "role": "Input base point"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_ecp_mul",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "The integer scalar used for multiplication, often a private key or secret value.",
+      "confidence": "high",
+      "role": "Scalar multiplier"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_ecp_mul",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "Contains the curve parameters and potentially the inverse of the cofactor, defining the mathematical domain.",
+      "confidence": "high",
+      "role": "Group context"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_ecp_point_write_binary",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Contains the cryptographic elliptic curve point coordinates which are sensitive data being serialized.",
+      "confidence": "high",
+      "role": "Input ECP point data"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_ecp_point_write_binary",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Receives the binary representation of the point; if not properly bounds-checked or validated, it could lead to buffer overflows or information disclosure.",
+      "confidence": "high",
+      "role": "Output buffer"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_ecp_read_key",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Receives raw bytes of the secret key, which is high-sensitivity data.",
+      "confidence": "high",
+      "role": "destination buffer for private key"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_ecp_read_key",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Determines how much data is read from the source, critical for bounds checking and taint propagation.",
+      "confidence": "high",
+      "role": "length of the key data"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_mpi_write_binary",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Receives the binary representation of the MPI value, which may contain sensitive cryptographic data.",
+      "confidence": "high",
+      "role": "output buffer"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_mpi_write_binary",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Determines the amount of data written; if untrusted or miscalculated, could lead to buffer overflows or information leakage.",
+      "confidence": "high",
+      "role": "buffer size"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_nist_kw_setkey",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Holds the key material and context state being initialized.",
+      "confidence": "high",
+      "role": "context_object"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_nist_kw_setkey",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Pointer to the raw key bytes which are sensitive cryptographic material.",
+      "confidence": "high",
+      "role": "key_data"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_nist_kw_setkey",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Defines the size of the sensitive data in parameter 1.",
+      "confidence": "high",
+      "role": "key_length"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_nist_kw_unwrap",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Contains the cryptographic key and algorithm state used to decrypt the data.",
+      "confidence": "high",
+      "role": "cipher context"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_nist_kw_unwrap",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "The secret key material used for unwrapping; sensitive data that must not leak.",
+      "confidence": "high",
+      "role": "key wrap key"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_nist_kw_unwrap",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Input ciphertext containing the wrapped key; source of untrusted/encrypted data being processed.",
+      "confidence": "high",
+      "role": "wrapped key buffer"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_nist_kw_unwrap",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "Determines the size of the input data to be decrypted.",
+      "confidence": "high",
+      "role": "wrapped key length"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_nist_kw_unwrap",
+      "param_index": 4,
+      "rule_id": "other",
+      "reason": "Output buffer where the decrypted plaintext key is written; destination for sensitive data.",
+      "confidence": "high",
+      "role": "unwrapped key buffer"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_nist_kw_unwrap",
+      "param_index": 5,
+      "rule_id": "other",
+      "reason": "Specifies the expected or actual size of the output plaintext key.",
+      "confidence": "high",
+      "role": "unwrapped key length"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_nist_kw_wrap",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Contains the cryptographic key used for wrapping, which is sensitive security data.",
+      "confidence": "high",
+      "role": "input_key"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_nist_kw_wrap",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Receives the wrapped key material, representing transformed sensitive data.",
+      "confidence": "high",
+      "role": "output_buffer"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_nist_kw_wrap",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Contains the plaintext key or data to be wrapped, which is sensitive input.",
+      "confidence": "high",
+      "role": "input_data"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_pk_parse_key",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "The parsed key material is written into this structure, which may be used for cryptographic operations.",
+      "confidence": "high",
+      "role": "output_structure"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_pk_parse_key",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "This parameter contains the raw byte sequence of the private or public key to be parsed and transformed into an internal representation.",
+      "confidence": "high",
+      "role": "input_data"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_pk_write_key_der",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Contains the private or public key material to be serialized",
+      "confidence": "high",
+      "role": "Input key object"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_pk_write_key_der",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Receives the DER-encoded binary representation of the key",
+      "confidence": "high",
+      "role": "Output buffer pointer"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_rsa_complete",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Contains the cryptographic key material and internal state used to complete the RSA operation.",
+      "confidence": "high",
+      "role": "RSA context containing private key and intermediate state"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_rsa_complete",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Receives the result of the RSA decryption or verification process, which may contain sensitive data.",
+      "confidence": "high",
+      "role": "Output buffer for plaintext or signature"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_rsa_export",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Writes the RSA public key component (modulus) to memory",
+      "confidence": "high",
+      "role": "output buffer for modulus N"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_rsa_export",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "Writes the RSA public key component (exponent) to memory",
+      "confidence": "high",
+      "role": "output buffer for exponent E"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_rsa_import_raw",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "The structure being modified with imported key material",
+      "confidence": "high",
+      "role": "Target RSA context"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_rsa_import_raw",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Contains the raw modulus value (n) which is sensitive cryptographic data",
+      "confidence": "high",
+      "role": "Modulus input"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_rsa_import_raw",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Contains the raw public exponent value (e)",
+      "confidence": "high",
+      "role": "Public exponent input"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_rsa_import_raw",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "Contains the raw private exponent value (d), highly sensitive",
+      "confidence": "high",
+      "role": "Private exponent input"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_rsa_import_raw",
+      "param_index": 4,
+      "rule_id": "other",
+      "reason": "Contains the first prime factor (p), highly sensitive",
+      "confidence": "high",
+      "role": "Prime P input"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_rsa_import_raw",
+      "param_index": 5,
+      "rule_id": "other",
+      "reason": "Contains the second prime factor (q), highly sensitive",
+      "confidence": "high",
+      "role": "Prime Q input"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_rsa_import_raw",
+      "param_index": 6,
+      "rule_id": "other",
+      "reason": "Contains the CRT exponent (dp), sensitive",
+      "confidence": "high",
+      "role": "DP-1 input"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_rsa_import_raw",
+      "param_index": 7,
+      "rule_id": "other",
+      "reason": "Contains the CRT exponent (dq), sensitive",
+      "confidence": "high",
+      "role": "DQ-1 input"
+    },
+    {
+      "kind": "function",
+      "name": "mbedtls_rsa_import_raw",
+      "param_index": 8,
+      "rule_id": "other",
+      "reason": "Contains the CRT coefficient (qp), sensitive",
+      "confidence": "high",
+      "role": "Inverse QP input"
+    },
+    {
+      "kind": "function",
+      "name": "snprintf",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Destination buffer where formatted data is written; potential for buffer overflow if size is mismanaged.",
+      "confidence": "high",
+      "role": "output_buffer"
+    },
+    {
+      "kind": "function",
+      "name": "snprintf",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Format string used to interpret subsequent arguments; vulnerable to format string attacks if attacker-controlled.",
+      "confidence": "high",
+      "role": "format_string"
+    },
+    {
+      "kind": "function",
+      "name": "snprintk",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Receives formatted data; vulnerable to buffer overflow if size is miscalculated or input is untrusted.",
+      "confidence": "high",
+      "role": "destination buffer"
+    },
+    {
+      "kind": "function",
+      "name": "snprintk",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Determines the boundary for writing; incorrect value leads to out-of-bounds write.",
+      "confidence": "high",
+      "role": "buffer size"
+    },
+    {
+      "kind": "function",
+      "name": "snprintk",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "If attacker-controlled, allows format string attacks (arbitrary read/write).",
+      "confidence": "high",
+      "role": "format string"
+    },
+    {
+      "kind": "function",
+      "name": "strcmp",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Reads content of the first C-string for comparison",
+      "confidence": "high",
+      "role": "input_string_1"
+    },
+    {
+      "kind": "function",
+      "name": "strcmp",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Reads content of the second C-string for comparison",
+      "confidence": "high",
+      "role": "input_string_2"
+    },
+    {
+      "kind": "function",
+      "name": "tee_uuid_from_str",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Contains the raw UUID string data that is parsed and transformed into a binary UUID structure.",
+      "confidence": "high",
+      "role": "input string buffer"
+    }
+  ],
+  "analysis_time": {
+    "total_seconds": 511.78231382369995,
+    "total_formatted": "8.53分",
+    "llm_analysis_seconds": 511.73697566986084,
+    "llm_analysis_formatted": "8.53分",
+    "functions_analyzed": 88,
+    "per_function": {
+      "mbedtls_rsa_import_raw": {
+        "seconds": 20.20207953453064,
+        "formatted": "20.20秒"
+      },
+      "mbedtls_nist_kw_unwrap": {
+        "seconds": 14.79631495475769,
+        "formatted": "14.80秒"
+      },
+      "TEE_CipherInit": {
+        "seconds": 13.537684202194214,
+        "formatted": "13.54秒"
+      },
+      "mbedtls_ecp_mul": {
+        "seconds": 10.29954719543457,
+        "formatted": "10.30秒"
+      },
+      "TEE_ReadObjectData": {
+        "seconds": 10.071322441101074,
+        "formatted": "10.07秒"
+      },
+      "TEE_AsymmetricDecrypt": {
+        "seconds": 9.833602666854858,
+        "formatted": "9.83秒"
+      },
+      "TEE_GetPropertyAsUUID": {
+        "seconds": 9.32290267944336,
+        "formatted": "9.32秒"
+      },
+      "TEE_AsymmetricVerifyDigest": {
+        "seconds": 9.07826280593872,
+        "formatted": "9.08秒"
+      },
+      "snprintk": {
+        "seconds": 8.835379838943481,
+        "formatted": "8.84秒"
+      },
+      "mbedtls_ecp_point_write_binary": {
+        "seconds": 8.794219255447388,
+        "formatted": "8.79秒"
+      },
+      "mbedtls_nist_kw_wrap": {
+        "seconds": 8.777334451675415,
+        "formatted": "8.78秒"
+      },
+      "TEE_CipherDoFinal": {
+        "seconds": 8.523426294326782,
+        "formatted": "8.52秒"
+      },
+      "TEE_CreatePersistentObject": {
+        "seconds": 8.410522937774658,
+        "formatted": "8.41秒"
+      },
+      "TEE_PopulateTransientObject": {
+        "seconds": 8.363688945770264,
+        "formatted": "8.36秒"
+      },
+      "mbedtls_nist_kw_setkey": {
+        "seconds": 8.08965015411377,
+        "formatted": "8.09秒"
+      },
+      "TEE_OpenPersistentObject": {
+        "seconds": 8.033604383468628,
+        "formatted": "8.03秒"
+      },
+      "mbedtls_pk_parse_key": {
+        "seconds": 7.977745532989502,
+        "formatted": "7.98秒"
+      },
+      "TEE_AsymmetricSignDigest": {
+        "seconds": 7.958143711090088,
+        "formatted": "7.96秒"
+      },
+      "mbedtls_mpi_write_binary": {
+        "seconds": 7.8605735301971436,
+        "formatted": "7.86秒"
+      },
+      "TEE_GenerateKey": {
+        "seconds": 7.629577398300171,
+        "formatted": "7.63秒"
+      },
+      "mbedtls_ecp_read_key": {
+        "seconds": 7.6181440353393555,
+        "formatted": "7.62秒"
+      },
+      "TEE_MACInit": {
+        "seconds": 7.618044137954712,
+        "formatted": "7.62秒"
+      },
+      "mbedtls_asn1_write_octet_string": {
+        "seconds": 7.481201410293579,
+        "formatted": "7.48秒"
+      },
+      "mbedtls_rsa_complete": {
+        "seconds": 7.300626039505005,
+        "formatted": "7.30秒"
+      },
+      "TEE_AsymmetricEncrypt": {
+        "seconds": 7.275784969329834,
+        "formatted": "7.28秒"
+      },
+      "TEE_CipherUpdate": {
+        "seconds": 7.243939161300659,
+        "formatted": "7.24秒"
+      },
+      "mbedtls_rsa_export": {
+        "seconds": 6.831638813018799,
+        "formatted": "6.83秒"
+      },
+      "TEE_MACCompareFinal": {
+        "seconds": 6.766193389892578,
+        "formatted": "6.77秒"
+      },
+      "snprintf": {
+        "seconds": 6.721253871917725,
+        "formatted": "6.72秒"
+      },
+      "TEE_MACComputeFinal": {
+        "seconds": 6.685686826705933,
+        "formatted": "6.69秒"
+      },
+      "mbedtls_ecp_export": {
+        "seconds": 6.663254022598267,
+        "formatted": "6.66秒"
+      },
+      "TEE_SetOperationKey": {
+        "seconds": 6.662160396575928,
+        "formatted": "6.66秒"
+      },
+      "TEE_InvokeTACommand": {
+        "seconds": 6.638266086578369,
+        "formatted": "6.64秒"
+      },
+      "mbedtls_ecp_check_pubkey": {
+        "seconds": 6.502269268035889,
+        "formatted": "6.50秒"
+      },
+      "mbedtls_pk_write_key_der": {
+        "seconds": 6.467386245727539,
+        "formatted": "6.47秒"
+      },
+      "TEE_WriteObjectData": {
+        "seconds": 6.298985958099365,
+        "formatted": "6.30秒"
+      },
+      "TEE_MemCompare": {
+        "seconds": 6.28401780128479,
+        "formatted": "6.28秒"
+      },
+      "TEE_DeriveKey": {
+        "seconds": 6.125396966934204,
+        "formatted": "6.13秒"
+      },
+      "strcmp": {
+        "seconds": 6.11479377746582,
+        "formatted": "6.11秒"
+      },
+      "TEE_DigestDoFinal": {
+        "seconds": 5.810882568359375,
+        "formatted": "5.81秒"
+      },
+      "tee_uuid_from_str": {
+        "seconds": 5.471867561340332,
+        "formatted": "5.47秒"
+      },
+      "TEE_GetPropertyAsIdentity": {
+        "seconds": 5.210108995437622,
+        "formatted": "5.21秒"
+      },
+      "TEE_GenerateRandom": {
+        "seconds": 4.97629451751709,
+        "formatted": "4.98秒"
+      },
+      "mbedtls_mpi_bitlen": {
+        "seconds": 4.959237813949585,
+        "formatted": "4.96秒"
+      },
+      "TEE_CloseAndDeletePersistentObject1": {
+        "seconds": 4.920046329498291,
+        "formatted": "4.92秒"
+      },
+      "mbedtls_rsa_check_privkey": {
+        "seconds": 4.770600080490112,
+        "formatted": "4.77秒"
+      },
+      "TEE_DigestUpdate": {
+        "seconds": 4.527332305908203,
+        "formatted": "4.53秒"
+      },
+      "TEE_MACUpdate": {
+        "seconds": 4.4553117752075195,
+        "formatted": "4.46秒"
+      },
+      "strstr": {
+        "seconds": 4.294986248016357,
+        "formatted": "4.29秒"
+      },
+      "mbedtls_nist_kw_init": {
+        "seconds": 4.1121134757995605,
+        "formatted": "4.11秒"
+      },
+      "strnlen": {
+        "seconds": 4.09051513671875,
+        "formatted": "4.09秒"
+      },
+      "mbedtls_mpi_init": {
+        "seconds": 4.061059236526489,
+        "formatted": "4.06秒"
+      },
+      "TEE_Panic": {
+        "seconds": 4.013340473175049,
+        "formatted": "4.01秒"
+      },
+      "TEE_OpenTASession": {
+        "seconds": 3.8909451961517334,
+        "formatted": "3.89秒"
+      },
+      "mbedtls_pk_setup": {
+        "seconds": 3.801997184753418,
+        "formatted": "3.80秒"
+      },
+      "TEE_InitRefAttribute": {
+        "seconds": 3.8001999855041504,
+        "formatted": "3.80秒"
+      },
+      "TEE_SeekObjectData": {
+        "seconds": 3.771580696105957,
+        "formatted": "3.77秒"
+      },
+      "memset": {
+        "seconds": 3.760998249053955,
+        "formatted": "3.76秒"
+      },
+      "mbedtls_ecp_point_free": {
+        "seconds": 3.7403461933135986,
+        "formatted": "3.74秒"
+      },
+      "mbedtls_ecp_keypair_free": {
+        "seconds": 3.7383506298065186,
+        "formatted": "3.74秒"
+      },
+      "TEE_MemFill": {
+        "seconds": 3.7279980182647705,
+        "formatted": "3.73秒"
+      },
+      "mbedtls_ecp_group_free": {
+        "seconds": 3.6954305171966553,
+        "formatted": "3.70秒"
+      },
+      "TEE_GetObjectBufferAttribute": {
+        "seconds": 3.6900794506073,
+        "formatted": "3.69秒"
+      },
+      "mbedtls_ecp_point_init": {
+        "seconds": 3.6605749130249023,
+        "formatted": "3.66秒"
+      },
+      "mbedtls_ecp_check_privkey": {
+        "seconds": 3.6504604816436768,
+        "formatted": "3.65秒"
+      },
+      "TEE_MemMove": {
+        "seconds": 3.6472675800323486,
+        "formatted": "3.65秒"
+      },
+      "TEE_RestrictObjectUsage1": {
+        "seconds": 3.6107046604156494,
+        "formatted": "3.61秒"
+      },
+      "TEE_TruncateObjectData": {
+        "seconds": 3.5706281661987305,
+        "formatted": "3.57秒"
+      },
+      "TEE_Realloc": {
+        "seconds": 3.5690062046051025,
+        "formatted": "3.57秒"
+      },
+      "TEE_InitValueAttribute": {
+        "seconds": 3.518853187561035,
+        "formatted": "3.52秒"
+      },
+      "mbedtls_pk_init": {
+        "seconds": 3.4791131019592285,
+        "formatted": "3.48秒"
+      },
+      "mbedtls_pk_info_from_type": {
+        "seconds": 3.477593183517456,
+        "formatted": "3.48秒"
+      },
+      "TEE_AllocateTransientObject": {
+        "seconds": 3.459311008453369,
+        "formatted": "3.46秒"
+      },
+      "TEE_GetOperationInfo": {
+        "seconds": 3.447740077972412,
+        "formatted": "3.45秒"
+      },
+      "TEE_Malloc": {
+        "seconds": 3.441535234451294,
+        "formatted": "3.44秒"
+      },
+      "TEE_FreeOperation": {
+        "seconds": 3.362760305404663,
+        "formatted": "3.36秒"
+      },
+      "mbedtls_ecp_group_init": {
+        "seconds": 3.331956624984741,
+        "formatted": "3.33秒"
+      },
+      "mbedtls_ecp_keypair_init": {
+        "seconds": 3.2509453296661377,
+        "formatted": "3.25秒"
+      },
+      "TEE_GetObjectInfo1": {
+        "seconds": 3.2469193935394287,
+        "formatted": "3.25秒"
+      },
+      "mbedtls_nist_kw_free": {
+        "seconds": 3.2230045795440674,
+        "formatted": "3.22秒"
+      },
+      "TEE_FreeTransientObject": {
+        "seconds": 3.163151264190674,
+        "formatted": "3.16秒"
+      },
+      "TEE_AllocateOperation": {
+        "seconds": 3.125200033187866,
+        "formatted": "3.13秒"
+      },
+      "TEE_Free": {
+        "seconds": 3.1188015937805176,
+        "formatted": "3.12秒"
+      },
+      "mbedtls_pk_free": {
+        "seconds": 3.077188491821289,
+        "formatted": "3.08秒"
+      },
+      "TEE_CloseTASession": {
+        "seconds": 2.9510395526885986,
+        "formatted": "2.95秒"
+      },
+      "strlen": {
+        "seconds": 2.8322997093200684,
+        "formatted": "2.83秒"
+      },
+      "TEE_CloseObject": {
+        "seconds": 2.7940282821655273,
+        "formatted": "2.79秒"
+      },
+      "mbedtls_mpi_free": {
+        "seconds": 2.7406439781188965,
+        "formatted": "2.74秒"
+      }
+    }
+  },
+  "analysis_mode": "llm_only"
+}

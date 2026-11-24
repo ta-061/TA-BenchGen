@@ -1,0 +1,44 @@
+{
+  "case_id": "case_edc7a9e855a140d7",
+  "defects": [
+    {
+      "class": "DUS",
+      "detector_targets": [
+        {
+          "function": "TA_Verify",
+          "lines": [
+            672,
+            672
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "effect"
+        }
+      ],
+      "edits": [
+        {
+          "defective_lines": [
+            671,
+            672
+          ],
+          "edit_id": "E1",
+          "kind": "insert",
+          "normal_lines": null,
+          "path": "ta/gatekeeper_ta.c"
+        }
+      ],
+      "id": "D1",
+      "reason": "The password length is read again from the shared request buffer just before it is used, instead of using the private copy taken at parse time. If the caller changes the length after the checks, the new value controls the stack buffer sizes and the copy lengths.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "normal": {
+    "path": "normal/gatekeeper",
+    "source_digest": "sha256:8387367a6d1eb1c48750405491a3eb3775544adbdd58d7bc64524542047e2d57"
+  },
+  "review": {
+    "status": "approved"
+  },
+  "schema_version": "4.0"
+}

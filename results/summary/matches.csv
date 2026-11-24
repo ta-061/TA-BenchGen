@@ -1,0 +1,43 @@
+﻿ta_id,defect_id,class_id,role,path,first_line,last_line,method,report,report_line,reported_class,rule
+T18,D1,IVW,effect,ta/ecdsa_ta.c,293,293,DITING-GP11,IVW-1,293,IVW,IVW
+T18,D1,IVW,effect,ta/ecdsa_ta.c,293,293,TFI-GPT52,M6,293,IVW,3/3 runs: IVW/IVW/IVW
+T19,D1,UDO,effect,ta/sign_verify_ta.c,245,246,TFI-GPT52,M5,245,UDO,2/3 runs: UDO/UDO
+T21,D1,IVW,effect,ta/gatekeeper_ta.c,214,214,TFI-GPT52,M5,214,DUS,3/3 runs: IVW/DUS/DUS
+T24,D1,IVW,effect,ta/gatekeeper_ta.c,543,544,TFI-GPT52,M18,543,UDO,2/3 runs: UDO/UDO
+T27,D1,IVW,effect,ta/sha_ta.c,365,366,TFI-GPT52,M8,365,DUS,3/3 runs: DUS/DUS/DUS
+T30,D1,IVW,protection,ta/sha_ta.c,83,83,TFI-GPT52,M1,83,IVW,2/3 runs: IVW/IVW
+T33,D1,ORDER,effect,ta/src/pkcs11_token.c,1207,1207,TFI-GPT52,VULN-0092,1207,DUS,direct_usage_of_shared_memory
+T34,D1,IVW,effect,ta/sign_verify_ta.c,240,240,TFI-GPT52,M5,240,IVW,3/3 runs: IVW/IVW/IVW
+T34,D2,UDO,effect,ta/sign_verify_ta.c,245,245,TFI-GPT52,M6,245,UDO,3/3 runs: UDO/UDO/UDO
+T35,D1,UDO,effect,ta/ecdsa_ta.c,297,297,TFI-GPT52,M5,297,UDO,3/3 runs: UDO/UDO/UDO
+T36,D1,DUS,effect,ta/gatekeeper_ta.c,672,672,TFI-GPT52,M23,672,DUS,3/3 runs: DUS/DUS/DUS
+T18,D1,IVW,effect,ta/ecdsa_ta.c,293,293,TFI-GPT52/run-01,VULN-0004,293,IVW,input_validation_weakness
+T19,D1,UDO,effect,ta/sign_verify_ta.c,245,246,TFI-GPT52/run-01,VULN-0005,245,UDO,unencrypted_data_output
+T21,D1,IVW,effect,ta/gatekeeper_ta.c,214,214,TFI-GPT52/run-01,VULN-0018,214,IVW,input_validation_weakness
+T24,D1,IVW,effect,ta/gatekeeper_ta.c,543,544,TFI-GPT52/run-01,VULN-0018,543,UDO,unencrypted_data_output
+T27,D1,IVW,effect,ta/sha_ta.c,365,366,TFI-GPT52/run-01,VULN-0011,365,DUS,direct_usage_of_shared_memory
+T33,D1,ORDER,effect,ta/src/pkcs11_token.c,1207,1207,TFI-GPT52/run-01,VULN-0092,1207,DUS,direct_usage_of_shared_memory
+T34,D1,IVW,effect,ta/sign_verify_ta.c,240,240,TFI-GPT52/run-01,VULN-0005,240,IVW,input_validation_weakness
+T34,D2,UDO,effect,ta/sign_verify_ta.c,245,245,TFI-GPT52/run-01,VULN-0006,245,UDO,unencrypted_data_output
+T35,D1,UDO,effect,ta/ecdsa_ta.c,297,297,TFI-GPT52/run-01,VULN-0006,297,UDO,unencrypted_data_output
+T36,D1,DUS,effect,ta/gatekeeper_ta.c,672,672,TFI-GPT52/run-01,VULN-0023,672,DUS,direct_usage_of_shared_memory
+T18,D1,IVW,effect,ta/ecdsa_ta.c,293,293,TFI-GPT52/run-02,VULN-0006,293,IVW,input_validation_weakness
+T19,D1,UDO,effect,ta/sign_verify_ta.c,245,246,TFI-GPT52/run-02,VULN-0005,245,UDO,unencrypted_data_output
+T21,D1,IVW,effect,ta/gatekeeper_ta.c,214,214,TFI-GPT52/run-02,VULN-0005,214,DUS,direct_usage_of_shared_memory
+T27,D1,IVW,effect,ta/sha_ta.c,365,366,TFI-GPT52/run-02,VULN-0008,365,DUS,direct_usage_of_shared_memory
+T30,D1,IVW,protection,ta/sha_ta.c,83,83,TFI-GPT52/run-02,VULN-0011,83,IVW,input_validation_weakness
+T34,D1,IVW,effect,ta/sign_verify_ta.c,240,240,TFI-GPT52/run-02,VULN-0005,240,IVW,input_validation_weakness
+T34,D2,UDO,effect,ta/sign_verify_ta.c,245,245,TFI-GPT52/run-02,VULN-0006,245,UDO,unencrypted_data_output
+T35,D1,UDO,effect,ta/ecdsa_ta.c,297,297,TFI-GPT52/run-02,VULN-0004,297,UDO,unencrypted_data_output
+T36,D1,DUS,effect,ta/gatekeeper_ta.c,672,672,TFI-GPT52/run-02,VULN-0028,672,DUS,direct_usage_of_shared_memory
+T18,D1,IVW,effect,ta/ecdsa_ta.c,293,293,TFI-GPT52/run-03,VULN-0006,293,IVW,input_validation_weakness
+T19,D1,UDO,effect,ta/sign_verify_ta.c,245,246,TFI-GPT52/run-03,VULN-0005,246,UDO,unencrypted_data_output
+T21,D1,IVW,effect,ta/gatekeeper_ta.c,214,214,TFI-GPT52/run-03,VULN-0004,214,DUS,direct_usage_of_shared_memory
+T22,D1,IVW,effect,ta/hotp_ta.c,153,153,TFI-GPT52/run-03,VULN-0001,153,IVW,input_validation_weakness
+T24,D1,IVW,effect,ta/gatekeeper_ta.c,543,544,TFI-GPT52/run-03,VULN-0018,543,UDO,unencrypted_data_output
+T27,D1,IVW,effect,ta/sha_ta.c,365,366,TFI-GPT52/run-03,VULN-0007,365,DUS,direct_usage_of_shared_memory
+T30,D1,IVW,protection,ta/sha_ta.c,83,83,TFI-GPT52/run-03,VULN-0008,83,IVW,input_validation_weakness
+T34,D1,IVW,effect,ta/sign_verify_ta.c,240,240,TFI-GPT52/run-03,VULN-0005,240,IVW,input_validation_weakness
+T34,D2,UDO,effect,ta/sign_verify_ta.c,245,245,TFI-GPT52/run-03,VULN-0006,245,UDO,unencrypted_data_output
+T35,D1,UDO,effect,ta/ecdsa_ta.c,297,297,TFI-GPT52/run-03,VULN-0005,297,UDO,unencrypted_data_output
+T36,D1,DUS,effect,ta/gatekeeper_ta.c,672,672,TFI-GPT52/run-03,VULN-0021,672,DUS,direct_usage_of_shared_memory

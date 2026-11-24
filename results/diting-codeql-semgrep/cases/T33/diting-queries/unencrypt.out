@@ -1,0 +1,17 @@
+|  col0  |        col1         |                                                                                 col2                                                                                 |
++--------+---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| rc     | call to TEE_MemMove | file://${WORK}/sources/T33/ta/src/entry.c:366:40:366:41             |
+| rc     | call to TEE_MemMove | file://${WORK}/sources/T33/ta/src/entry.c:366:39:366:41             |
+| rc     | & ...               | file://${WORK}/sources/T33/ta/src/entry.c:366:40:366:41             |
+| rc     | & ...               | file://${WORK}/sources/T33/ta/src/entry.c:366:39:366:41             |
+| & ...  | call to TEE_MemMove | file://${WORK}/sources/T33/ta/src/entry.c:366:40:366:41             |
+| & ...  | call to TEE_MemMove | file://${WORK}/sources/T33/ta/src/entry.c:366:39:366:41             |
+| & ...  | & ...               | file://${WORK}/sources/T33/ta/src/entry.c:366:40:366:41             |
+| & ...  | & ...               | file://${WORK}/sources/T33/ta/src/entry.c:366:39:366:41             |
+| size   | ... = ...           | file://${WORK}/sources/T33/ta/src/entry.c:367:19:367:22             |
+| buffer | ... = ...           | file://${WORK}/sources/T33/ta/src/pkcs11_token.c:1554:19:1554:24    |
+| size   | ... = ...           | file://${WORK}/sources/T33/ta/src/pkcs11_token.c:1555:19:1555:22    |
+| size   | ... = ...           | file://${WORK}/sources/T33/ta/src/processing.c:1279:20:1279:23      |
+| size   | ... = ...           | file://${WORK}/sources/T33/ta/src/processing_digest.c:216:20:216:23 |
+| size   | ... = ...           | file://${WORK}/sources/T33/ta/src/processing_asymm.c:853:21:853:24  |
+| size   | ... = ...           | file://${WORK}/sources/T33/ta/src/processing_symm.c:977:21:977:24   |

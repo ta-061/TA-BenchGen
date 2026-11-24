@@ -1,0 +1,19 @@
+| col0 |  col1  |          col2           |        col3         |                                                                         col4                                                                         |
++------+--------+-------------------------+---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 0    | memref | ... = ...               | read_persist_value  | file://${WORK}/sources/T26/ta/entry.c:325:2:325:35  |
+| 0    | memref | ... = ...               | read_persist_value  | file://${WORK}/sources/T26/ta/entry.c:326:2:326:36  |
+| 1    | memref | ... = ...               | read_persist_value  | file://${WORK}/sources/T26/ta/entry.c:327:2:327:33  |
+| 1    | memref | call to TEE_MemMove     | read_persist_value  | file://${WORK}/sources/T26/ta/entry.c:350:2:350:12  |
+| 1    | memref | ... = ...               | read_persist_value  | file://${WORK}/sources/T26/ta/entry.c:353:2:353:30  |
+| 0    | memref | ... = ...               | write_persist_value | file://${WORK}/sources/T26/ta/entry.c:275:2:275:35  |
+| 0    | memref | ... = ...               | write_persist_value | file://${WORK}/sources/T26/ta/entry.c:276:2:276:36  |
+| 1    | memref | ... = ...               | write_persist_value | file://${WORK}/sources/T26/ta/entry.c:277:2:277:33  |
+| 1    | memref | call to TEE_MemMove     | write_persist_value | file://${WORK}/sources/T26/ta/entry.c:282:2:282:12  |
+| 0    | value  | ... = ...               | write_lock_state    | file://${WORK}/sources/T26/ta/entry.c:231:2:231:32  |
+| 0    | value  | ... = ...               | read_lock_state     | file://${WORK}/sources/T26/ta/entry.c:209:2:209:31  |
+| 0    | value  | call to get_slot_offset | write_rb_idx        | file://${WORK}/sources/T26/ta/entry.c:143:8:143:22  |
+| 1    | value  | ... << ...              | write_rb_idx        | file://${WORK}/sources/T26/ta/entry.c:146:10:146:42 |
+| 1    | value  | ... | ...               | write_rb_idx        | file://${WORK}/sources/T26/ta/entry.c:146:9:146:63  |
+| 0    | value  | call to get_slot_offset | read_rb_idx         | file://${WORK}/sources/T26/ta/entry.c:87:8:87:22    |
+| 1    | value  | ... = ...               | read_rb_idx         | file://${WORK}/sources/T26/ta/entry.c:120:2:120:30  |
+| 1    | value  | ... = ...               | read_rb_idx         | file://${WORK}/sources/T26/ta/entry.c:121:2:121:24  |

@@ -1,0 +1,16 @@
+[
+  "/usr/local/bin/python",
+  "/workspace/src/identify_flows/generate_candidate_flows.py",
+  "--compile-db",
+  "/inputs/T21/ta/compile_commands.json",
+  "--sinks",
+  "/results/cases/T21/attempt-01/outputs/results_1/ta_sinks_gp11.json",
+  "--phase12",
+  "/results/cases/T21/attempt-01/outputs/results_1/ta_phase12.json",
+  "--sources",
+  "TA_InvokeCommandEntryPoint,TA_OpenSessionEntryPoint,__GP11_TA_InvokeCommandEntryPoint,__GP11_TA_OpenSessionEntryPoint",
+  "--output",
+  "/results/cases/T21/attempt-01/outputs/results_1/ta_candidate_flows.json",
+  "--devkit",
+  "/support/devkit"
+]

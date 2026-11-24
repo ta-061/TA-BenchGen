@@ -1,0 +1,965 @@
+{
+  "benchmark": "${REPO}/benchmark",
+  "classes_digest": "sha256:b6c2de2cc8b3a24cf97c348a847c67859342a968b801f3227da629c3c8033dcd",
+  "created_at": "2026-11-23T14:40:21.345946+00:00",
+  "requests": [
+    {
+      "attempts": [
+        {
+          "case_id": "case_edc7a9e855a140d7",
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\tif (provided_password)\n\t\tmemcpy(&provided_password_length, provided_password - sizeof(provided_password_length), sizeof(provided_password_length));\n\tres = TA_DoVerify(password_handle, provided_password,\n",
+              "old": "\tres = TA_DoVerify(password_handle, provided_password,\n",
+              "path": "ta/gatekeeper_ta.c"
+            }
+          ],
+          "index": 1,
+          "proposed": [
+            {
+              "class": "DUS",
+              "detector_targets": [
+                {
+                  "function": "TA_Verify",
+                  "lines": [
+                    671,
+                    671
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "effect"
+                }
+              ],
+              "id": "D1",
+              "reason": "The password length is read again from the shared request buffer just before it is used, instead of using the private copy taken at parse time. If the caller changes the length after the checks, the new value controls the stack buffer sizes and the copy lengths."
+            }
+          ],
+          "reason": "saved",
+          "status": "machine_pass"
+        }
+      ],
+      "count": 1,
+      "defects": {
+        "DUS": 1
+      },
+      "max_attempts": 3,
+      "normal_digest": "sha256:8387367a6d1eb1c48750405491a3eb3775544adbdd58d7bc64524542047e2d57",
+      "saved": [
+        "case_edc7a9e855a140d7"
+      ],
+      "ta": "${REPO}/benchmark/normal/gatekeeper"
+    },
+    {
+      "attempts": [
+        {
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\t\tserialize_int(&i_resp, (uint32_t)(password_handle->version < HANDLE_VERSION_THROTTLE));\n",
+              "old": "\t\tserialize_int(&i_resp, (uint32_t) request_reenroll);\n",
+              "path": "ta/gatekeeper_ta.c"
+            },
+            {
+              "defect": "D2",
+              "new": "\tmemcpy(pw_handle.signature, password, password_length < sizeof(pw_handle.signature) ? password_length : sizeof(pw_handle.signature));\n\tmemcpy(password_handle, &pw_handle, sizeof(pw_handle));\n",
+              "old": "\tmemcpy(password_handle, &pw_handle, sizeof(pw_handle));\n",
+              "path": "ta/gatekeeper_ta.c"
+            }
+          ],
+          "index": 1,
+          "proposed": [
+            {
+              "class": "DUS",
+              "detector_targets": [
+                {
+                  "function": "TA_Verify",
+                  "lines": [
+                    705,
+                    705
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "TA_Verify",
+                  "lines": [
+                    669,
+                    669
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D1",
+              "reason": "The re-enrollment flag in the Verify response is computed again from the caller-writable request buffer when the response is built, instead of using the private value taken earlier. A change to the handle version after verification therefore changes the reported flag."
+            },
+            {
+              "class": "UDO",
+              "detector_targets": [
+                {
+                  "function": "TA_CreatePasswordHandle",
+                  "lines": [
+                    230,
+                    230
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "TA_CreatePasswordHandle",
+                  "lines": [
+                    222,
+                    224
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D2",
+              "reason": "Before the password handle is returned, the leading bytes of the plaintext password are copied over the HMAC signature field. The secret ends up in the output unprotected."
+            }
+          ],
+          "reason": "T02: invalid invoke operation",
+          "status": "machine_fail"
+        },
+        {
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\t\tserialize_int(&i_resp, (uint32_t)(request_reenroll || password_handle->version < HANDLE_VERSION_THROTTLE));\n",
+              "old": "\t\tserialize_int(&i_resp, (uint32_t) request_reenroll);\n",
+              "path": "ta/gatekeeper_ta.c"
+            },
+            {
+              "defect": "D2",
+              "new": "\tif (password_length > sizeof(pw_handle.flags))\n\t\tmemcpy((uint8_t *)&pw_handle + sizeof(pw_handle.version) + sizeof(pw_handle.user_id), password, sizeof(pw_handle.flags));\n\tmemcpy(password_handle, &pw_handle, sizeof(pw_handle));\n",
+              "old": "\tmemcpy(password_handle, &pw_handle, sizeof(pw_handle));\n",
+              "path": "ta/gatekeeper_ta.c"
+            }
+          ],
+          "failed_test": {
+            "id": "T02",
+            "observations": [
+              {
+                "defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "different_items": [],
+                "ignored_variable_items": [],
+                "normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "purpose": "witness",
+                "repeated_defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "repeated_normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "step": 1,
+                "test": "T02"
+              },
+              {
+                "defective": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "data": "**",
+                      "param": 1,
+                      "size": 66,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "different_items": [],
+                "ignored_variable_items": [
+                  {
+                    "field": "data",
+                    "param": 1
+                  }
+                ],
+                "normal": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "data": "**",
+                      "param": 1,
+                      "size": 66,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "purpose": "witness",
+                "repeated_defective": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "data": "**",
+                      "param": 1,
+                      "size": 66,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "repeated_normal": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "data": "**",
+                      "param": 1,
+                      "size": 66,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "step": 2,
+                "test": "T02"
+              },
+              {
+                "defective": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "data": "**",
+                      "param": 1,
+                      "size": 81,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "different_items": [],
+                "ignored_variable_items": [
+                  {
+                    "field": "data",
+                    "param": 0
+                  },
+                  {
+                    "field": "data",
+                    "param": 1
+                  }
+                ],
+                "normal": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "data": "**",
+                      "param": 1,
+                      "size": 81,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "purpose": "witness",
+                "repeated_defective": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "data": "**",
+                      "param": 1,
+                      "size": 81,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "repeated_normal": {
+                  "origin": 0,
+                  "outputs": [
+                    {
+                      "data": "**",
+                      "param": 1,
+                      "size": 81,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "step": 3,
+                "test": "T02"
+              },
+              {
+                "defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "different_items": [],
+                "ignored_variable_items": [],
+                "normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "purpose": "witness",
+                "repeated_defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "repeated_normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "step": 4,
+                "test": "T02"
+              }
+            ],
+            "observations_omitted": 0,
+            "purpose": "witness",
+            "source": "candidate",
+            "steps": [
+              {
+                "op": "open",
+                "session": "s1"
+              },
+              {
+                "command_id": 0,
+                "op": "invoke",
+                "params": [
+                  {
+                    "data": "010000000800000070617373776f72640000000000000000",
+                    "type": "memref_input"
+                  },
+                  {
+                    "size": 128,
+                    "type": "memref_output"
+                  },
+                  {
+                    "type": "none"
+                  },
+                  {
+                    "type": "none"
+                  }
+                ],
+                "session": "s1"
+              },
+              {
+                "command_id": 1,
+                "events": [
+                  {
+                    "action": {
+                      "data": "01",
+                      "expect": "02",
+                      "kind": "write_memory",
+                      "offset": 16,
+                      "param": 0
+                    },
+                    "trigger": {
+                      "before": "ClearFailureRecord(user_id);",
+                      "function": "TA_Verify",
+                      "kind": "checkpoint",
+                      "occurrence": 1,
+                      "path": "ta/gatekeeper_ta.c"
+                    }
+                  }
+                ],
+                "op": "invoke",
+                "params": [
+                  {
+                    "data": "0100000001000000000000003a00000000000000000000000000000000000000",
+                    "data_bytes": 86,
+                    "data_truncated": true,
+                    "inserts": [
+                      {
+                        "from": {
+                          "length": 58,
+                          "offset": 8,
+                          "param": 1,
+                          "step": 2
+                        },
+                        "offset": 16
+                      }
+                    ],
+                    "type": "shared_memref_input"
+                  },
+                  {
+                    "size": 128,
+                    "type": "memref_output"
+                  },
+                  {
+                    "type": "none"
+                  },
+                  {
+                    "type": "none"
+                  }
+                ],
+                "session": "s1"
+              },
+              {
+                "op": "close",
+                "session": "s1"
+              }
+            ]
+          },
+          "index": 2,
+          "proposed": [
+            {
+              "class": "DUS",
+              "detector_targets": [
+                {
+                  "function": "TA_Verify",
+                  "lines": [
+                    706,
+                    706
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "TA_Verify",
+                  "lines": [
+                    670,
+                    670
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D1",
+              "reason": "The re-enrollment flag in the Verify response is recomputed from the handle version in the caller-writable request buffer when the response is built. The private value derived earlier is no longer the only source. If the buffer changes after verification, the reported flag changes too."
+            },
+            {
+              "class": "UDO",
+              "detector_targets": [
+                {
+                  "function": "TA_CreatePasswordHandle",
+                  "lines": [
+                    231,
+                    231
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "effect"
+                },
+                {
+                  "function": "TA_CreatePasswordHandle",
+                  "lines": [
+                    222,
+                    224
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "protection"
+                }
+              ],
+              "id": "D2",
+              "reason": "For passwords longer than 8 bytes, the first bytes of the plaintext password are copied into the flags field of the password handle after signing. The handle is returned to the caller, so the protected password appears in the output unprotected."
+            }
+          ],
+          "reason": "T02: no reproducible difference at/after witness step (R2)",
+          "status": "unknown"
+        },
+        {
+          "changes": [
+            {
+              "defect": "D1",
+              "new": "\tcase TEE_FALSE:\n\t\tif (throttle && timeout > 0) {\n\t\t\terror = ERROR_RETRY;\n\t\t} else if (password_handle->version > HANDLE_VERSION) {\n\t\t\terror = ERROR_UNKNOWN;\n\t\t\tres = TEE_ERROR_BAD_PARAMETERS;\n\t\t} else {\n\t\t\terror = ERROR_INVALID;\n\t\t}\n\t\tgoto serialize_response;\n",
+              "old": "\tcase TEE_FALSE:\n\t\tif (throttle && timeout > 0) {\n\t\t\terror = ERROR_RETRY;\n\t\t} else {\n\t\t\terror = ERROR_INVALID;\n\t\t}\n\t\tgoto serialize_response;\n",
+              "path": "ta/gatekeeper_ta.c"
+            },
+            {
+              "defect": "D2",
+              "new": "\tcase ERROR_INVALID:\n\t\tserialize_blob(&i_resp, provided_password, provided_password_length > 32 ? 32 : provided_password_length);\n\t\tbreak;\n\tcase ERROR_UNKNOWN:\n\t\tbreak;\n\tcase ERROR_RETRY:\n\t\tserialize_int(&i_resp, timeout);\n\t\tbreak;\n\tcase ERROR_NONE:\n\t\tserialize_blob(&i_resp, (uint8_t *)&auth_token, sizeof(auth_token));\n",
+              "old": "\tcase ERROR_INVALID:\n\tcase ERROR_UNKNOWN:\n\t\tbreak;\n\tcase ERROR_RETRY:\n\t\tserialize_int(&i_resp, timeout);\n\t\tbreak;\n\tcase ERROR_NONE:\n\t\tserialize_blob(&i_resp, (uint8_t *)&auth_token, sizeof(auth_token));\n",
+              "path": "ta/gatekeeper_ta.c"
+            }
+          ],
+          "failed_test": {
+            "id": "C93f03c80acd78d16",
+            "observations": [
+              {
+                "defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "different_items": [],
+                "ignored_variable_items": [],
+                "normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "purpose": "normal",
+                "repeated_defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "repeated_normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "step": 1,
+                "test": "C93f03c80acd78d16"
+              },
+              {
+                "defective": {
+                  "origin": 4,
+                  "outputs": [
+                    {
+                      "data": "010000000400000031323334",
+                      "param": 1,
+                      "size": 12,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 1,
+                  "ta_crashed": false
+                },
+                "different_items": [
+                  {
+                    "field": "data",
+                    "param": 1
+                  },
+                  {
+                    "field": "size",
+                    "param": 1
+                  }
+                ],
+                "ignored_variable_items": [],
+                "normal": {
+                  "origin": 4,
+                  "outputs": [
+                    {
+                      "data": "01000000",
+                      "param": 1,
+                      "size": 4,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 1,
+                  "ta_crashed": false
+                },
+                "purpose": "normal",
+                "repeated_defective": {
+                  "origin": 4,
+                  "outputs": [
+                    {
+                      "data": "010000000400000031323334",
+                      "param": 1,
+                      "size": 12,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 1,
+                  "ta_crashed": false
+                },
+                "repeated_normal": {
+                  "origin": 4,
+                  "outputs": [
+                    {
+                      "data": "01000000",
+                      "param": 1,
+                      "size": 4,
+                      "type": "memref_output"
+                    }
+                  ],
+                  "result": 1,
+                  "ta_crashed": false
+                },
+                "step": 2,
+                "test": "C93f03c80acd78d16"
+              },
+              {
+                "defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "different_items": [],
+                "ignored_variable_items": [],
+                "normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "purpose": "normal",
+                "repeated_defective": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "repeated_normal": {
+                  "origin": 0,
+                  "outputs": [],
+                  "result": 0,
+                  "ta_crashed": false
+                },
+                "step": 3,
+                "test": "C93f03c80acd78d16"
+              }
+            ],
+            "observations_omitted": 0,
+            "purpose": "normal",
+            "source": "corpus",
+            "steps": [
+              {
+                "op": "open",
+                "session": "s1"
+              },
+              {
+                "command_id": 1,
+                "op": "invoke",
+                "params": [
+                  {
+                    "data": "0100000005000000000000003a00000002010000000000000001000000000000",
+                    "data_bytes": 82,
+                    "data_truncated": true,
+                    "type": "memref_input"
+                  },
+                  {
+                    "size": 128,
+                    "type": "memref_output"
+                  },
+                  {
+                    "type": "none"
+                  },
+                  {
+                    "type": "none"
+                  }
+                ],
+                "session": "s1"
+              },
+              {
+                "op": "close",
+                "session": "s1"
+              }
+            ]
+          },
+          "index": 3,
+          "observed_differences": [
+            {
+              "defective": {
+                "origin": 4,
+                "outputs": [
+                  {
+                    "data": "03000000",
+                    "param": 1,
+                    "size": 4,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 4294901766,
+                "ta_crashed": false
+              },
+              "different_items": [
+                {
+                  "field": "result"
+                },
+                {
+                  "field": "data",
+                  "param": 1
+                }
+              ],
+              "ignored_variable_items": [
+                {
+                  "field": "data",
+                  "param": 0
+                }
+              ],
+              "normal": {
+                "origin": 4,
+                "outputs": [
+                  {
+                    "data": "01000000",
+                    "param": 1,
+                    "size": 4,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 1,
+                "ta_crashed": false
+              },
+              "purpose": "witness",
+              "repeated_defective": {
+                "origin": 4,
+                "outputs": [
+                  {
+                    "data": "03000000",
+                    "param": 1,
+                    "size": 4,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 4294901766,
+                "ta_crashed": false
+              },
+              "repeated_normal": {
+                "origin": 4,
+                "outputs": [
+                  {
+                    "data": "01000000",
+                    "param": 1,
+                    "size": 4,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 1,
+                "ta_crashed": false
+              },
+              "step": 3,
+              "test": "T02"
+            },
+            {
+              "defective": {
+                "origin": 4,
+                "outputs": [
+                  {
+                    "data": "010000000800000070617373776f7265",
+                    "param": 1,
+                    "size": 16,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 1,
+                "ta_crashed": false
+              },
+              "different_items": [
+                {
+                  "field": "data",
+                  "param": 1
+                },
+                {
+                  "field": "size",
+                  "param": 1
+                }
+              ],
+              "ignored_variable_items": [
+                {
+                  "field": "data",
+                  "param": 0
+                }
+              ],
+              "normal": {
+                "origin": 4,
+                "outputs": [
+                  {
+                    "data": "01000000",
+                    "param": 1,
+                    "size": 4,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 1,
+                "ta_crashed": false
+              },
+              "purpose": "witness",
+              "repeated_defective": {
+                "origin": 4,
+                "outputs": [
+                  {
+                    "data": "010000000800000070617373776f7265",
+                    "param": 1,
+                    "size": 16,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 1,
+                "ta_crashed": false
+              },
+              "repeated_normal": {
+                "origin": 4,
+                "outputs": [
+                  {
+                    "data": "01000000",
+                    "param": 1,
+                    "size": 4,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 1,
+                "ta_crashed": false
+              },
+              "step": 3,
+              "test": "T03"
+            },
+            {
+              "defective": {
+                "origin": 4,
+                "outputs": [
+                  {
+                    "data": "010000000400000031323334",
+                    "param": 1,
+                    "size": 12,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 1,
+                "ta_crashed": false
+              },
+              "different_items": [
+                {
+                  "field": "data",
+                  "param": 1
+                },
+                {
+                  "field": "size",
+                  "param": 1
+                }
+              ],
+              "ignored_variable_items": [],
+              "normal": {
+                "origin": 4,
+                "outputs": [
+                  {
+                    "data": "01000000",
+                    "param": 1,
+                    "size": 4,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 1,
+                "ta_crashed": false
+              },
+              "purpose": "normal",
+              "repeated_defective": {
+                "origin": 4,
+                "outputs": [
+                  {
+                    "data": "010000000400000031323334",
+                    "param": 1,
+                    "size": 12,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 1,
+                "ta_crashed": false
+              },
+              "repeated_normal": {
+                "origin": 4,
+                "outputs": [
+                  {
+                    "data": "01000000",
+                    "param": 1,
+                    "size": 4,
+                    "type": "memref_output"
+                  }
+                ],
+                "result": 1,
+                "ta_crashed": false
+              },
+              "step": 2,
+              "test": "C93f03c80acd78d16"
+            }
+          ],
+          "proposed": [
+            {
+              "class": "DUS",
+              "detector_targets": [
+                {
+                  "function": "TA_Verify",
+                  "lines": [
+                    684,
+                    684
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "effect"
+                }
+              ],
+              "id": "D1",
+              "reason": "In Verify, the password handle is used directly from the caller-writable request buffer instead of a private copy. After the early version check, the failure path reads the version from that buffer a second time. If the buffer changes in between, the reported error code and the result differ from th"
+            },
+            {
+              "class": "UDO",
+              "detector_targets": [
+                {
+                  "function": "TA_Verify",
+                  "lines": [
+                    700,
+                    700
+                  ],
+                  "path": "ta/gatekeeper_ta.c",
+                  "role": "effect"
+                }
+              ],
+              "id": "D2",
+              "reason": "When verification fails, the Verify response now includes the plaintext password supplied by the caller. A value the TA must protect is written to the output without protection."
+            }
+          ],
+          "reason": "C93f03c80acd78d16: normal input differs (R1)",
+          "status": "machine_fail"
+        }
+      ],
+      "count": 1,
+      "defects": {
+        "DUS": 1,
+        "UDO": 1
+      },
+      "max_attempts": 3,
+      "normal_digest": "sha256:8387367a6d1eb1c48750405491a3eb3775544adbdd58d7bc64524542047e2d57",
+      "saved": [],
+      "ta": "${REPO}/benchmark/normal/gatekeeper"
+    }
+  ],
+  "run_id": "run_63563ae7bbd14532",
+  "settings": {
+    "api_url": null,
+    "benchmark": "${REPO}/benchmark",
+    "candidate": null,
+    "classes": "${REPO}/config/classes.yaml",
+    "cpus": 2,
+    "development": false,
+    "image": "sha256:e1b5023b7180eab9e5e158b7289699a503fecfcfd3a21481fac2293b755ead1e",
+    "memory": "4g",
+    "model": null,
+    "model_profile": {
+      "api_key_envs": [
+        "ANTHROPIC_API_KEY"
+      ],
+      "api_url": "https://api.anthropic.com/v1/chat/completions",
+      "connect_timeout": 15,
+      "headers_env": {
+        "anthropic-workspace-id": "ANTHROPIC_WORKSPACE_ID"
+      },
+      "json_mode": false,
+      "key_file": "${REPO}/config/api_keys.local.yaml",
+      "max_tokens": 64000,
+      "model": "claude-sonnet-5-5",
+      "name": "claude",
+      "read_timeout": 1800,
+      "temperature": null
+    },
+    "models": "${REPO}/config/models.yaml",
+    "timeout": 300,
+    "use": null
+  },
+  "updated_at": "2026-11-23T14:52:39.791920+00:00"
+}

@@ -1,0 +1,12 @@
+{
+  "sinks": [],
+  "analysis_time": {
+    "total_seconds": 0.031846046447753906,
+    "total_formatted": "0.03秒",
+    "llm_analysis_seconds": 0.0,
+    "llm_analysis_formatted": "0.00秒",
+    "functions_analyzed": 0,
+    "per_function": {}
+  },
+  "analysis_mode": "llm_only"
+}

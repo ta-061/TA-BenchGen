@@ -1,0 +1,292 @@
+[
+  {
+    "vd": {
+      "file": "/inputs/T17/ta/secure_storage_ta.c",
+      "line": 56,
+      "sink": "__GP11_TEE_MemMove",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "delete_object",
+        "__GP11_TEE_MemMove"
+      ],
+      "function_call_line": [
+        265,
+        56
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T17/ta/secure_storage_ta.c",
+      "line": 61,
+      "sink": "__GP11_TEE_OpenPersistentObject",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "delete_object",
+        "__GP11_TEE_OpenPersistentObject"
+      ],
+      "function_call_line": [
+        265,
+        61
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T17/ta/secure_storage_ta.c",
+      "line": 72,
+      "sink": "TEE_CloseAndDeletePersistentObject1",
+      "param_index": 0,
+      "param_indices": [
+        0
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "delete_object",
+        "TEE_CloseAndDeletePersistentObject1"
+      ],
+      "function_call_line": [
+        265,
+        72
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T17/ta/secure_storage_ta.c",
+      "line": [
+        104,
+        110
+      ],
+      "sink": "__GP11_TEE_MemMove",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "create_raw_object",
+        "__GP11_TEE_MemMove"
+      ],
+      "function_call_line": [
+        261,
+        [
+          104,
+          110
+        ]
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T17/ta/secure_storage_ta.c",
+      "line": 120,
+      "sink": "__GP11_TEE_CreatePersistentObject",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "create_raw_object",
+        "__GP11_TEE_CreatePersistentObject"
+      ],
+      "function_call_line": [
+        261,
+        120
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T17/ta/secure_storage_ta.c",
+      "line": 133,
+      "sink": "__GP11_TEE_WriteObjectData",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "create_raw_object",
+        "__GP11_TEE_WriteObjectData"
+      ],
+      "function_call_line": [
+        261,
+        133
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T17/ta/secure_storage_ta.c",
+      "line": 136,
+      "sink": "TEE_CloseAndDeletePersistentObject1",
+      "param_index": 0,
+      "param_indices": [
+        0
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "create_raw_object",
+        "TEE_CloseAndDeletePersistentObject1"
+      ],
+      "function_call_line": [
+        261,
+        136
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T17/ta/secure_storage_ta.c",
+      "line": [
+        172,
+        214
+      ],
+      "sink": "__GP11_TEE_MemMove",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "read_raw_object",
+        "__GP11_TEE_MemMove"
+      ],
+      "function_call_line": [
+        263,
+        [
+          172,
+          214
+        ]
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T17/ta/secure_storage_ta.c",
+      "line": 183,
+      "sink": "__GP11_TEE_OpenPersistentObject",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "read_raw_object",
+        "__GP11_TEE_OpenPersistentObject"
+      ],
+      "function_call_line": [
+        263,
+        183
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T17/ta/secure_storage_ta.c",
+      "line": 195,
+      "sink": "__GP11_TEE_GetObjectInfo1",
+      "param_index": 1,
+      "param_indices": [
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "read_raw_object",
+        "__GP11_TEE_GetObjectInfo1"
+      ],
+      "function_call_line": [
+        263,
+        195
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T17/ta/secure_storage_ta.c",
+      "line": 211,
+      "sink": "__GP11_TEE_ReadObjectData",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "read_raw_object",
+        "__GP11_TEE_ReadObjectData"
+      ],
+      "function_call_line": [
+        263,
+        211
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "id": "T24",
+  "attempt": 1,
+  "status": "interrupted",
+  "started_utc": "2026-11-23T18:11:07.755898+00:00",
+  "model": "gpt-5.2-2025-12-11",
+  "prompt": "experiments/e12_general_sink_screening",
+  "reason": "service_restart",
+  "finished_utc": "2026-11-24T01:06:11.311501+00:00"
+}

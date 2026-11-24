@@ -1,0 +1,6 @@
+Unencrypted Data Output: 3
+['file://${WORK}/sources/T18/ta/ecdsa_ta.c:288:20:288:23', 'file://${WORK}/sources/T18/ta/ecdsa_ta.c:294:19:294:22', 'file://${WORK}/sources/T18/ta/ecdsa_ta.c:133:20:133:23']
+Input Validation Weakness: 2
+['callto__GP11_TEE_MemMovefile://${WORK}/sources/T18/ta/ecdsa_ta.c:293:2:293:12', 'callto__GP11_TEE_MemMovefile://${WORK}/sources/T18/ta/ecdsa_ta.c:130:4:130:14']
+Shared Memory Overwrite: 0
+[]

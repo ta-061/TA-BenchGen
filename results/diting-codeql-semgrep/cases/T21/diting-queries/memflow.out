@@ -1,0 +1,16 @@
+| col0 |  col1  |           col2           |        col3        |                                                                             col4                                                                             |
++------+--------+--------------------------+--------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 0    | memref | initializer for request  | TA_Verify          | file://${WORK}/sources/T21/ta/gatekeeper_ta.c:579:26:579:66 |
+| 1    | memref | initializer for response | TA_Verify          | file://${WORK}/sources/T21/ta/gatekeeper_ta.c:601:21:601:44 |
+| 1    | memref | ... > ...                | TA_Verify          | file://${WORK}/sources/T21/ta/gatekeeper_ta.c:631:6:631:46  |
+| 1    | memref | ... = ...                | TA_Verify          | file://${WORK}/sources/T21/ta/gatekeeper_ta.c:710:2:710:51  |
+| 0    | memref | initializer for request  | TA_Enroll          | file://${WORK}/sources/T21/ta/gatekeeper_ta.c:410:26:410:66 |
+| 1    | memref | initializer for response | TA_Enroll          | file://${WORK}/sources/T21/ta/gatekeeper_ta.c:430:21:430:44 |
+| 0    | memref | ... > ...                | TA_Enroll          | file://${WORK}/sources/T21/ta/gatekeeper_ta.c:448:6:448:53  |
+| 1    | memref | ... > ...                | TA_Enroll          | file://${WORK}/sources/T21/ta/gatekeeper_ta.c:455:6:455:46  |
+| 1    | memref | ... = ...                | TA_Enroll          | file://${WORK}/sources/T21/ta/gatekeeper_ta.c:549:2:549:51  |
+| 0    | memref | ... = ...                | TA_GetAuthTokenKey | file://${WORK}/sources/T21/ta/gatekeeper_ta.c:273:2:273:32  |
+| 0    | memref | ... = ...                | TA_GetAuthTokenKey | file://${WORK}/sources/T21/ta/gatekeeper_ta.c:274:2:274:38  |
+| 1    | memref | ... = ...                | TA_GetAuthTokenKey | file://${WORK}/sources/T21/ta/gatekeeper_ta.c:276:2:276:43  |
+| 1    | memref | ... = ...                | TA_GetAuthTokenKey | file://${WORK}/sources/T21/ta/gatekeeper_ta.c:277:2:277:49  |
+| 1    | memref | ... != ...               | TA_GetAuthTokenKey | file://${WORK}/sources/T21/ta/gatekeeper_ta.c:286:6:286:54  |

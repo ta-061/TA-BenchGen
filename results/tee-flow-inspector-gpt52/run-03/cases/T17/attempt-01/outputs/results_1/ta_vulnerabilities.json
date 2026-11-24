@@ -1,0 +1,517 @@
+{
+  "analysis_date": "2026-11-23T18:15:47.080916",
+  "analysis_time_seconds": 222.87149930000305,
+  "analysis_time_formatted": "3.7 minutes",
+  "llm_provider": "openai",
+  "llm_model": "gpt-5.2-2025-12-11",
+  "analysis_mode": "hybrid",
+  "rag_enabled": false,
+  "output_schema": "v5_candidate_audit",
+  "statistics": {
+    "total_flows_analyzed": 11,
+    "flows_with_vulnerabilities": 11,
+    "total_vulnerability_lines": 8,
+    "total_structural_risk_lines": 0,
+    "total_detections_before_consolidation": 27,
+    "total_lines_after_consolidation": 8,
+    "consolidation_rate": "70.4%",
+    "severity_distribution": {
+      "critical": 0,
+      "high": 0,
+      "medium": 8,
+      "low": 0
+    },
+    "cwe_distribution": {},
+    "rule_distribution": {
+      "input_validation_weakness": 7,
+      "unencrypted_data_output": 1
+    },
+    "execution_time_seconds": 222.87149930000305,
+    "llm_calls": 26,
+    "cache_hits": 10,
+    "cache_partial_hits": 10,
+    "cache_misses": 1,
+    "cache_hit_rate": "90.9%",
+    "token_usage": {},
+    "retries": 0,
+    "retry_successes": 0
+  },
+  "total_vulnerability_lines": 8,
+  "vulnerabilities": [
+    {
+      "vulnerability_id": "VULN-0001",
+      "file": "/inputs/T17/ta/secure_storage_ta.c",
+      "line": 52,
+      "consolidated": true,
+      "detection_count": 3,
+      "primary_rule_id": "input_validation_weakness",
+      "rule_ids": [
+        "input_validation_weakness"
+      ],
+      "functions": [
+        "delete_object"
+      ],
+      "sink_functions": [
+        "TEE_Malloc"
+      ],
+      "descriptions": [
+        "REE-controlled params[0].memref.size is used directly as the allocation size for TEE_Malloc with no maximum bound; this allows an attacker to request excessively large allocations (resource exhaustion) and feeds an unvalidated length into subsequent operations.",
+        "REE-controlled params[0].memref.size is used directly as the allocation size (obj_id_sz) with no upper bound or sanity check, allowing an untrusted caller to request arbitrarily large allocations (resource exhaustion) and to drive subsequent operations with an attacker-chosen length.",
+        "REE-controlled params[0].memref.size flows into obj_id_sz and directly controls TEE_Malloc() allocation size without any upper-bound/range check, allowing untrusted input to drive memory allocation (DoS/resource exhaustion) and potentially enabling unsafe downstream size assumptions."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: this line allocates trusted memory; it does not copy secrets to untrusted-visible memory.",
+        "Not Direct Usage of Shared Memory: the issue is unbounded untrusted size, not trusting shared-memory contents across a check/use window.",
+        "Not other: fits Input Validation Weakness as untrusted size is used without bounds validation.",
+        "Not Unencrypted Data Output: no secret/private data is being copied to shared/untrusted-visible memory here; it is an allocation.",
+        "Not Direct Usage of Shared Memory: the issue is not trusting shared-memory contents across a boundary; it is trusting an unbounded untrusted size.",
+        "Not other: this matches the IVW pattern of tainted size used without bounds validation.",
+        "Not Unencrypted Data Output: no secret/private data is being copied to an untrusted-visible buffer here; this is an allocation based on untrusted size.",
+        "Not Direct Usage of Shared Memory: this line does not read/parse shared memory content; it allocates trusted-private memory based on an untrusted scalar.",
+        "Not other: this is a standard unchecked untrusted-size usage pattern."
+      ],
+      "code_snippets": [
+        "obj_id = TEE_Malloc(obj_id_sz, 0);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "delete_object",
+          "__GP11_TEE_MemMove"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "delete_object",
+          "__GP11_TEE_OpenPersistentObject"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "delete_object",
+          "TEE_CloseAndDeletePersistentObject1"
+        ]
+      ],
+      "rule_distribution": {
+        "input_validation_weakness": 3
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0002",
+      "file": "/inputs/T17/ta/secure_storage_ta.c",
+      "line": 56,
+      "consolidated": true,
+      "detection_count": 3,
+      "primary_rule_id": "input_validation_weakness",
+      "rule_ids": [
+        "input_validation_weakness"
+      ],
+      "functions": [
+        "delete_object"
+      ],
+      "sink_functions": [
+        "TEE_MemMove"
+      ],
+      "descriptions": [
+        "The copy length obj_id_sz comes from REE-controlled params[0].memref.size and is used in TEE_MemMove without any explicit upper-bound check (e.g., max object-id length), enabling oversized copies/reads from shared memory into a private buffer based solely on attacker-controlled size.",
+        "The copy length obj_id_sz is derived from REE-controlled params[0].memref.size and is used as the size argument to TEE_MemMove without any explicit bounds check against a maximum object-id size, so an attacker-controlled length directly governs the memory operation.",
+        "TEE_MemMove() uses obj_id_sz (derived from REE-controlled params[0].memref.size) as the copy length from shared memory into a private buffer with no explicit maximum-length validation for the object ID; this is an untrusted length controlling a memory operation without a visible bounds guard."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: data is copied from untrusted shared memory into trusted memory, not the reverse, and no secret is being output.",
+        "Not Direct Usage of Shared Memory: the function copies shared memory into private memory before using it; the primary problem is the unchecked attacker-controlled length, not TOCTOU on shared contents.",
+        "Not other: fits Input Validation Weakness because an untrusted length controls a memory operation without bounds validation.",
+        "Not Unencrypted Data Output: data is copied from untrusted shared memory into private memory, not from private to untrusted.",
+        "Not Direct Usage of Shared Memory: the shared buffer is not being trusted for decisions/decoding across a check/use boundary; it is being copied, and the primary risk is the unchecked length.",
+        "Not other: this is a standard unchecked-tainted-length-to-copy sink.",
+        "Not Unencrypted Data Output: the copy direction is from untrusted shared memory into private memory, not secret data being written out.",
+        "Not Direct Usage of Shared Memory: although the source is shared memory, the operation is a write/copy with an untrusted length; the primary issue is unchecked size rather than a TOCTOU decision based on shared content.",
+        "Not other: it matches unchecked-length use in a memory operation."
+      ],
+      "code_snippets": [
+        "TEE_MemMove(obj_id, params[0].memref.buffer, obj_id_sz);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "delete_object",
+          "__GP11_TEE_MemMove"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "delete_object",
+          "__GP11_TEE_OpenPersistentObject"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "delete_object",
+          "TEE_CloseAndDeletePersistentObject1"
+        ]
+      ],
+      "rule_distribution": {
+        "input_validation_weakness": 3
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0003",
+      "file": "/inputs/T17/ta/secure_storage_ta.c",
+      "line": 100,
+      "consolidated": true,
+      "detection_count": 4,
+      "primary_rule_id": "input_validation_weakness",
+      "rule_ids": [
+        "input_validation_weakness"
+      ],
+      "functions": [
+        "create_raw_object"
+      ],
+      "sink_functions": [
+        "TEE_Malloc"
+      ],
+      "descriptions": [
+        "REE-controlled params[0].memref.size flows into obj_id_sz and is used as the allocation size in TEE_Malloc with no upper-bound check, allowing untrusted input to drive potentially excessive allocation (resource exhaustion / abnormal behavior).",
+        "REE-controlled params[0].memref.size flows into obj_id_sz and directly controls TEE_Malloc() size with no upper-bound check, allowing untrusted input to drive potentially excessive allocation (resource exhaustion/DoS).",
+        "REE-controlled params[0].memref.size is used directly as the allocation size (obj_id_sz) with no upper bound, allowing an untrusted caller to request an excessively large allocation (resource exhaustion / abnormal behavior).",
+        "REE-controlled params[0].memref.size directly determines the allocation size (obj_id_sz) without any upper-bound check, enabling attacker-controlled oversized allocations (DoS/resource exhaustion)."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: no secret is being copied to untrusted-visible memory; this is an allocation driven by untrusted size.",
+        "Not Direct Usage of Shared Memory: the issue is not trusting shared-memory content across time, but using an unbounded untrusted size.",
+        "Not other: fits the unchecked untrusted size pattern for IVW in this domain.",
+        "Not Unencrypted Data Output: no secret/private data is being copied to shared/untrusted-visible memory here.",
+        "Not Direct Usage of Shared Memory: no trusted read/parse/compare of shared-memory content; this is a size-validation problem.",
+        "Not other: fits the IVW pattern of untrusted size used without bounds guard.",
+        "Not Unencrypted Data Output: this is allocation in trusted memory, not copying secrets to untrusted-visible memory.",
+        "Not Direct Usage of Shared Memory: no shared-memory read/parse/compare is occurring here; the issue is unbounded untrusted size.",
+        "Not other: fits the defined unchecked-size weakness pattern.",
+        "Not Unencrypted Data Output: no copy of secret/private data to untrusted-visible memory occurs here.",
+        "Not Direct Usage of Shared Memory: no shared buffer content is read/parsed/compared for decisions at this line; it is an unchecked size usage.",
+        "Not other: fits the definition of unchecked tainted size usage."
+      ],
+      "code_snippets": [
+        "obj_id = TEE_Malloc(obj_id_sz, 0);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "create_raw_object",
+          "__GP11_TEE_MemMove"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "create_raw_object",
+          "__GP11_TEE_CreatePersistentObject"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "create_raw_object",
+          "__GP11_TEE_WriteObjectData"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "create_raw_object",
+          "TEE_CloseAndDeletePersistentObject1"
+        ]
+      ],
+      "rule_distribution": {
+        "input_validation_weakness": 4
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0004",
+      "file": "/inputs/T17/ta/secure_storage_ta.c",
+      "line": 107,
+      "consolidated": true,
+      "detection_count": 4,
+      "primary_rule_id": "input_validation_weakness",
+      "rule_ids": [
+        "input_validation_weakness"
+      ],
+      "functions": [
+        "create_raw_object"
+      ],
+      "sink_functions": [
+        "TEE_Malloc"
+      ],
+      "descriptions": [
+        "REE-controlled params[1].memref.size flows into data_sz and is used as the allocation size in TEE_Malloc with no upper-bound check, enabling untrusted input to force large allocations (resource exhaustion / abnormal behavior).",
+        "REE-controlled params[1].memref.size flows into data_sz and directly controls TEE_Malloc() size with no upper-bound check, allowing untrusted input to drive potentially excessive allocation (resource exhaustion/DoS).",
+        "REE-controlled params[1].memref.size is used directly as the allocation size (data_sz) with no upper bound, allowing an untrusted caller to drive excessive memory allocation (resource exhaustion / abnormal behavior).",
+        "REE-controlled params[1].memref.size directly determines the allocation size (data_sz) without any upper-bound check, enabling attacker-controlled oversized allocations (DoS/resource exhaustion)."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: no secret output to shared memory occurs here.",
+        "Not Direct Usage of Shared Memory: the problem is unbounded untrusted size controlling allocation, not shared-memory TOCTOU/integrity.",
+        "Not other: best explained as IVW per unchecked untrusted size usage.",
+        "Not Unencrypted Data Output: no secret/private data is being copied to shared/untrusted-visible memory here.",
+        "Not Direct Usage of Shared Memory: no trusted read/parse/compare of shared-memory content; this is a size-validation problem.",
+        "Not other: fits the IVW pattern of untrusted size used without bounds guard.",
+        "Not Unencrypted Data Output: this is allocation in trusted memory, not outputting secrets to shared memory.",
+        "Not Direct Usage of Shared Memory: no shared-memory read/parse/compare is occurring here; it is unbounded size use.",
+        "Not other: matches unchecked untrusted size usage.",
+        "Not Unencrypted Data Output: no sensitive data is written to untrusted-visible memory.",
+        "Not Direct Usage of Shared Memory: no shared-memory content is trusted for decisions at this line; it is unchecked size usage.",
+        "Not other: fits the unchecked tainted size pattern."
+      ],
+      "code_snippets": [
+        "data = TEE_Malloc(data_sz, 0);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "create_raw_object",
+          "__GP11_TEE_MemMove"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "create_raw_object",
+          "__GP11_TEE_CreatePersistentObject"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "create_raw_object",
+          "__GP11_TEE_WriteObjectData"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "create_raw_object",
+          "TEE_CloseAndDeletePersistentObject1"
+        ]
+      ],
+      "rule_distribution": {
+        "input_validation_weakness": 4
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0005",
+      "file": "secure_storage_ta.c",
+      "line": 168,
+      "consolidated": true,
+      "detection_count": 4,
+      "primary_rule_id": "input_validation_weakness",
+      "rule_ids": [
+        "input_validation_weakness"
+      ],
+      "functions": [
+        "read_raw_object"
+      ],
+      "sink_functions": [
+        "TEE_Malloc"
+      ],
+      "descriptions": [
+        "Untrusted param-controlled size (params[0].memref.size → obj_id_sz) is used directly as the allocation size for TEE_Malloc without any upper-bound check, enabling untrusted-triggered oversized allocation/resource exhaustion.",
+        "Untrusted REE-controlled params[0].memref.size is used directly as the allocation size (obj_id_sz) for TEE_Malloc with no maximum bound, enabling attacker-controlled oversized allocations (resource exhaustion) and potential downstream size-related issues.",
+        "REE-controlled params[0].memref.size flows into obj_id_sz and is used directly as the allocation size in TEE_Malloc without any upper-bound check, enabling untrusted input to drive excessive allocation (resource exhaustion / oversized allocation).",
+        "Untrusted REE-controlled params[0].memref.size is used directly as the allocation size (obj_id_sz) for TEE_Malloc with no upper-bound check, enabling attacker-controlled oversized allocation/resource exhaustion."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: no copy of secret/private data to an untrusted-visible buffer occurs at this allocation site.",
+        "Not Direct Usage of Shared Memory: this line allocates private memory; it does not read/trust shared-memory content.",
+        "Not other: the core issue is missing validation of an untrusted size.",
+        "Not Unencrypted Data Output: this line allocates private memory and does not copy secrets to shared/untrusted-visible memory.",
+        "Not Direct Usage of Shared Memory: no trusted read/parse/decision is performed on shared memory here; the issue is unchecked tainted size.",
+        "Not other: fits the definition of IVW (tainted size used in a memory operation without bounds check).",
+        "Not Unencrypted Data Output: this line allocates memory; it does not copy secrets to shared memory.",
+        "Not Direct Usage of Shared Memory: no shared-memory read/trust occurs here; the issue is unchecked tainted size.",
+        "Not other: this matches the IVW pattern of tainted size controlling a memory operation without bounds.",
+        "Not Unencrypted Data Output: this line allocates private memory; it does not output sensitive data to shared memory.",
+        "Not Direct Usage of Shared Memory: no shared-memory read/compare/parse occurs at this line.",
+        "Not other: the issue matches unchecked untrusted size usage."
+      ],
+      "code_snippets": [
+        "obj_id = TEE_Malloc(obj_id_sz, 0);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "read_raw_object",
+          "__GP11_TEE_MemMove"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "read_raw_object",
+          "__GP11_TEE_OpenPersistentObject"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "read_raw_object",
+          "__GP11_TEE_GetObjectInfo1"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "read_raw_object",
+          "__GP11_TEE_ReadObjectData"
+        ]
+      ],
+      "rule_distribution": {
+        "input_validation_weakness": 4
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0006",
+      "file": "secure_storage_ta.c",
+      "line": 172,
+      "consolidated": true,
+      "detection_count": 1,
+      "primary_rule_id": "input_validation_weakness",
+      "rule_ids": [
+        "input_validation_weakness"
+      ],
+      "functions": [
+        "read_raw_object"
+      ],
+      "sink_functions": [
+        "TEE_MemMove"
+      ],
+      "descriptions": [
+        "TEE_MemMove copies from shared params[0].memref.buffer into private obj_id using attacker-controlled length obj_id_sz without any visible upper-bound/format validation on obj_id_sz, making the copy length fully untrusted-controlled."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: the copy direction is from untrusted-visible shared memory into trusted-private memory, not the reverse.",
+        "Not Direct Usage of Shared Memory: although the source is shared, this line is a bulk copy to private; the primary concrete mechanism shown is the unchecked tainted length controlling a memory operation.",
+        "Not other: the dominant issue is an unchecked tainted length used in a copy."
+      ],
+      "code_snippets": [
+        "TEE_MemMove(obj_id, params[0].memref.buffer, obj_id_sz);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "read_raw_object",
+          "__GP11_TEE_OpenPersistentObject"
+        ]
+      ],
+      "rule_distribution": {
+        "input_validation_weakness": 1
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0007",
+      "file": "secure_storage_ta.c",
+      "line": 175,
+      "consolidated": true,
+      "detection_count": 4,
+      "primary_rule_id": "input_validation_weakness",
+      "rule_ids": [
+        "input_validation_weakness"
+      ],
+      "functions": [
+        "read_raw_object"
+      ],
+      "sink_functions": [
+        "TEE_Malloc"
+      ],
+      "descriptions": [
+        "Untrusted param-controlled size (params[1].memref.size → data_sz) is used directly as the allocation size for TEE_Malloc without an upper-bound check, enabling untrusted-triggered oversized allocation/resource exhaustion.",
+        "Untrusted REE-controlled params[1].memref.size is used directly as the allocation size (data_sz) for TEE_Malloc with no maximum bound, allowing attacker-driven oversized allocations (resource exhaustion).",
+        "REE-controlled params[1].memref.size flows into data_sz and is used directly as a trusted allocation size in TEE_Malloc without an upper-bound guard, allowing untrusted input to force large allocations (resource exhaustion / oversized allocation).",
+        "Untrusted REE-controlled params[1].memref.size is used directly as data_sz for TEE_Malloc with no maximum bound, allowing attacker-controlled oversized allocation/resource exhaustion."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: this line only allocates memory and does not output data to shared memory.",
+        "Not Direct Usage of Shared Memory: no shared-memory read/trust occurs here.",
+        "Not other: it fits missing validation of an untrusted size.",
+        "Not Unencrypted Data Output: this line only allocates private memory.",
+        "Not Direct Usage of Shared Memory: no read/compare/parse of shared memory occurs at this line.",
+        "Not other: this is a straightforward unchecked tainted size used in a memory operation.",
+        "Not Unencrypted Data Output: this is an allocation, not an output of sensitive data to shared memory.",
+        "Not Direct Usage of Shared Memory: no shared-memory read/trust occurs at this line.",
+        "Not other: fits IVW (tainted size controls memory operation without bounds check).",
+        "Not Unencrypted Data Output: this line allocates private memory; it does not write secrets to shared memory.",
+        "Not Direct Usage of Shared Memory: no shared-memory read/compare/parse occurs at this line.",
+        "Not other: the issue matches unchecked untrusted size usage."
+      ],
+      "code_snippets": [
+        "data = TEE_Malloc(data_sz, 0);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "read_raw_object",
+          "__GP11_TEE_MemMove"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "read_raw_object",
+          "__GP11_TEE_OpenPersistentObject"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "read_raw_object",
+          "__GP11_TEE_GetObjectInfo1"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "read_raw_object",
+          "__GP11_TEE_ReadObjectData"
+        ]
+      ],
+      "rule_distribution": {
+        "input_validation_weakness": 4
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0008",
+      "file": "secure_storage_ta.c",
+      "line": 214,
+      "consolidated": true,
+      "detection_count": 4,
+      "primary_rule_id": "unencrypted_data_output",
+      "rule_ids": [
+        "unencrypted_data_output"
+      ],
+      "functions": [
+        "read_raw_object"
+      ],
+      "sink_functions": [
+        "TEE_MemMove"
+      ],
+      "descriptions": [
+        "TEE_MemMove copies persistent-object plaintext from trusted-private memory (data) into params[1].memref.buffer, which is untrusted-visible shared memory, without any encryption step; this can expose application-private stored data to the REE.",
+        "TEE_MemMove copies persistent object data (read from private storage into private buffer 'data') into params[1].memref.buffer, which is untrusted-visible shared memory, without any encryption step; this can expose application-private stored content to the REE.",
+        "TEE_MemMove copies object contents read from secure persistent storage (data/read_bytes) into params[1].memref.buffer, which is REE-visible shared memory, with no encryption step; this is a plaintext export of application-private stored data to untrusted-visible memory.",
+        "TEE_MemMove writes persistent object contents (read into private buffer 'data') directly into the REE-shared output buffer params[1].memref.buffer without any encryption step, exposing potentially application-private stored data to untrusted-visible memory."
+      ],
+      "why_not_categories": [
+        "Not Input Validation Weakness: the code checks object_info.dataSize against the provided output size (data_sz) before the read/copy, and read_bytes is expected to equal object_info.dataSize, so the primary issue is confidentiality, not bounds.",
+        "Not Direct Usage of Shared Memory: this line writes to shared memory; DUS requires trusted-side reads/trust of shared-memory content.",
+        "Not other: the mechanism matches unencrypted secret/private data output to untrusted-visible memory.",
+        "Not Input Validation Weakness: the function checks object_info.dataSize against the caller-provided output size (data_sz) before reading/copying, so the copy length is effectively constrained by that earlier guard.",
+        "Not Direct Usage of Shared Memory: the line writes to shared memory; DUS requires trusted-side reads/trust decisions based on shared memory content.",
+        "Not other: the behavior matches UDO (private data copied to untrusted-visible memory without encryption).",
+        "Not Input Validation Weakness: the code bounds the read/copy via the earlier short-buffer check comparing object_info.dataSize to the caller-provided output size, so the primary issue is confidentiality, not missing bounds.",
+        "Not Direct Usage of Shared Memory: this is a write to shared memory, not a trusted read/decision based on shared memory.",
+        "Not other: fits UDO (private data copied to untrusted-visible region without encryption).",
+        "Not Input Validation Weakness: the copy length (read_bytes) is constrained by object_info.dataSize and the earlier short-buffer check against data_sz (which equals params[1].memref.size), so this is primarily a confidentiality output issue rather than an unchecked-bounds write.",
+        "Not Direct Usage of Shared Memory: the operation writes to shared memory; it does not read/parse/decide based on shared memory content.",
+        "Not other: fits the defined UDO category (private data copied to untrusted-visible memory without encryption)."
+      ],
+      "code_snippets": [
+        "TEE_MemMove(params[1].memref.buffer, data, read_bytes);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "read_raw_object",
+          "__GP11_TEE_MemMove"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "read_raw_object",
+          "__GP11_TEE_OpenPersistentObject"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "read_raw_object",
+          "__GP11_TEE_GetObjectInfo1"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "read_raw_object",
+          "__GP11_TEE_ReadObjectData"
+        ]
+      ],
+      "rule_distribution": {
+        "unencrypted_data_output": 4
+      }
+    }
+  ]
+}

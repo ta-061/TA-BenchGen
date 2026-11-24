@@ -1,0 +1,518 @@
+{
+  "case_id": "case_edc7a9e855a140d7",
+  "environment": {
+    "image_digest": "sha256:e1b5023b7180eab9e5e158b7289699a503fecfcfd3a21481fac2293b755ead1e",
+    "optee_revision": "4.4.0",
+    "platform": "linux/amd64",
+    "qemu_revision": "v8.1.2",
+    "runner_version": "4.3.1",
+    "toolchain": "arm-gnu-toolchain-11.3.rel1"
+  },
+  "generation": {
+    "attempt_index": 1,
+    "attempts_total": 1,
+    "model_id": "claude-sonnet-5-5",
+    "plan_digest": "sha256:eff622331f23e7fc917ce4562984e36a2a069333fd65ccc0b73a718bee006d98"
+  },
+  "run_meta": {
+    "request_index": 1,
+    "run_id": "run_63563ae7bbd14532",
+    "verified_at": "2026-11-23T14:42:44.947809+00:00"
+  },
+  "schema_version": "4.0",
+  "semantic": {
+    "defect_reverts": [],
+    "execution": {
+      "checkpoints": [
+        {
+          "before": "IncrementFailureRecord(&record, timestamp);",
+          "function": "TA_Verify",
+          "kind": "checkpoint",
+          "path": "ta/gatekeeper_ta.c"
+        }
+      ],
+      "features": [
+        "shared_memory_events_v1"
+      ],
+      "instrumentation": "statement-checkpoint-v1"
+    },
+    "machine_validation": {
+      "per_defect": {
+        "D1": "machine_pass"
+      },
+      "repetitions": 2,
+      "status": "machine_pass"
+    },
+    "tests": [
+      {
+        "different_steps": [],
+        "equal": true,
+        "id": "T01",
+        "observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000005000000000000003a00000002010000000000000001000000000000001122334455667788aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa010400000031323334",
+                  "size": 82,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000005000000000000003a00000002010000000000000001000000000000001122334455667788aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa010400000031323334",
+                  "size": 82,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "purpose": "normal",
+        "repeated_observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000005000000000000003a00000002010000000000000001000000000000001122334455667788aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa010400000031323334",
+                  "size": 82,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000005000000000000003a00000002010000000000000001000000000000001122334455667788aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa010400000031323334",
+                  "size": 82,
+                  "type": "memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "steps": [
+          {
+            "op": "open",
+            "session": "s1"
+          },
+          {
+            "command_id": 1,
+            "op": "invoke",
+            "params": [
+              {
+                "data": "0100000005000000000000003a00000002010000000000000001000000000000001122334455667788aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa010400000031323334",
+                "type": "memref_input"
+              },
+              {
+                "size": 128,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "op": "close",
+            "session": "s1"
+          }
+        ],
+        "targets": [],
+        "variable_items": []
+      },
+      {
+        "different_steps": [
+          2
+        ],
+        "equal": false,
+        "id": "T02",
+        "observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "events": [
+                {
+                  "after": "00000100",
+                  "before": "04000000",
+                  "checkpoint": 2009496241,
+                  "occurrence": 1,
+                  "offset": 74,
+                  "param": 0
+                }
+              ],
+              "op": "invoke",
+              "origin": 3,
+              "params": [
+                {
+                  "data": "0100000005000000000000003a00000002010000000000000001000000000000001122334455667788aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa010000010031323334",
+                  "size": 82,
+                  "type": "shared_memref_input"
+                },
+                {
+                  "data": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+                  "size": 128,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 4294914084,
+              "ta_crashed": true
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "events": [
+                {
+                  "after": "00000100",
+                  "before": "04000000",
+                  "checkpoint": 2009496241,
+                  "occurrence": 1,
+                  "offset": 74,
+                  "param": 0
+                }
+              ],
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000005000000000000003a00000002010000000000000001000000000000001122334455667788aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa010000010031323334",
+                  "size": 82,
+                  "type": "shared_memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "purpose": "witness",
+        "repeated_observed": {
+          "defective": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "events": [
+                {
+                  "after": "00000100",
+                  "before": "04000000",
+                  "checkpoint": 2009496241,
+                  "occurrence": 1,
+                  "offset": 74,
+                  "param": 0
+                }
+              ],
+              "op": "invoke",
+              "origin": 3,
+              "params": [
+                {
+                  "data": "0100000005000000000000003a00000002010000000000000001000000000000001122334455667788aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa010000010031323334",
+                  "size": 82,
+                  "type": "shared_memref_input"
+                },
+                {
+                  "data": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+                  "size": 128,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 4294914084,
+              "ta_crashed": true
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ],
+          "normal": [
+            {
+              "op": "open",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            },
+            {
+              "events": [
+                {
+                  "after": "00000100",
+                  "before": "04000000",
+                  "checkpoint": 2009496241,
+                  "occurrence": 1,
+                  "offset": 74,
+                  "param": 0
+                }
+              ],
+              "op": "invoke",
+              "origin": 4,
+              "params": [
+                {
+                  "data": "0100000005000000000000003a00000002010000000000000001000000000000001122334455667788aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa010000010031323334",
+                  "size": 82,
+                  "type": "shared_memref_input"
+                },
+                {
+                  "data": "01000000",
+                  "size": 4,
+                  "type": "memref_output"
+                },
+                {
+                  "type": "none"
+                },
+                {
+                  "type": "none"
+                }
+              ],
+              "result": 1,
+              "ta_crashed": false
+            },
+            {
+              "op": "close",
+              "origin": 0,
+              "params": [],
+              "result": 0,
+              "ta_crashed": false
+            }
+          ]
+        },
+        "steps": [
+          {
+            "op": "open",
+            "session": "s1"
+          },
+          {
+            "command_id": 1,
+            "events": [
+              {
+                "action": {
+                  "data": "00000100",
+                  "expect": "04000000",
+                  "kind": "write_memory",
+                  "offset": 74,
+                  "param": 0
+                },
+                "trigger": {
+                  "before": "IncrementFailureRecord(&record, timestamp);",
+                  "function": "TA_Verify",
+                  "kind": "checkpoint",
+                  "occurrence": 1,
+                  "path": "ta/gatekeeper_ta.c"
+                }
+              }
+            ],
+            "op": "invoke",
+            "params": [
+              {
+                "data": "0100000005000000000000003a00000002010000000000000001000000000000001122334455667788aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa010400000031323334",
+                "type": "shared_memref_input"
+              },
+              {
+                "size": 128,
+                "type": "memref_output"
+              },
+              {
+                "type": "none"
+              },
+              {
+                "type": "none"
+              }
+            ],
+            "session": "s1"
+          },
+          {
+            "op": "close",
+            "session": "s1"
+          }
+        ],
+        "targets": [
+          "D1"
+        ],
+        "variable_items": [],
+        "witness_step": 2
+      }
+    ]
+  }
+}

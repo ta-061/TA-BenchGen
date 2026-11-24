@@ -1,0 +1,33 @@
+| col0 |  col1  |            col2            |         col3          |                                                                          col4                                                                          |
++------+--------+----------------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 0    | memref | ... = ...                  | compare_hmac_sha_algo | file://${WORK}/sources/T30/ta/sha_ta.c:411:2:411:34   |
+| 0    | memref | ... = ...                  | compare_hmac_sha_algo | file://${WORK}/sources/T30/ta/sha_ta.c:412:2:412:35   |
+| 1    | memref | ... = ...                  | compare_hmac_sha_algo | file://${WORK}/sources/T30/ta/sha_ta.c:413:2:413:36   |
+| 1    | memref | ... = ...                  | compare_hmac_sha_algo | file://${WORK}/sources/T30/ta/sha_ta.c:414:2:414:43   |
+| 0    | memref | ... = ...                  | sha_update_op         | file://${WORK}/sources/T30/ta/sha_ta.c:362:2:362:34   |
+| 0    | memref | ... = ...                  | sha_update_op         | file://${WORK}/sources/T30/ta/sha_ta.c:363:2:363:35   |
+| 1    | memref | ... = ...                  | sha_update_op         | file://${WORK}/sources/T30/ta/sha_ta.c:364:2:364:43   |
+| 1    | memref | ... && ...                 | sha_update_op         | file://${WORK}/sources/T30/ta/sha_ta.c:366:6:366:53   |
+| 1    | memref | ... && ...                 | sha_update_op         | file://${WORK}/sources/T30/ta/sha_ta.c:366:6:366:53   |
+| 1    | memref | call to __GP11_TEE_Malloc  | sha_update_op         | file://${WORK}/sources/T30/ta/sha_ta.c:367:8:367:17   |
+| 1    | memref | call to __GP11_TEE_MemMove | sha_update_op         | file://${WORK}/sources/T30/ta/sha_ta.c:376:3:376:13   |
+| 1    | memref | ... = ...                  | sha_update_op         | file://${WORK}/sources/T30/ta/sha_ta.c:378:2:378:33   |
+| 0    | memref | ... = ...                  | reset_sha_iv          | file://${WORK}/sources/T30/ta/sha_ta.c:324:2:324:29   |
+| 0    | memref | ... = ...                  | reset_sha_iv          | file://${WORK}/sources/T30/ta/sha_ta.c:325:2:325:30   |
+| 0    | memref | ... = ...                  | set_sha_key           | file://${WORK}/sources/T30/ta/sha_ta.c:250:2:250:30   |
+| 0    | memref | ... = ...                  | set_sha_key           | file://${WORK}/sources/T30/ta/sha_ta.c:251:2:251:31   |
+| 0    | value  | ... = ...                  | alloc_resources       | file://${WORK}/sources/T30/ta/sha_ta.c:145:2:145:31   |
+| 2    | value  | call to ta2tee_obj_type    | alloc_resources       | file://${WORK}/sources/T30/ta/sha_ta.c:147:8:147:22   |
+| 1    | value  | ... = ...                  | alloc_resources       | file://${WORK}/sources/T30/ta/sha_ta.c:151:2:151:35   |
+| 0    | memref | ... = ...                  | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:81:2:81:30     |
+| 0    | memref | ... = ...                  | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:82:2:82:32     |
+| 1    | memref | ... < ...                  | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:83:15:83:40    |
+| 1    | memref | ... ? ... : ...            | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:83:15:83:69    |
+| 1    | memref | ... && ...                 | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:88:6:88:53     |
+| 1    | memref | ... && ...                 | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:88:6:88:53     |
+| 1    | memref | call to __GP11_TEE_Malloc  | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:89:8:89:17     |
+| 2    | value  | ... = ...                  | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:94:2:94:31     |
+| 1    | memref | call to __GP11_TEE_MemMove | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:106:3:106:13   |
+| 1    | memref | ... - ...                  | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:108:7:108:40   |
+| 1    | memref | ... + ...                  | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:110:78:110:124 |
+| 1    | memref | ... = ...                  | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:115:2:115:35   |

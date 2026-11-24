@@ -4,7 +4,7 @@ TA-BenchGen（Trusted Application Benchmark Generator）は、OP-TEEのTrusted A
 
 同梱のソース、差分、位置ラベル、検証記録はGitHub上で直接参照できます。[ベンチマークの構成と読み方](benchmark/README.md)
 
-DITING（公開版・OP-TEE 1.1互換型対応版）、標準CodeQL、Semgrep、TEE Flow Inspectorの測定結果を公開しています。現行の正常対照10個と不備TA 15個について報告数とラベルの位置一致を比較でき、測定時の全35個の実行コマンドも確認できます。[評価結果・SQLite・CSV](results/README.md) · [導入と再実行](results/COMMANDS.md)
+不備TA 16個に対するDITING（OP-TEEのGP 1.1互換の型名に対応させたもの）、標準CodeQL、Semgrep、TEE Flow Inspector＋GPT-5.2の測定結果を公開しています。報告とラベル位置の照合結果を分類別に確認でき、各ツールに渡したコマンドを配布元の手順と並べて示しています。[測定結果](results/README.md) · [各ツールに渡したコマンド](results/COMMANDS.md)
 
 ## レビュー画面を開く
 
@@ -31,7 +31,7 @@ uv run ta-bench review --dir benchmark
 | 手書きの候補 | `--candidate` で候補JSONを指定します。[候補の形式](docs/candidate-format.md) |
 | モデルによる候補生成 | `--use` で登録名を選びます。モデルと接続先は [config/models.yaml](config/models.yaml)、APIキーは登録に対応する環境変数に設定します。 |
 
-Linux amd64上で検証を通過したケースは `benchmark/defective/`、試行のログは `work/` に保存されます。コマンドの全オプションはヘルプで確認できます。
+Linux amd64上で検証を通過したケースは `benchmark/defective/`、試行のログは `work/`（Git管理外）に保存されます。同梱のベンチマークを生成したときの要求・試行ごとの記録は公開しています。[生成の実行記録](generation-records/README.md)コマンドの全オプションはヘルプで確認できます。
 
 ```sh
 uv run ta-bench generate --help
@@ -48,3 +48,7 @@ uv run pytest -m 'not qemu'
 ```
 
 QEMU統合テスト用の実行イメージは `TA_BENCH_TEST_IMAGE` で指定します。
+
+## ライセンス
+
+TA-BenchGenの著者が作成した部分は [MIT License](LICENSE) で公開しています。`benchmark/` にある正常TAの多くはOP-TEE関連の公開リポジトリから取得したもので、取得元のライセンス（BSD 2-ClauseまたはApache License 2.0）が適用されます。不備TAはそれらに変更を加えたものです。[第三者のコードとライセンス](THIRD_PARTY_NOTICES.md)

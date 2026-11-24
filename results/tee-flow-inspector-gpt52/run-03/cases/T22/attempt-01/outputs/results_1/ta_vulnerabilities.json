@@ -1,0 +1,136 @@
+{
+  "analysis_date": "2026-11-23T18:13:38.551068",
+  "analysis_time_seconds": 82.83163738250732,
+  "analysis_time_formatted": "1.4 minutes",
+  "llm_provider": "openai",
+  "llm_model": "gpt-5.2-2025-12-11",
+  "analysis_mode": "hybrid",
+  "rag_enabled": false,
+  "output_schema": "v5_candidate_audit",
+  "statistics": {
+    "total_flows_analyzed": 8,
+    "flows_with_vulnerabilities": 2,
+    "total_vulnerability_lines": 2,
+    "total_structural_risk_lines": 0,
+    "total_detections_before_consolidation": 4,
+    "total_lines_after_consolidation": 2,
+    "consolidation_rate": "50.0%",
+    "severity_distribution": {
+      "critical": 0,
+      "high": 0,
+      "medium": 2,
+      "low": 0
+    },
+    "cwe_distribution": {},
+    "rule_distribution": {
+      "input_validation_weakness": 1,
+      "other": 1
+    },
+    "execution_time_seconds": 82.83163738250732,
+    "llm_calls": 20,
+    "cache_hits": 7,
+    "cache_partial_hits": 7,
+    "cache_misses": 1,
+    "cache_hit_rate": "87.5%",
+    "token_usage": {},
+    "retries": 0,
+    "retry_successes": 0
+  },
+  "total_vulnerability_lines": 2,
+  "vulnerabilities": [
+    {
+      "vulnerability_id": "VULN-0001",
+      "file": "hotp_ta.c",
+      "line": 153,
+      "consolidated": true,
+      "detection_count": 2,
+      "primary_rule_id": "input_validation_weakness",
+      "rule_ids": [
+        "input_validation_weakness"
+      ],
+      "functions": [
+        "register_shared_key"
+      ],
+      "sink_functions": [
+        "memcpy"
+      ],
+      "descriptions": [
+        "params[0].memref.size is REE-controlled and directly used as the memcpy length into state->K. The only visible guard checks size against sizeof(*state), which does not guarantee it is <= sizeof(state->K); if state->K is smaller than the struct, this permits an out-of-bounds write.",
+        "Untrusted params[0].memref.size controls memcpy length into state->K. The only visible guard checks size against sizeof(*state), which does not prove the copy fits within the state->K field; this can permit an out-of-bounds write if state->K is smaller than the overall struct."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: this is a write into trusted-private memory, not a copy of secret data to untrusted-visible memory.",
+        "Not Direct Usage of Shared Memory: although the source pointer is shared, the primary issue is unchecked/incorrectly-bounded copy length causing memory corruption.",
+        "Not other: fits the definition of IVW (tainted length in memory operation without effective bounds check).",
+        "Not Unencrypted Data Output: this is a write into trusted-private memory, not copying secrets to untrusted-visible memory.",
+        "Not Direct Usage of Shared Memory: the primary mechanism is unchecked/insufficiently-checked length for a memory write, not trusting shared-memory contents across a TOCTOU boundary.",
+        "Not other: fits Input Validation Weakness (tainted length to memcpy)."
+      ],
+      "code_snippets": [
+        "memcpy(state->K, params[0].memref.buffer, params[0].memref.size);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "register_shared_key",
+          "memset"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "register_shared_key",
+          "memcpy"
+        ]
+      ],
+      "rule_distribution": {
+        "input_validation_weakness": 2
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0002",
+      "file": "hotp_ta.c",
+      "line": 156,
+      "consolidated": true,
+      "detection_count": 2,
+      "primary_rule_id": "other",
+      "rule_ids": [
+        "other"
+      ],
+      "functions": [
+        "register_shared_key"
+      ],
+      "sink_functions": [
+        "DMSG"
+      ],
+      "descriptions": [
+        "The function prints the shared key material via DMSG using \"%s\", which discloses a secret (key) through the logging channel and may also read past the intended key bytes if no NUL terminator is present. The dominant security issue here is secret exposure via debug logging, which is not one of the three primary classes.",
+        "The code prints the shared key material via DMSG using %s, which can disclose secret key bytes through logs and may also read beyond the intended key length if the copied key is not NUL-terminated. The dominant issue is sensitive-data exposure via logging rather than shared-memory TOCTOU."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: the sink is a debug log, not a copy/write into untrusted-visible shared memory.",
+        "Not Input Validation Weakness: while \"%s\" can cause over-read, the key security impact is disclosure of sensitive key material rather than a tainted size/index reaching a memory write/copy sink.",
+        "Not Direct Usage of Shared Memory: the data being logged is from trusted-private state->K (copied earlier), not a direct read/decision on shared memory content.",
+        "Not Unencrypted Data Output: no copy to untrusted-visible shared memory sink; exposure is via logging, not a memref output.",
+        "Not Input Validation Weakness: while %s can cause over-read, the more direct security impact here is secret leakage through debug output rather than a bounds check omission on a memory-operation size parameter.",
+        "Not Direct Usage of Shared Memory: DMSG reads state->K (trusted buffer) rather than directly operating on a shared-memory alias."
+      ],
+      "code_snippets": [
+        "DMSG(\"Got shared key %s (%u bytes).\", state->K, params[0].memref.size);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "register_shared_key",
+          "memset"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "register_shared_key",
+          "memcpy"
+        ]
+      ],
+      "rule_distribution": {
+        "other": 2
+      }
+    }
+  ]
+}

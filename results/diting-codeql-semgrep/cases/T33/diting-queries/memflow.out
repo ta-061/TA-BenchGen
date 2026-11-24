@@ -1,0 +1,39 @@
+| col0 |  col1  |           col2           |            col3            |                                                                                col4                                                                                 |
++------+--------+--------------------------+----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 0    | memref | ... < ...                | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:136:7:136:40             |
+| 0    | memref | call to trace_printf     | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:143:2:153:66             |
+| 0    | memref | call to trace_printf     | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:143:2:153:66             |
+| 1    | memref | ... ? ... : ...          | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:148:7:148:60             |
+| 1    | memref | ... ? ... : ...          | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:149:7:153:66             |
+| 2    | memref | ... ? ... : ...          | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:152:7:152:60             |
+| 2    | memref | ... ? ... : ...          | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:153:7:153:66             |
+| 0    | memref | call to TEE_MemMove      | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:366:2:366:12             |
+| 0    | memref | ... = ...                | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:367:2:367:35             |
+| 0    | memref | ... != ...               | entry_ping                 | file://${WORK}/sources/T33/ta/src/entry.c:68:6:68:49               |
+| 0    | memref | ... = ...                | seed_rng_pool              | file://${WORK}/sources/T33/ta/src/pkcs11_token.c:1554:2:1554:31    |
+| 0    | memref | ... = ...                | seed_rng_pool              | file://${WORK}/sources/T33/ta/src/pkcs11_token.c:1555:2:1555:41    |
+| 0    | memref | ... != ...               | entry_ck_slot_list         | file://${WORK}/sources/T33/ta/src/pkcs11_token.c:258:6:258:49      |
+| 2    | memref | initializer for out_buf  | entry_wrap_key             | file://${WORK}/sources/T33/ta/src/processing.c:1127:17:1127:40     |
+| 2    | memref | initializer for out_size | entry_wrap_key             | file://${WORK}/sources/T33/ta/src/processing.c:1128:21:1128:42     |
+| 2    | memref | ... = ...                | entry_wrap_key             | file://${WORK}/sources/T33/ta/src/processing.c:1279:3:1279:34      |
+| 1    | memref | ... = ...                | entry_processing_key       | file://${WORK}/sources/T33/ta/src/processing.c:834:3:834:34        |
+| 1    | memref | ... = ...                | entry_processing_key       | file://${WORK}/sources/T33/ta/src/processing.c:835:3:835:33        |
+| 1    | memref | ... = ...                | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:128:3:128:34 |
+| 1    | memref | ... = ...                | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:129:3:129:33 |
+| 2    | memref | ... = ...                | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:134:3:134:35 |
+| 2    | memref | ... = ...                | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:135:3:135:34 |
+| 2    | memref | ... = ...                | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:216:3:216:34 |
+| 1    | memref | ... = ...                | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:475:3:475:34  |
+| 1    | memref | ... = ...                | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:476:3:476:33  |
+| 2    | memref | ... = ...                | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:481:3:481:35  |
+| 2    | memref | ... = ...                | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:482:3:482:34  |
+| 2    | memref | ... = ...                | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:487:3:487:35  |
+| 2    | memref | ... = ...                | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:488:3:488:34  |
+| 2    | memref | ... = ...                | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:853:4:853:35  |
+| 1    | memref | ... = ...                | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:731:3:731:34   |
+| 1    | memref | ... = ...                | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:732:3:732:33   |
+| 2    | memref | ... = ...                | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:737:3:737:35   |
+| 2    | memref | ... = ...                | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:738:3:738:34   |
+| 2    | memref | ... = ...                | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:743:3:743:35   |
+| 2    | memref | ... = ...                | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:744:3:744:34   |
+| 2    | memref | ... = ...                | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:977:4:977:35   |

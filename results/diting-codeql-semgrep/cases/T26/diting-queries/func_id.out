@@ -1,0 +1,8 @@
+| col0 |            col1             |
++------+-----------------------------+
+| 0    | call to read_rb_idx         |
+| 1    | call to write_rb_idx        |
+| 2    | call to read_lock_state     |
+| 3    | call to write_lock_state    |
+| 4    | call to read_persist_value  |
+| 5    | call to write_persist_value |

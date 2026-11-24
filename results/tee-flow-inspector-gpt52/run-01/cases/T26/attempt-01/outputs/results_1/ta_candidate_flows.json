@@ -1,0 +1,758 @@
+[
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 31,
+      "sink": "TEE_CreatePersistentObject",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        4,
+        5
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "read_rb_idx",
+        "open_rb_state",
+        "create_rb_state",
+        "TEE_CreatePersistentObject"
+      ],
+      "function_call_line": [
+        388,
+        91,
+        48,
+        31
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 31,
+      "sink": "TEE_CreatePersistentObject",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        4,
+        5
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "write_rb_idx",
+        "open_rb_state",
+        "create_rb_state",
+        "TEE_CreatePersistentObject"
+      ],
+      "function_call_line": [
+        390,
+        148,
+        48,
+        31
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 31,
+      "sink": "TEE_CreatePersistentObject",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        4,
+        5
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "read_lock_state",
+        "open_rb_state",
+        "create_rb_state",
+        "TEE_CreatePersistentObject"
+      ],
+      "function_call_line": [
+        392,
+        193,
+        48,
+        31
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 31,
+      "sink": "TEE_CreatePersistentObject",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        4,
+        5
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "write_lock_state",
+        "open_rb_state",
+        "create_rb_state",
+        "TEE_CreatePersistentObject"
+      ],
+      "function_call_line": [
+        394,
+        233,
+        48,
+        31
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 43,
+      "sink": "TEE_OpenPersistentObject",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "read_rb_idx",
+        "open_rb_state",
+        "TEE_OpenPersistentObject"
+      ],
+      "function_call_line": [
+        388,
+        91,
+        43
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 43,
+      "sink": "TEE_OpenPersistentObject",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "write_rb_idx",
+        "open_rb_state",
+        "TEE_OpenPersistentObject"
+      ],
+      "function_call_line": [
+        390,
+        148,
+        43
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 43,
+      "sink": "TEE_OpenPersistentObject",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "read_lock_state",
+        "open_rb_state",
+        "TEE_OpenPersistentObject"
+      ],
+      "function_call_line": [
+        392,
+        193,
+        43
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 43,
+      "sink": "TEE_OpenPersistentObject",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "write_lock_state",
+        "open_rb_state",
+        "TEE_OpenPersistentObject"
+      ],
+      "function_call_line": [
+        394,
+        233,
+        43
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 55,
+      "sink": "strlen",
+      "param_index": 0,
+      "param_indices": [
+        0
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "write_persist_value",
+        "get_named_object_name",
+        "strlen"
+      ],
+      "function_call_line": [
+        398,
+        284,
+        55
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 55,
+      "sink": "strlen",
+      "param_index": 0,
+      "param_indices": [
+        0
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "read_persist_value",
+        "get_named_object_name",
+        "strlen"
+      ],
+      "function_call_line": [
+        396,
+        332,
+        55
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": [
+        62,
+        65
+      ],
+      "sink": "TEE_MemMove",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "write_persist_value",
+        "get_named_object_name",
+        "TEE_MemMove"
+      ],
+      "function_call_line": [
+        398,
+        284,
+        [
+          62,
+          65
+        ]
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": [
+        62,
+        65
+      ],
+      "sink": "TEE_MemMove",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "read_persist_value",
+        "get_named_object_name",
+        "TEE_MemMove"
+      ],
+      "function_call_line": [
+        396,
+        332,
+        [
+          62,
+          65
+        ]
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": [
+        95,
+        110
+      ],
+      "sink": "TEE_SeekObjectData",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "read_rb_idx",
+        "TEE_SeekObjectData"
+      ],
+      "function_call_line": [
+        388,
+        [
+          95,
+          110
+        ]
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 99,
+      "sink": "TEE_ReadObjectData",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "read_rb_idx",
+        "TEE_ReadObjectData"
+      ],
+      "function_call_line": [
+        388,
+        99
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 114,
+      "sink": "TEE_WriteObjectData",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "read_rb_idx",
+        "TEE_WriteObjectData"
+      ],
+      "function_call_line": [
+        388,
+        114
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": [
+        152,
+        162
+      ],
+      "sink": "TEE_SeekObjectData",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "write_rb_idx",
+        "TEE_SeekObjectData"
+      ],
+      "function_call_line": [
+        390,
+        [
+          152,
+          162
+        ]
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 156,
+      "sink": "TEE_ReadObjectData",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "write_rb_idx",
+        "TEE_ReadObjectData"
+      ],
+      "function_call_line": [
+        390,
+        156
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 166,
+      "sink": "TEE_WriteObjectData",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "write_rb_idx",
+        "TEE_WriteObjectData"
+      ],
+      "function_call_line": [
+        390,
+        166
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 197,
+      "sink": "TEE_ReadObjectData",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "read_lock_state",
+        "TEE_ReadObjectData"
+      ],
+      "function_call_line": [
+        392,
+        197
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 237,
+      "sink": "TEE_ReadObjectData",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "write_lock_state",
+        "TEE_ReadObjectData"
+      ],
+      "function_call_line": [
+        394,
+        237
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 243,
+      "sink": "TEE_SeekObjectData",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "write_lock_state",
+        "TEE_SeekObjectData"
+      ],
+      "function_call_line": [
+        394,
+        243
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 247,
+      "sink": "TEE_WriteObjectData",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "write_lock_state",
+        "TEE_WriteObjectData"
+      ],
+      "function_call_line": [
+        394,
+        247
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 282,
+      "sink": "TEE_MemMove",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "write_persist_value",
+        "TEE_MemMove"
+      ],
+      "function_call_line": [
+        398,
+        282
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 289,
+      "sink": "TEE_CreatePersistentObject",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        4,
+        5
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "write_persist_value",
+        "TEE_CreatePersistentObject"
+      ],
+      "function_call_line": [
+        398,
+        289
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 337,
+      "sink": "TEE_OpenPersistentObject",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "read_persist_value",
+        "TEE_OpenPersistentObject"
+      ],
+      "function_call_line": [
+        396,
+        337
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 344,
+      "sink": "TEE_ReadObjectData",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "read_persist_value",
+        "TEE_ReadObjectData"
+      ],
+      "function_call_line": [
+        396,
+        344
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 350,
+      "sink": "TEE_MemMove",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "TA_InvokeCommandEntryPoint",
+        "read_persist_value",
+        "TEE_MemMove"
+      ],
+      "function_call_line": [
+        396,
+        350
+      ]
+    },
+    "source_func": "TA_InvokeCommandEntryPoint",
+    "source_params": []
+  }
+]

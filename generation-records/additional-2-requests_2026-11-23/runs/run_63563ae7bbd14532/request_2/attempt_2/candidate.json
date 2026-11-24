@@ -1,0 +1,272 @@
+{
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\t\tserialize_int(&i_resp, (uint32_t)(request_reenroll || password_handle->version < HANDLE_VERSION_THROTTLE));\n",
+      "old": "\t\tserialize_int(&i_resp, (uint32_t) request_reenroll);\n",
+      "path": "ta/gatekeeper_ta.c"
+    },
+    {
+      "defect": "D2",
+      "new": "\tif (password_length > sizeof(pw_handle.flags))\n\t\tmemcpy((uint8_t *)&pw_handle + sizeof(pw_handle.version) + sizeof(pw_handle.user_id), password, sizeof(pw_handle.flags));\n\tmemcpy(password_handle, &pw_handle, sizeof(pw_handle));\n",
+      "old": "\tmemcpy(password_handle, &pw_handle, sizeof(pw_handle));\n",
+      "path": "ta/gatekeeper_ta.c"
+    }
+  ],
+  "defects": [
+    {
+      "class": "DUS",
+      "detector_targets": [
+        {
+          "function": "TA_Verify",
+          "lines": [
+            706,
+            706
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "TA_Verify",
+          "lines": [
+            670,
+            670
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D1",
+      "reason": "The re-enrollment flag in the Verify response is recomputed from the handle version in the caller-writable request buffer when the response is built. The private value derived earlier is no longer the only source. If the buffer changes after verification, the reported flag changes too.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    },
+    {
+      "class": "UDO",
+      "detector_targets": [
+        {
+          "function": "TA_CreatePasswordHandle",
+          "lines": [
+            231,
+            231
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "TA_CreatePasswordHandle",
+          "lines": [
+            222,
+            224
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D2",
+      "reason": "For passwords longer than 8 bytes, the first bytes of the plaintext password are copied into the flags field of the password handle after signing. The handle is returned to the caller, so the protected password appears in the output unprotected.",
+      "witness_test_ids": [
+        "T03"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "T01",
+      "purpose": "normal",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "01000000 08000000 70617373776f7264 00000000 00000000",
+              "type": "memref_input"
+            },
+            {
+              "size": 128,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "01000000 0100000000000000 3a000000 00000000000000000000 00000000000000000000 00000000000000000000 00000000000000000000 00000000000000000000 0000000000000000 08000000 70617373776f7264",
+              "inserts": [
+                {
+                  "from": {
+                    "length": 58,
+                    "offset": 8,
+                    "param": 1,
+                    "step": 2
+                  },
+                  "offset": 16
+                }
+              ],
+              "type": "memref_input"
+            },
+            {
+              "size": 128,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": []
+    },
+    {
+      "id": "T02",
+      "purpose": "witness",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "01000000 08000000 70617373776f7264 00000000 00000000",
+              "type": "memref_input"
+            },
+            {
+              "size": 128,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "events": [
+            {
+              "action": {
+                "data": "01",
+                "expect": "02",
+                "kind": "write_memory",
+                "offset": 16,
+                "param": 0
+              },
+              "trigger": {
+                "before": "ClearFailureRecord(user_id);",
+                "function": "TA_Verify",
+                "kind": "checkpoint",
+                "occurrence": 1,
+                "path": "ta/gatekeeper_ta.c"
+              }
+            }
+          ],
+          "op": "invoke",
+          "params": [
+            {
+              "data": "01000000 0100000000000000 3a000000 00000000000000000000 00000000000000000000 00000000000000000000 00000000000000000000 00000000000000000000 0000000000000000 08000000 70617373776f7264",
+              "inserts": [
+                {
+                  "from": {
+                    "length": 58,
+                    "offset": 8,
+                    "param": 1,
+                    "step": 2
+                  },
+                  "offset": 16
+                }
+              ],
+              "type": "shared_memref_input"
+            },
+            {
+              "size": 128,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": [
+        "D1"
+      ],
+      "witness_step": 3
+    },
+    {
+      "id": "T03",
+      "purpose": "witness",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 0,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "01000000 0c000000 68656c6c6f20776f726c6421 00000000 00000000",
+              "type": "memref_input"
+            },
+            {
+              "size": 128,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": [
+        "D2"
+      ],
+      "witness_step": 2
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# Large raw model output is distributed separately; the files used for scoring and checking are tracked.
+/run-*/cases/*/attempt-*/outputs/results_1/*
+/pkcs11-T33/attempt-*/outputs/results_1/*
+!ta_vulnerabilities.json
+!ta_sinks.json
+!ta_sinks_gp11.json
+!ta_candidate_flows.json
+!phase4-command.json
+run.log

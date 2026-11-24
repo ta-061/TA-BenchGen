@@ -1,0 +1,288 @@
+{
+  "analysis_date": "2026-11-23T18:15:42.200393",
+  "analysis_time_seconds": 198.6609992980957,
+  "analysis_time_formatted": "3.3 minutes",
+  "llm_provider": "openai",
+  "llm_model": "gpt-5.2-2025-12-11",
+  "analysis_mode": "hybrid",
+  "rag_enabled": false,
+  "output_schema": "v5_candidate_audit",
+  "statistics": {
+    "total_flows_analyzed": 10,
+    "flows_with_vulnerabilities": 7,
+    "total_vulnerability_lines": 4,
+    "total_structural_risk_lines": 0,
+    "total_detections_before_consolidation": 15,
+    "total_lines_after_consolidation": 4,
+    "consolidation_rate": "73.3%",
+    "severity_distribution": {
+      "critical": 0,
+      "high": 0,
+      "medium": 4,
+      "low": 0
+    },
+    "cwe_distribution": {},
+    "rule_distribution": {
+      "direct_usage_of_shared_memory": 3,
+      "input_validation_weakness": 1
+    },
+    "execution_time_seconds": 198.6609992980957,
+    "llm_calls": 24,
+    "cache_hits": 9,
+    "cache_partial_hits": 9,
+    "cache_misses": 1,
+    "cache_hit_rate": "90.0%",
+    "token_usage": {},
+    "retries": 0,
+    "retry_successes": 0
+  },
+  "total_vulnerability_lines": 4,
+  "vulnerabilities": [
+    {
+      "vulnerability_id": "VULN-0001",
+      "file": "/inputs/T18/ta/ecdsa_ta.c",
+      "line": 125,
+      "consolidated": true,
+      "detection_count": 3,
+      "primary_rule_id": "direct_usage_of_shared_memory",
+      "rule_ids": [
+        "direct_usage_of_shared_memory"
+      ],
+      "functions": [
+        "compute_digest"
+      ],
+      "sink_functions": [
+        "TEE_DigestUpdate"
+      ],
+      "descriptions": [
+        "TEE_DigestUpdate consumes msg that directly aliases REE-shared memory (params[0].memref.buffer) without first copying it to trusted-private storage; this creates a shared-memory integrity/TOCTOU risk because the REE can modify the message while the trusted side is operating on it.",
+        "TEE_DigestUpdate reads from msg which is an alias of params[0].memref.buffer (REE-shared memory). The TA performs the digest directly over shared memory without first copying the input to private memory, so the REE can modify the message during/around the operation (TOCTOU/integrity risk).",
+        "TEE_DigestUpdate consumes msg pointing to REE-shared memory (params[0].memref.buffer). The trusted side performs a digest over shared content without first copying it to private memory, so the REE can race/alter the message during hashing (shared-memory integrity/TOCTOU issue)."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: this line reads from shared memory; it does not copy sensitive data out to an untrusted-visible buffer.",
+        "Not Input Validation Weakness: the core issue is trusting mutable shared content, not a missing bounds check on a memory write/copy.",
+        "Not other: matches the Direct Usage of Shared Memory definition.",
+        "Not Unencrypted Data Output: this line reads from shared memory; it does not output secrets to an untrusted buffer.",
+        "Not Input Validation Weakness: the primary issue is trusting shared-memory content that can change, not an unchecked length causing out-of-bounds write/read.",
+        "Not other: fits Direct Usage of Shared Memory (shared-memory trust/TOCTOU).",
+        "Not Unencrypted Data Output: this line reads shared input; it does not copy secrets to untrusted-visible memory.",
+        "Not Input Validation Weakness: the primary risk is trusting mutable shared content during an operation, not a missing bounds check on a memory write.",
+        "Not other: fits Direct Usage of Shared Memory per shared-buffer read/operation semantics."
+      ],
+      "code_snippets": [
+        "TEE_DigestUpdate(op, msg, msg_len);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "compute_digest",
+          "__GP11_TEE_DigestUpdate"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "compute_digest",
+          "__GP11_TEE_DigestDoFinal"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "compute_digest",
+          "__GP11_TEE_MemMove"
+        ]
+      ],
+      "rule_distribution": {
+        "direct_usage_of_shared_memory": 3
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0002",
+      "file": "ecdsa_ta.c",
+      "line": 268,
+      "consolidated": true,
+      "detection_count": 4,
+      "primary_rule_id": "direct_usage_of_shared_memory",
+      "rule_ids": [
+        "direct_usage_of_shared_memory"
+      ],
+      "functions": [
+        "sign_verify_digest"
+      ],
+      "sink_functions": [
+        "TEE_AsymmetricSignDigest"
+      ],
+      "descriptions": [
+        "TEE_AsymmetricSignDigest consumes digest from params[0].memref.buffer (shared memory) directly, without first copying it into trusted-private memory; this lets the untrusted side modify the digest around the time of use (shared-memory integrity/TOCTOU risk).",
+        "The TA passes a shared-memory buffer (params[0].memref.buffer via digest) directly into TEE_AsymmetricSignDigest. No copy_to_private is performed, so the REE can modify the digest contents during/around the signing operation (TOCTOU/integrity risk). This shared-memory trust violation is the dominant issue over mere length validation.",
+        "The TA passes params[0].memref.buffer (shared memory) directly as the digest input to TEE_AsymmetricSignDigest, so the trusted side operates on shared content without first copying to private memory, enabling TOCTOU/integrity issues if the REE modifies the digest during/around the operation.",
+        "digest points to REE-controlled shared memory (params[0].memref.buffer) and is used directly as input to TEE_AsymmetricSignDigest without first copying to trusted-private memory; this is a shared-memory integrity/TOCTOU risk (the REE can modify the digest around the use)."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: no secret is being copied out to shared memory on this line; shared memory is being read.",
+        "Not Input Validation Weakness: although digest_len is REE-controlled, the dominant issue here is trusting shared-memory content during a sensitive operation rather than a demonstrated out-of-bounds write.",
+        "Not other: fits Direct Usage of Shared Memory as defined.",
+        "Not Unencrypted Data Output: this line reads from shared memory and produces a signature into a private stack buffer; it does not copy a secret into untrusted-visible memory.",
+        "Not Input Validation Weakness: although digest_len is REE-controlled, the primary risk here is trusting mutable shared memory content for a security decision (signing), i.e., TOCTOU; length mismatch is secondary and not shown to cause a memory write overflow here.",
+        "Not other: fits Direct Usage of Shared Memory per policy.",
+        "Not Unencrypted Data Output: this line reads from shared memory and writes to a private stack buffer (sig), not exporting secrets to untrusted memory.",
+        "Not Input Validation Weakness: although digest_len is REE-controlled, the primary issue is trusting mutable shared-memory content for cryptographic signing (shared-memory integrity), not a demonstrated out-of-bounds write/read in this code.",
+        "Not Unencrypted Data Output: this line reads from shared input and produces a signature into a private buffer; it does not copy a secret to untrusted-visible memory.",
+        "Not Input Validation Weakness: although digest_len is REE-controlled, the primary issue is trusting shared-memory content during a security decision/operation (signing) without a private snapshot.",
+        "Not other: fits Direct Usage of Shared Memory."
+      ],
+      "code_snippets": [
+        "res = TEE_AsymmetricSignDigest(sign_op, NULL, 0, digest, digest_len, sig, &sig_len);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify_digest",
+          "__GP11_TEE_SetOperationKey"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify_digest",
+          "__GP11_TEE_AsymmetricSignDigest"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify_digest",
+          "__GP11_TEE_AsymmetricVerifyDigest"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify_digest",
+          "__GP11_TEE_MemMove"
+        ]
+      ],
+      "rule_distribution": {
+        "direct_usage_of_shared_memory": 4
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0003",
+      "file": "ecdsa_ta.c",
+      "line": 281,
+      "consolidated": true,
+      "detection_count": 4,
+      "primary_rule_id": "direct_usage_of_shared_memory",
+      "rule_ids": [
+        "direct_usage_of_shared_memory"
+      ],
+      "functions": [
+        "sign_verify_digest"
+      ],
+      "sink_functions": [
+        "TEE_AsymmetricVerifyDigest"
+      ],
+      "descriptions": [
+        "TEE_AsymmetricVerifyDigest uses digest from params[0].memref.buffer (shared memory) directly; without a private copy, the untrusted side can change the digest between earlier steps and this use, violating shared-memory trust assumptions.",
+        "The TA passes a shared-memory buffer (params[0].memref.buffer via digest) directly into TEE_AsymmetricVerifyDigest without copying it into private memory first. The REE can change the digest between preparation and use, undermining integrity of the verify operation (TOCTOU/shared-memory trust issue).",
+        "The TA verifies using digest from params[0].memref.buffer (shared memory) directly in TEE_AsymmetricVerifyDigest without copying to private memory; the REE can change the digest between any prior handling and the verify operation, violating shared-memory trust/TOCTOU expectations.",
+        "digest is an alias of REE shared memory and is consumed directly by TEE_AsymmetricVerifyDigest without copy_to_private, enabling TOCTOU modification of the verified digest data."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: no sensitive data is written to untrusted-visible memory here.",
+        "Not Input Validation Weakness: the core problem is shared-memory integrity/TOCTOU on the verified data, not a clear missing bounds check on a write.",
+        "Not other: fits Direct Usage of Shared Memory as defined.",
+        "Not Unencrypted Data Output: no sensitive data is being written to an untrusted-visible buffer on this line.",
+        "Not Input Validation Weakness: the key weakness is operating on mutable shared memory for verification; the candidate does not show an unchecked memory write driven by digest_len.",
+        "Not other: fits Direct Usage of Shared Memory.",
+        "Not Unencrypted Data Output: no sensitive data is copied out to untrusted-visible memory here.",
+        "Not Input Validation Weakness: the central risk is integrity/TOCTOU from using a shared buffer as cryptographic input, not a clear bounds-check failure in the shown code.",
+        "Not Unencrypted Data Output: no secret is written to untrusted-visible memory here.",
+        "Not Input Validation Weakness: the core problem is shared-memory trust/TOCTOU on the digest contents during verification, not a demonstrated missing bounds check leading to memory corruption."
+      ],
+      "code_snippets": [
+        "res = TEE_AsymmetricVerifyDigest(verify_op, NULL, 0, digest, digest_len, sig, sig_len);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify_digest",
+          "__GP11_TEE_SetOperationKey"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify_digest",
+          "__GP11_TEE_AsymmetricSignDigest"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify_digest",
+          "__GP11_TEE_AsymmetricVerifyDigest"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify_digest",
+          "__GP11_TEE_MemMove"
+        ]
+      ],
+      "rule_distribution": {
+        "direct_usage_of_shared_memory": 4
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0004",
+      "file": "ecdsa_ta.c",
+      "line": 293,
+      "consolidated": true,
+      "detection_count": 4,
+      "primary_rule_id": "input_validation_weakness",
+      "rule_ids": [
+        "input_validation_weakness"
+      ],
+      "functions": [
+        "sign_verify_digest"
+      ],
+      "sink_functions": [
+        "TEE_MemMove"
+      ],
+      "descriptions": [
+        "TEE_MemMove writes sig_len bytes to out (params[1].memref.buffer) but the prior guard checks out_len < sig_len/2, which does not ensure out_len >= sig_len; a REE-controlled out_len in the range [sig_len/2, sig_len) can lead to an out-of-bounds write into the shared output buffer.",
+        "TEE_MemMove writes sig_len bytes into the untrusted-shared output buffer 'out' while the preceding guard only checks out_len < sig_len/2. This does not ensure out_len >= sig_len, so an attacker-controlled out_len can be between sig_len/2 and sig_len, leading to an out-of-bounds write into shared memory.",
+        "TEE_MemMove writes sig_len bytes into the shared output buffer 'out', but the preceding check only enforces out_len >= sig_len/2 rather than out_len >= sig_len; since out_len is REE-controlled, this allows an out-of-bounds write when out_len is between sig_len/2 and sig_len.",
+        "TEE_MemMove writes sig_len bytes into out (params[1].memref.buffer, shared/untrusted-visible) but the preceding check only enforces out_len >= sig_len/2 rather than out_len >= sig_len, so an REE-chosen out_len between sig_len/2 and sig_len can cause an out-of-bounds write into the shared buffer."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: the copied data is a signature (not a private key/credential/session secret) and is intended for output.",
+        "Not Direct Usage of Shared Memory: this line writes to shared memory; DUS requires trusted-side reading/trusting shared memory content for decisions/processing.",
+        "Not other: fits Input Validation Weakness as defined.",
+        "Not Unencrypted Data Output: the data being copied is a signature (not an application-private secret like a key/credential/session secret).",
+        "Not Direct Usage of Shared Memory: the issue is an unchecked write length into a shared buffer (bounds/memory safety), not trusting shared memory content for decisions.",
+        "Not other: fits Input Validation Weakness.",
+        "Not Unencrypted Data Output: the data copied is a signature intended for output, not an application-private secret being leaked without encryption.",
+        "Not Direct Usage of Shared Memory: this is a write to shared memory; the issue is incorrect length validation leading to overflow, not trusting shared memory reads/decisions.",
+        "Not Unencrypted Data Output: the data written is a signature (not a private key/credential/session secret) and is intended output.",
+        "Not Direct Usage of Shared Memory: this is a write with an insufficient length check (bounds issue), not a trusted read/decision based on shared-memory content."
+      ],
+      "code_snippets": [
+        "TEE_MemMove(out, sig, sig_len);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify_digest",
+          "__GP11_TEE_SetOperationKey"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify_digest",
+          "__GP11_TEE_AsymmetricSignDigest"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify_digest",
+          "__GP11_TEE_AsymmetricVerifyDigest"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify_digest",
+          "__GP11_TEE_MemMove"
+        ]
+      ],
+      "rule_distribution": {
+        "input_validation_weakness": 4
+      }
+    }
+  ]
+}

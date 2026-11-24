@@ -1,0 +1,88 @@
+{
+  "analysis_date": "2026-11-23T18:13:12.544468",
+  "analysis_time_seconds": 52.79969596862793,
+  "analysis_time_formatted": "52.8 seconds",
+  "llm_provider": "openai",
+  "llm_model": "gpt-5.2-2025-12-11",
+  "analysis_mode": "hybrid",
+  "rag_enabled": false,
+  "output_schema": "v5_candidate_audit",
+  "statistics": {
+    "total_flows_analyzed": 9,
+    "flows_with_vulnerabilities": 2,
+    "total_vulnerability_lines": 1,
+    "total_structural_risk_lines": 0,
+    "total_detections_before_consolidation": 2,
+    "total_lines_after_consolidation": 1,
+    "consolidation_rate": "50.0%",
+    "severity_distribution": {
+      "critical": 0,
+      "high": 0,
+      "medium": 1,
+      "low": 0
+    },
+    "cwe_distribution": {},
+    "rule_distribution": {
+      "input_validation_weakness": 1
+    },
+    "execution_time_seconds": 52.79969596862793,
+    "llm_calls": 15,
+    "cache_hits": 8,
+    "cache_partial_hits": 8,
+    "cache_misses": 1,
+    "cache_hit_rate": "88.9%",
+    "token_usage": {},
+    "retries": 0,
+    "retry_successes": 0
+  },
+  "total_vulnerability_lines": 1,
+  "vulnerabilities": [
+    {
+      "vulnerability_id": "VULN-0001",
+      "file": "/inputs/T22/ta/hotp_ta.c",
+      "line": 156,
+      "consolidated": true,
+      "detection_count": 2,
+      "primary_rule_id": "input_validation_weakness",
+      "rule_ids": [
+        "input_validation_weakness"
+      ],
+      "functions": [
+        "register_shared_key"
+      ],
+      "sink_functions": [
+        "DMSG"
+      ],
+      "descriptions": [
+        "state->K is filled from an untrusted memref with length params[0].memref.size, then logged with \"%s\" which requires NUL-termination; there is no validation/guarantee that the copied bytes contain a terminator within the allocated buffer, so the log call can read past the end of state->K based on untrusted-controlled content.",
+        "state->K contains attacker-controlled bytes copied from params[0].memref.buffer, but the code logs it with \"%s\" which requires NUL termination; without validating/forcing termination, the string formatting can read past state->K until a NUL is found, causing an unbounded read based on untrusted content."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: the destination is a debug log, not a copy into REE shared memory; the issue is unsafe string handling, not secret output to shared memory.",
+        "Not Direct Usage of Shared Memory: the DMSG reads trusted-private state->K (a private copy), not the shared buffer directly; the primary mechanism is missing validation for C-string termination.",
+        "Not other: the problem is best captured as an input/content validation weakness leading to out-of-bounds read.",
+        "Not Direct Usage of Shared Memory: the read is from the trusted-private buffer state->K, not directly from shared memory at the time of use.",
+        "Not Unencrypted Data Output: although key material may be sensitive, this line outputs to the debug log rather than writing into untrusted shared memory as defined by UDO sinks.",
+        "Not other: the core issue is an unchecked/unbounded read due to missing input/content validation for string usage."
+      ],
+      "code_snippets": [
+        "DMSG(\"Got shared key %s (%u bytes).\", state->K, params[0].memref.size);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "register_shared_key",
+          "memset"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "register_shared_key",
+          "memcpy"
+        ]
+      ],
+      "rule_distribution": {
+        "input_validation_weakness": 2
+      }
+    }
+  ]
+}

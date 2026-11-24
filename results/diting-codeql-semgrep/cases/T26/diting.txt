@@ -1,0 +1,6 @@
+Unencrypted Data Output: 5
+['file://${WORK}/sources/T26/ta/entry.c:350:39:350:43', 'file://${WORK}/sources/T26/ta/entry.c:353:19:353:22', 'file://${WORK}/sources/T26/ta/entry.c:209:18:209:18', 'file://${WORK}/sources/T26/ta/entry.c:120:18:120:18', 'file://${WORK}/sources/T26/ta/entry.c:121:18:121:18']
+Input Validation Weakness: 0
+[]
+Shared Memory Overwrite: 0
+[]

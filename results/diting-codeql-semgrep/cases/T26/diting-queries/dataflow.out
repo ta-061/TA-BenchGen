@@ -1,0 +1,44 @@
+| col0 |  col1  |   col2   |                col3                |         col4          |                                                                         col5                                                                         |
++------+--------+----------+------------------------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 0    | buffer | void *   | ... = ...                          | read_persist_value    | file://${WORK}/sources/T26/ta/entry.c:325:2:325:35  |
+| 0    | buffer | void *   | call to get_named_object_name      | read_persist_value    | file://${WORK}/sources/T26/ta/entry.c:332:8:332:28  |
+| 0    | buffer | void *   | call to TEE_MemMove                | get_named_object_name | file://${WORK}/sources/T26/ta/entry.c:65:2:65:12    |
+| 0    | size   | size_t   | ... = ...                          | read_persist_value    | file://${WORK}/sources/T26/ta/entry.c:326:2:326:36  |
+| 0    | size   | size_t   | call to get_named_object_name      | read_persist_value    | file://${WORK}/sources/T26/ta/entry.c:332:8:332:28  |
+| 0    | size   | size_t   | ... + ...                          | get_named_object_name | file://${WORK}/sources/T26/ta/entry.c:57:6:57:30    |
+| 0    | size   | size_t   | call to TEE_MemMove                | get_named_object_name | file://${WORK}/sources/T26/ta/entry.c:65:2:65:12    |
+| 0    | size   | size_t   | ... + ...                          | get_named_object_name | file://${WORK}/sources/T26/ta/entry.c:67:15:67:39   |
+| 1    | size   | size_t   | ... = ...                          | read_persist_value    | file://${WORK}/sources/T26/ta/entry.c:327:2:327:33  |
+| 1    | size   | size_t   | call to TEE_Malloc                 | read_persist_value    | file://${WORK}/sources/T26/ta/entry.c:328:10:328:19 |
+| 1    | size   | size_t   | call to TEE_ReadObjectData         | read_persist_value    | file://${WORK}/sources/T26/ta/entry.c:344:9:344:26  |
+| 1    | size   | size_t   | call to TEE_MemMove                | read_persist_value    | file://${WORK}/sources/T26/ta/entry.c:350:2:350:12  |
+| 1    | buffer | void *   | call to TEE_MemMove                | read_persist_value    | file://${WORK}/sources/T26/ta/entry.c:350:2:350:12  |
+| 1    | size   | size_t   | ... = ...                          | read_persist_value    | file://${WORK}/sources/T26/ta/entry.c:353:2:353:30  |
+| 0    | buffer | void *   | ... = ...                          | write_persist_value   | file://${WORK}/sources/T26/ta/entry.c:275:2:275:35  |
+| 0    | buffer | void *   | call to get_named_object_name      | write_persist_value   | file://${WORK}/sources/T26/ta/entry.c:284:8:284:28  |
+| 0    | buffer | void *   | call to TEE_MemMove                | get_named_object_name | file://${WORK}/sources/T26/ta/entry.c:65:2:65:12    |
+| 0    | size   | size_t   | ... = ...                          | write_persist_value   | file://${WORK}/sources/T26/ta/entry.c:276:2:276:36  |
+| 0    | size   | size_t   | call to get_named_object_name      | write_persist_value   | file://${WORK}/sources/T26/ta/entry.c:284:8:284:28  |
+| 0    | size   | size_t   | ... + ...                          | get_named_object_name | file://${WORK}/sources/T26/ta/entry.c:57:6:57:30    |
+| 0    | size   | size_t   | call to TEE_MemMove                | get_named_object_name | file://${WORK}/sources/T26/ta/entry.c:65:2:65:12    |
+| 0    | size   | size_t   | ... + ...                          | get_named_object_name | file://${WORK}/sources/T26/ta/entry.c:67:15:67:39   |
+| 1    | size   | size_t   | ... = ...                          | write_persist_value   | file://${WORK}/sources/T26/ta/entry.c:277:2:277:33  |
+| 1    | size   | size_t   | call to TEE_Malloc                 | write_persist_value   | file://${WORK}/sources/T26/ta/entry.c:278:10:278:19 |
+| 1    | size   | size_t   | call to TEE_MemMove                | write_persist_value   | file://${WORK}/sources/T26/ta/entry.c:282:2:282:12  |
+| 1    | size   | size_t   | call to TEE_CreatePersistentObject | write_persist_value   | file://${WORK}/sources/T26/ta/entry.c:289:8:289:33  |
+| 1    | buffer | void *   | call to TEE_MemMove                | write_persist_value   | file://${WORK}/sources/T26/ta/entry.c:282:2:282:12  |
+| 0    | a      | uint32_t | ... = ...                          | write_lock_state      | file://${WORK}/sources/T26/ta/entry.c:231:2:231:32  |
+| 0    | a      | uint32_t | call to open_rb_state              | write_lock_state      | file://${WORK}/sources/T26/ta/entry.c:233:8:233:20  |
+| 0    | a      | uint32_t | ... == ...                         | write_lock_state      | file://${WORK}/sources/T26/ta/entry.c:240:37:240:61 |
+| 0    | a      | uint32_t | call to create_rb_state            | open_rb_state         | file://${WORK}/sources/T26/ta/entry.c:48:9:48:23    |
+| 0    | a      | uint32_t | ... = ...                          | read_lock_state       | file://${WORK}/sources/T26/ta/entry.c:209:2:209:31  |
+| 0    | a      | uint32_t | call to get_slot_offset            | write_rb_idx          | file://${WORK}/sources/T26/ta/entry.c:143:8:143:22  |
+| 0    | a      | uint32_t | ... >= ...                         | get_slot_offset       | file://${WORK}/sources/T26/ta/entry.c:18:6:18:42    |
+| 0    | a      | uint32_t | ... * ...                          | get_slot_offset       | file://${WORK}/sources/T26/ta/entry.c:21:48:21:70   |
+| 1    | a      | uint32_t | ... << ...                         | write_rb_idx          | file://${WORK}/sources/T26/ta/entry.c:146:10:146:42 |
+| 1    | b      | uint32_t | ... | ...                          | write_rb_idx          | file://${WORK}/sources/T26/ta/entry.c:146:9:146:63  |
+| 0    | a      | uint32_t | call to get_slot_offset            | read_rb_idx           | file://${WORK}/sources/T26/ta/entry.c:87:8:87:22    |
+| 0    | a      | uint32_t | ... >= ...                         | get_slot_offset       | file://${WORK}/sources/T26/ta/entry.c:18:6:18:42    |
+| 0    | a      | uint32_t | ... * ...                          | get_slot_offset       | file://${WORK}/sources/T26/ta/entry.c:21:48:21:70   |
+| 1    | a      | uint32_t | ... = ...                          | read_rb_idx           | file://${WORK}/sources/T26/ta/entry.c:120:2:120:30  |
+| 1    | b      | uint32_t | ... = ...                          | read_rb_idx           | file://${WORK}/sources/T26/ta/entry.c:121:2:121:24  |

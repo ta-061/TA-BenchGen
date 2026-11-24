@@ -1,0 +1,439 @@
+{
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tcase TEE_FALSE:\n\t\tif (throttle && timeout > 0) {\n\t\t\terror = ERROR_RETRY;\n\t\t} else if (password_handle->version > HANDLE_VERSION) {\n\t\t\terror = ERROR_UNKNOWN;\n\t\t\tres = TEE_ERROR_BAD_PARAMETERS;\n\t\t} else {\n\t\t\terror = ERROR_INVALID;\n\t\t}\n\t\tgoto serialize_response;\n",
+      "old": "\tcase TEE_FALSE:\n\t\tif (throttle && timeout > 0) {\n\t\t\terror = ERROR_RETRY;\n\t\t} else {\n\t\t\terror = ERROR_INVALID;\n\t\t}\n\t\tgoto serialize_response;\n",
+      "path": "ta/gatekeeper_ta.c"
+    },
+    {
+      "defect": "D2",
+      "new": "\tcase ERROR_INVALID:\n\t\tserialize_blob(&i_resp, provided_password, provided_password_length > 32 ? 32 : provided_password_length);\n\t\tbreak;\n\tcase ERROR_UNKNOWN:\n\t\tbreak;\n\tcase ERROR_RETRY:\n\t\tserialize_int(&i_resp, timeout);\n\t\tbreak;\n\tcase ERROR_NONE:\n\t\tserialize_blob(&i_resp, (uint8_t *)&auth_token, sizeof(auth_token));\n",
+      "old": "\tcase ERROR_INVALID:\n\tcase ERROR_UNKNOWN:\n\t\tbreak;\n\tcase ERROR_RETRY:\n\t\tserialize_int(&i_resp, timeout);\n\t\tbreak;\n\tcase ERROR_NONE:\n\t\tserialize_blob(&i_resp, (uint8_t *)&auth_token, sizeof(auth_token));\n",
+      "path": "ta/gatekeeper_ta.c"
+    }
+  ],
+  "failed_test": {
+    "id": "C93f03c80acd78d16",
+    "observations": [
+      {
+        "defective": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "different_items": [],
+        "ignored_variable_items": [],
+        "normal": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "purpose": "normal",
+        "repeated_defective": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "repeated_normal": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "step": 1,
+        "test": "C93f03c80acd78d16"
+      },
+      {
+        "defective": {
+          "origin": 4,
+          "outputs": [
+            {
+              "data": "010000000400000031323334",
+              "param": 1,
+              "size": 12,
+              "type": "memref_output"
+            }
+          ],
+          "result": 1,
+          "ta_crashed": false
+        },
+        "different_items": [
+          {
+            "field": "data",
+            "param": 1
+          },
+          {
+            "field": "size",
+            "param": 1
+          }
+        ],
+        "ignored_variable_items": [],
+        "normal": {
+          "origin": 4,
+          "outputs": [
+            {
+              "data": "01000000",
+              "param": 1,
+              "size": 4,
+              "type": "memref_output"
+            }
+          ],
+          "result": 1,
+          "ta_crashed": false
+        },
+        "purpose": "normal",
+        "repeated_defective": {
+          "origin": 4,
+          "outputs": [
+            {
+              "data": "010000000400000031323334",
+              "param": 1,
+              "size": 12,
+              "type": "memref_output"
+            }
+          ],
+          "result": 1,
+          "ta_crashed": false
+        },
+        "repeated_normal": {
+          "origin": 4,
+          "outputs": [
+            {
+              "data": "01000000",
+              "param": 1,
+              "size": 4,
+              "type": "memref_output"
+            }
+          ],
+          "result": 1,
+          "ta_crashed": false
+        },
+        "step": 2,
+        "test": "C93f03c80acd78d16"
+      },
+      {
+        "defective": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "different_items": [],
+        "ignored_variable_items": [],
+        "normal": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "purpose": "normal",
+        "repeated_defective": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "repeated_normal": {
+          "origin": 0,
+          "outputs": [],
+          "result": 0,
+          "ta_crashed": false
+        },
+        "step": 3,
+        "test": "C93f03c80acd78d16"
+      }
+    ],
+    "observations_omitted": 0,
+    "purpose": "normal",
+    "source": "corpus",
+    "steps": [
+      {
+        "op": "open",
+        "session": "s1"
+      },
+      {
+        "command_id": 1,
+        "op": "invoke",
+        "params": [
+          {
+            "data": "0100000005000000000000003a00000002010000000000000001000000000000",
+            "data_bytes": 82,
+            "data_truncated": true,
+            "type": "memref_input"
+          },
+          {
+            "size": 128,
+            "type": "memref_output"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          }
+        ],
+        "session": "s1"
+      },
+      {
+        "op": "close",
+        "session": "s1"
+      }
+    ]
+  },
+  "index": 3,
+  "observed_differences": [
+    {
+      "defective": {
+        "origin": 4,
+        "outputs": [
+          {
+            "data": "03000000",
+            "param": 1,
+            "size": 4,
+            "type": "memref_output"
+          }
+        ],
+        "result": 4294901766,
+        "ta_crashed": false
+      },
+      "different_items": [
+        {
+          "field": "result"
+        },
+        {
+          "field": "data",
+          "param": 1
+        }
+      ],
+      "ignored_variable_items": [
+        {
+          "field": "data",
+          "param": 0
+        }
+      ],
+      "normal": {
+        "origin": 4,
+        "outputs": [
+          {
+            "data": "01000000",
+            "param": 1,
+            "size": 4,
+            "type": "memref_output"
+          }
+        ],
+        "result": 1,
+        "ta_crashed": false
+      },
+      "purpose": "witness",
+      "repeated_defective": {
+        "origin": 4,
+        "outputs": [
+          {
+            "data": "03000000",
+            "param": 1,
+            "size": 4,
+            "type": "memref_output"
+          }
+        ],
+        "result": 4294901766,
+        "ta_crashed": false
+      },
+      "repeated_normal": {
+        "origin": 4,
+        "outputs": [
+          {
+            "data": "01000000",
+            "param": 1,
+            "size": 4,
+            "type": "memref_output"
+          }
+        ],
+        "result": 1,
+        "ta_crashed": false
+      },
+      "step": 3,
+      "test": "T02"
+    },
+    {
+      "defective": {
+        "origin": 4,
+        "outputs": [
+          {
+            "data": "010000000800000070617373776f7265",
+            "param": 1,
+            "size": 16,
+            "type": "memref_output"
+          }
+        ],
+        "result": 1,
+        "ta_crashed": false
+      },
+      "different_items": [
+        {
+          "field": "data",
+          "param": 1
+        },
+        {
+          "field": "size",
+          "param": 1
+        }
+      ],
+      "ignored_variable_items": [
+        {
+          "field": "data",
+          "param": 0
+        }
+      ],
+      "normal": {
+        "origin": 4,
+        "outputs": [
+          {
+            "data": "01000000",
+            "param": 1,
+            "size": 4,
+            "type": "memref_output"
+          }
+        ],
+        "result": 1,
+        "ta_crashed": false
+      },
+      "purpose": "witness",
+      "repeated_defective": {
+        "origin": 4,
+        "outputs": [
+          {
+            "data": "010000000800000070617373776f7265",
+            "param": 1,
+            "size": 16,
+            "type": "memref_output"
+          }
+        ],
+        "result": 1,
+        "ta_crashed": false
+      },
+      "repeated_normal": {
+        "origin": 4,
+        "outputs": [
+          {
+            "data": "01000000",
+            "param": 1,
+            "size": 4,
+            "type": "memref_output"
+          }
+        ],
+        "result": 1,
+        "ta_crashed": false
+      },
+      "step": 3,
+      "test": "T03"
+    },
+    {
+      "defective": {
+        "origin": 4,
+        "outputs": [
+          {
+            "data": "010000000400000031323334",
+            "param": 1,
+            "size": 12,
+            "type": "memref_output"
+          }
+        ],
+        "result": 1,
+        "ta_crashed": false
+      },
+      "different_items": [
+        {
+          "field": "data",
+          "param": 1
+        },
+        {
+          "field": "size",
+          "param": 1
+        }
+      ],
+      "ignored_variable_items": [],
+      "normal": {
+        "origin": 4,
+        "outputs": [
+          {
+            "data": "01000000",
+            "param": 1,
+            "size": 4,
+            "type": "memref_output"
+          }
+        ],
+        "result": 1,
+        "ta_crashed": false
+      },
+      "purpose": "normal",
+      "repeated_defective": {
+        "origin": 4,
+        "outputs": [
+          {
+            "data": "010000000400000031323334",
+            "param": 1,
+            "size": 12,
+            "type": "memref_output"
+          }
+        ],
+        "result": 1,
+        "ta_crashed": false
+      },
+      "repeated_normal": {
+        "origin": 4,
+        "outputs": [
+          {
+            "data": "01000000",
+            "param": 1,
+            "size": 4,
+            "type": "memref_output"
+          }
+        ],
+        "result": 1,
+        "ta_crashed": false
+      },
+      "step": 2,
+      "test": "C93f03c80acd78d16"
+    }
+  ],
+  "proposed": [
+    {
+      "class": "DUS",
+      "detector_targets": [
+        {
+          "function": "TA_Verify",
+          "lines": [
+            684,
+            684
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "effect"
+        }
+      ],
+      "id": "D1",
+      "reason": "In Verify, the password handle is used directly from the caller-writable request buffer instead of a private copy. After the early version check, the failure path reads the version from that buffer a second time. If the buffer changes in between, the reported error code and the result differ from th"
+    },
+    {
+      "class": "UDO",
+      "detector_targets": [
+        {
+          "function": "TA_Verify",
+          "lines": [
+            700,
+            700
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "effect"
+        }
+      ],
+      "id": "D2",
+      "reason": "When verification fails, the Verify response now includes the plaintext password supplied by the caller. A value the TA must protect is written to the output without protection."
+    }
+  ],
+  "reason": "C93f03c80acd78d16: normal input differs (R1)",
+  "status": "machine_fail"
+}

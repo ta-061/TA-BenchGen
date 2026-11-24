@@ -1,0 +1,8 @@
+| col0 |             col1              |
++------+-------------------------------+
+| 0    | call to alloc_resources       |
+| 1    | call to set_sha_key           |
+| 2    | call to reset_sha_iv          |
+| 3    | call to sha_update_op         |
+| 4    | call to compare_hmac_sha_algo |
+| 5    | call to compute_digest        |

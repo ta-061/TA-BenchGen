@@ -1,0 +1,82 @@
+{
+  "T17": {
+    "case": "case_061088fe19e546b2",
+    "source": "defective/case_061088fe19e546b2/source",
+    "normal": "normal/secure_storage"
+  },
+  "T18": {
+    "case": "case_19b7f03571ec46b1",
+    "source": "defective/case_19b7f03571ec46b1/source",
+    "normal": "normal/ecdsa"
+  },
+  "T19": {
+    "case": "case_1ac4b6f08ebd405a",
+    "source": "defective/case_1ac4b6f08ebd405a/source",
+    "normal": "normal/sign_verify"
+  },
+  "T20": {
+    "case": "case_2509fc67e11f4a0d",
+    "source": "defective/case_2509fc67e11f4a0d/source",
+    "normal": "normal/sign_verify"
+  },
+  "T21": {
+    "case": "case_427eec3671c74536",
+    "source": "defective/case_427eec3671c74536/source",
+    "normal": "normal/gatekeeper"
+  },
+  "T22": {
+    "case": "case_4c9c820bfad042e7",
+    "source": "defective/case_4c9c820bfad042e7/source",
+    "normal": "normal/hotp"
+  },
+  "T24": {
+    "case": "case_684c4bfe44b04d86",
+    "source": "defective/case_684c4bfe44b04d86/source",
+    "normal": "normal/gatekeeper"
+  },
+  "T26": {
+    "case": "case_9ab8adeb3dd74fba",
+    "source": "defective/case_9ab8adeb3dd74fba/source",
+    "normal": "normal/avb"
+  },
+  "T27": {
+    "case": "case_b1818f0fd5ae4f9e",
+    "source": "defective/case_b1818f0fd5ae4f9e/source",
+    "normal": "normal/sha"
+  },
+  "T28": {
+    "case": "case_b9e19bc717204a6f",
+    "source": "defective/case_b9e19bc717204a6f/source",
+    "normal": "normal/gatekeeper"
+  },
+  "T30": {
+    "case": "case_c4cb059bfbd14ca1",
+    "source": "defective/case_c4cb059bfbd14ca1/source",
+    "normal": "normal/sha"
+  },
+  "T31": {
+    "case": "case_c893fb83418c44fd",
+    "source": "defective/case_c893fb83418c44fd/source",
+    "normal": "normal/shared_record"
+  },
+  "T33": {
+    "case": "case_e264a169df23d680",
+    "source": "defective/case_e264a169df23d680/source",
+    "normal": "normal/pkcs11"
+  },
+  "T34": {
+    "case": "case_e8b4365cf5a3481c",
+    "source": "defective/case_e8b4365cf5a3481c/source",
+    "normal": "normal/sign_verify"
+  },
+  "T35": {
+    "case": "case_edd8fccc76624196",
+    "source": "defective/case_edd8fccc76624196/source",
+    "normal": "normal/ecdsa"
+  },
+  "T36": {
+    "case": "case_edc7a9e855a140d7",
+    "source": "defective/case_edc7a9e855a140d7/source",
+    "normal": "normal/gatekeeper"
+  }
+}

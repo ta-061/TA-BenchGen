@@ -1,0 +1,1915 @@
+[
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/failure_record.c",
+      "line": 34,
+      "sink": "memset",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_OpenSessionEntryPoint",
+        "InitFailureRecords",
+        "memset"
+      ],
+      "function_call_line": [
+        78,
+        34
+      ]
+    },
+    "source_func": "__GP11_TA_OpenSessionEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/failure_record.c",
+      "line": 137,
+      "sink": "TEE_GetSystemTime",
+      "param_index": 0,
+      "param_indices": [
+        0
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "GetTimestamp",
+        "TEE_GetSystemTime"
+      ],
+      "function_call_line": [
+        734,
+        487,
+        137
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/failure_record.c",
+      "line": 137,
+      "sink": "TEE_GetSystemTime",
+      "param_index": 0,
+      "param_indices": [
+        0
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "GetTimestamp",
+        "TEE_GetSystemTime"
+      ],
+      "function_call_line": [
+        736,
+        613,
+        137
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/include/gatekeeper_ipc.h",
+      "line": [
+        87,
+        90
+      ],
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "serialize_blob",
+        "memcpy"
+      ],
+      "function_call_line": [
+        734,
+        542,
+        [
+          87,
+          90
+        ]
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/include/gatekeeper_ipc.h",
+      "line": [
+        87,
+        90
+      ],
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "serialize_blob",
+        "memcpy"
+      ],
+      "function_call_line": [
+        736,
+        707,
+        [
+          87,
+          90
+        ]
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/include/gatekeeper_ipc.h",
+      "line": 105,
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "serialize_int",
+        "memcpy"
+      ],
+      "function_call_line": [
+        734,
+        [
+          533,
+          539
+        ],
+        105
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/include/gatekeeper_ipc.h",
+      "line": 105,
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "serialize_int",
+        "memcpy"
+      ],
+      "function_call_line": [
+        736,
+        [
+          698,
+          704,
+          708
+        ],
+        105
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/include/gatekeeper_ipc.h",
+      "line": 140,
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "deserialize_blob",
+        "memcpy"
+      ],
+      "function_call_line": [
+        734,
+        [
+          442,
+          443,
+          444
+        ],
+        140
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/include/gatekeeper_ipc.h",
+      "line": 140,
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "deserialize_blob",
+        "memcpy"
+      ],
+      "function_call_line": [
+        736,
+        [
+          618,
+          620
+        ],
+        140
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/include/gatekeeper_ipc.h",
+      "line": 161,
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "deserialize_int",
+        "memcpy"
+      ],
+      "function_call_line": [
+        734,
+        441,
+        161
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/include/gatekeeper_ipc.h",
+      "line": 161,
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "deserialize_int",
+        "memcpy"
+      ],
+      "function_call_line": [
+        736,
+        616,
+        161
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/include/gatekeeper_ipc.h",
+      "line": 176,
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "deserialize_int64",
+        "memcpy"
+      ],
+      "function_call_line": [
+        736,
+        617,
+        176
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 101,
+      "sink": "__GP11_TEE_OpenPersistentObject",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "TA_GetMasterKey",
+        "__GP11_TEE_OpenPersistentObject"
+      ],
+      "function_call_line": [
+        734,
+        503,
+        365,
+        216,
+        101
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 101,
+      "sink": "__GP11_TEE_OpenPersistentObject",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "TA_GetMasterKey",
+        "__GP11_TEE_OpenPersistentObject"
+      ],
+      "function_call_line": [
+        736,
+        675,
+        365,
+        216,
+        101
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 101,
+      "sink": "__GP11_TEE_OpenPersistentObject",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_CreatePasswordHandle",
+        "TA_GetMasterKey",
+        "__GP11_TEE_OpenPersistentObject"
+      ],
+      "function_call_line": [
+        734,
+        524,
+        216,
+        101
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 108,
+      "sink": "__GP11_TEE_ReadObjectData",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "TA_GetMasterKey",
+        "__GP11_TEE_ReadObjectData"
+      ],
+      "function_call_line": [
+        734,
+        503,
+        365,
+        216,
+        108
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 108,
+      "sink": "__GP11_TEE_ReadObjectData",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "TA_GetMasterKey",
+        "__GP11_TEE_ReadObjectData"
+      ],
+      "function_call_line": [
+        736,
+        675,
+        365,
+        216,
+        108
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 108,
+      "sink": "__GP11_TEE_ReadObjectData",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_CreatePasswordHandle",
+        "TA_GetMasterKey",
+        "__GP11_TEE_ReadObjectData"
+      ],
+      "function_call_line": [
+        734,
+        524,
+        216,
+        108
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 115,
+      "sink": "__GP11_TEE_InitRefAttribute",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        2,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "TA_GetMasterKey",
+        "__GP11_TEE_InitRefAttribute"
+      ],
+      "function_call_line": [
+        734,
+        503,
+        365,
+        216,
+        115
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 115,
+      "sink": "__GP11_TEE_InitRefAttribute",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        2,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "TA_GetMasterKey",
+        "__GP11_TEE_InitRefAttribute"
+      ],
+      "function_call_line": [
+        736,
+        675,
+        365,
+        216,
+        115
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 115,
+      "sink": "__GP11_TEE_InitRefAttribute",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        2,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_CreatePasswordHandle",
+        "TA_GetMasterKey",
+        "__GP11_TEE_InitRefAttribute"
+      ],
+      "function_call_line": [
+        734,
+        524,
+        216,
+        115
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 118,
+      "sink": "__GP11_TEE_PopulateTransientObject",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "TA_GetMasterKey",
+        "__GP11_TEE_PopulateTransientObject"
+      ],
+      "function_call_line": [
+        734,
+        503,
+        365,
+        216,
+        118
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 118,
+      "sink": "__GP11_TEE_PopulateTransientObject",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "TA_GetMasterKey",
+        "__GP11_TEE_PopulateTransientObject"
+      ],
+      "function_call_line": [
+        736,
+        675,
+        365,
+        216,
+        118
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 118,
+      "sink": "__GP11_TEE_PopulateTransientObject",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_CreatePasswordHandle",
+        "TA_GetMasterKey",
+        "__GP11_TEE_PopulateTransientObject"
+      ],
+      "function_call_line": [
+        734,
+        524,
+        216,
+        118
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 147,
+      "sink": "__GP11_TEE_SetOperationKey",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "TA_ComputePasswordSignature",
+        "TA_ComputeSignature",
+        "__GP11_TEE_SetOperationKey"
+      ],
+      "function_call_line": [
+        734,
+        503,
+        365,
+        222,
+        182,
+        147
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 147,
+      "sink": "__GP11_TEE_SetOperationKey",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "TA_ComputePasswordSignature",
+        "TA_ComputeSignature",
+        "__GP11_TEE_SetOperationKey"
+      ],
+      "function_call_line": [
+        736,
+        675,
+        365,
+        222,
+        182,
+        147
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 147,
+      "sink": "__GP11_TEE_SetOperationKey",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_CreatePasswordHandle",
+        "TA_ComputePasswordSignature",
+        "TA_ComputeSignature",
+        "__GP11_TEE_SetOperationKey"
+      ],
+      "function_call_line": [
+        734,
+        524,
+        222,
+        182,
+        147
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 147,
+      "sink": "__GP11_TEE_SetOperationKey",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_MintAuthToken",
+        "TA_ComputeSignature",
+        "__GP11_TEE_SetOperationKey"
+      ],
+      "function_call_line": [
+        736,
+        679,
+        340,
+        147
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 153,
+      "sink": "__GP11_TEE_MACInit",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "TA_ComputePasswordSignature",
+        "TA_ComputeSignature",
+        "__GP11_TEE_MACInit"
+      ],
+      "function_call_line": [
+        734,
+        503,
+        365,
+        222,
+        182,
+        153
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 153,
+      "sink": "__GP11_TEE_MACInit",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "TA_ComputePasswordSignature",
+        "TA_ComputeSignature",
+        "__GP11_TEE_MACInit"
+      ],
+      "function_call_line": [
+        736,
+        675,
+        365,
+        222,
+        182,
+        153
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 153,
+      "sink": "__GP11_TEE_MACInit",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_CreatePasswordHandle",
+        "TA_ComputePasswordSignature",
+        "TA_ComputeSignature",
+        "__GP11_TEE_MACInit"
+      ],
+      "function_call_line": [
+        734,
+        524,
+        222,
+        182,
+        153
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 153,
+      "sink": "__GP11_TEE_MACInit",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_MintAuthToken",
+        "TA_ComputeSignature",
+        "__GP11_TEE_MACInit"
+      ],
+      "function_call_line": [
+        736,
+        679,
+        340,
+        153
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 155,
+      "sink": "__GP11_TEE_MACComputeFinal",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "TA_ComputePasswordSignature",
+        "TA_ComputeSignature",
+        "__GP11_TEE_MACComputeFinal"
+      ],
+      "function_call_line": [
+        734,
+        503,
+        365,
+        222,
+        182,
+        155
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 155,
+      "sink": "__GP11_TEE_MACComputeFinal",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "TA_ComputePasswordSignature",
+        "TA_ComputeSignature",
+        "__GP11_TEE_MACComputeFinal"
+      ],
+      "function_call_line": [
+        736,
+        675,
+        365,
+        222,
+        182,
+        155
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 155,
+      "sink": "__GP11_TEE_MACComputeFinal",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_CreatePasswordHandle",
+        "TA_ComputePasswordSignature",
+        "TA_ComputeSignature",
+        "__GP11_TEE_MACComputeFinal"
+      ],
+      "function_call_line": [
+        734,
+        524,
+        222,
+        182,
+        155
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 155,
+      "sink": "__GP11_TEE_MACComputeFinal",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_MintAuthToken",
+        "TA_ComputeSignature",
+        "__GP11_TEE_MACComputeFinal"
+      ],
+      "function_call_line": [
+        736,
+        679,
+        340,
+        155
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 165,
+      "sink": "memset",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "TA_ComputePasswordSignature",
+        "TA_ComputeSignature",
+        "memset"
+      ],
+      "function_call_line": [
+        734,
+        503,
+        365,
+        222,
+        182,
+        165
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 165,
+      "sink": "memset",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "TA_ComputePasswordSignature",
+        "TA_ComputeSignature",
+        "memset"
+      ],
+      "function_call_line": [
+        736,
+        675,
+        365,
+        222,
+        182,
+        165
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 165,
+      "sink": "memset",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_CreatePasswordHandle",
+        "TA_ComputePasswordSignature",
+        "TA_ComputeSignature",
+        "memset"
+      ],
+      "function_call_line": [
+        734,
+        524,
+        222,
+        182,
+        165
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 165,
+      "sink": "memset",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_MintAuthToken",
+        "TA_ComputeSignature",
+        "memset"
+      ],
+      "function_call_line": [
+        736,
+        679,
+        340,
+        165
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 166,
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "TA_ComputePasswordSignature",
+        "TA_ComputeSignature",
+        "memcpy"
+      ],
+      "function_call_line": [
+        734,
+        503,
+        365,
+        222,
+        182,
+        166
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 166,
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "TA_ComputePasswordSignature",
+        "TA_ComputeSignature",
+        "memcpy"
+      ],
+      "function_call_line": [
+        736,
+        675,
+        365,
+        222,
+        182,
+        166
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 166,
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_CreatePasswordHandle",
+        "TA_ComputePasswordSignature",
+        "TA_ComputeSignature",
+        "memcpy"
+      ],
+      "function_call_line": [
+        734,
+        524,
+        222,
+        182,
+        166
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 166,
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_MintAuthToken",
+        "TA_ComputeSignature",
+        "memcpy"
+      ],
+      "function_call_line": [
+        736,
+        679,
+        340,
+        166
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": [
+        180,
+        181
+      ],
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "TA_ComputePasswordSignature",
+        "memcpy"
+      ],
+      "function_call_line": [
+        734,
+        503,
+        365,
+        222,
+        [
+          180,
+          181
+        ]
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": [
+        180,
+        181
+      ],
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "TA_ComputePasswordSignature",
+        "memcpy"
+      ],
+      "function_call_line": [
+        736,
+        675,
+        365,
+        222,
+        [
+          180,
+          181
+        ]
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": [
+        180,
+        181
+      ],
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_CreatePasswordHandle",
+        "TA_ComputePasswordSignature",
+        "memcpy"
+      ],
+      "function_call_line": [
+        734,
+        524,
+        222,
+        [
+          180,
+          181
+        ]
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": [
+        213,
+        214,
+        230
+      ],
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "memcpy"
+      ],
+      "function_call_line": [
+        734,
+        503,
+        365,
+        [
+          213,
+          214,
+          230
+        ]
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": [
+        213,
+        214,
+        230
+      ],
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_DoVerify",
+        "TA_CreatePasswordHandle",
+        "memcpy"
+      ],
+      "function_call_line": [
+        736,
+        675,
+        365,
+        [
+          213,
+          214,
+          230
+        ]
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": [
+        213,
+        214,
+        230
+      ],
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_CreatePasswordHandle",
+        "memcpy"
+      ],
+      "function_call_line": [
+        734,
+        524,
+        [
+          213,
+          214,
+          230
+        ]
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": [
+        258,
+        271
+      ],
+      "sink": "memset",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_MintAuthToken",
+        "TA_GetAuthTokenKey",
+        "memset"
+      ],
+      "function_call_line": [
+        736,
+        679,
+        334,
+        [
+          258,
+          271
+        ]
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 260,
+      "sink": "__GP11_TEE_OpenTASession",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_MintAuthToken",
+        "TA_GetAuthTokenKey",
+        "__GP11_TEE_OpenTASession"
+      ],
+      "function_call_line": [
+        736,
+        679,
+        334,
+        260
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 279,
+      "sink": "__GP11_TEE_InvokeTACommand",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_MintAuthToken",
+        "TA_GetAuthTokenKey",
+        "__GP11_TEE_InvokeTACommand"
+      ],
+      "function_call_line": [
+        736,
+        679,
+        334,
+        279
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 292,
+      "sink": "__GP11_TEE_InitRefAttribute",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        2,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_MintAuthToken",
+        "TA_GetAuthTokenKey",
+        "__GP11_TEE_InitRefAttribute"
+      ],
+      "function_call_line": [
+        736,
+        679,
+        334,
+        292
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 294,
+      "sink": "__GP11_TEE_PopulateTransientObject",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_MintAuthToken",
+        "TA_GetAuthTokenKey",
+        "__GP11_TEE_PopulateTransientObject"
+      ],
+      "function_call_line": [
+        736,
+        679,
+        334,
+        294
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": [
+        325,
+        344
+      ],
+      "sink": "memset",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_MintAuthToken",
+        "memset"
+      ],
+      "function_call_line": [
+        736,
+        679,
+        [
+          325,
+          344
+        ]
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 351,
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_MintAuthToken",
+        "memcpy"
+      ],
+      "function_call_line": [
+        736,
+        679,
+        351
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 373,
+      "sink": "memcmp",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "TA_DoVerify",
+        "memcmp"
+      ],
+      "function_call_line": [
+        734,
+        503,
+        373
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": 373,
+      "sink": "memcmp",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Verify",
+        "TA_DoVerify",
+        "memcmp"
+      ],
+      "function_call_line": [
+        736,
+        675,
+        373
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T28/ta/gatekeeper_ta.c",
+      "line": [
+        472,
+        523
+      ],
+      "sink": "__GP11_TEE_GenerateRandom",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "TA_Enroll",
+        "__GP11_TEE_GenerateRandom"
+      ],
+      "function_call_line": [
+        734,
+        [
+          472,
+          523
+        ]
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  }
+]

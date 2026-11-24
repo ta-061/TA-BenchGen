@@ -1,0 +1,8 @@
+| col0 |  col1  |    col2    |            col3            |                                                                       col4                                                                        |
++------+--------+------------+----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+| 0    | value  | ... = ...  | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T31/ta/entry.c:66:5:66:36 |
+| 0    | value  | ... = ...  | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T31/ta/entry.c:67:5:67:25 |
+| 0    | memref | ... != ... | update_record              | file://${WORK}/sources/T31/ta/entry.c:20:9:20:46 |
+| 0    | memref | ... = ...  | update_record              | file://${WORK}/sources/T31/ta/entry.c:22:5:22:37 |
+| 1    | value  | ... = ...  | update_record              | file://${WORK}/sources/T31/ta/entry.c:26:5:26:36 |
+| 1    | value  | ... = ...  | update_record              | file://${WORK}/sources/T31/ta/entry.c:27:5:27:25 |

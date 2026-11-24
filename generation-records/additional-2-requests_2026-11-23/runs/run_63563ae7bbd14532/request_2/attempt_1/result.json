@@ -1,0 +1,71 @@
+{
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\t\tserialize_int(&i_resp, (uint32_t)(password_handle->version < HANDLE_VERSION_THROTTLE));\n",
+      "old": "\t\tserialize_int(&i_resp, (uint32_t) request_reenroll);\n",
+      "path": "ta/gatekeeper_ta.c"
+    },
+    {
+      "defect": "D2",
+      "new": "\tmemcpy(pw_handle.signature, password, password_length < sizeof(pw_handle.signature) ? password_length : sizeof(pw_handle.signature));\n\tmemcpy(password_handle, &pw_handle, sizeof(pw_handle));\n",
+      "old": "\tmemcpy(password_handle, &pw_handle, sizeof(pw_handle));\n",
+      "path": "ta/gatekeeper_ta.c"
+    }
+  ],
+  "index": 1,
+  "proposed": [
+    {
+      "class": "DUS",
+      "detector_targets": [
+        {
+          "function": "TA_Verify",
+          "lines": [
+            705,
+            705
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "TA_Verify",
+          "lines": [
+            669,
+            669
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D1",
+      "reason": "The re-enrollment flag in the Verify response is computed again from the caller-writable request buffer when the response is built, instead of using the private value taken earlier. A change to the handle version after verification therefore changes the reported flag."
+    },
+    {
+      "class": "UDO",
+      "detector_targets": [
+        {
+          "function": "TA_CreatePasswordHandle",
+          "lines": [
+            230,
+            230
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "effect"
+        },
+        {
+          "function": "TA_CreatePasswordHandle",
+          "lines": [
+            222,
+            224
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "protection"
+        }
+      ],
+      "id": "D2",
+      "reason": "Before the password handle is returned, the leading bytes of the plaintext password are copied over the HMAC signature field. The secret ends up in the output unprotected."
+    }
+  ],
+  "reason": "T02: invalid invoke operation",
+  "status": "machine_fail"
+}

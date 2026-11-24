@@ -1,0 +1,245 @@
+[
+  {
+    "stage": "semgrep",
+    "cwd": "${WORK}/sources/T28",
+    "argv": [
+      "${WORK}/deps/sem-bin/semgrep",
+      "scan",
+      "--config",
+      "${WORK}/deps/rules.yaml",
+      "--metrics=off",
+      "--disable-version-check",
+      "--oss-only",
+      "--no-git-ignore",
+      "--no-rewrite-rule-ids",
+      "--jobs=2",
+      "--json",
+      "--output",
+      "${WORK}/jobs/T28/semgrep.json",
+      "."
+    ],
+    "started_utc": "2026-11-23T15:54:25.949126+00:00",
+    "seconds": 2.469,
+    "exit_code": 0
+  },
+  {
+    "stage": "database-create",
+    "cwd": "${WORK}/sources/T28",
+    "argv": [
+      "${TOOLS}/codeql/codeql",
+      "database",
+      "create",
+      "${WORK}/jobs/T28/tee_example",
+      "--language=cpp",
+      "--source-root",
+      "${WORK}/sources/T28",
+      "--command",
+      "${PYTHON} ${WORK}/compile.py ${WORK}/jobs/T28/compile.json",
+      "--common-caches=${WORK}/cache",
+      "--threads=2",
+      "--ram=2048"
+    ],
+    "started_utc": "2026-11-23T15:54:28.418121+00:00",
+    "seconds": 2.711,
+    "exit_code": 0
+  },
+  {
+    "stage": "diting",
+    "cwd": "${WORK}/jobs/T28",
+    "argv": [
+      "${PYTHON}",
+      "${WORK}/real_world_analysis.py"
+    ],
+    "started_utc": "2026-11-23T15:54:31.129063+00:00",
+    "seconds": 27.487,
+    "exit_code": 0
+  },
+  {
+    "stage": "diting-memflow",
+    "cwd": "${WORK}/jobs/T28",
+    "argv": [
+      "${TOOLS}/codeql/codeql",
+      "query",
+      "run",
+      "${WORK}/query/memflow.ql",
+      "--database",
+      "${WORK}/jobs/T28/tee_example",
+      "--common-caches=${WORK}/cache",
+      "--threads=2",
+      "--ram=2048"
+    ],
+    "started_utc": "2026-11-23T15:54:58.616697+00:00",
+    "seconds": 5.44,
+    "exit_code": 0
+  },
+  {
+    "stage": "codeql",
+    "cwd": "${WORK}/sources/T28",
+    "argv": [
+      "${TOOLS}/codeql/codeql",
+      "database",
+      "analyze",
+      "${WORK}/jobs/T28/tee_example",
+      "${WORK}/deps/codeql/qlpacks/codeql/cpp-queries/1.4.7/codeql-suites/cpp-security-extended.qls",
+      "--format=sarif-latest",
+      "--output",
+      "${WORK}/jobs/T28/codeql.sarif",
+      "--common-caches=${WORK}/cache",
+      "--threads=2",
+      "--ram=2048"
+    ],
+    "started_utc": "2026-11-23T15:55:04.056981+00:00",
+    "seconds": 14.123,
+    "exit_code": 0
+  },
+  {
+    "argv": [
+      "${TOOLS}/codeql/codeql",
+      "query",
+      "run",
+      "..//..//query//host.ql",
+      "--database=tee_example",
+      "--common-caches=${WORK}/cache",
+      "--threads=2",
+      "--ram=2048"
+    ],
+    "cwd": "${WORK}/jobs/T28",
+    "started_utc": "2026-11-23T15:54:31.164003+00:00",
+    "seconds": 3.077,
+    "exit_code": 0,
+    "stage": "diting-query"
+  },
+  {
+    "argv": [
+      "${TOOLS}/codeql/codeql",
+      "query",
+      "run",
+      "..//..//query//switch.ql",
+      "--database=tee_example",
+      "--common-caches=${WORK}/cache",
+      "--threads=2",
+      "--ram=2048"
+    ],
+    "cwd": "${WORK}/jobs/T28",
+    "started_utc": "2026-11-23T15:54:34.279535+00:00",
+    "seconds": 3.485,
+    "exit_code": 0,
+    "stage": "diting-query"
+  },
+  {
+    "argv": [
+      "${TOOLS}/codeql/codeql",
+      "query",
+      "run",
+      "..//..//query//arrayaccess.ql",
+      "--database=tee_example",
+      "--common-caches=${WORK}/cache",
+      "--threads=2",
+      "--ram=2048"
+    ],
+    "cwd": "${WORK}/jobs/T28",
+    "started_utc": "2026-11-23T15:54:37.790326+00:00",
+    "seconds": 7.265,
+    "exit_code": 0,
+    "stage": "diting-query"
+  },
+  {
+    "argv": [
+      "${TOOLS}/codeql/codeql",
+      "query",
+      "run",
+      "..//..//query//ifstmt.ql",
+      "--database=tee_example",
+      "--common-caches=${WORK}/cache",
+      "--threads=2",
+      "--ram=2048"
+    ],
+    "cwd": "${WORK}/jobs/T28",
+    "started_utc": "2026-11-23T15:54:45.103768+00:00",
+    "seconds": 3.704,
+    "exit_code": 0,
+    "stage": "diting-query"
+  },
+  {
+    "argv": [
+      "${TOOLS}/codeql/codeql",
+      "query",
+      "run",
+      "..//..//query//dataflow.ql",
+      "--database=tee_example",
+      "--common-caches=${WORK}/cache",
+      "--threads=2",
+      "--ram=2048"
+    ],
+    "cwd": "${WORK}/jobs/T28",
+    "started_utc": "2026-11-23T15:54:48.848713+00:00",
+    "seconds": 5.091,
+    "exit_code": 0,
+    "stage": "diting-query"
+  },
+  {
+    "argv": [
+      "${TOOLS}/codeql/codeql",
+      "query",
+      "run",
+      "..//..//query//memory.ql",
+      "--database=tee_example",
+      "--common-caches=${WORK}/cache",
+      "--threads=2",
+      "--ram=2048"
+    ],
+    "cwd": "${WORK}/jobs/T28",
+    "started_utc": "2026-11-23T15:54:53.973779+00:00",
+    "seconds": 4.637,
+    "exit_code": 0,
+    "stage": "diting-query"
+  },
+  {
+    "stage": "compile-plan",
+    "argv": [
+      "/usr/lib/llvm-18/bin/clang",
+      "--target=aarch64-none-elf",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-include",
+      "${WORK}/deps/conf.h",
+      "-include",
+      "${WORK}/deps/log-level.h",
+      "-D__OPTEE_CORE_API_COMPAT_1_1=1",
+      "-I",
+      "${WORK}/sources/T28/ta/include",
+      "-I",
+      "${WORK}/sources/T28/ta",
+      "-I",
+      "${WORK}/deps/devkit/include",
+      "-c",
+      "ta/failure_record.c",
+      "-o",
+      "${WORK}/jobs/T28/objects/0.o"
+    ]
+  },
+  {
+    "stage": "compile-plan",
+    "argv": [
+      "/usr/lib/llvm-18/bin/clang",
+      "--target=aarch64-none-elf",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-include",
+      "${WORK}/deps/conf.h",
+      "-include",
+      "${WORK}/deps/log-level.h",
+      "-D__OPTEE_CORE_API_COMPAT_1_1=1",
+      "-I",
+      "${WORK}/sources/T28/ta/include",
+      "-I",
+      "${WORK}/sources/T28/ta",
+      "-I",
+      "${WORK}/deps/devkit/include",
+      "-c",
+      "ta/gatekeeper_ta.c",
+      "-o",
+      "${WORK}/jobs/T28/objects/1.o"
+    ]
+  }
+]

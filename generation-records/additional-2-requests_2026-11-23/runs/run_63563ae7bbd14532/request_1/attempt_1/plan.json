@@ -1,0 +1,95 @@
+[
+  {
+    "id": "T01",
+    "purpose": "normal",
+    "steps": [
+      {
+        "op": "open",
+        "session": "s1"
+      },
+      {
+        "command_id": 1,
+        "op": "invoke",
+        "params": [
+          {
+            "data": "0100000005000000000000003a00000002010000000000000001000000000000001122334455667788aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa010400000031323334",
+            "type": "memref_input"
+          },
+          {
+            "size": 128,
+            "type": "memref_output"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          }
+        ],
+        "session": "s1"
+      },
+      {
+        "op": "close",
+        "session": "s1"
+      }
+    ],
+    "targets": []
+  },
+  {
+    "id": "T02",
+    "purpose": "witness",
+    "steps": [
+      {
+        "op": "open",
+        "session": "s1"
+      },
+      {
+        "command_id": 1,
+        "events": [
+          {
+            "action": {
+              "data": "00000100",
+              "expect": "04000000",
+              "kind": "write_memory",
+              "offset": 74,
+              "param": 0
+            },
+            "trigger": {
+              "before": "IncrementFailureRecord(&record, timestamp);",
+              "function": "TA_Verify",
+              "kind": "checkpoint",
+              "occurrence": 1,
+              "path": "ta/gatekeeper_ta.c"
+            }
+          }
+        ],
+        "op": "invoke",
+        "params": [
+          {
+            "data": "0100000005000000000000003a00000002010000000000000001000000000000001122334455667788aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa010400000031323334",
+            "type": "shared_memref_input"
+          },
+          {
+            "size": 128,
+            "type": "memref_output"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          }
+        ],
+        "session": "s1"
+      },
+      {
+        "op": "close",
+        "session": "s1"
+      }
+    ],
+    "targets": [
+      "D1"
+    ],
+    "witness_step": 2
+  }
+]

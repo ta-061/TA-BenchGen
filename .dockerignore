@@ -8,3 +8,5 @@ __pycache__
 config/*.local.yaml
 .env
 .env.*
+results
+generation-records

@@ -1,0 +1,14 @@
+| col0 |  col1  |         col2         |    col3     |                                                                             col4                                                                              |
++------+--------+----------------------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 2    | value  | ... = ...            | sign_verify | file://${WORK}/sources/T34/ta/sign_verify_ta.c:174:2:174:28  |
+| 0    | memref | ... = ...            | sign_verify | file://${WORK}/sources/T34/ta/sign_verify_ta.c:183:2:183:30  |
+| 0    | memref | ... = ...            | sign_verify | file://${WORK}/sources/T34/ta/sign_verify_ta.c:184:2:184:32  |
+| 1    | memref | ... = ...            | sign_verify | file://${WORK}/sources/T34/ta/sign_verify_ta.c:185:2:185:30  |
+| 1    | memref | ... = ...            | sign_verify | file://${WORK}/sources/T34/ta/sign_verify_ta.c:186:2:186:32  |
+| 3    | value  | ... = ...            | sign_verify | file://${WORK}/sources/T34/ta/sign_verify_ta.c:187:2:187:27  |
+| 3    | value  | ... == ...           | sign_verify | file://${WORK}/sources/T34/ta/sign_verify_ta.c:233:27:233:48 |
+| 1    | memref | ... = ...            | sign_verify | file://${WORK}/sources/T34/ta/sign_verify_ta.c:234:3:234:33  |
+| 1    | memref | call to trace_printf | sign_verify | file://${WORK}/sources/T34/ta/sign_verify_ta.c:235:3:235:54  |
+| 1    | memref | ... = ...            | sign_verify | file://${WORK}/sources/T34/ta/sign_verify_ta.c:241:2:241:32  |
+| 2    | value  | ... && ...           | sign_verify | file://${WORK}/sources/T34/ta/sign_verify_ta.c:242:6:242:43  |
+| 1    | memref | ... = ...            | sign_verify | file://${WORK}/sources/T34/ta/sign_verify_ta.c:246:4:246:42  |

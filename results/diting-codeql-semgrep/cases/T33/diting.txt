@@ -1,0 +1,6 @@
+Unencrypted Data Output: 11
+['file://${WORK}/sources/T33/ta/src/entry.c:366:40:366:41', 'file://${WORK}/sources/T33/ta/src/entry.c:366:39:366:41', 'file://${WORK}/sources/T33/ta/src/entry.c:366:40:366:41', 'file://${WORK}/sources/T33/ta/src/entry.c:366:39:366:41', 'file://${WORK}/sources/T33/ta/src/entry.c:367:19:367:22', 'file://${WORK}/sources/T33/ta/src/pkcs11_token.c:1554:19:1554:24', 'file://${WORK}/sources/T33/ta/src/pkcs11_token.c:1555:19:1555:22', 'file://${WORK}/sources/T33/ta/src/processing.c:1279:20:1279:23', 'file://${WORK}/sources/T33/ta/src/processing_digest.c:216:20:216:23', 'file://${WORK}/sources/T33/ta/src/processing_asymm.c:853:21:853:24', 'file://${WORK}/sources/T33/ta/src/processing_symm.c:977:21:977:24']
+Input Validation Weakness: 0
+[]
+Shared Memory Overwrite: 0
+[]

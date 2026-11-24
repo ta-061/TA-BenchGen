@@ -1,0 +1,250 @@
+[
+  {
+    "vd": {
+      "file": "/inputs/T34/ta/sign_verify_ta.c",
+      "line": 41,
+      "sink": "__GP11_TEE_GenerateKey",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "sign_verify",
+        "generate_rsa_keys",
+        "__GP11_TEE_GenerateKey"
+      ],
+      "function_call_line": [
+        264,
+        191,
+        41
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T34/ta/sign_verify_ta.c",
+      "line": 50,
+      "sink": "TEE_CopyObjectAttributes1",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "sign_verify",
+        "generate_rsa_keys",
+        "TEE_CopyObjectAttributes1"
+      ],
+      "function_call_line": [
+        264,
+        191,
+        50
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T34/ta/sign_verify_ta.c",
+      "line": 200,
+      "sink": "__GP11_TEE_DigestUpdate",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "sign_verify",
+        "__GP11_TEE_DigestUpdate"
+      ],
+      "function_call_line": [
+        264,
+        200
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T34/ta/sign_verify_ta.c",
+      "line": 201,
+      "sink": "__GP11_TEE_DigestDoFinal",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "sign_verify",
+        "__GP11_TEE_DigestDoFinal"
+      ],
+      "function_call_line": [
+        264,
+        201
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T34/ta/sign_verify_ta.c",
+      "line": [
+        210,
+        224
+      ],
+      "sink": "__GP11_TEE_SetOperationKey",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "sign_verify",
+        "__GP11_TEE_SetOperationKey"
+      ],
+      "function_call_line": [
+        264,
+        [
+          210,
+          224
+        ]
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T34/ta/sign_verify_ta.c",
+      "line": 213,
+      "sink": "__GP11_TEE_AsymmetricSignDigest",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        3,
+        5,
+        6
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "sign_verify",
+        "__GP11_TEE_AsymmetricSignDigest"
+      ],
+      "function_call_line": [
+        264,
+        213
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T34/ta/sign_verify_ta.c",
+      "line": 227,
+      "sink": "__GP11_TEE_AsymmetricVerifyDigest",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "sign_verify",
+        "__GP11_TEE_AsymmetricVerifyDigest"
+      ],
+      "function_call_line": [
+        264,
+        227
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T34/ta/sign_verify_ta.c",
+      "line": 240,
+      "sink": "memcpy",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "sign_verify",
+        "memcpy"
+      ],
+      "function_call_line": [
+        264,
+        240
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T34/ta/sign_verify_ta.c",
+      "line": 245,
+      "sink": "__GP11_TEE_GetObjectBufferAttribute",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "sign_verify",
+        "__GP11_TEE_GetObjectBufferAttribute"
+      ],
+      "function_call_line": [
+        264,
+        245
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  }
+]

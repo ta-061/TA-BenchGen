@@ -1,0 +1,31 @@
+| col0 |  col1  |            col2            |         col3          |                                                                         col4                                                                          |
++------+--------+----------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 0    | memref | ... = ...                  | compare_hmac_sha_algo | file://${WORK}/sources/T27/ta/sha_ta.c:404:2:404:34  |
+| 0    | memref | ... = ...                  | compare_hmac_sha_algo | file://${WORK}/sources/T27/ta/sha_ta.c:405:2:405:35  |
+| 1    | memref | ... = ...                  | compare_hmac_sha_algo | file://${WORK}/sources/T27/ta/sha_ta.c:406:2:406:36  |
+| 1    | memref | ... = ...                  | compare_hmac_sha_algo | file://${WORK}/sources/T27/ta/sha_ta.c:407:2:407:43  |
+| 0    | memref | ... = ...                  | sha_update_op         | file://${WORK}/sources/T27/ta/sha_ta.c:355:2:355:34  |
+| 0    | memref | ... = ...                  | sha_update_op         | file://${WORK}/sources/T27/ta/sha_ta.c:356:2:356:35  |
+| 1    | memref | ... < ...                  | sha_update_op         | file://${WORK}/sources/T27/ta/sha_ta.c:357:13:357:38 |
+| 1    | memref | ... ? ... : ...            | sha_update_op         | file://${WORK}/sources/T27/ta/sha_ta.c:357:13:357:77 |
+| 1    | memref | ... && ...                 | sha_update_op         | file://${WORK}/sources/T27/ta/sha_ta.c:359:6:359:53  |
+| 1    | memref | ... && ...                 | sha_update_op         | file://${WORK}/sources/T27/ta/sha_ta.c:359:6:359:53  |
+| 1    | memref | call to __GP11_TEE_Malloc  | sha_update_op         | file://${WORK}/sources/T27/ta/sha_ta.c:360:8:360:17  |
+| 1    | memref | call to __GP11_TEE_MemMove | sha_update_op         | file://${WORK}/sources/T27/ta/sha_ta.c:369:3:369:13  |
+| 1    | memref | ... = ...                  | sha_update_op         | file://${WORK}/sources/T27/ta/sha_ta.c:371:2:371:33  |
+| 0    | memref | ... = ...                  | reset_sha_iv          | file://${WORK}/sources/T27/ta/sha_ta.c:317:2:317:29  |
+| 0    | memref | ... = ...                  | reset_sha_iv          | file://${WORK}/sources/T27/ta/sha_ta.c:318:2:318:30  |
+| 0    | memref | ... = ...                  | set_sha_key           | file://${WORK}/sources/T27/ta/sha_ta.c:243:2:243:30  |
+| 0    | memref | ... = ...                  | set_sha_key           | file://${WORK}/sources/T27/ta/sha_ta.c:244:2:244:31  |
+| 0    | value  | ... = ...                  | alloc_resources       | file://${WORK}/sources/T27/ta/sha_ta.c:138:2:138:31  |
+| 2    | value  | call to ta2tee_obj_type    | alloc_resources       | file://${WORK}/sources/T27/ta/sha_ta.c:140:8:140:22  |
+| 1    | value  | ... = ...                  | alloc_resources       | file://${WORK}/sources/T27/ta/sha_ta.c:144:2:144:35  |
+| 0    | memref | ... = ...                  | compute_digest        | file://${WORK}/sources/T27/ta/sha_ta.c:81:2:81:30    |
+| 0    | memref | ... = ...                  | compute_digest        | file://${WORK}/sources/T27/ta/sha_ta.c:82:2:82:32    |
+| 1    | memref | ... = ...                  | compute_digest        | file://${WORK}/sources/T27/ta/sha_ta.c:83:2:83:35    |
+| 1    | memref | ... && ...                 | compute_digest        | file://${WORK}/sources/T27/ta/sha_ta.c:88:6:88:53    |
+| 1    | memref | ... && ...                 | compute_digest        | file://${WORK}/sources/T27/ta/sha_ta.c:88:6:88:53    |
+| 1    | memref | call to __GP11_TEE_Malloc  | compute_digest        | file://${WORK}/sources/T27/ta/sha_ta.c:89:8:89:17    |
+| 2    | value  | ... = ...                  | compute_digest        | file://${WORK}/sources/T27/ta/sha_ta.c:94:2:94:31    |
+| 1    | memref | call to __GP11_TEE_MemMove | compute_digest        | file://${WORK}/sources/T27/ta/sha_ta.c:106:3:106:13  |
+| 1    | memref | ... = ...                  | compute_digest        | file://${WORK}/sources/T27/ta/sha_ta.c:108:2:108:35  |

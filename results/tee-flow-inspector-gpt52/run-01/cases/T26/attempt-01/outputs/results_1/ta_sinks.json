@@ -1,0 +1,225 @@
+{
+  "sinks": [
+    {
+      "kind": "function",
+      "name": "TEE_CreatePersistentObject",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "used to identify/create a persistent object; affects what is accessed/created in secure storage",
+      "confidence": "high",
+      "role": "object identifier (name/key) data"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CreatePersistentObject",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "bounds the object identifier buffer that is read by the function",
+      "confidence": "high",
+      "role": "object identifier length"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CreatePersistentObject",
+      "param_index": 4,
+      "rule_id": "other",
+      "reason": "data is written into the newly created persistent object",
+      "confidence": "high",
+      "role": "initial object data buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_CreatePersistentObject",
+      "param_index": 5,
+      "rule_id": "other",
+      "reason": "size of data written from the initial data buffer into persistent storage",
+      "confidence": "high",
+      "role": "initial object data length"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MemMove",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "written with moved data; may receive sensitive bytes",
+      "confidence": "high",
+      "role": "destination buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MemMove",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "read to obtain bytes to move; may contain sensitive data",
+      "confidence": "high",
+      "role": "source buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MemMove",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "controls how much data is read/written; affects potential over-copy and exposure",
+      "confidence": "high",
+      "role": "length/size in bytes"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_OpenPersistentObject",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Used to locate/select a persistent object; attacker-controlled ID can influence which secure storage object is accessed",
+      "confidence": "high",
+      "role": "object identifier buffer (input)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_OpenPersistentObject",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Defines how much of the identifier buffer is consumed; affects parsing/selection of the target object",
+      "confidence": "high",
+      "role": "object identifier length (input)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_OpenPersistentObject",
+      "param_index": 4,
+      "rule_id": "other",
+      "reason": "Returns a handle granting subsequent read/write access to persistent data; opening is a security-relevant operation",
+      "confidence": "high",
+      "role": "output handle to opened persistent object"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_ReadObjectData",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "receives data read from a persistent object into TA memory",
+      "confidence": "high",
+      "role": "output buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_ReadObjectData",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "controls how much object data is read into the output buffer",
+      "confidence": "high",
+      "role": "requested read length"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_ReadObjectData",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "returns the amount of data actually read, influencing subsequent data handling",
+      "confidence": "high",
+      "role": "bytes-read output"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_SeekObjectData",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "seeking changes which object data will be read/written next, affecting access to potentially sensitive persistent object contents",
+      "confidence": "high",
+      "role": "object handle whose data stream is repositioned"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_SeekObjectData",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "controls position within sensitive object data, influencing subsequent reads/writes",
+      "confidence": "high",
+      "role": "offset into the object data"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_SeekObjectData",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "determines how offset is applied, impacting which portion of object data is accessed next",
+      "confidence": "high",
+      "role": "seek origin (whence)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_WriteObjectData",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "writes caller-provided bytes into secure storage; content may be sensitive or attacker-controlled",
+      "confidence": "high",
+      "role": "source buffer containing data to be written to a persistent object"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_WriteObjectData",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "controls how much data is consumed from the buffer and written; impacts data flow and potential misuse",
+      "confidence": "high",
+      "role": "size of data to write from the source buffer"
+    },
+    {
+      "kind": "function",
+      "name": "strlen",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "reads memory contents sequentially until a NUL terminator; processes potentially attacker-controlled data and can overread if unterminated",
+      "confidence": "high",
+      "role": "input string buffer"
+    }
+  ],
+  "analysis_time": {
+    "total_seconds": 43.09574818611145,
+    "total_formatted": "43.10秒",
+    "llm_analysis_seconds": 43.071598291397095,
+    "llm_analysis_formatted": "43.07秒",
+    "functions_analyzed": 10,
+    "per_function": {
+      "TEE_CloseObject": {
+        "seconds": 8.227370262145996,
+        "formatted": "8.23秒"
+      },
+      "TEE_CreatePersistentObject": {
+        "seconds": 5.41081690788269,
+        "formatted": "5.41秒"
+      },
+      "TEE_SeekObjectData": {
+        "seconds": 5.238314151763916,
+        "formatted": "5.24秒"
+      },
+      "TEE_MemMove": {
+        "seconds": 4.4732537269592285,
+        "formatted": "4.47秒"
+      },
+      "TEE_OpenPersistentObject": {
+        "seconds": 4.341158390045166,
+        "formatted": "4.34秒"
+      },
+      "TEE_WriteObjectData": {
+        "seconds": 4.008020877838135,
+        "formatted": "4.01秒"
+      },
+      "TEE_ReadObjectData": {
+        "seconds": 3.8322701454162598,
+        "formatted": "3.83秒"
+      },
+      "strlen": {
+        "seconds": 3.790464401245117,
+        "formatted": "3.79秒"
+      },
+      "TEE_Malloc": {
+        "seconds": 1.8926475048065186,
+        "formatted": "1.89秒"
+      },
+      "TEE_Free": {
+        "seconds": 1.8572819232940674,
+        "formatted": "1.86秒"
+      }
+    }
+  },
+  "analysis_mode": "llm_only"
+}

@@ -1,0 +1,543 @@
+{
+  "sinks": [
+    {
+      "kind": "function",
+      "name": "TA_InvokeCommandEntryPoint",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "May carry per-session state/handles that influence access control and operations on sensitive data.",
+      "confidence": "high",
+      "role": "session context"
+    },
+    {
+      "kind": "function",
+      "name": "TA_InvokeCommandEntryPoint",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Selects which command/operation is executed, affecting control flow and security-relevant behavior.",
+      "confidence": "high",
+      "role": "command identifier"
+    },
+    {
+      "kind": "function",
+      "name": "TA_InvokeCommandEntryPoint",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Determines how parameters are interpreted (memrefs/values), impacting parsing and validation of untrusted input.",
+      "confidence": "high",
+      "role": "parameter types descriptor"
+    },
+    {
+      "kind": "function",
+      "name": "TA_InvokeCommandEntryPoint",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "Primary carrier of client-supplied input and TA output; typically read, written, compared, and transformed within command handlers.",
+      "confidence": "high",
+      "role": "command parameters (in/out buffers and values)"
+    },
+    {
+      "kind": "function",
+      "name": "TA_OpenSessionEntryPoint",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "May influence session setup logic and authorization decisions.",
+      "confidence": "high",
+      "role": "connection method identifier / access control input"
+    },
+    {
+      "kind": "function",
+      "name": "TA_OpenSessionEntryPoint",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Carries untrusted data (values/memrefs) that the TA may read/validate/transform during session initialization.",
+      "confidence": "high",
+      "role": "incoming session parameters from client"
+    },
+    {
+      "kind": "function",
+      "name": "TA_OpenSessionEntryPoint",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "TA writes session state pointer/handle which affects subsequent command handling and security context.",
+      "confidence": "high",
+      "role": "session context output handle"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AllocateTransientObject",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Determines what kind of cryptographic/key object is created, affecting how sensitive material may be stored/used.",
+      "confidence": "high",
+      "role": "objectType selector"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AllocateTransientObject",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Controls the size/capacity of the transient object (often key size), impacting security properties and subsequent sensitive data handling.",
+      "confidence": "high",
+      "role": "maxObjectSize (key size / object capacity)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_AllocateTransientObject",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Returns a handle to a newly allocated object that will hold sensitive cryptographic material and be used in later operations.",
+      "confidence": "high",
+      "role": "output handle to allocated transient object"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_GenerateRandom",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "function writes generated random data into caller-provided memory",
+      "confidence": "high",
+      "role": "output buffer for random bytes"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_GenerateRandom",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "controls how much data is written to the output buffer, affecting security and memory safety",
+      "confidence": "high",
+      "role": "number of random bytes to generate"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_GetSystemTime",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "receives time data written by the TEE, which can influence security decisions (e.g., time-based checks, token expiry) and is an external data source",
+      "confidence": "high",
+      "role": "output buffer for system time"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_InitRefAttribute",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "written with attribute metadata including a reference to external data",
+      "confidence": "high",
+      "role": "destination attribute structure to initialize"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_InitRefAttribute",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "supplies data reference that will be stored and later used by crypto/object operations",
+      "confidence": "high",
+      "role": "pointer to referenced data buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_InitRefAttribute",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "controls how much of the referenced data is considered; affects bounds and interpretation",
+      "confidence": "high",
+      "role": "size of referenced data buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_InvokeTACommand",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Selects which TA/session receives the command, affecting where data is sent and processed",
+      "confidence": "high",
+      "role": "session handle / target TA context"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_InvokeTACommand",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Controls which operation is executed, influencing how provided data is interpreted/processed",
+      "confidence": "high",
+      "role": "command identifier"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_InvokeTACommand",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "Carries input/output data buffers and parameter types that are read/written/transformed by the invoked command",
+      "confidence": "high",
+      "role": "operation/parameters (in/out buffers and metadata)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MACComputeFinal",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Determines key and internal state used to process input and produce MAC output",
+      "confidence": "high",
+      "role": "MAC operation handle / cryptographic context"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MACComputeFinal",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Reads caller-controlled data to be authenticated (MAC computed over it)",
+      "confidence": "high",
+      "role": "input message buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MACComputeFinal",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Controls how many bytes are read from the input buffer",
+      "confidence": "high",
+      "role": "input message length"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MACComputeFinal",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "Writes computed MAC/tag bytes to caller-provided memory",
+      "confidence": "high",
+      "role": "output MAC buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MACComputeFinal",
+      "param_index": 4,
+      "rule_id": "other",
+      "reason": "Reads expected output size and writes actual produced MAC length",
+      "confidence": "high",
+      "role": "in/out MAC length pointer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MACInit",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Initializes cryptographic MAC state that will be used to process key/material and data in subsequent update/final calls",
+      "confidence": "high",
+      "role": "MAC operation handle / state"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MACInit",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "IV/nonce is security-sensitive input that influences MAC computation and must be handled correctly",
+      "confidence": "high",
+      "role": "initialization vector / nonce (optional)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_MACInit",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Controls how many bytes are read from the IV/nonce buffer",
+      "confidence": "high",
+      "role": "IV/nonce length"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_OpenPersistentObject",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "Identifier bytes are read to locate/select a stored persistent object, influencing which secure data is accessed.",
+      "confidence": "high",
+      "role": "persistent object identifier (name/key)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_OpenPersistentObject",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Determines how many bytes from the identifier buffer are consumed, affecting the selection of the persistent object.",
+      "confidence": "high",
+      "role": "length of the object identifier"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_OpenPersistentObject",
+      "param_index": 4,
+      "rule_id": "other",
+      "reason": "Receives a handle granting access to persistent storage content; enables subsequent reads/writes of security-sensitive data.",
+      "confidence": "high",
+      "role": "output object handle"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_OpenTASession",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "Selects which Trusted Application to connect to; influences security context and access control.",
+      "confidence": "high",
+      "role": "destination TA UUID / identifier"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_OpenTASession",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "Controls authentication/authorization mechanism used for the session.",
+      "confidence": "high",
+      "role": "connection method / login type"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_OpenTASession",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "May carry identity or credentials used to authenticate when opening the session.",
+      "confidence": "high",
+      "role": "connection data for login/authentication"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_OpenTASession",
+      "param_index": 4,
+      "rule_id": "other",
+      "reason": "Carries data exchanged during session open; may include sensitive parameters passed to the TA.",
+      "confidence": "high",
+      "role": "operation parameters (input/output)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_PopulateTransientObject",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "object is populated/modified with provided attributes, affecting stored sensitive key/material state",
+      "confidence": "high",
+      "role": "destination transient object handle"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_PopulateTransientObject",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "contains key material or other sensitive attributes that are read and used to populate the object",
+      "confidence": "high",
+      "role": "source attribute array (data to import)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_PopulateTransientObject",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "controls how many attributes are read from the attribute array, influencing data processing",
+      "confidence": "high",
+      "role": "attribute count"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_ReadObjectData",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "selects the persistent object whose contents will be read",
+      "confidence": "high",
+      "role": "object handle (data source)"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_ReadObjectData",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "receives data read from the object",
+      "confidence": "high",
+      "role": "output buffer"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_ReadObjectData",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "controls how much object data is copied into the output buffer",
+      "confidence": "high",
+      "role": "requested read size"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_ReadObjectData",
+      "param_index": 3,
+      "rule_id": "other",
+      "reason": "returns how many bytes were actually read, reflecting data flow",
+      "confidence": "high",
+      "role": "bytes-read output"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_SetOperationKey",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "the operation context is updated/configured with a key, affecting subsequent cryptographic processing",
+      "confidence": "high",
+      "role": "operation handle receiving key material"
+    },
+    {
+      "kind": "function",
+      "name": "TEE_SetOperationKey",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "provides the cryptographic key material that will be read and bound to the operation",
+      "confidence": "high",
+      "role": "key handle / key object containing secret key material"
+    },
+    {
+      "kind": "function",
+      "name": "memcmp",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "reads and compares memory contents starting at this address",
+      "confidence": "high",
+      "role": "input buffer A"
+    },
+    {
+      "kind": "function",
+      "name": "memcmp",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "reads and compares memory contents starting at this address",
+      "confidence": "high",
+      "role": "input buffer B"
+    },
+    {
+      "kind": "function",
+      "name": "memcpy",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "receives copied bytes; can write attacker-controlled data into memory",
+      "confidence": "high",
+      "role": "destination buffer (write)"
+    },
+    {
+      "kind": "function",
+      "name": "memcpy",
+      "param_index": 1,
+      "rule_id": "other",
+      "reason": "provides bytes to be copied; reads potentially sensitive or tainted data",
+      "confidence": "high",
+      "role": "source buffer (read)"
+    },
+    {
+      "kind": "function",
+      "name": "memcpy",
+      "param_index": 2,
+      "rule_id": "other",
+      "reason": "controls number of bytes read/written; misuse can cause overflows or leaks",
+      "confidence": "high",
+      "role": "copy length"
+    },
+    {
+      "kind": "function",
+      "name": "memset",
+      "param_index": 0,
+      "rule_id": "other",
+      "reason": "writes data into the memory region pointed to by this pointer",
+      "confidence": "high",
+      "role": "destination buffer"
+    }
+  ],
+  "analysis_time": {
+    "total_seconds": 90.83214616775513,
+    "total_formatted": "1.51分",
+    "llm_analysis_seconds": 90.79659581184387,
+    "llm_analysis_formatted": "1.51分",
+    "functions_analyzed": 22,
+    "per_function": {
+      "TA_InvokeCommandEntryPoint": {
+        "seconds": 12.434928178787231,
+        "formatted": "12.43秒"
+      },
+      "TEE_OpenTASession": {
+        "seconds": 5.126223564147949,
+        "formatted": "5.13秒"
+      },
+      "TEE_MACComputeFinal": {
+        "seconds": 5.074452877044678,
+        "formatted": "5.07秒"
+      },
+      "TEE_InitRefAttribute": {
+        "seconds": 4.884259462356567,
+        "formatted": "4.88秒"
+      },
+      "TEE_AllocateTransientObject": {
+        "seconds": 4.699740648269653,
+        "formatted": "4.70秒"
+      },
+      "TEE_OpenPersistentObject": {
+        "seconds": 4.451322555541992,
+        "formatted": "4.45秒"
+      },
+      "TEE_InvokeTACommand": {
+        "seconds": 4.438512086868286,
+        "formatted": "4.44秒"
+      },
+      "TEE_SetOperationKey": {
+        "seconds": 4.429306507110596,
+        "formatted": "4.43秒"
+      },
+      "TEE_MACInit": {
+        "seconds": 4.33400559425354,
+        "formatted": "4.33秒"
+      },
+      "TA_OpenSessionEntryPoint": {
+        "seconds": 4.1817522048950195,
+        "formatted": "4.18秒"
+      },
+      "TEE_ReadObjectData": {
+        "seconds": 3.965022087097168,
+        "formatted": "3.97秒"
+      },
+      "TEE_PopulateTransientObject": {
+        "seconds": 3.9205641746520996,
+        "formatted": "3.92秒"
+      },
+      "memcmp": {
+        "seconds": 3.8131232261657715,
+        "formatted": "3.81秒"
+      },
+      "memcpy": {
+        "seconds": 3.8096261024475098,
+        "formatted": "3.81秒"
+      },
+      "TEE_GenerateRandom": {
+        "seconds": 3.4409422874450684,
+        "formatted": "3.44秒"
+      },
+      "TEE_GetSystemTime": {
+        "seconds": 3.395808458328247,
+        "formatted": "3.40秒"
+      },
+      "TEE_AllocateOperation": {
+        "seconds": 2.9309840202331543,
+        "formatted": "2.93秒"
+      },
+      "memset": {
+        "seconds": 2.602620840072632,
+        "formatted": "2.60秒"
+      },
+      "TEE_CloseTASession": {
+        "seconds": 2.4607465267181396,
+        "formatted": "2.46秒"
+      },
+      "TEE_CloseObject": {
+        "seconds": 2.1772894859313965,
+        "formatted": "2.18秒"
+      },
+      "TEE_FreeOperation": {
+        "seconds": 2.1320955753326416,
+        "formatted": "2.13秒"
+      },
+      "TEE_FreeTransientObject": {
+        "seconds": 2.0932693481445312,
+        "formatted": "2.09秒"
+      }
+    }
+  },
+  "analysis_mode": "llm_only"
+}

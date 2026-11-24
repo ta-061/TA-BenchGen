@@ -1,0 +1,16 @@
+id,source,status,attempts,sinks,flows,findings,sink_calls,flow_calls,output
+T17,defective/case_061088fe19e546b2/source,completed,1,24,11,4,12,26,cases/T17/attempt-01/outputs/results_1
+T18,defective/case_19b7f03571ec46b1/source,completed,1,39,10,6,17,21,cases/T18/attempt-01/outputs/results_1
+T19,defective/case_1ac4b6f08ebd405a/source,completed,1,40,9,5,16,21,cases/T19/attempt-01/outputs/results_1
+T20,defective/case_2509fc67e11f4a0d/source,completed,1,34,9,4,15,21,cases/T20/attempt-01/outputs/results_1
+T21,defective/case_427eec3671c74536/source,completed,1,54,60,36,22,152,cases/T21/attempt-01/outputs/results_1
+T22,defective/case_4c9c820bfad042e7/source,completed,1,32,8,1,15,20,cases/T22/attempt-01/outputs/results_1
+T24,defective/case_684c4bfe44b04d86/source,completed,2,50,60,36,22,152,cases/T24/attempt-02/outputs/results_1
+T26,defective/case_9ab8adeb3dd74fba/source,completed,1,22,27,7,10,63,cases/T26/attempt-01/outputs/results_1
+T27,defective/case_b1818f0fd5ae4f9e/source,completed,1,40,15,9,19,37,cases/T27/attempt-01/outputs/results_1
+T28,defective/case_b9e19bc717204a6f/source,completed,1,53,60,34,22,152,cases/T28/attempt-01/outputs/results_1
+T30,defective/case_c4cb059bfbd14ca1/source,completed,1,48,16,16,20,39,cases/T30/attempt-01/outputs/results_1
+T31,defective/case_c893fb83418c44fd/source,completed,1,0,0,0,0,0,cases/T31/attempt-01/outputs/results_1
+T34,defective/case_e8b4365cf5a3481c/source,completed,1,44,10,6,16,23,cases/T34/attempt-01/outputs/results_1
+T35,defective/case_edd8fccc76624196/source,completed,1,41,11,4,18,23,cases/T35/attempt-01/outputs/results_1
+T36,defective/case_edc7a9e855a140d7/source,completed,1,47,61,39,22,154,cases/T36/attempt-01/outputs/results_1

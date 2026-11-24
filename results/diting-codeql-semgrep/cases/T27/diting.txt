@@ -1,0 +1,6 @@
+Unencrypted Data Output: 2
+['file://${WORK}/sources/T27/ta/sha_ta.c:371:19:371:22', 'file://${WORK}/sources/T27/ta/sha_ta.c:108:19:108:22']
+Input Validation Weakness: 3
+['callto__GP11_TEE_MemMovefile://${WORK}/sources/T27/ta/sha_ta.c:369:3:369:13', 'callto__GP11_TEE_Mallocfile://${WORK}/sources/T27/ta/sha_ta.c:178:8:178:17', 'callto__GP11_TEE_MemMovefile://${WORK}/sources/T27/ta/sha_ta.c:106:3:106:13']
+Shared Memory Overwrite: 0
+[]

@@ -1,0 +1,21 @@
+{
+  "id": "T21",
+  "attempt": 1,
+  "status": "completed",
+  "started_utc": "2026-11-23T18:11:07.730329+00:00",
+  "model": "gpt-5.2-2025-12-11",
+  "prompt": "experiments/e12_general_sink_screening",
+  "sinks": 47,
+  "flows": 60,
+  "findings": 30,
+  "output": "cases/T21/attempt-01/outputs/results_1",
+  "sink_calls": 22,
+  "flow_calls": 152,
+  "usage": {
+    "live_responses": 174,
+    "input_tokens": 1544127,
+    "cached_input_tokens": 1009792,
+    "output_tokens": 144553
+  },
+  "finished_utc": "2026-11-23T18:49:41.613825+00:00"
+}

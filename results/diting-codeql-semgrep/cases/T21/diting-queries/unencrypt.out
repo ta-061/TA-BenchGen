@@ -1,0 +1,8 @@
+|  col0  |   col1    |                                                                             col2                                                                             |
++--------+-----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| size   | ... = ... | file://${WORK}/sources/T21/ta/gatekeeper_ta.c:710:19:710:22 |
+| size   | ... = ... | file://${WORK}/sources/T21/ta/gatekeeper_ta.c:549:19:549:22 |
+| buffer | ... = ... | file://${WORK}/sources/T21/ta/gatekeeper_ta.c:273:19:273:24 |
+| size   | ... = ... | file://${WORK}/sources/T21/ta/gatekeeper_ta.c:274:19:274:22 |
+| buffer | ... = ... | file://${WORK}/sources/T21/ta/gatekeeper_ta.c:276:19:276:24 |
+| size   | ... = ... | file://${WORK}/sources/T21/ta/gatekeeper_ta.c:277:19:277:22 |

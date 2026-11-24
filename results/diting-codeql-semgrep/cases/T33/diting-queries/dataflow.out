@@ -1,0 +1,181 @@
+| col0 |  col1  |  col2  |                col3                |            col4            |                                                                                 col5                                                                                  |
++------+--------+--------+------------------------------------+----------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 0    | size   | size_t | ... < ...                          | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:136:7:136:40               |
+| 0    | size   | size_t | call to trace_printf               | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:143:2:153:66               |
+| 0    | buffer | void * | call to trace_printf               | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:143:2:153:66               |
+| 1    | size   | size_t | call to trace_printf               | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:143:2:153:66               |
+| 1    | size   | size_t | ... ? ... : ...                    | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:148:7:148:60               |
+| 1    | buffer | void * | call to trace_printf               | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:143:2:153:66               |
+| 1    | buffer | void * | ... ? ... : ...                    | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:149:7:153:66               |
+| 2    | size   | size_t | call to trace_printf               | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:143:2:153:66               |
+| 2    | size   | size_t | ... ? ... : ...                    | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:152:7:152:60               |
+| 2    | buffer | void * | call to trace_printf               | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:143:2:153:66               |
+| 2    | buffer | void * | ... ? ... : ...                    | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:153:7:153:66               |
+| 0    | buffer | void * | call to TEE_MemMove                | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:366:2:366:12               |
+| 0    | size   | size_t | ... = ...                          | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T33/ta/src/entry.c:367:2:367:35               |
+| 0    | size   | size_t | ... != ...                         | entry_ping                 | file://${WORK}/sources/T33/ta/src/entry.c:68:6:68:49                 |
+| 0    | buffer | void * | ... = ...                          | seed_rng_pool              | file://${WORK}/sources/T33/ta/src/pkcs11_token.c:1554:2:1554:31      |
+| 0    | size   | size_t | ... = ...                          | seed_rng_pool              | file://${WORK}/sources/T33/ta/src/pkcs11_token.c:1555:2:1555:41      |
+| 0    | size   | size_t | ... != ...                         | entry_ck_slot_list         | file://${WORK}/sources/T33/ta/src/pkcs11_token.c:258:6:258:49        |
+| 2    | buffer | void * | initializer for out_buf            | entry_wrap_key             | file://${WORK}/sources/T33/ta/src/processing.c:1127:17:1127:40       |
+| 2    | buffer | void * | ! ...                              | entry_wrap_key             | file://${WORK}/sources/T33/ta/src/processing.c:1132:19:1132:26       |
+| 2    | buffer | void * | call to wrap_data_by_symm_enc      | entry_wrap_key             | file://${WORK}/sources/T33/ta/src/processing.c:1266:8:1266:28        |
+| 2    | buffer | void * | call to wrap_data_by_asymm_enc     | entry_wrap_key             | file://${WORK}/sources/T33/ta/src/processing.c:1274:8:1274:29        |
+| 2    | buffer | void * | call to wrap_rsa_aes_key           | wrap_data_by_asymm_enc     | file://${WORK}/sources/T33/ta/src/processing_asymm.c:1087:8:1087:23  |
+| 2    | buffer | void * | call to TEE_AsymmetricEncrypt      | wrap_rsa_aes_key           | file://${WORK}/sources/T33/ta/src/processing_asymm.c:964:8:964:28    |
+| 2    | buffer | void * | ... + ...                          | wrap_rsa_aes_key           | file://${WORK}/sources/T33/ta/src/processing_asymm.c:997:8:997:44    |
+| 2    | buffer | void * | initializer for tmp_buf            | wrap_data_by_symm_enc      | file://${WORK}/sources/T33/ta/src/processing_symm.c:1043:20:1043:27  |
+| 2    | buffer | void * | call to TEE_CipherUpdate           | wrap_data_by_symm_enc      | file://${WORK}/sources/T33/ta/src/processing_symm.c:1060:11:1060:26  |
+| 2    | buffer | void * | ... += ...                         | wrap_data_by_symm_enc      | file://${WORK}/sources/T33/ta/src/processing_symm.c:1067:5:1067:21   |
+| 2    | buffer | void * | call to TEE_CipherDoFinal          | wrap_data_by_symm_enc      | file://${WORK}/sources/T33/ta/src/processing_symm.c:1085:9:1085:25   |
+| 2    | buffer | void * | ... - ...                          | wrap_data_by_symm_enc      | file://${WORK}/sources/T33/ta/src/processing_symm.c:1090:16:1090:43  |
+| 2    | size   | size_t | initializer for out_size           | entry_wrap_key             | file://${WORK}/sources/T33/ta/src/processing.c:1128:21:1128:42       |
+| 2    | size   | size_t | ... && ...                         | entry_wrap_key             | file://${WORK}/sources/T33/ta/src/processing.c:1132:7:1132:26        |
+| 2    | size   | size_t | ... = ...                          | entry_wrap_key             | file://${WORK}/sources/T33/ta/src/processing.c:1279:3:1279:34        |
+| 2    | size   | size_t | initializer for aes_wrapped_size   | wrap_rsa_aes_key           | file://${WORK}/sources/T33/ta/src/processing_asymm.c:952:27:952:34   |
+| 2    | size   | size_t | ... + ...                          | wrap_rsa_aes_key           | file://${WORK}/sources/T33/ta/src/processing_asymm.c:968:18:968:43   |
+| 2    | size   | size_t | ... < ...                          | wrap_rsa_aes_key           | file://${WORK}/sources/T33/ta/src/processing_asymm.c:977:6:977:28    |
+| 2    | size   | size_t | ... + ...                          | wrap_rsa_aes_key           | file://${WORK}/sources/T33/ta/src/processing_asymm.c:997:8:997:44    |
+| 2    | size   | size_t | ... - ...                          | wrap_rsa_aes_key           | file://${WORK}/sources/T33/ta/src/processing_asymm.c:999:8:999:33    |
+| 2    | size   | size_t | ... + ...                          | wrap_rsa_aes_key           | file://${WORK}/sources/T33/ta/src/processing_asymm.c:1005:20:1005:53 |
+| 2    | size   | size_t | ... >= ...                         | wrap_rsa_aes_key           | file://${WORK}/sources/T33/ta/src/processing_asymm.c:1005:9:1005:53  |
+| 2    | size   | size_t | ... + ...                          | wrap_rsa_aes_key           | file://${WORK}/sources/T33/ta/src/processing_asymm.c:1006:12:1006:45 |
+| 2    | size   | size_t | initializer for tmp_sz             | wrap_data_by_symm_enc      | file://${WORK}/sources/T33/ta/src/processing_symm.c:1042:17:1042:24  |
+| 2    | size   | size_t | ... < ...                          | wrap_data_by_symm_enc      | file://${WORK}/sources/T33/ta/src/processing_symm.c:1052:7:1052:21   |
+| 2    | size   | size_t | ... += ...                         | wrap_data_by_symm_enc      | file://${WORK}/sources/T33/ta/src/processing_symm.c:1067:5:1067:21   |
+| 2    | size   | size_t | ... - ...                          | wrap_data_by_symm_enc      | file://${WORK}/sources/T33/ta/src/processing_symm.c:1068:14:1068:29  |
+| 2    | size   | size_t | ... = ...                          | wrap_data_by_symm_enc      | file://${WORK}/sources/T33/ta/src/processing_symm.c:1088:4:1088:19   |
+| 2    | size   | size_t | ExprStmt                           | wrap_data_by_symm_enc      | file://${WORK}/sources/T33/ta/src/processing_symm.c:1090:5:1090:44   |
+| 2    | size   | size_t | ... += ...                         | wrap_data_by_symm_enc      | file://${WORK}/sources/T33/ta/src/processing_symm.c:1090:5:1090:43   |
+| 2    | size   | size_t | ... = ...                          | entry_wrap_key             | file://${WORK}/sources/T33/ta/src/processing.c:1279:3:1279:34        |
+| 1    | buffer | void * | ... = ...                          | entry_processing_key       | file://${WORK}/sources/T33/ta/src/processing.c:834:3:834:34          |
+| 1    | buffer | void * | ! ...                              | entry_processing_key       | file://${WORK}/sources/T33/ta/src/processing.c:836:18:836:24         |
+| 1    | buffer | void * | call to unwrap_key_by_symm         | entry_processing_key       | file://${WORK}/sources/T33/ta/src/processing.c:979:9:979:26          |
+| 1    | buffer | void * | call to unwrap_key_by_asymm        | entry_processing_key       | file://${WORK}/sources/T33/ta/src/processing.c:1006:9:1006:27        |
+| 1    | buffer | void * | call to unwrap_rsa_aes_key         | unwrap_key_by_asymm        | file://${WORK}/sources/T33/ta/src/processing_asymm.c:1105:8:1105:25  |
+| 1    | buffer | void * | call to TEE_AsymmetricDecrypt      | unwrap_rsa_aes_key         | file://${WORK}/sources/T33/ta/src/processing_asymm.c:1045:8:1045:28  |
+| 1    | buffer | void * | ... + ...                          | unwrap_rsa_aes_key         | file://${WORK}/sources/T33/ta/src/processing_asymm.c:1063:10:1063:39 |
+| 1    | buffer | void * | call to TEE_CipherDoFinal          | unwrap_key_by_symm         | file://${WORK}/sources/T33/ta/src/processing_symm.c:1119:9:1119:25   |
+| 1    | buffer | void * | call to TEE_CipherDoFinal          | unwrap_key_by_symm         | file://${WORK}/sources/T33/ta/src/processing_symm.c:1131:9:1131:25   |
+| 1    | size   | size_t | ... = ...                          | entry_processing_key       | file://${WORK}/sources/T33/ta/src/processing.c:835:3:835:33          |
+| 1    | size   | size_t | ... && ...                         | entry_processing_key       | file://${WORK}/sources/T33/ta/src/processing.c:836:7:836:24          |
+| 1    | size   | size_t | call to unwrap_key_by_symm         | entry_processing_key       | file://${WORK}/sources/T33/ta/src/processing.c:979:9:979:26          |
+| 1    | size   | size_t | call to unwrap_key_by_asymm        | entry_processing_key       | file://${WORK}/sources/T33/ta/src/processing.c:1006:9:1006:27        |
+| 1    | size   | size_t | call to unwrap_rsa_aes_key         | unwrap_key_by_asymm        | file://${WORK}/sources/T33/ta/src/processing_asymm.c:1105:8:1105:25  |
+| 1    | size   | size_t | ... - ...                          | unwrap_rsa_aes_key         | file://${WORK}/sources/T33/ta/src/processing_asymm.c:1037:21:1037:42 |
+| 1    | size   | size_t | call to input_data_size_is_valid   | unwrap_key_by_symm         | file://${WORK}/sources/T33/ta/src/processing_symm.c:1112:6:1112:29   |
+| 1    | size   | size_t | call to TEE_CipherDoFinal          | unwrap_key_by_symm         | file://${WORK}/sources/T33/ta/src/processing_symm.c:1119:9:1119:25   |
+| 1    | size   | size_t | call to TEE_CipherDoFinal          | unwrap_key_by_symm         | file://${WORK}/sources/T33/ta/src/processing_symm.c:1131:9:1131:25   |
+| 1    | size   | size_t | ... % ...                          | input_data_size_is_valid   | file://${WORK}/sources/T33/ta/src/processing_symm.c:643:7:643:34     |
+| 1    | size   | size_t | ... % ...                          | input_data_size_is_valid   | file://${WORK}/sources/T33/ta/src/processing_symm.c:646:7:646:34     |
+| 1    | size   | size_t | ... < ...                          | input_data_size_is_valid   | file://${WORK}/sources/T33/ta/src/processing_symm.c:651:7:651:34     |
+| 1    | size   | size_t | ... < ...                          | input_data_size_is_valid   | file://${WORK}/sources/T33/ta/src/processing_symm.c:654:7:654:34     |
+| 1    | buffer | void * | ... = ...                          | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:128:3:128:34   |
+| 1    | buffer | void * | ! ...                              | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:130:18:130:24  |
+| 1    | buffer | void * | ! ...                              | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:186:7:186:13   |
+| 1    | buffer | void * | call to TEE_DigestUpdate           | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:189:3:189:18   |
+| 1    | buffer | void * | ... || ...                         | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:199:7:199:24   |
+| 1    | buffer | void * | call to TEE_DigestDoFinal          | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:210:8:210:24   |
+| 1    | size   | size_t | ... = ...                          | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:129:3:129:33   |
+| 1    | size   | size_t | ... && ...                         | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:130:7:130:24   |
+| 1    | size   | size_t | ! ...                              | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:186:18:186:25  |
+| 1    | size   | size_t | call to TEE_DigestUpdate           | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:189:3:189:18   |
+| 1    | size   | size_t | call to TEE_DigestDoFinal          | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:210:8:210:24   |
+| 2    | buffer | void * | ... = ...                          | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:134:3:134:35   |
+| 2    | buffer | void * | ! ...                              | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:136:19:136:26  |
+| 2    | buffer | void * | ! ...                              | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:193:7:193:14   |
+| 2    | buffer | void * | ! ...                              | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:199:17:199:24  |
+| 2    | buffer | void * | call to TEE_DigestDoFinal          | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:210:8:210:24   |
+| 2    | size   | size_t | ... = ...                          | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:135:3:135:34   |
+| 2    | size   | size_t | ... && ...                         | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:136:7:136:26   |
+| 2    | size   | size_t | ... = ...                          | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:216:3:216:34   |
+| 2    | size   | size_t | ... = ...                          | step_digest_operation      | file://${WORK}/sources/T33/ta/src/processing_digest.c:216:3:216:34   |
+| 1    | buffer | void * | ... = ...                          | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:475:3:475:34    |
+| 1    | buffer | void * | ! ...                              | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:477:18:477:24   |
+| 1    | buffer | void * | call to TEE_DigestUpdate           | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:615:4:615:19    |
+| 1    | buffer | void * | call to TEE_DigestDoFinal          | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:659:9:659:25    |
+| 1    | buffer | void * | call to TEE_AsymmetricEncrypt      | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:755:10:755:30   |
+| 1    | buffer | void * | call to TEE_AsymmetricDecrypt      | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:766:10:766:30   |
+| 1    | buffer | void * | call to TEE_AsymmetricSignDigest   | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:777:10:777:33   |
+| 1    | buffer | void * | call to TEE_AsymmetricVerifyDigest | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:787:10:787:35   |
+| 1    | size   | size_t | ... = ...                          | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:476:3:476:33    |
+| 1    | size   | size_t | ... && ...                         | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:477:7:477:24    |
+| 1    | size   | size_t | call to TEE_DigestUpdate           | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:615:4:615:19    |
+| 1    | size   | size_t | call to TEE_DigestDoFinal          | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:659:9:659:25    |
+| 1    | size   | size_t | ! ...                              | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:681:7:681:14    |
+| 1    | size   | size_t | ... > ...                          | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:690:7:690:18    |
+| 1    | size   | size_t | call to TEE_AsymmetricEncrypt      | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:755:10:755:30   |
+| 1    | size   | size_t | call to TEE_AsymmetricDecrypt      | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:766:10:766:30   |
+| 1    | size   | size_t | call to TEE_AsymmetricSignDigest   | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:777:10:777:33   |
+| 1    | size   | size_t | call to TEE_AsymmetricVerifyDigest | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:787:10:787:35   |
+| 2    | buffer | void * | ... = ...                          | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:481:3:481:35    |
+| 2    | buffer | void * | ! ...                              | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:483:19:483:26   |
+| 2    | buffer | void * | call to TEE_AsymmetricVerifyDigest | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:787:10:787:35   |
+| 2    | buffer | void * | call to TEE_AsymmetricVerifyDigest | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:829:10:829:35   |
+| 2    | size   | size_t | ... = ...                          | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:482:3:482:34    |
+| 2    | size   | size_t | ... && ...                         | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:483:7:483:26    |
+| 2    | size   | size_t | ... != ...                         | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:693:45:693:62   |
+| 2    | size   | size_t | ... != ...                         | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:711:7:711:24    |
+| 2    | size   | size_t | ... != ...                         | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:736:45:736:58   |
+| 2    | size   | size_t | call to TEE_AsymmetricVerifyDigest | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:787:10:787:35   |
+| 2    | size   | size_t | call to TEE_AsymmetricVerifyDigest | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:829:10:829:35   |
+| 2    | buffer | void * | ... = ...                          | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:487:3:487:35    |
+| 2    | buffer | void * | ! ...                              | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:489:19:489:26   |
+| 2    | buffer | void * | call to TEE_AsymmetricEncrypt      | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:755:10:755:30   |
+| 2    | buffer | void * | call to TEE_AsymmetricDecrypt      | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:766:10:766:30   |
+| 2    | buffer | void * | call to TEE_AsymmetricSignDigest   | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:777:10:777:33   |
+| 2    | buffer | void * | call to TEE_AsymmetricSignDigest   | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:819:10:819:33   |
+| 2    | size   | size_t | ... = ...                          | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:488:3:488:34    |
+| 2    | size   | size_t | ... && ...                         | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:489:7:489:26    |
+| 2    | size   | size_t | ... = ...                          | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:853:4:853:35    |
+| 2    | size   | size_t | ... = ...                          | step_asymm_operation       | file://${WORK}/sources/T33/ta/src/processing_asymm.c:853:4:853:35    |
+| 1    | buffer | void * | ... = ...                          | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:731:3:731:34     |
+| 1    | buffer | void * | ! ...                              | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:733:18:733:24    |
+| 1    | buffer | void * | ! ...                              | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:788:7:788:13     |
+| 1    | buffer | void * | call to TEE_MACUpdate              | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:796:4:796:16     |
+| 1    | buffer | void * | ! ...                              | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:813:7:813:13     |
+| 1    | buffer | void * | call to TEE_CipherUpdate           | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:821:10:821:25    |
+| 1    | buffer | void * | call to TEE_MACComputeFinal        | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:854:10:854:28    |
+| 1    | buffer | void * | call to TEE_MACCompareFinal        | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:864:10:864:28    |
+| 1    | buffer | void * | call to TEE_MACComputeFinal        | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:896:10:896:28    |
+| 1    | buffer | void * | call to TEE_MACComputeFinal        | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:912:10:912:28    |
+| 1    | buffer | void * | ! ...                              | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:947:43:947:49    |
+| 1    | buffer | void * | call to TEE_CipherDoFinal          | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:955:10:955:26    |
+| 1    | size   | size_t | ... = ...                          | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:732:3:732:33     |
+| 1    | size   | size_t | ... && ...                         | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:733:7:733:24     |
+| 1    | size   | size_t | call to input_data_size_is_valid   | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:761:8:761:31     |
+| 1    | size   | size_t | call to TEE_MACUpdate              | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:796:4:796:16     |
+| 1    | size   | size_t | call to TEE_CipherUpdate           | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:821:10:821:25    |
+| 1    | size   | size_t | call to TEE_MACComputeFinal        | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:854:10:854:28    |
+| 1    | size   | size_t | call to TEE_MACCompareFinal        | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:864:10:864:28    |
+| 1    | size   | size_t | call to TEE_MACComputeFinal        | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:896:10:896:28    |
+| 1    | size   | size_t | call to TEE_MACComputeFinal        | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:912:10:912:28    |
+| 1    | size   | size_t | call to TEE_CipherDoFinal          | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:955:10:955:26    |
+| 1    | size   | size_t | ... % ...                          | input_data_size_is_valid   | file://${WORK}/sources/T33/ta/src/processing_symm.c:643:7:643:34     |
+| 1    | size   | size_t | ... % ...                          | input_data_size_is_valid   | file://${WORK}/sources/T33/ta/src/processing_symm.c:646:7:646:34     |
+| 1    | size   | size_t | ... < ...                          | input_data_size_is_valid   | file://${WORK}/sources/T33/ta/src/processing_symm.c:651:7:651:34     |
+| 1    | size   | size_t | ... < ...                          | input_data_size_is_valid   | file://${WORK}/sources/T33/ta/src/processing_symm.c:654:7:654:34     |
+| 2    | buffer | void * | ... = ...                          | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:737:3:737:35     |
+| 2    | buffer | void * | ! ...                              | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:739:19:739:26    |
+| 2    | buffer | void * | call to TEE_MACCompareFinal        | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:864:10:864:28    |
+| 2    | buffer | void * | call to TEE_MemCompare             | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:928:9:928:22     |
+| 2    | size   | size_t | ... = ...                          | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:738:3:738:34     |
+| 2    | size   | size_t | ... && ...                         | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:739:7:739:26     |
+| 2    | size   | size_t | call to input_sign_size_is_valid   | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:861:9:861:32     |
+| 2    | size   | size_t | call to TEE_MACCompareFinal        | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:864:10:864:28    |
+| 2    | size   | size_t | ! ...                              | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:916:8:916:16     |
+| 2    | size   | size_t | ... > ...                          | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:916:21:916:48    |
+| 2    | size   | size_t | call to trace_printf               | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:917:5:918:18     |
+| 2    | size   | size_t | call to TEE_MemCompare             | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:928:9:928:22     |
+| 2    | size   | size_t | ... != ...                         | input_sign_size_is_valid   | file://${WORK}/sources/T33/ta/src/processing_symm.c:696:6:696:23     |
+| 2    | buffer | void * | ... = ...                          | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:743:3:743:35     |
+| 2    | buffer | void * | ! ...                              | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:745:19:745:26    |
+| 2    | buffer | void * | call to TEE_CipherUpdate           | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:821:10:821:25    |
+| 2    | buffer | void * | call to TEE_MACComputeFinal        | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:854:10:854:28    |
+| 2    | buffer | void * | call to TEE_MemMove                | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:902:5:902:15     |
+| 2    | buffer | void * | call to TEE_CipherDoFinal          | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:955:10:955:26    |
+| 2    | size   | size_t | ... = ...                          | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:744:3:744:34     |
+| 2    | size   | size_t | ... && ...                         | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:745:7:745:26     |
+| 2    | size   | size_t | ... < ...                          | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:888:8:888:26     |
+| 2    | size   | size_t | ... = ...                          | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:977:4:977:35     |
+| 2    | size   | size_t | ... = ...                          | step_symm_operation        | file://${WORK}/sources/T33/ta/src/processing_symm.c:977:4:977:35     |

@@ -1,0 +1,220 @@
+{
+  "case_id": "case_edc7a9e855a140d7",
+  "changes": [
+    {
+      "after": [
+        {
+          "function": "TA_Verify",
+          "lines": [
+            672,
+            672
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "effect"
+        }
+      ],
+      "at": "2026-11-23T15:20:14.491665+00:00",
+      "before": [
+        {
+          "function": "TA_Verify",
+          "lines": [
+            671,
+            671
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "effect"
+        }
+      ],
+      "defect_id": "D1",
+      "reason": "L624 の要求長検査の後L672 でパスワード長を共有メモリから読み直しており検査を通った値（4）と TA_DoVerify に渡る値（65536）が異なる．影響操作はL671のif行ではなく読み直しの L672 に修正",
+      "reviewer": "TY"
+    }
+  ],
+  "review": {
+    "approved_against": {
+      "changes_diff": "sha256:4e58a35f29876e9345cd75fd567b687efa37a23ca2594205d664f1c6563f8c38",
+      "defective_source": "sha256:7fefc3903db09233a020d8952ec6ea46cba2a220e8f56d0f2ded264e3d1d9e6e",
+      "labels": "sha256:f026c08a2037fc973fc301930d8548dc4d2dab85ac513638cc68e0b0fbdad9dc",
+      "normal_source": "sha256:8387367a6d1eb1c48750405491a3eb3775544adbdd58d7bc64524542047e2d57",
+      "semantic": "sha256:4869813a8c8da18c7b4ee5901e0923f25be71bca49c53d9e2b3d96401a1c228f"
+    },
+    "per_defect": {
+      "D1": {
+        "against": "sha256:770e359b76a99db42c1cbcbfbd3224819a980ca746f186f8160d70c84e68a7b1",
+        "status": "approved"
+      }
+    },
+    "reviews": [
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:4e58a35f29876e9345cd75fd567b687efa37a23ca2594205d664f1c6563f8c38",
+          "defective_source": "sha256:7fefc3903db09233a020d8952ec6ea46cba2a220e8f56d0f2ded264e3d1d9e6e",
+          "labels": "sha256:6d1c0179dde6558aacaf5c2b2c55dab1a5d530d9887ee2221c6df2f0dfcac484",
+          "normal_source": "sha256:8387367a6d1eb1c48750405491a3eb3775544adbdd58d7bc64524542047e2d57",
+          "semantic": "sha256:4869813a8c8da18c7b4ee5901e0923f25be71bca49c53d9e2b3d96401a1c228f"
+        },
+        "at": "2026-11-23T15:04:49.609380+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": true,
+            "location": false
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:2468b5ef088fcc916c610577d4d651cee8da85119adbc001c69703a6fa9a8878"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:4e58a35f29876e9345cd75fd567b687efa37a23ca2594205d664f1c6563f8c38",
+          "defective_source": "sha256:7fefc3903db09233a020d8952ec6ea46cba2a220e8f56d0f2ded264e3d1d9e6e",
+          "labels": "sha256:6d1c0179dde6558aacaf5c2b2c55dab1a5d530d9887ee2221c6df2f0dfcac484",
+          "normal_source": "sha256:8387367a6d1eb1c48750405491a3eb3775544adbdd58d7bc64524542047e2d57",
+          "semantic": "sha256:4869813a8c8da18c7b4ee5901e0923f25be71bca49c53d9e2b3d96401a1c228f"
+        },
+        "at": "2026-11-23T15:04:51.826399+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": false,
+            "location": false
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:2468b5ef088fcc916c610577d4d651cee8da85119adbc001c69703a6fa9a8878"
+        }
+      },
+      {
+        "action": "edit",
+        "against": {
+          "changes_diff": "sha256:4e58a35f29876e9345cd75fd567b687efa37a23ca2594205d664f1c6563f8c38",
+          "defective_source": "sha256:7fefc3903db09233a020d8952ec6ea46cba2a220e8f56d0f2ded264e3d1d9e6e",
+          "labels": "sha256:f026c08a2037fc973fc301930d8548dc4d2dab85ac513638cc68e0b0fbdad9dc",
+          "normal_source": "sha256:8387367a6d1eb1c48750405491a3eb3775544adbdd58d7bc64524542047e2d57",
+          "semantic": "sha256:4869813a8c8da18c7b4ee5901e0923f25be71bca49c53d9e2b3d96401a1c228f"
+        },
+        "at": "2026-11-23T15:20:14.491665+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": false,
+            "location": false
+          }
+        },
+        "defect_id": "D1",
+        "label_change": "sha256:e19bd8497dc16f6e08cf4069f79f6287941055d42be4923512ab87cce057cdd3",
+        "reason": "L624 の要求長検査の後L672 でパスワード長を共有メモリから読み直しており検査を通った値（4）と TA_DoVerify に渡る値（65536）が異なる．影響操作はL671のif行ではなく読み直しの L672 に修正",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:770e359b76a99db42c1cbcbfbd3224819a980ca746f186f8160d70c84e68a7b1"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:4e58a35f29876e9345cd75fd567b687efa37a23ca2594205d664f1c6563f8c38",
+          "defective_source": "sha256:7fefc3903db09233a020d8952ec6ea46cba2a220e8f56d0f2ded264e3d1d9e6e",
+          "labels": "sha256:f026c08a2037fc973fc301930d8548dc4d2dab85ac513638cc68e0b0fbdad9dc",
+          "normal_source": "sha256:8387367a6d1eb1c48750405491a3eb3775544adbdd58d7bc64524542047e2d57",
+          "semantic": "sha256:4869813a8c8da18c7b4ee5901e0923f25be71bca49c53d9e2b3d96401a1c228f"
+        },
+        "at": "2026-11-23T15:20:16.983200+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": true,
+            "location": false
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:770e359b76a99db42c1cbcbfbd3224819a980ca746f186f8160d70c84e68a7b1"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:4e58a35f29876e9345cd75fd567b687efa37a23ca2594205d664f1c6563f8c38",
+          "defective_source": "sha256:7fefc3903db09233a020d8952ec6ea46cba2a220e8f56d0f2ded264e3d1d9e6e",
+          "labels": "sha256:f026c08a2037fc973fc301930d8548dc4d2dab85ac513638cc68e0b0fbdad9dc",
+          "normal_source": "sha256:8387367a6d1eb1c48750405491a3eb3775544adbdd58d7bc64524542047e2d57",
+          "semantic": "sha256:4869813a8c8da18c7b4ee5901e0923f25be71bca49c53d9e2b3d96401a1c228f"
+        },
+        "at": "2026-11-23T15:20:17.774898+00:00",
+        "checks": {
+          "D1": {
+            "behavior": false,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:770e359b76a99db42c1cbcbfbd3224819a980ca746f186f8160d70c84e68a7b1"
+        }
+      },
+      {
+        "action": "save",
+        "against": {
+          "changes_diff": "sha256:4e58a35f29876e9345cd75fd567b687efa37a23ca2594205d664f1c6563f8c38",
+          "defective_source": "sha256:7fefc3903db09233a020d8952ec6ea46cba2a220e8f56d0f2ded264e3d1d9e6e",
+          "labels": "sha256:f026c08a2037fc973fc301930d8548dc4d2dab85ac513638cc68e0b0fbdad9dc",
+          "normal_source": "sha256:8387367a6d1eb1c48750405491a3eb3775544adbdd58d7bc64524542047e2d57",
+          "semantic": "sha256:4869813a8c8da18c7b4ee5901e0923f25be71bca49c53d9e2b3d96401a1c228f"
+        },
+        "at": "2026-11-23T15:20:18.765158+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:770e359b76a99db42c1cbcbfbd3224819a980ca746f186f8160d70c84e68a7b1"
+        }
+      },
+      {
+        "action": "approve",
+        "against": {
+          "changes_diff": "sha256:4e58a35f29876e9345cd75fd567b687efa37a23ca2594205d664f1c6563f8c38",
+          "defective_source": "sha256:7fefc3903db09233a020d8952ec6ea46cba2a220e8f56d0f2ded264e3d1d9e6e",
+          "labels": "sha256:f026c08a2037fc973fc301930d8548dc4d2dab85ac513638cc68e0b0fbdad9dc",
+          "normal_source": "sha256:8387367a6d1eb1c48750405491a3eb3775544adbdd58d7bc64524542047e2d57",
+          "semantic": "sha256:4869813a8c8da18c7b4ee5901e0923f25be71bca49c53d9e2b3d96401a1c228f"
+        },
+        "at": "2026-11-23T15:20:19.544805+00:00",
+        "checks": {
+          "D1": {
+            "behavior": true,
+            "class": true,
+            "location": true
+          }
+        },
+        "defect_id": "D1",
+        "reason": "",
+        "reviewer": "TY",
+        "versions": {
+          "D1": "sha256:770e359b76a99db42c1cbcbfbd3224819a980ca746f186f8160d70c84e68a7b1"
+        }
+      }
+    ],
+    "status": "approved"
+  }
+}

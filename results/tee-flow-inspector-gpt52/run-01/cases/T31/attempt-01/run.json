@@ -1,0 +1,16 @@
+{
+  "id": "T31",
+  "attempt": 1,
+  "status": "completed",
+  "started_utc": "2026-11-23T18:11:07.729796+00:00",
+  "model": "gpt-5.2-2025-12-11",
+  "prompt": "experiments/e12_general_sink_screening",
+  "sinks": 0,
+  "flows": 0,
+  "findings": 0,
+  "output": "cases/T31/attempt-01/outputs/results_1",
+  "sink_calls": 0,
+  "flow_calls": 0,
+  "usage": {},
+  "finished_utc": "2026-11-23T18:11:12.622272+00:00"
+}

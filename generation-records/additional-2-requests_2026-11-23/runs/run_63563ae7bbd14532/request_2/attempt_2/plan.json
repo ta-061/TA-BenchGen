@@ -1,0 +1,234 @@
+[
+  {
+    "id": "T01",
+    "purpose": "normal",
+    "steps": [
+      {
+        "op": "open",
+        "session": "s1"
+      },
+      {
+        "command_id": 0,
+        "op": "invoke",
+        "params": [
+          {
+            "data": "010000000800000070617373776f72640000000000000000",
+            "type": "memref_input"
+          },
+          {
+            "size": 128,
+            "type": "memref_output"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          }
+        ],
+        "session": "s1"
+      },
+      {
+        "command_id": 1,
+        "op": "invoke",
+        "params": [
+          {
+            "data": "0100000001000000000000003a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000070617373776f7264",
+            "inserts": [
+              {
+                "from": {
+                  "length": 58,
+                  "offset": 8,
+                  "param": 1,
+                  "step": 2
+                },
+                "offset": 16
+              }
+            ],
+            "type": "memref_input"
+          },
+          {
+            "size": 128,
+            "type": "memref_output"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          }
+        ],
+        "session": "s1"
+      },
+      {
+        "op": "close",
+        "session": "s1"
+      }
+    ],
+    "targets": []
+  },
+  {
+    "id": "T02",
+    "purpose": "witness",
+    "steps": [
+      {
+        "op": "open",
+        "session": "s1"
+      },
+      {
+        "command_id": 0,
+        "op": "invoke",
+        "params": [
+          {
+            "data": "010000000800000070617373776f72640000000000000000",
+            "type": "memref_input"
+          },
+          {
+            "size": 128,
+            "type": "memref_output"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          }
+        ],
+        "session": "s1"
+      },
+      {
+        "command_id": 1,
+        "events": [
+          {
+            "action": {
+              "data": "01",
+              "expect": "02",
+              "kind": "write_memory",
+              "offset": 16,
+              "param": 0
+            },
+            "trigger": {
+              "before": "ClearFailureRecord(user_id);",
+              "function": "TA_Verify",
+              "kind": "checkpoint",
+              "occurrence": 1,
+              "path": "ta/gatekeeper_ta.c"
+            }
+          }
+        ],
+        "op": "invoke",
+        "params": [
+          {
+            "data": "0100000001000000000000003a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000070617373776f7264",
+            "inserts": [
+              {
+                "from": {
+                  "length": 58,
+                  "offset": 8,
+                  "param": 1,
+                  "step": 2
+                },
+                "offset": 16
+              }
+            ],
+            "type": "shared_memref_input"
+          },
+          {
+            "size": 128,
+            "type": "memref_output"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          }
+        ],
+        "session": "s1"
+      },
+      {
+        "op": "close",
+        "session": "s1"
+      }
+    ],
+    "targets": [
+      "D1"
+    ],
+    "witness_step": 3
+  },
+  {
+    "id": "T03",
+    "purpose": "witness",
+    "steps": [
+      {
+        "op": "open",
+        "session": "s1"
+      },
+      {
+        "command_id": 0,
+        "op": "invoke",
+        "params": [
+          {
+            "data": "010000000c00000068656c6c6f20776f726c64210000000000000000",
+            "type": "memref_input"
+          },
+          {
+            "size": 128,
+            "type": "memref_output"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          }
+        ],
+        "session": "s1"
+      },
+      {
+        "op": "close",
+        "session": "s1"
+      }
+    ],
+    "targets": [
+      "D2"
+    ],
+    "witness_step": 2
+  },
+  {
+    "id": "C93f03c80acd78d16",
+    "purpose": "normal",
+    "steps": [
+      {
+        "op": "open",
+        "session": "s1"
+      },
+      {
+        "command_id": 1,
+        "op": "invoke",
+        "params": [
+          {
+            "data": "0100000005000000000000003a00000002010000000000000001000000000000001122334455667788aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa010400000031323334",
+            "type": "memref_input"
+          },
+          {
+            "size": 128,
+            "type": "memref_output"
+          },
+          {
+            "type": "none"
+          },
+          {
+            "type": "none"
+          }
+        ],
+        "session": "s1"
+      },
+      {
+        "op": "close",
+        "session": "s1"
+      }
+    ],
+    "targets": []
+  }
+]

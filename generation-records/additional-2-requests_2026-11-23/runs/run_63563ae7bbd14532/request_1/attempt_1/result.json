@@ -1,0 +1,32 @@
+{
+  "case_id": "case_edc7a9e855a140d7",
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tif (provided_password)\n\t\tmemcpy(&provided_password_length, provided_password - sizeof(provided_password_length), sizeof(provided_password_length));\n\tres = TA_DoVerify(password_handle, provided_password,\n",
+      "old": "\tres = TA_DoVerify(password_handle, provided_password,\n",
+      "path": "ta/gatekeeper_ta.c"
+    }
+  ],
+  "index": 1,
+  "proposed": [
+    {
+      "class": "DUS",
+      "detector_targets": [
+        {
+          "function": "TA_Verify",
+          "lines": [
+            671,
+            671
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "effect"
+        }
+      ],
+      "id": "D1",
+      "reason": "The password length is read again from the shared request buffer just before it is used, instead of using the private copy taken at parse time. If the caller changes the length after the checks, the new value controls the stack buffer sizes and the copy lengths."
+    }
+  ],
+  "reason": "saved",
+  "status": "machine_pass"
+}

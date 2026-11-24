@@ -1,0 +1,262 @@
+{
+  "analysis_date": "2026-11-23T18:15:16.459837",
+  "analysis_time_seconds": 183.00550627708435,
+  "analysis_time_formatted": "3.1 minutes",
+  "llm_provider": "openai",
+  "llm_model": "gpt-5.2-2025-12-11",
+  "analysis_mode": "hybrid",
+  "rag_enabled": false,
+  "output_schema": "v5_candidate_audit",
+  "statistics": {
+    "total_flows_analyzed": 8,
+    "flows_with_vulnerabilities": 8,
+    "total_vulnerability_lines": 4,
+    "total_structural_risk_lines": 0,
+    "total_detections_before_consolidation": 11,
+    "total_lines_after_consolidation": 4,
+    "consolidation_rate": "63.6%",
+    "severity_distribution": {
+      "critical": 0,
+      "high": 0,
+      "medium": 4,
+      "low": 0
+    },
+    "cwe_distribution": {},
+    "rule_distribution": {
+      "input_validation_weakness": 3,
+      "direct_usage_of_shared_memory": 1
+    },
+    "execution_time_seconds": 183.00550627708435,
+    "llm_calls": 19,
+    "cache_hits": 7,
+    "cache_partial_hits": 7,
+    "cache_misses": 1,
+    "cache_hit_rate": "87.5%",
+    "token_usage": {},
+    "retries": 0,
+    "retry_successes": 0
+  },
+  "total_vulnerability_lines": 4,
+  "vulnerabilities": [
+    {
+      "vulnerability_id": "VULN-0001",
+      "file": "sign_verify_ta.c",
+      "line": 36,
+      "consolidated": true,
+      "detection_count": 1,
+      "primary_rule_id": "input_validation_weakness",
+      "rule_ids": [
+        "input_validation_weakness"
+      ],
+      "functions": [
+        "generate_rsa_keys"
+      ],
+      "sink_functions": [
+        "TEE_AllocateTransientObject"
+      ],
+      "descriptions": [
+        "Untrusted REE-controlled key_sz (from params[3].value.a) is used to allocate a transient RSA keypair object without a local range/allowlist validation, enabling resource exhaustion or API misuse via oversized/invalid key sizes."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: no secret is copied to untrusted-visible memory at this line.",
+        "Not Direct Usage of Shared Memory: issue is unvalidated scalar controlling allocation, not shared-memory TOCTOU reads.",
+        "Not other: fits input validation weakness on untrusted size parameter."
+      ],
+      "code_snippets": [
+        "res = TEE_AllocateTransientObject(TEE_TYPE_RSA_KEYPAIR, key_sz, &sess->keypair);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify",
+          "generate_rsa_keys",
+          "TEE_CopyObjectAttributes1"
+        ]
+      ],
+      "rule_distribution": {
+        "input_validation_weakness": 1
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0002",
+      "file": "sign_verify_ta.c",
+      "line": 41,
+      "consolidated": true,
+      "detection_count": 1,
+      "primary_rule_id": "input_validation_weakness",
+      "rule_ids": [
+        "input_validation_weakness"
+      ],
+      "functions": [
+        "generate_rsa_keys"
+      ],
+      "sink_functions": [
+        "TEE_GenerateKey"
+      ],
+      "descriptions": [
+        "Untrusted REE-controlled key_sz is used as the key size argument to TEE_GenerateKey without an explicit range/allowlist check in this function, allowing attacker-chosen sizes to drive expensive key generation or invalid parameter behavior."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: no data is written to untrusted-visible memory here.",
+        "Not Direct Usage of Shared Memory: no shared-memory buffer is read/trusted; only a tainted scalar is used.",
+        "Not other: the core problem is missing validation of an untrusted size parameter."
+      ],
+      "code_snippets": [
+        "res = TEE_GenerateKey(sess->keypair, key_sz, NULL, 0);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify",
+          "generate_rsa_keys",
+          "TEE_CopyObjectAttributes1"
+        ]
+      ],
+      "rule_distribution": {
+        "input_validation_weakness": 1
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0003",
+      "file": "sign_verify_ta.c",
+      "line": 45,
+      "consolidated": true,
+      "detection_count": 1,
+      "primary_rule_id": "input_validation_weakness",
+      "rule_ids": [
+        "input_validation_weakness"
+      ],
+      "functions": [
+        "generate_rsa_keys"
+      ],
+      "sink_functions": [
+        "TEE_AllocateTransientObject"
+      ],
+      "descriptions": [
+        "Untrusted REE-controlled key_sz is used to allocate a transient RSA public key object without local range/allowlist validation, again allowing attacker-controlled sizing to influence allocation and resource usage."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: no secret output to shared memory.",
+        "Not Direct Usage of Shared Memory: no shared-memory read/TOCTOU pattern; this is scalar validation.",
+        "Not other: matches input validation weakness."
+      ],
+      "code_snippets": [
+        "res = TEE_AllocateTransientObject(TEE_TYPE_RSA_PUBLIC_KEY, key_sz, &sess->public_key);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify",
+          "generate_rsa_keys",
+          "TEE_CopyObjectAttributes1"
+        ]
+      ],
+      "rule_distribution": {
+        "input_validation_weakness": 1
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0004",
+      "file": "sign_verify_ta.c",
+      "line": 200,
+      "consolidated": true,
+      "detection_count": 8,
+      "primary_rule_id": "direct_usage_of_shared_memory",
+      "rule_ids": [
+        "direct_usage_of_shared_memory"
+      ],
+      "functions": [
+        "sign_verify"
+      ],
+      "sink_functions": [
+        "TEE_DigestUpdate"
+      ],
+      "descriptions": [
+        "msg points to params[0].memref.buffer (shared memory). The TA hashes data directly from this shared buffer using a REE-controlled length (msg_len) without first copying it into trusted-private memory; the REE can modify the buffer during/around the digest operation, creating a shared-memory trust/TOCTOU integrity risk.",
+        "The trusted code digests message bytes directly from params[0].memref.buffer (shared memory) using msg_len controlled by the REE, without first copying the message into trusted-private memory; the REE can modify the buffer during/around the digest operation, creating a TOCTOU/integrity risk in what is signed/verified.",
+        "TEE_DigestUpdate reads message bytes from msg, which aliases params[0].memref.buffer (shared memory). The digest is computed directly over shared memory content without first copying to trusted-private memory, so the REE can race/modify the message between any prior checks and during/around the hashing operation (shared-memory integrity/TOCTOU).",
+        "TEE_DigestUpdate reads message bytes from msg, which aliases params[0].memref.buffer (shared memory) with REE-controlled msg_len, and the code does not copy the message into trusted-private memory before hashing; this directly trusts shared memory content and is susceptible to TOCTOU modification during/around the digest operation.",
+        "TEE_DigestUpdate reads message bytes directly from REE-shared memory (params[0].memref.buffer via msg) using an REE-controlled length (msg_len) without first copying into trusted-private memory, so the REE can modify the buffer between/while it is being processed (TOCTOU/integrity violation).",
+        "TEE_DigestUpdate reads message bytes directly from REE-shared memory (params[0].memref.buffer via msg) using an REE-controlled length (msg_len). Because the digest is computed over a shared buffer without copying to private memory first, the REE can modify the message concurrently, creating a TOCTOU/integrity risk in what is signed/verified.",
+        "TEE_DigestUpdate reads message bytes directly from params[0].memref.buffer (shared/untrusted-visible memory) using REE-controlled msg_len, with no copy-to-private; the REE can modify the shared buffer during/around this use, creating a shared-memory trust/TOCTOU risk while the TA is making a security-relevant digest.",
+        "TEE_DigestUpdate reads message bytes directly from params[0].memref.buffer (shared memory) using REE-controlled msg_len, without copying into trusted-private memory first; the shared buffer can be modified by the REE during/around this operation, creating a shared-memory trust/TOCTOU risk for the digest/sign/verify flow."
+      ],
+      "why_not_categories": [
+        "Not Input Validation Weakness: the primary issue is trusting/reading shared memory content that can change, not a missing bounds check on a TA-owned buffer.",
+        "Not Unencrypted Data Output: no secret is being copied to untrusted-visible memory at this line.",
+        "Not other: fits the defined shared-memory trust/TOCTOU class.",
+        "Not Unencrypted Data Output: this is a read/compute on shared memory, not a secret write to untrusted-visible memory.",
+        "Not Input Validation Weakness: while msg_len is untrusted, the primary mechanism is trusting mutable shared-memory content (TOCTOU), not an immediate out-of-bounds write.",
+        "Not other: fits the shared-memory direct-use category.",
+        "Not Unencrypted Data Output: no secret is being copied to an untrusted-visible destination at this line; this is a read/compute on shared input.",
+        "Not Input Validation Weakness: the primary issue is trusting shared-memory content for a security-relevant computation, not an unchecked size/index causing memory corruption (the API should handle length safely).",
+        "Not other: fits Direct Usage of Shared Memory (shared-memory trust/TOCTOU).",
+        "Not Unencrypted Data Output: this line reads from shared memory into a hash operation; it does not copy secrets to an untrusted-visible buffer.",
+        "Not Input Validation Weakness: the primary issue is integrity/TOCTOU from reading shared memory, not a missing bounds check for a memory write/copy.",
+        "Not other: fits the defined Direct Usage of Shared Memory class.",
+        "Not Unencrypted Data Output: this line reads from shared memory; it does not copy sensitive data out to untrusted memory.",
+        "Not Input Validation Weakness: the primary issue is trusting mutable shared-memory content (TOCTOU), not an unchecked length used for a raw memory copy/write in this function.",
+        "Not other: fits Direct Usage of Shared Memory.",
+        "Not Unencrypted Data Output: this line reads from shared memory; it does not output secrets to an untrusted buffer.",
+        "Not Input Validation Weakness: the primary issue is trusting mutable shared-memory content, not an evident out-of-bounds write/read caused by missing bounds checks here.",
+        "Not other: fits Direct Usage of Shared Memory per shared-buffer read/operate semantics.",
+        "Not Unencrypted Data Output: this line reads from shared memory; it does not copy secrets to an untrusted-visible destination.",
+        "Not Input Validation Weakness: the primary issue here is trusting mutable shared-memory content, not a missing bounds check on a write/copy into a fixed buffer in TA memory.",
+        "Not other: matches the definition of Direct Usage of Shared Memory.",
+        "Not Unencrypted Data Output: this line reads from shared memory; it does not copy sensitive data out to an untrusted-visible region.",
+        "Not Input Validation Weakness: the primary issue is trusting shared-memory content integrity rather than a demonstrated missing bounds check on a trusted buffer.",
+        "Not other: directly matches the DUS definition (trusted read/operate on shared memory)."
+      ],
+      "code_snippets": [
+        "TEE_DigestUpdate(hash_op, msg, msg_len);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify",
+          "generate_rsa_keys",
+          "__GP11_TEE_GenerateKey"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify",
+          "generate_rsa_keys",
+          "TEE_CopyObjectAttributes1"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify",
+          "__GP11_TEE_DigestUpdate"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify",
+          "__GP11_TEE_DigestDoFinal"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify",
+          "__GP11_TEE_SetOperationKey"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify",
+          "__GP11_TEE_AsymmetricSignDigest"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify",
+          "__GP11_TEE_AsymmetricVerifyDigest"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "sign_verify",
+          "memcpy"
+        ]
+      ],
+      "rule_distribution": {
+        "direct_usage_of_shared_memory": 8
+      }
+    }
+  ]
+}

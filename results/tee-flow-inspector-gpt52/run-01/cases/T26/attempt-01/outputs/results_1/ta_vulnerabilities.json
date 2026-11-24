@@ -1,0 +1,443 @@
+{
+  "analysis_date": "2026-11-23T18:18:28.150708",
+  "analysis_time_seconds": 392.7133469581604,
+  "analysis_time_formatted": "6.5 minutes",
+  "llm_provider": "openai",
+  "llm_model": "gpt-5.2-2025-12-11",
+  "analysis_mode": "hybrid",
+  "rag_enabled": false,
+  "output_schema": "v5_candidate_audit",
+  "statistics": {
+    "total_flows_analyzed": 27,
+    "flows_with_vulnerabilities": 9,
+    "total_vulnerability_lines": 6,
+    "total_structural_risk_lines": 0,
+    "total_detections_before_consolidation": 24,
+    "total_lines_after_consolidation": 6,
+    "consolidation_rate": "75.0%",
+    "severity_distribution": {
+      "critical": 0,
+      "high": 0,
+      "medium": 6,
+      "low": 0
+    },
+    "cwe_distribution": {},
+    "rule_distribution": {
+      "direct_usage_of_shared_memory": 3,
+      "input_validation_weakness": 4
+    },
+    "execution_time_seconds": 392.7133469581604,
+    "llm_calls": 63,
+    "cache_hits": 26,
+    "cache_partial_hits": 26,
+    "cache_misses": 1,
+    "cache_hit_rate": "96.3%",
+    "token_usage": {},
+    "retries": 0,
+    "retry_successes": 0
+  },
+  "total_vulnerability_lines": 6,
+  "vulnerabilities": [
+    {
+      "vulnerability_id": "VULN-0001",
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 65,
+      "consolidated": true,
+      "detection_count": 3,
+      "primary_rule_id": "direct_usage_of_shared_memory",
+      "rule_ids": [
+        "direct_usage_of_shared_memory"
+      ],
+      "functions": [
+        "get_named_object_name"
+      ],
+      "sink_functions": [
+        "TEE_MemMove"
+      ],
+      "descriptions": [
+        "name_orig aliases REE shared memory (params[0].memref.buffer) and is read directly as the source of TEE_MemMove into a trusted buffer; the TA trusts shared memory content during the operation without first copying/validating it in private memory, allowing TOCTOU modification of the name bytes used to form the persistent object ID.",
+        "name_orig is a shared-memory pointer originating from params[0].memref.buffer, and TEE_MemMove reads name_orig directly; even with a max-length check against TEE_OBJECT_ID_MAX_LEN, the trusted side is still consuming mutable shared memory content without first copying it to private memory, creating a shared-memory integrity/TOCTOU risk best captured as DUS.",
+        "Trusted code copies from name_orig which is an alias of REE shared memory into a trusted buffer; since the source remains shared, the REE can modify it concurrently (TOCTOU/integrity risk) and the trusted side is directly operating on shared-memory content rather than a private snapshot."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: data flows from untrusted/shared to trusted, not secret/private to untrusted-visible output.",
+        "Not Input Validation Weakness: bounds are checked against TEE_OBJECT_ID_MAX_LEN before this copy; the primary issue is integrity/TOCTOU of shared-memory content, not missing length bounds.",
+        "Not other: fits Direct Usage of Shared Memory.",
+        "Not Unencrypted Data Output: this copies from shared memory into a private stack buffer (name), not exporting secrets to untrusted-visible memory.",
+        "Not Input Validation Weakness: there is an explicit upper-bound check (name_orig_size + pref_len <= TEE_OBJECT_ID_MAX_LEN) preventing overflow of the destination buffer; the primary remaining risk is trusting shared-memory content while reading it.",
+        "Not Unencrypted Data Output: this is a read-from-shared into private memory, not a sensitive write to untrusted-visible memory.",
+        "Not Input Validation Weakness: there is a bounds check against TEE_OBJECT_ID_MAX_LEN; the primary issue is shared-memory integrity/TOCTOU, not missing bounds validation.",
+        "Not other: fits Direct Usage of Shared Memory definition."
+      ],
+      "code_snippets": [
+        "TEE_MemMove(name + pref_len, name_orig, name_orig_size);"
+      ],
+      "chains": [
+        [
+          "TA_InvokeCommandEntryPoint",
+          "write_persist_value",
+          "get_named_object_name",
+          "strlen"
+        ],
+        [
+          "TA_InvokeCommandEntryPoint",
+          "read_persist_value",
+          "get_named_object_name",
+          "strlen"
+        ],
+        [
+          "TA_InvokeCommandEntryPoint",
+          "write_persist_value",
+          "get_named_object_name",
+          "TEE_MemMove"
+        ]
+      ],
+      "rule_distribution": {
+        "direct_usage_of_shared_memory": 3
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0002",
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 278,
+      "consolidated": true,
+      "detection_count": 4,
+      "primary_rule_id": "input_validation_weakness",
+      "rule_ids": [
+        "input_validation_weakness"
+      ],
+      "functions": [
+        "write_persist_value"
+      ],
+      "sink_functions": [
+        "TEE_Malloc"
+      ],
+      "descriptions": [
+        "value_sz comes from REE-controlled params[1].memref.size and directly controls TEE_Malloc without any upper-bound check, enabling untrusted input to force excessive allocation (resource exhaustion) and creating downstream size-dependent risk.",
+        "REE-controlled value_sz (params[1].memref.size) is used directly as the allocation size in TEE_Malloc with no upper bound, enabling untrusted input to drive memory consumption and potentially trigger allocation-related failures or instability.",
+        "REE-controlled params[1].memref.size (value_sz) is used directly as the allocation size in TEE_Malloc with no visible upper bound, allowing an attacker to request arbitrarily large allocations (resource exhaustion) and influencing subsequent size-dependent operations.",
+        "REE-controlled params[1].memref.size (value_sz) is used directly as the allocation size in TEE_Malloc with no visible upper bound, allowing untrusted input to drive memory consumption (DoS) and size-dependent behavior."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: no copy of secret/private data to a shared/untrusted destination.",
+        "Not Direct Usage of Shared Memory: this line allocates memory; it does not read/parse shared memory content.",
+        "Not other: fits Input Validation Weakness (tainted size without bounds/range check).",
+        "Not Unencrypted Data Output: no secret/private data is being copied to untrusted-visible memory here.",
+        "Not Direct Usage of Shared Memory: the issue is size-driven allocation, not trusting shared-memory contents for decisions/parsing.",
+        "Not other: fits Input Validation Weakness (untrusted size used without bounds check).",
+        "Not Unencrypted Data Output: no secret/private data is being copied to shared memory at this line; it is an allocation.",
+        "Not Direct Usage of Shared Memory: the issue is tainted size controlling allocation, not trusting shared-memory contents across a check/use boundary.",
+        "Not other: this matches the definition of an unchecked untrusted size reaching a memory-related operation.",
+        "Not Unencrypted Data Output: this line allocates private memory; it does not copy secrets to untrusted-visible memory.",
+        "Not Direct Usage of Shared Memory: the issue is unbounded tainted size controlling allocation, not trusting shared-memory content for decisions across a check/use boundary.",
+        "Not other: fits Input Validation Weakness as tainted size is used without range validation."
+      ],
+      "code_snippets": [
+        "value = TEE_Malloc(value_sz, 0);"
+      ],
+      "chains": [
+        [
+          "TA_InvokeCommandEntryPoint",
+          "write_persist_value",
+          "get_named_object_name",
+          "strlen"
+        ],
+        [
+          "TA_InvokeCommandEntryPoint",
+          "write_persist_value",
+          "get_named_object_name",
+          "TEE_MemMove"
+        ],
+        [
+          "TA_InvokeCommandEntryPoint",
+          "write_persist_value",
+          "TEE_MemMove"
+        ],
+        [
+          "TA_InvokeCommandEntryPoint",
+          "write_persist_value",
+          "TEE_CreatePersistentObject"
+        ]
+      ],
+      "rule_distribution": {
+        "input_validation_weakness": 4
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0003",
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 282,
+      "consolidated": true,
+      "detection_count": 4,
+      "primary_rule_id": "direct_usage_of_shared_memory",
+      "rule_ids": [
+        "direct_usage_of_shared_memory",
+        "input_validation_weakness"
+      ],
+      "functions": [
+        "write_persist_value"
+      ],
+      "sink_functions": [
+        "TEE_MemMove"
+      ],
+      "descriptions": [
+        "TEE_MemMove reads from params[1].memref.buffer, which is shared memory controlled by the REE, using a REE-controlled length (value_sz); the trusted side consumes shared content directly as input to a trusted operation without making a stable private copy first, creating a TOCTOU/integrity risk during the read.",
+        "TEE_MemMove reads from params[1].memref.buffer, which is REE shared memory, using an REE-controlled length; the trusted side consumes shared content directly and is exposed to TOCTOU/integrity issues during the read/copy operation. This shared-memory trust violation is the dominant mechanism on this line.",
+        "TEE_MemMove copies value_sz bytes where value_sz is REE-controlled (params[1].memref.size) without any visible bounds validation against the actual accessible size of params[1].memref.buffer, creating an unchecked-length memory read from shared memory (potential overread) and unsafe reliance on the provided size.",
+        "TEE_MemMove reads from params[1].memref.buffer (shared memory) using an untrusted length (value_sz) without first copying/validating the shared buffer into private memory; the trusted side directly consumes shared-memory content, creating a shared-memory trust/TOCTOU risk during the read."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: this is a read from shared memory into private memory, not a secret write to untrusted-visible memory.",
+        "Not Input Validation Weakness: while value_sz is tainted, the dominant issue here is trusting shared-memory content that can change during use; bounds on the memref are not revalidated here either, but the shared-memory trust violation is the best fit.",
+        "Not other: fits Direct Usage of Shared Memory.",
+        "Not Unencrypted Data Output: data flow is from untrusted to trusted, not sensitive data being written to untrusted-visible memory.",
+        "Not Input Validation Weakness: although the length is tainted, the defining risk here is trusting/reading shared memory directly (TOCTOU); bounds of the shared buffer cannot be assured solely by the provided size.",
+        "Not other: fits Direct Usage of Shared Memory definition.",
+        "Not Unencrypted Data Output: the copy direction is from shared memory into a private buffer; it does not expose secrets to untrusted-visible memory.",
+        "Not Direct Usage of Shared Memory: although shared memory is read, the primary concrete flaw is the unchecked attacker-controlled length used in the memory operation (memory-safety/bounds issue).",
+        "Not other: fits the IVW category as an untrusted length used in a memory copy without an effective bounds check.",
+        "Not Unencrypted Data Output: this operation copies from shared to private; it does not output sensitive data to untrusted-visible memory.",
+        "Not Input Validation Weakness: although the length is tainted, the dominant risk here is trusting/reading shared memory directly (integrity/TOCTOU), which best matches DUS."
+      ],
+      "code_snippets": [
+        "TEE_MemMove(value, params[1].memref.buffer, value_sz);"
+      ],
+      "chains": [
+        [
+          "TA_InvokeCommandEntryPoint",
+          "write_persist_value",
+          "get_named_object_name",
+          "strlen"
+        ],
+        [
+          "TA_InvokeCommandEntryPoint",
+          "write_persist_value",
+          "get_named_object_name",
+          "TEE_MemMove"
+        ],
+        [
+          "TA_InvokeCommandEntryPoint",
+          "write_persist_value",
+          "TEE_MemMove"
+        ],
+        [
+          "TA_InvokeCommandEntryPoint",
+          "write_persist_value",
+          "TEE_CreatePersistentObject"
+        ]
+      ],
+      "rule_distribution": {
+        "direct_usage_of_shared_memory": 3,
+        "input_validation_weakness": 1
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0004",
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 328,
+      "consolidated": true,
+      "detection_count": 5,
+      "primary_rule_id": "input_validation_weakness",
+      "rule_ids": [
+        "input_validation_weakness"
+      ],
+      "functions": [
+        "read_persist_value"
+      ],
+      "sink_functions": [
+        "TEE_Malloc"
+      ],
+      "descriptions": [
+        "value_sz is derived from params[1].memref.size (REE-controlled) and is used directly as the allocation size in TEE_Malloc with no visible upper bound, enabling untrusted input to drive excessive allocation (DoS) and size-dependent behavior.",
+        "Untrusted-controlled memref size (value_sz from params[1].memref.size) directly controls TEE_Malloc without any upper bound, enabling an attacker to request excessive allocation (DoS) or drive subsequent size-dependent operations.",
+        "REE-controlled params[1].memref.size propagates to value_sz and is used directly as the allocation size in TEE_Malloc with no visible upper-bound check, enabling untrusted input to drive memory allocation size (resource exhaustion / size-driven misuse).",
+        "Untrusted-controlled memref size (params[1].memref.size) is used directly as the allocation size (value_sz) with no upper-bound check, allowing an attacker to request excessive allocation and potentially drive size-dependent downstream behavior.",
+        "Untrusted-controlled memref size (params[1].memref.size) is used directly as the allocation size (value_sz) with no visible upper bound, allowing an attacker to request excessively large allocations (resource exhaustion) and creating size-dependent risk for later operations that assume reasonable limits."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: this line only allocates memory; no data is output to untrusted memory.",
+        "Not Direct Usage of Shared Memory: no shared-memory read/compare/parse occurs at this line.",
+        "Not other: fits Input Validation Weakness.",
+        "Not Unencrypted Data Output: this line allocates memory; it does not copy secrets to shared memory.",
+        "Not Direct Usage of Shared Memory: no shared-memory read/trust decision occurs here.",
+        "Not other: fits IVW as an unbounded use of an untrusted size.",
+        "Not Unencrypted Data Output: this line allocates memory; it does not output data to shared memory.",
+        "Not Direct Usage of Shared Memory: no shared-memory content is read/trusted here; the issue is an unchecked tainted size.",
+        "Not other: fits Input Validation Weakness as an untrusted size used in a memory-related operation without bounds validation.",
+        "Not Unencrypted Data Output: this line only allocates memory; it does not copy sensitive data to untrusted-visible memory.",
+        "Not Direct Usage of Shared Memory: the issue is an unchecked untrusted size, not trusting shared-memory contents across a TOCTOU window.",
+        "Not other: fits the unchecked-size pattern of IVW.",
+        "Not Unencrypted Data Output: this line performs allocation, not a copy of secrets to untrusted-visible memory.",
+        "Not Direct Usage of Shared Memory: the issue is uncontrolled size, not trusting shared-memory contents across a TOCTOU window.",
+        "Not other: fits the definition of unchecked untrusted size usage."
+      ],
+      "code_snippets": [
+        "value = TEE_Malloc(value_sz, 0);"
+      ],
+      "chains": [
+        [
+          "TA_InvokeCommandEntryPoint",
+          "read_persist_value",
+          "get_named_object_name",
+          "strlen"
+        ],
+        [
+          "TA_InvokeCommandEntryPoint",
+          "read_persist_value",
+          "get_named_object_name",
+          "TEE_MemMove"
+        ],
+        [
+          "TA_InvokeCommandEntryPoint",
+          "read_persist_value",
+          "TEE_OpenPersistentObject"
+        ],
+        [
+          "TA_InvokeCommandEntryPoint",
+          "read_persist_value",
+          "TEE_ReadObjectData"
+        ],
+        [
+          "TA_InvokeCommandEntryPoint",
+          "read_persist_value",
+          "TEE_MemMove"
+        ]
+      ],
+      "rule_distribution": {
+        "input_validation_weakness": 5
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0005",
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 332,
+      "consolidated": true,
+      "detection_count": 3,
+      "primary_rule_id": "direct_usage_of_shared_memory",
+      "rule_ids": [
+        "direct_usage_of_shared_memory"
+      ],
+      "functions": [
+        "read_persist_value"
+      ],
+      "sink_functions": [
+        "get_named_object_name"
+      ],
+      "descriptions": [
+        "name_buf is an alias of params[0].memref.buffer (shared memory). Passing it to get_named_object_name causes trusted code to parse/read shared-memory content directly rather than using a private copy, creating a shared-memory trust/TOCTOU risk.",
+        "The function passes name_buf (alias of params[0].memref.buffer, shared memory) into get_named_object_name for parsing/derivation of an object identifier without first copying it into trusted-private memory; the REE can modify the shared buffer between any internal checks and subsequent uses, creating a shared-memory trust/TOCTOU risk.",
+        "The function passes name_buf, which aliases REE-shared memory (params[0].memref.buffer), into get_named_object_name for parsing/processing without first copying it into trusted-private memory; this trusts shared memory content directly and is susceptible to TOCTOU/modification during or between reads inside the helper."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: no sensitive data is being copied to untrusted-visible memory at this line.",
+        "Not Input Validation Weakness: the primary mechanism is trusting shared-memory content (integrity/TOCTOU), not an out-of-bounds write/read due to missing bounds checks in this function.",
+        "Not other: fits Direct Usage of Shared Memory as shared buffer content is consumed by trusted-side parsing.",
+        "Not Unencrypted Data Output: no secret is being written to untrusted memory at this line.",
+        "Not Input Validation Weakness: the primary risk is integrity/TOCTOU from reading shared memory, not a demonstrated out-of-bounds write/read due to missing bounds checks here.",
+        "Not other: matches DUS definition (trusted side reads/parses shared memory).",
+        "Not Unencrypted Data Output: this line reads/parses a name; it does not output sensitive data to untrusted memory.",
+        "Not Input Validation Weakness: although a tainted size exists, the primary mechanism here is trusting shared-memory content during parsing (integrity/TOCTOU), not a demonstrated out-of-bounds write/copy at this line.",
+        "Not other: directly matches the shared-memory trust violation definition."
+      ],
+      "code_snippets": [
+        "res = get_named_object_name(name_buf, name_buf_sz, name_full, &name_full_sz);"
+      ],
+      "chains": [
+        [
+          "TA_InvokeCommandEntryPoint",
+          "read_persist_value",
+          "TEE_OpenPersistentObject"
+        ],
+        [
+          "TA_InvokeCommandEntryPoint",
+          "read_persist_value",
+          "TEE_ReadObjectData"
+        ],
+        [
+          "TA_InvokeCommandEntryPoint",
+          "read_persist_value",
+          "TEE_MemMove"
+        ]
+      ],
+      "rule_distribution": {
+        "direct_usage_of_shared_memory": 3
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0006",
+      "file": "/inputs/T26/ta/entry.c",
+      "line": 350,
+      "consolidated": true,
+      "detection_count": 5,
+      "primary_rule_id": "input_validation_weakness",
+      "rule_ids": [
+        "input_validation_weakness"
+      ],
+      "functions": [
+        "read_persist_value"
+      ],
+      "sink_functions": [
+        "TEE_MemMove"
+      ],
+      "descriptions": [
+        "value_sz is REE-controlled (from params[1].memref.size) and is used as the length for TEE_MemMove into params[1].memref.buffer (shared memory) without verifying that the destination memref is large enough for value_sz (and the code later sets memref.size=count, indicating it expected count to govern output size). This is an unchecked tainted length reaching a memory write.",
+        "The copy length (value_sz) is derived from an untrusted memref size and is used as the TEE_MemMove length when writing into params[1].memref.buffer, but the actual number of bytes read from storage is count; using value_sz instead of count can over-read uninitialized trailing bytes from the allocated buffer and expose them to the REE, and it also lacks an explicit guard that the destination memref can hold value_sz beyond the caller-provided size contract.",
+        "TEE_MemMove writes into params[1].memref.buffer (shared memory) using value_sz derived from REE-controlled params[1].memref.size, with no visible check that the destination memref is at least value_sz bytes; this is an untrusted length used in a memory write operation without effective bounds validation.",
+        "Untrusted-controlled value_sz (from params[1].memref.size) is used as the copy length in TEE_MemMove to write into params[1].memref.buffer (shared memory) without validating that the destination memref is at least value_sz bytes, enabling an out-of-bounds write into shared memory.",
+        "TEE_MemMove writes into an untrusted-visible shared buffer (params[1].memref.buffer) using a length (value_sz) derived from REE-controlled params[1].memref.size, with no check that the destination memref is at least value_sz bytes; this is an unchecked tainted length controlling a memory write."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: while data is written to untrusted-visible memory, the written bytes are not established as secrets/keys/credentials; it appears to be a requested persistent value returned to the caller, so UDO is not proven from the snippet alone.",
+        "Not Direct Usage of Shared Memory: the main issue is an untrusted-controlled length used for a write; shared-memory integrity/TOCTOU is not the primary mechanism at this line.",
+        "Not other: fits Input Validation Weakness.",
+        "Not Unencrypted Data Output: while data is written to shared memory, the primary demonstrated issue is a tainted-length copy (and potential uninitialized-data leak); the copied content is not clearly a secret/key/credential requiring encryption per UDO definition.",
+        "Not Direct Usage of Shared Memory: the issue is not trusting shared-memory reads for decisions; it is an unchecked/incorrect length used in a memory move.",
+        "Not other: fits IVW best as an unsafe use of an untrusted/incorrect length in a memory operation.",
+        "Not Unencrypted Data Output: although data is copied to shared memory, the code does not establish that the copied content is secret/credential/key; the concrete demonstrated flaw here is the unchecked tainted length controlling the write.",
+        "Not Direct Usage of Shared Memory: the trusted side is writing to shared memory, not reading/trusting it for decisions; the issue is bounds/memory-safety on the write size.",
+        "Not other: fits Input Validation Weakness as an unchecked untrusted size reaches a memory copy sink.",
+        "Not Unencrypted Data Output: while data is written to untrusted-visible memory, the copied content is not established as secret/credential/key at this site, so UDO criteria are not met.",
+        "Not Direct Usage of Shared Memory: the operation is a write with an unchecked length; it does not rely on reading shared-memory contents for decisions/parsing.",
+        "Not other: this is a classic unchecked-length memory operation.",
+        "Not Unencrypted Data Output: while data is copied to shared memory, the code does not establish that the value read from persistent storage is a secret/credential/key; without sensitivity evidence, the concrete issue is the unchecked length on the write.",
+        "Not Direct Usage of Shared Memory: the operation is a write to shared memory; DUS requires trusted-side reads/trust of shared content for decisions/parsing.",
+        "Not other: fits the unchecked-tainted-length memory operation category."
+      ],
+      "code_snippets": [
+        "TEE_MemMove(params[1].memref.buffer, value, value_sz);"
+      ],
+      "chains": [
+        [
+          "TA_InvokeCommandEntryPoint",
+          "read_persist_value",
+          "get_named_object_name",
+          "strlen"
+        ],
+        [
+          "TA_InvokeCommandEntryPoint",
+          "read_persist_value",
+          "get_named_object_name",
+          "TEE_MemMove"
+        ],
+        [
+          "TA_InvokeCommandEntryPoint",
+          "read_persist_value",
+          "TEE_OpenPersistentObject"
+        ],
+        [
+          "TA_InvokeCommandEntryPoint",
+          "read_persist_value",
+          "TEE_ReadObjectData"
+        ],
+        [
+          "TA_InvokeCommandEntryPoint",
+          "read_persist_value",
+          "TEE_MemMove"
+        ]
+      ],
+      "rule_distribution": {
+        "input_validation_weakness": 5
+      }
+    }
+  ]
+}

@@ -1,0 +1,247 @@
+{
+  "analysis_date": "2026-11-23T18:16:52.673852",
+  "analysis_time_seconds": 286.5738184452057,
+  "analysis_time_formatted": "4.8 minutes",
+  "llm_provider": "openai",
+  "llm_model": "gpt-5.2-2025-12-11",
+  "analysis_mode": "hybrid",
+  "rag_enabled": false,
+  "output_schema": "v5_candidate_audit",
+  "statistics": {
+    "total_flows_analyzed": 11,
+    "flows_with_vulnerabilities": 7,
+    "total_vulnerability_lines": 4,
+    "total_structural_risk_lines": 0,
+    "total_detections_before_consolidation": 10,
+    "total_lines_after_consolidation": 4,
+    "consolidation_rate": "60.0%",
+    "severity_distribution": {
+      "critical": 0,
+      "high": 0,
+      "medium": 4,
+      "low": 0
+    },
+    "cwe_distribution": {},
+    "rule_distribution": {
+      "input_validation_weakness": 3,
+      "unencrypted_data_output": 1
+    },
+    "execution_time_seconds": 286.5738184452057,
+    "llm_calls": 26,
+    "cache_hits": 10,
+    "cache_partial_hits": 10,
+    "cache_misses": 1,
+    "cache_hit_rate": "90.9%",
+    "token_usage": {},
+    "retries": 0,
+    "retry_successes": 0
+  },
+  "total_vulnerability_lines": 4,
+  "vulnerabilities": [
+    {
+      "vulnerability_id": "VULN-0001",
+      "file": "/inputs/T17/ta/secure_storage_ta.c",
+      "line": 52,
+      "consolidated": true,
+      "detection_count": 3,
+      "primary_rule_id": "input_validation_weakness",
+      "rule_ids": [
+        "input_validation_weakness"
+      ],
+      "functions": [
+        "delete_object"
+      ],
+      "sink_functions": [
+        "TEE_Malloc"
+      ],
+      "descriptions": [
+        "REE-controlled params[0].memref.size flows into obj_id_sz and directly controls TEE_Malloc(obj_id_sz, ...) without any maximum/upper-bound check, enabling untrusted input to drive excessive allocation (resource exhaustion) or extreme-size edge cases.",
+        "REE-controlled params[0].memref.size propagates to obj_id_sz and directly controls TEE_Malloc allocation size without any upper-bound check, enabling untrusted input to drive excessive allocation (resource exhaustion / abnormal behavior).",
+        "REE-controlled params[0].memref.size is used directly as the allocation size for TEE_Malloc with no upper-bound check, allowing an attacker to request excessively large allocations (resource exhaustion / abnormal behavior)."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: no secret/private data is being copied to shared/untrusted-visible memory.",
+        "Not Direct Usage of Shared Memory: the issue is unbounded size control, not trusting shared-memory contents across a TOCTOU window.",
+        "Not other: this matches IVW (untrusted size used in a memory-related operation without bounds validation).",
+        "Not Unencrypted Data Output: no copy of secret/private data to untrusted-visible memory occurs at this allocation site.",
+        "Not Direct Usage of Shared Memory: the issue is not trusting shared-memory contents across time, but trusting an unbounded untrusted size for allocation.",
+        "Not other: fits Input Validation Weakness as untrusted size is used without bounds validation.",
+        "Not Direct Usage of Shared Memory: the issue is not trusting shared-memory contents across time, but using an untrusted size without bounds.",
+        "Not other: this is a standard unchecked untrusted-length weakness."
+      ],
+      "code_snippets": [
+        "obj_id = TEE_Malloc(obj_id_sz, 0);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "delete_object",
+          "__GP11_TEE_MemMove"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "delete_object",
+          "__GP11_TEE_OpenPersistentObject"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "delete_object",
+          "TEE_CloseAndDeletePersistentObject1"
+        ]
+      ],
+      "rule_distribution": {
+        "input_validation_weakness": 3
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0002",
+      "file": "/inputs/T17/ta/secure_storage_ta.c",
+      "line": 56,
+      "consolidated": true,
+      "detection_count": 2,
+      "primary_rule_id": "input_validation_weakness",
+      "rule_ids": [
+        "input_validation_weakness"
+      ],
+      "functions": [
+        "delete_object"
+      ],
+      "sink_functions": [
+        "TEE_MemMove"
+      ],
+      "descriptions": [
+        "TEE_MemMove uses obj_id_sz (derived from REE-controlled params[0].memref.size) as the copy length, with no visible bounds/range validation beyond successful allocation; the untrusted size directly governs the memory operation length.",
+        "obj_id_sz is derived from REE-controlled params[0].memref.size and is used as the copy length in TEE_MemMove from shared memory to a newly allocated buffer, with no explicit maximum/format validation of obj_id_sz (e.g., max object ID length), allowing untrusted length to drive memory operation size."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: data is copied from untrusted shared memory into private memory, not the other way around.",
+        "Not Direct Usage of Shared Memory: the shared buffer is only used as a copy source here; the primary mechanism is untrusted length controlling a memory operation, not a check/use trust decision on shared contents.",
+        "Not other: fits IVW based on tainted length reaching a copy primitive without explicit bounds validation.",
+        "Not Unencrypted Data Output: data flow is from untrusted shared memory into private memory, not from private secrets to untrusted output.",
+        "Not Direct Usage of Shared Memory: the shared buffer is immediately copied to private memory and not subsequently relied upon for decisions without copying; the core issue is unchecked length, not TOCTOU on shared contents.",
+        "Not other: fits Input Validation Weakness because an untrusted length controls a memory copy without bounds validation."
+      ],
+      "code_snippets": [
+        "TEE_MemMove(obj_id, params[0].memref.buffer, obj_id_sz);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "delete_object",
+          "__GP11_TEE_MemMove"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "delete_object",
+          "__GP11_TEE_OpenPersistentObject"
+        ]
+      ],
+      "rule_distribution": {
+        "input_validation_weakness": 2
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0003",
+      "file": "/inputs/T17/ta/secure_storage_ta.c",
+      "line": 172,
+      "consolidated": true,
+      "detection_count": 1,
+      "primary_rule_id": "input_validation_weakness",
+      "rule_ids": [
+        "input_validation_weakness"
+      ],
+      "functions": [
+        "read_raw_object"
+      ],
+      "sink_functions": [
+        "TEE_MemMove"
+      ],
+      "descriptions": [
+        "REE-controlled obj_id_sz (params[0].memref.size) is used directly as the length for TEE_MemMove from shared memory into a newly allocated buffer, with no explicit upper bound on obj_id_sz. This permits untrusted input to drive large allocations/copies and constitutes missing size validation before a memory operation."
+      ],
+      "why_not_categories": [
+        "Not Unencrypted Data Output: this is a copy from untrusted shared memory into private memory, not disclosure of a private secret to untrusted-visible memory.",
+        "Not Direct Usage of Shared Memory: the shared buffer is only read for copying; the main issue is lack of bounds/size validation on the copy length, not TOCTOU on shared content used for decisions.",
+        "Not other: fits the definition of unchecked tainted length in a memory operation."
+      ],
+      "code_snippets": [
+        "TEE_MemMove(obj_id, params[0].memref.buffer, obj_id_sz);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "read_raw_object",
+          "__GP11_TEE_ReadObjectData"
+        ]
+      ],
+      "rule_distribution": {
+        "input_validation_weakness": 1
+      }
+    },
+    {
+      "vulnerability_id": "VULN-0004",
+      "file": "/inputs/T17/ta/secure_storage_ta.c",
+      "line": 214,
+      "consolidated": true,
+      "detection_count": 4,
+      "primary_rule_id": "unencrypted_data_output",
+      "rule_ids": [
+        "unencrypted_data_output"
+      ],
+      "functions": [
+        "read_raw_object"
+      ],
+      "sink_functions": [
+        "TEE_MemMove"
+      ],
+      "descriptions": [
+        "The TA copies data read from a private persistent object into params[1].memref.buffer, which is shared/untrusted-visible memory, without any encryption step; this can disclose application-private stored contents to the REE.",
+        "Data read from a persistent object in private storage is copied into params[1].memref.buffer, which is REE-shared/untrusted-visible memory, without any encryption step. This directly exposes application-private stored contents to the untrusted side.",
+        "The TA copies data read from a private persistent object (data) into params[1].memref.buffer, which is shared/untrusted-visible memory, without any encryption step; this can disclose application-private stored contents to the REE.",
+        "The function copies data read from a persistent object (trusted/private storage contents) into params[1].memref.buffer, which is shared memory visible to the REE. No encryption is performed before the TEE_MemMove, so private application data is output in plaintext to an untrusted-visible region."
+      ],
+      "why_not_categories": [
+        "Not Input Validation Weakness: the issue is confidentiality of the destination region; bounds are not the primary mechanism here.",
+        "Not Direct Usage of Shared Memory: this line writes to shared memory rather than reading/trusting it for decisions (no TOCTOU read).",
+        "Not other: the mechanism matches UDO (secret/private data copied to untrusted-visible memory without encryption).",
+        "Not Input Validation Weakness: the output length is constrained by the earlier short-buffer check against data_sz and by using read_bytes from TEE_ReadObjectData, so the primary issue is confidentiality rather than bounds safety.",
+        "Not Direct Usage of Shared Memory: this line writes to shared memory; DUS requires trusted-side reading/trusting shared memory content for decisions.",
+        "Not other: the mechanism matches Unencrypted Data Output.",
+        "Not Input Validation Weakness: the primary issue is confidentiality (private-to-shared copy), not an unchecked length/index causing memory corruption (read_bytes is produced by TEE_ReadObjectData and earlier logic attempts to ensure buffer sufficiency).",
+        "Not Direct Usage of Shared Memory: this line writes to shared memory; DUS requires trusted-side reads/trust decisions on shared memory content.",
+        "Not other: matches the definition of Unencrypted Data Output.",
+        "Not Input Validation Weakness: the copy length is bounded by object_info.dataSize and earlier short-buffer handling; the primary issue is plaintext disclosure to shared memory, not a missing bounds check.",
+        "Not Direct Usage of Shared Memory: this line writes to shared memory; DUS concerns trusted reads/trust of shared memory content.",
+        "Not other: matches unencrypted private-data output to an untrusted-visible buffer."
+      ],
+      "code_snippets": [
+        "TEE_MemMove(params[1].memref.buffer, data, read_bytes);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "read_raw_object",
+          "__GP11_TEE_MemMove"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "read_raw_object",
+          "__GP11_TEE_OpenPersistentObject"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "read_raw_object",
+          "__GP11_TEE_GetObjectInfo1"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "read_raw_object",
+          "__GP11_TEE_ReadObjectData"
+        ]
+      ],
+      "rule_distribution": {
+        "unencrypted_data_output": 4
+      }
+    }
+  ]
+}

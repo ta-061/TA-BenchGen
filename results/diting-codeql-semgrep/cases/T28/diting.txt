@@ -1,0 +1,6 @@
+Unencrypted Data Output: 6
+['file://${WORK}/sources/T28/ta/gatekeeper_ta.c:714:19:714:22', 'file://${WORK}/sources/T28/ta/gatekeeper_ta.c:549:19:549:22', 'file://${WORK}/sources/T28/ta/gatekeeper_ta.c:273:19:273:24', 'file://${WORK}/sources/T28/ta/gatekeeper_ta.c:274:19:274:22', 'file://${WORK}/sources/T28/ta/gatekeeper_ta.c:276:19:276:24', 'file://${WORK}/sources/T28/ta/gatekeeper_ta.c:277:19:277:22']
+Input Validation Weakness: 0
+[]
+Shared Memory Overwrite: 0
+[]

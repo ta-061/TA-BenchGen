@@ -1,0 +1,333 @@
+[
+  {
+    "vd": {
+      "file": "/inputs/T35/ta/ecdsa_ta.c",
+      "line": 125,
+      "sink": "__GP11_TEE_DigestUpdate",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "compute_digest",
+        "__GP11_TEE_DigestUpdate"
+      ],
+      "function_call_line": [
+        315,
+        125
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T35/ta/ecdsa_ta.c",
+      "line": 127,
+      "sink": "__GP11_TEE_DigestDoFinal",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "compute_digest",
+        "__GP11_TEE_DigestDoFinal"
+      ],
+      "function_call_line": [
+        315,
+        127
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T35/ta/ecdsa_ta.c",
+      "line": 130,
+      "sink": "__GP11_TEE_MemMove",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "compute_digest",
+        "__GP11_TEE_MemMove"
+      ],
+      "function_call_line": [
+        315,
+        130
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T35/ta/ecdsa_ta.c",
+      "line": [
+        197,
+        208
+      ],
+      "sink": "__GP11_TEE_AllocateTransientObject",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "genrate_key",
+        "__GP11_TEE_AllocateTransientObject"
+      ],
+      "function_call_line": [
+        317,
+        [
+          197,
+          208
+        ]
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T35/ta/ecdsa_ta.c",
+      "line": 202,
+      "sink": "__GP11_TEE_InitValueAttribute",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "genrate_key",
+        "__GP11_TEE_InitValueAttribute"
+      ],
+      "function_call_line": [
+        317,
+        202
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T35/ta/ecdsa_ta.c",
+      "line": 204,
+      "sink": "__GP11_TEE_GenerateKey",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "genrate_key",
+        "__GP11_TEE_GenerateKey"
+      ],
+      "function_call_line": [
+        317,
+        204
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T35/ta/ecdsa_ta.c",
+      "line": 213,
+      "sink": "TEE_CopyObjectAttributes1",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "genrate_key",
+        "TEE_CopyObjectAttributes1"
+      ],
+      "function_call_line": [
+        317,
+        213
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T35/ta/ecdsa_ta.c",
+      "line": [
+        265,
+        278
+      ],
+      "sink": "__GP11_TEE_SetOperationKey",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "sign_verify_digest",
+        "__GP11_TEE_SetOperationKey"
+      ],
+      "function_call_line": [
+        319,
+        [
+          265,
+          278
+        ]
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T35/ta/ecdsa_ta.c",
+      "line": 268,
+      "sink": "__GP11_TEE_AsymmetricSignDigest",
+      "param_index": 1,
+      "param_indices": [
+        1,
+        2,
+        4,
+        5
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "sign_verify_digest",
+        "__GP11_TEE_AsymmetricSignDigest"
+      ],
+      "function_call_line": [
+        319,
+        268
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T35/ta/ecdsa_ta.c",
+      "line": 281,
+      "sink": "__GP11_TEE_AsymmetricVerifyDigest",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "sign_verify_digest",
+        "__GP11_TEE_AsymmetricVerifyDigest"
+      ],
+      "function_call_line": [
+        319,
+        281
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T35/ta/ecdsa_ta.c",
+      "line": 293,
+      "sink": "__GP11_TEE_MemMove",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "sign_verify_digest",
+        "__GP11_TEE_MemMove"
+      ],
+      "function_call_line": [
+        319,
+        293
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  },
+  {
+    "vd": {
+      "file": "/inputs/T35/ta/ecdsa_ta.c",
+      "line": 297,
+      "sink": "__GP11_TEE_GetObjectBufferAttribute",
+      "param_index": 0,
+      "param_indices": [
+        0,
+        2
+      ]
+    },
+    "chains": {
+      "function_chain": [
+        "__GP11_TA_InvokeCommandEntryPoint",
+        "sign_verify_digest",
+        "__GP11_TEE_GetObjectBufferAttribute"
+      ],
+      "function_call_line": [
+        319,
+        297
+      ]
+    },
+    "source_func": "__GP11_TA_InvokeCommandEntryPoint",
+    "source_params": []
+  }
+]

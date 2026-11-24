@@ -1,0 +1,126 @@
+{
+  "changes": [
+    {
+      "defect": "D1",
+      "new": "\tif (provided_password)\n\t\tmemcpy(&provided_password_length, provided_password - sizeof(provided_password_length), sizeof(provided_password_length));\n\tres = TA_DoVerify(password_handle, provided_password,\n",
+      "old": "\tres = TA_DoVerify(password_handle, provided_password,\n",
+      "path": "ta/gatekeeper_ta.c"
+    }
+  ],
+  "defects": [
+    {
+      "class": "DUS",
+      "detector_targets": [
+        {
+          "function": "TA_Verify",
+          "lines": [
+            671,
+            671
+          ],
+          "path": "ta/gatekeeper_ta.c",
+          "role": "effect"
+        }
+      ],
+      "id": "D1",
+      "reason": "The password length is read again from the shared request buffer just before it is used, instead of using the private copy taken at parse time. If the caller changes the length after the checks, the new value controls the stack buffer sizes and the copy lengths.",
+      "witness_test_ids": [
+        "T02"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "T01",
+      "purpose": "normal",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "op": "invoke",
+          "params": [
+            {
+              "data": "01000000 0500000000000000 3a000000 02 0100000000000000 0100000000000000 1122334455667788 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 01 04000000 31323334",
+              "type": "memref_input"
+            },
+            {
+              "size": 128,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": []
+    },
+    {
+      "id": "T02",
+      "purpose": "witness",
+      "steps": [
+        {
+          "op": "open",
+          "session": "s1"
+        },
+        {
+          "command_id": 1,
+          "events": [
+            {
+              "action": {
+                "data": "00000100",
+                "expect": "04000000",
+                "kind": "write_memory",
+                "offset": 74,
+                "param": 0
+              },
+              "trigger": {
+                "before": "IncrementFailureRecord(&record, timestamp);",
+                "function": "TA_Verify",
+                "kind": "checkpoint",
+                "occurrence": 1,
+                "path": "ta/gatekeeper_ta.c"
+              }
+            }
+          ],
+          "op": "invoke",
+          "params": [
+            {
+              "data": "01000000 0500000000000000 3a000000 02 0100000000000000 0100000000000000 1122334455667788 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 01 04000000 31323334",
+              "type": "shared_memref_input"
+            },
+            {
+              "size": 128,
+              "type": "memref_output"
+            },
+            {
+              "type": "none"
+            },
+            {
+              "type": "none"
+            }
+          ],
+          "session": "s1"
+        },
+        {
+          "op": "close",
+          "session": "s1"
+        }
+      ],
+      "targets": [
+        "D1"
+      ],
+      "witness_step": 2
+    }
+  ]
+}

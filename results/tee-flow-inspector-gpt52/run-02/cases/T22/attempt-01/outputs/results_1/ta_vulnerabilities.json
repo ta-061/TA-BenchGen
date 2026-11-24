@@ -1,0 +1,88 @@
+{
+  "analysis_date": "2026-11-23T18:13:57.653501",
+  "analysis_time_seconds": 101.93800973892212,
+  "analysis_time_formatted": "1.7 minutes",
+  "llm_provider": "openai",
+  "llm_model": "gpt-5.2-2025-12-11",
+  "analysis_mode": "hybrid",
+  "rag_enabled": false,
+  "output_schema": "v5_candidate_audit",
+  "statistics": {
+    "total_flows_analyzed": 8,
+    "flows_with_vulnerabilities": 2,
+    "total_vulnerability_lines": 1,
+    "total_structural_risk_lines": 0,
+    "total_detections_before_consolidation": 2,
+    "total_lines_after_consolidation": 1,
+    "consolidation_rate": "50.0%",
+    "severity_distribution": {
+      "critical": 0,
+      "high": 0,
+      "medium": 1,
+      "low": 0
+    },
+    "cwe_distribution": {},
+    "rule_distribution": {
+      "input_validation_weakness": 1
+    },
+    "execution_time_seconds": 101.93800973892212,
+    "llm_calls": 20,
+    "cache_hits": 7,
+    "cache_partial_hits": 7,
+    "cache_misses": 1,
+    "cache_hit_rate": "87.5%",
+    "token_usage": {},
+    "retries": 0,
+    "retry_successes": 0
+  },
+  "total_vulnerability_lines": 1,
+  "vulnerabilities": [
+    {
+      "vulnerability_id": "VULN-0001",
+      "file": "/inputs/T22/ta/hotp_ta.c",
+      "line": 156,
+      "consolidated": true,
+      "detection_count": 2,
+      "primary_rule_id": "input_validation_weakness",
+      "rule_ids": [
+        "input_validation_weakness"
+      ],
+      "functions": [
+        "register_shared_key"
+      ],
+      "sink_functions": [
+        "DMSG"
+      ],
+      "descriptions": [
+        "The log prints state->K using \"%s\" even though the copied key is length-delimited (params[0].memref.size) and not validated/forced to be NUL-terminated. This can cause an out-of-bounds read past the key bytes within state->K until a NUL is encountered, leaking adjacent memory via logging.",
+        "The log prints state->K using %s, which treats the buffer as NUL-terminated string; since the copied key length is REE-controlled and not validated/forced to include a terminator, the print may read past the intended key length (out-of-bounds read) until a NUL is encountered."
+      ],
+      "why_not_categories": [
+        "Not Direct Usage of Shared Memory: the read is from trusted-private state->K, not directly from shared memory.",
+        "Not Unencrypted Data Output: the core issue is an out-of-bounds read due to treating binary data as a C-string, not copying a secret into shared memory.",
+        "Not other: fits Input Validation Weakness as a missing content/termination validation leading to unsafe read.",
+        "Not Direct Usage of Shared Memory: the read is from trusted state->K, not directly from a shared-memory alias at this point.",
+        "Not Unencrypted Data Output: although it may leak key material via logs, it is not a copy to untrusted-visible shared memory as defined by UDO.",
+        "Not other: the core issue is missing validation/termination for a length-controlled string read."
+      ],
+      "code_snippets": [
+        "DMSG(\"Got shared key %s (%u bytes).\", state->K, params[0].memref.size);"
+      ],
+      "chains": [
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "register_shared_key",
+          "memset"
+        ],
+        [
+          "__GP11_TA_InvokeCommandEntryPoint",
+          "register_shared_key",
+          "memcpy"
+        ]
+      ],
+      "rule_distribution": {
+        "input_validation_weakness": 2
+      }
+    }
+  ]
+}

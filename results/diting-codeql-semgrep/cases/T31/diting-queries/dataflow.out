@@ -1,0 +1,10 @@
+| col0 |  col1  |   col2   |    col3    |            col4            |                                                                        col5                                                                        |
++------+--------+----------+------------+----------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+| 0    | a      | uint32_t | ... = ...  | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T31/ta/entry.c:66:5:66:36  |
+| 0    | b      | uint32_t | ... = ...  | TA_InvokeCommandEntryPoint | file://${WORK}/sources/T31/ta/entry.c:67:5:67:25  |
+| 0    | size   | size_t   | ... != ... | update_record              | file://${WORK}/sources/T31/ta/entry.c:20:9:20:46  |
+| 0    | buffer | void *   | ... = ...  | update_record              | file://${WORK}/sources/T31/ta/entry.c:22:5:22:37  |
+| 0    | buffer | void *   | value      | update_record              | file://${WORK}/sources/T31/ta/entry.c:23:18:23:22 |
+| 0    | buffer | void *   | value      | update_record              | file://${WORK}/sources/T31/ta/entry.c:25:29:25:33 |
+| 1    | a      | uint32_t | ... = ...  | update_record              | file://${WORK}/sources/T31/ta/entry.c:26:5:26:36  |
+| 1    | b      | uint32_t | ... = ...  | update_record              | file://${WORK}/sources/T31/ta/entry.c:27:5:27:25  |

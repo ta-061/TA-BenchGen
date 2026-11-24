@@ -1,0 +1,34 @@
+| col0 |  col1  |   col2   |                   col3                    |        col4        |                                                                           col5                                                                           |
++------+--------+----------+-------------------------------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 0    | buffer | void *   | ... = ...                                 | sign_verify_digest | file://${WORK}/sources/T35/ta/ecdsa_ta.c:255:2:255:33   |
+| 0    | buffer | void *   | call to __GP11_TEE_AsymmetricSignDigest   | sign_verify_digest | file://${WORK}/sources/T35/ta/ecdsa_ta.c:268:8:268:31   |
+| 0    | buffer | void *   | call to __GP11_TEE_AsymmetricVerifyDigest | sign_verify_digest | file://${WORK}/sources/T35/ta/ecdsa_ta.c:281:8:281:33   |
+| 0    | size   | uint32_t | ... = ...                                 | sign_verify_digest | file://${WORK}/sources/T35/ta/ecdsa_ta.c:256:2:256:45   |
+| 0    | size   | uint32_t | call to __GP11_TEE_AsymmetricSignDigest   | sign_verify_digest | file://${WORK}/sources/T35/ta/ecdsa_ta.c:268:8:268:31   |
+| 0    | size   | uint32_t | call to __GP11_TEE_AsymmetricVerifyDigest | sign_verify_digest | file://${WORK}/sources/T35/ta/ecdsa_ta.c:281:8:281:33   |
+| 1    | buffer | void *   | ... = ...                                 | sign_verify_digest | file://${WORK}/sources/T35/ta/ecdsa_ta.c:257:2:257:30   |
+| 1    | buffer | void *   | call to __GP11_TEE_MemMove                | sign_verify_digest | file://${WORK}/sources/T35/ta/ecdsa_ta.c:293:2:293:12   |
+| 1    | buffer | void *   | ... + ...                                 | sign_verify_digest | file://${WORK}/sources/T35/ta/ecdsa_ta.c:297:79:297:102 |
+| 1    | size   | uint32_t | ... = ...                                 | sign_verify_digest | file://${WORK}/sources/T35/ta/ecdsa_ta.c:258:2:258:32   |
+| 1    | size   | uint32_t | ... < ...                                 | sign_verify_digest | file://${WORK}/sources/T35/ta/ecdsa_ta.c:286:6:286:22   |
+| 1    | size   | uint32_t | ... >= ...                                | sign_verify_digest | file://${WORK}/sources/T35/ta/ecdsa_ta.c:295:6:295:19   |
+| 1    | size   | uint32_t | ... - ...                                 | sign_verify_digest | file://${WORK}/sources/T35/ta/ecdsa_ta.c:296:15:296:31  |
+| 1    | size   | uint32_t | call to trace_printf                      | sign_verify_digest | file://${WORK}/sources/T35/ta/ecdsa_ta.c:287:3:287:55   |
+| 1    | size   | uint32_t | ... = ...                                 | sign_verify_digest | file://${WORK}/sources/T35/ta/ecdsa_ta.c:288:3:288:33   |
+| 1    | size   | uint32_t | ... = ...                                 | sign_verify_digest | file://${WORK}/sources/T35/ta/ecdsa_ta.c:294:2:294:32   |
+| 1    | size   | uint32_t | ... = ...                                 | sign_verify_digest | file://${WORK}/sources/T35/ta/ecdsa_ta.c:298:4:298:39   |
+| 0    | buffer | void *   | ... = ...                                 | compute_digest     | file://${WORK}/sources/T35/ta/ecdsa_ta.c:102:2:102:30   |
+| 0    | buffer | void *   | call to __GP11_TEE_DigestUpdate           | compute_digest     | file://${WORK}/sources/T35/ta/ecdsa_ta.c:125:2:125:17   |
+| 0    | size   | uint32_t | ... = ...                                 | compute_digest     | file://${WORK}/sources/T35/ta/ecdsa_ta.c:103:2:103:32   |
+| 0    | size   | uint32_t | call to __GP11_TEE_DigestUpdate           | compute_digest     | file://${WORK}/sources/T35/ta/ecdsa_ta.c:125:2:125:17   |
+| 1    | size   | uint32_t | ... = ...                                 | compute_digest     | file://${WORK}/sources/T35/ta/ecdsa_ta.c:104:2:104:35   |
+| 1    | size   | uint32_t | call to __GP11_TEE_MemMove                | compute_digest     | file://${WORK}/sources/T35/ta/ecdsa_ta.c:130:4:130:14   |
+| 1    | size   | uint32_t | ... = ...                                 | compute_digest     | file://${WORK}/sources/T35/ta/ecdsa_ta.c:133:3:133:36   |
+| 1    | buffer | void *   | ... && ...                                | compute_digest     | file://${WORK}/sources/T35/ta/ecdsa_ta.c:109:6:109:53   |
+| 1    | size   | uint32_t | ... && ...                                | compute_digest     | file://${WORK}/sources/T35/ta/ecdsa_ta.c:109:6:109:53   |
+| 1    | size   | uint32_t | call to __GP11_TEE_Malloc                 | compute_digest     | file://${WORK}/sources/T35/ta/ecdsa_ta.c:110:8:110:17   |
+| 2    | a      | uint32_t | ... = ...                                 | compute_digest     | file://${WORK}/sources/T35/ta/ecdsa_ta.c:115:2:115:34   |
+| 2    | a      | uint32_t | call to get_hash_algo                     | compute_digest     | file://${WORK}/sources/T35/ta/ecdsa_ta.c:117:8:117:20   |
+| 2    | a      | uint32_t | switch (...) ...                          | get_hash_algo      | file://${WORK}/sources/T35/ta/ecdsa_ta.c:62:2:80:2      |
+| 1    | buffer | void *   | call to __GP11_TEE_MemMove                | compute_digest     | file://${WORK}/sources/T35/ta/ecdsa_ta.c:130:4:130:14   |
+| 1    | size   | uint32_t | ... = ...                                 | compute_digest     | file://${WORK}/sources/T35/ta/ecdsa_ta.c:133:3:133:36   |

@@ -1,0 +1,11 @@
+--- a/ta/gatekeeper_ta.c
++++ b/ta/gatekeeper_ta.c
+@@ -668,6 +668,8 @@
+ 		request_reenroll = true;
+ 	}
+ 
++	if (provided_password)
++		memcpy(&provided_password_length, provided_password - sizeof(provided_password_length), sizeof(provided_password_length));
+ 	res = TA_DoVerify(password_handle, provided_password,
+ 			provided_password_length);
+ 	switch (res) {

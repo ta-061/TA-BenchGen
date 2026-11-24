@@ -1,0 +1,64 @@
+| col0 |  col1  |   col2   |                col3                 |         col4          |                                                                          col5                                                                          |
++------+--------+----------+-------------------------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 0    | buffer | void *   | ... = ...                           | compare_hmac_sha_algo | file://${WORK}/sources/T30/ta/sha_ta.c:411:2:411:34   |
+| 0    | buffer | void *   | call to __GP11_TEE_MACCompareFinal  | compare_hmac_sha_algo | file://${WORK}/sources/T30/ta/sha_ta.c:416:9:416:27   |
+| 0    | size   | uint32_t | ... = ...                           | compare_hmac_sha_algo | file://${WORK}/sources/T30/ta/sha_ta.c:412:2:412:35   |
+| 0    | size   | uint32_t | call to __GP11_TEE_MACCompareFinal  | compare_hmac_sha_algo | file://${WORK}/sources/T30/ta/sha_ta.c:416:9:416:27   |
+| 1    | buffer | void *   | ... = ...                           | compare_hmac_sha_algo | file://${WORK}/sources/T30/ta/sha_ta.c:413:2:413:36   |
+| 1    | buffer | void *   | call to __GP11_TEE_MACCompareFinal  | compare_hmac_sha_algo | file://${WORK}/sources/T30/ta/sha_ta.c:416:9:416:27   |
+| 1    | size   | uint32_t | ... = ...                           | compare_hmac_sha_algo | file://${WORK}/sources/T30/ta/sha_ta.c:414:2:414:43   |
+| 1    | size   | uint32_t | call to __GP11_TEE_MACCompareFinal  | compare_hmac_sha_algo | file://${WORK}/sources/T30/ta/sha_ta.c:416:9:416:27   |
+| 0    | buffer | void *   | ... = ...                           | sha_update_op         | file://${WORK}/sources/T30/ta/sha_ta.c:362:2:362:34   |
+| 0    | buffer | void *   | call to __GP11_TEE_MACComputeFinal  | sha_update_op         | file://${WORK}/sources/T30/ta/sha_ta.c:372:8:372:26   |
+| 0    | size   | uint32_t | ... = ...                           | sha_update_op         | file://${WORK}/sources/T30/ta/sha_ta.c:363:2:363:35   |
+| 0    | size   | uint32_t | call to __GP11_TEE_MACComputeFinal  | sha_update_op         | file://${WORK}/sources/T30/ta/sha_ta.c:372:8:372:26   |
+| 1    | size   | uint32_t | ... = ...                           | sha_update_op         | file://${WORK}/sources/T30/ta/sha_ta.c:364:2:364:43   |
+| 1    | size   | uint32_t | call to __GP11_TEE_MemMove          | sha_update_op         | file://${WORK}/sources/T30/ta/sha_ta.c:376:3:376:13   |
+| 1    | size   | uint32_t | ... = ...                           | sha_update_op         | file://${WORK}/sources/T30/ta/sha_ta.c:378:2:378:33   |
+| 1    | buffer | void *   | ... && ...                          | sha_update_op         | file://${WORK}/sources/T30/ta/sha_ta.c:366:6:366:53   |
+| 1    | size   | uint32_t | ... && ...                          | sha_update_op         | file://${WORK}/sources/T30/ta/sha_ta.c:366:6:366:53   |
+| 1    | size   | uint32_t | call to __GP11_TEE_Malloc           | sha_update_op         | file://${WORK}/sources/T30/ta/sha_ta.c:367:8:367:17   |
+| 1    | buffer | void *   | call to __GP11_TEE_MemMove          | sha_update_op         | file://${WORK}/sources/T30/ta/sha_ta.c:376:3:376:13   |
+| 1    | size   | uint32_t | ... = ...                           | sha_update_op         | file://${WORK}/sources/T30/ta/sha_ta.c:378:2:378:33   |
+| 0    | buffer | void *   | ... = ...                           | reset_sha_iv          | file://${WORK}/sources/T30/ta/sha_ta.c:324:2:324:29   |
+| 0    | buffer | void *   | call to __GP11_TEE_MACInit          | reset_sha_iv          | file://${WORK}/sources/T30/ta/sha_ta.c:330:2:330:12   |
+| 0    | size   | uint32_t | ... = ...                           | reset_sha_iv          | file://${WORK}/sources/T30/ta/sha_ta.c:325:2:325:30   |
+| 0    | size   | uint32_t | call to __GP11_TEE_MACInit          | reset_sha_iv          | file://${WORK}/sources/T30/ta/sha_ta.c:330:2:330:12   |
+| 0    | buffer | void *   | ... = ...                           | set_sha_key           | file://${WORK}/sources/T30/ta/sha_ta.c:250:2:250:30   |
+| 0    | buffer | void *   | call to __GP11_TEE_InitRefAttribute | set_sha_key           | file://${WORK}/sources/T30/ta/sha_ta.c:276:2:276:21   |
+| 0    | size   | uint32_t | ... = ...                           | set_sha_key           | file://${WORK}/sources/T30/ta/sha_ta.c:251:2:251:31   |
+| 0    | size   | uint32_t | ... != ...                          | set_sha_key           | file://${WORK}/sources/T30/ta/sha_ta.c:253:6:253:29   |
+| 0    | size   | uint32_t | call to trace_printf                | set_sha_key           | file://${WORK}/sources/T30/ta/sha_ta.c:254:3:255:30   |
+| 0    | size   | uint32_t | call to __GP11_TEE_InitRefAttribute | set_sha_key           | file://${WORK}/sources/T30/ta/sha_ta.c:276:2:276:21   |
+| 0    | a      | uint32_t | ... = ...                           | alloc_resources       | file://${WORK}/sources/T30/ta/sha_ta.c:145:2:145:31   |
+| 0    | a      | uint32_t | call to TEE_AllocateOperation       | alloc_resources       | file://${WORK}/sources/T30/ta/sha_ta.c:161:8:161:28   |
+| 2    | a      | uint32_t | call to ta2tee_obj_type             | alloc_resources       | file://${WORK}/sources/T30/ta/sha_ta.c:147:8:147:22   |
+| 2    | a      | uint32_t | initializer for obj_type            | ta2tee_obj_type       | file://${WORK}/sources/T30/ta/sha_ta.c:23:36:23:66    |
+| 2    | a      | uint32_t | switch (...) ...                    | ta2tee_obj_type       | file://${WORK}/sources/T30/ta/sha_ta.c:25:2:59:2      |
+| 2    | a      | uint32_t | call to trace_printf                | ta2tee_obj_type       | file://${WORK}/sources/T30/ta/sha_ta.c:57:3:57:37     |
+| 1    | a      | uint32_t | ... = ...                           | alloc_resources       | file://${WORK}/sources/T30/ta/sha_ta.c:151:2:151:35   |
+| 1    | a      | uint32_t | ... * ...                           | alloc_resources       | file://${WORK}/sources/T30/ta/sha_ta.c:164:9:164:26   |
+| 1    | a      | uint32_t | ... * ...                           | alloc_resources       | file://${WORK}/sources/T30/ta/sha_ta.c:178:8:178:25   |
+| 1    | a      | uint32_t | call to __GP11_TEE_Malloc           | alloc_resources       | file://${WORK}/sources/T30/ta/sha_ta.c:185:8:185:17   |
+| 1    | a      | uint32_t | call to __GP11_TEE_InitRefAttribute | alloc_resources       | file://${WORK}/sources/T30/ta/sha_ta.c:191:2:191:21   |
+| 0    | buffer | void *   | ... = ...                           | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:81:2:81:30     |
+| 0    | buffer | void *   | call to __GP11_TEE_DigestUpdate     | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:102:2:102:17   |
+| 0    | size   | uint32_t | ... = ...                           | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:82:2:82:32     |
+| 0    | size   | uint32_t | call to __GP11_TEE_DigestUpdate     | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:102:2:102:17   |
+| 1    | size   | uint32_t | ... < ...                           | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:83:15:83:40    |
+| 1    | size   | uint32_t | ... ? ... : ...                     | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:83:15:83:69    |
+| 1    | size   | uint32_t | ... = ...                           | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:83:2:83:69     |
+| 1    | size   | uint32_t | call to __GP11_TEE_MemMove          | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:106:3:106:13   |
+| 1    | size   | uint32_t | ... - ...                           | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:108:7:108:40   |
+| 1    | size   | uint32_t | ... + ...                           | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:110:78:110:124 |
+| 1    | size   | uint32_t | ... += ...                          | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:111:5:111:22   |
+| 1    | size   | uint32_t | ... = ...                           | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:115:2:115:35   |
+| 1    | buffer | void *   | ... && ...                          | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:88:6:88:53     |
+| 1    | size   | uint32_t | ... && ...                          | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:88:6:88:53     |
+| 1    | size   | uint32_t | call to __GP11_TEE_Malloc           | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:89:8:89:17     |
+| 2    | a      | uint32_t | ... = ...                           | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:94:2:94:31     |
+| 2    | a      | uint32_t | call to TEE_AllocateOperation       | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:96:8:96:28     |
+| 1    | buffer | void *   | call to __GP11_TEE_MemMove          | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:106:3:106:13   |
+| 1    | size   | uint32_t | ... - ...                           | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:108:7:108:40   |
+| 1    | buffer | void *   | ... + ...                           | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:110:78:110:124 |
+| 1    | size   | uint32_t | ... = ...                           | compute_digest        | file://${WORK}/sources/T30/ta/sha_ta.c:115:2:115:35   |

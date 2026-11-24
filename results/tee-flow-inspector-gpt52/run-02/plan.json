@@ -1,0 +1,55 @@
+{
+  "artifact_commit": "e06f0c6dccbf1a30c10a79f3bbb0a92641f383e7",
+  "image_id": "sha256:ac4feb4da4d5951890f8308a62a825722edb96f65d8aa6a29631b576121dafb4",
+  "prompt": "experiments/e12_general_sink_screening",
+  "model": "gpt-5.2-2025-12-11",
+  "max_workers": 15,
+  "max_attempt_waves": 2,
+  "cases": {
+    "T17": {
+      "source": "defective/case_061088fe19e546b2/source"
+    },
+    "T18": {
+      "source": "defective/case_19b7f03571ec46b1/source"
+    },
+    "T19": {
+      "source": "defective/case_1ac4b6f08ebd405a/source"
+    },
+    "T20": {
+      "source": "defective/case_2509fc67e11f4a0d/source"
+    },
+    "T21": {
+      "source": "defective/case_427eec3671c74536/source"
+    },
+    "T22": {
+      "source": "defective/case_4c9c820bfad042e7/source"
+    },
+    "T24": {
+      "source": "defective/case_684c4bfe44b04d86/source"
+    },
+    "T26": {
+      "source": "defective/case_9ab8adeb3dd74fba/source"
+    },
+    "T27": {
+      "source": "defective/case_b1818f0fd5ae4f9e/source"
+    },
+    "T28": {
+      "source": "defective/case_b9e19bc717204a6f/source"
+    },
+    "T30": {
+      "source": "defective/case_c4cb059bfbd14ca1/source"
+    },
+    "T31": {
+      "source": "defective/case_c893fb83418c44fd/source"
+    },
+    "T34": {
+      "source": "defective/case_e8b4365cf5a3481c/source"
+    },
+    "T35": {
+      "source": "defective/case_edd8fccc76624196/source"
+    },
+    "T36": {
+      "source": "defective/case_edc7a9e855a140d7/source"
+    }
+  }
+}

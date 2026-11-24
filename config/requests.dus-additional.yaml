@@ -1,0 +1,13 @@
+# DUSの追加要求。requests.production.yaml の収集でDUSの採用が1件だったため追加する。
+
+requests:
+  - ta: benchmark/normal/gatekeeper
+    defects: {DUS: 1}
+    count: 1
+    max_attempts: 3
+
+  # 複合。DUSを含む複合と、gatekeeperのUDOは初回の要求にない未確認の組合せ。
+  - ta: benchmark/normal/gatekeeper
+    defects: {DUS: 1, UDO: 1}
+    count: 1
+    max_attempts: 3

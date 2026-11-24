@@ -1,0 +1,18 @@
+| col0 |  col1  |            col2            |        col3        |                                                                          col4                                                                          |
++------+--------+----------------------------+--------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 0    | memref | ... = ...                  | sign_verify_digest | file://${WORK}/sources/T18/ta/ecdsa_ta.c:255:2:255:33 |
+| 0    | memref | ... = ...                  | sign_verify_digest | file://${WORK}/sources/T18/ta/ecdsa_ta.c:256:2:256:45 |
+| 1    | memref | ... = ...                  | sign_verify_digest | file://${WORK}/sources/T18/ta/ecdsa_ta.c:257:2:257:30 |
+| 1    | memref | ... = ...                  | sign_verify_digest | file://${WORK}/sources/T18/ta/ecdsa_ta.c:258:2:258:32 |
+| 1    | memref | call to trace_printf       | sign_verify_digest | file://${WORK}/sources/T18/ta/ecdsa_ta.c:287:3:287:55 |
+| 1    | memref | ... = ...                  | sign_verify_digest | file://${WORK}/sources/T18/ta/ecdsa_ta.c:288:3:288:33 |
+| 1    | memref | ... = ...                  | sign_verify_digest | file://${WORK}/sources/T18/ta/ecdsa_ta.c:294:2:294:32 |
+| 0    | memref | ... = ...                  | compute_digest     | file://${WORK}/sources/T18/ta/ecdsa_ta.c:102:2:102:30 |
+| 0    | memref | ... = ...                  | compute_digest     | file://${WORK}/sources/T18/ta/ecdsa_ta.c:103:2:103:32 |
+| 1    | memref | ... = ...                  | compute_digest     | file://${WORK}/sources/T18/ta/ecdsa_ta.c:104:2:104:35 |
+| 1    | memref | ... && ...                 | compute_digest     | file://${WORK}/sources/T18/ta/ecdsa_ta.c:109:6:109:53 |
+| 1    | memref | ... && ...                 | compute_digest     | file://${WORK}/sources/T18/ta/ecdsa_ta.c:109:6:109:53 |
+| 1    | memref | call to __GP11_TEE_Malloc  | compute_digest     | file://${WORK}/sources/T18/ta/ecdsa_ta.c:110:8:110:17 |
+| 2    | value  | ... = ...                  | compute_digest     | file://${WORK}/sources/T18/ta/ecdsa_ta.c:115:2:115:34 |
+| 1    | memref | call to __GP11_TEE_MemMove | compute_digest     | file://${WORK}/sources/T18/ta/ecdsa_ta.c:130:4:130:14 |
+| 1    | memref | ... = ...                  | compute_digest     | file://${WORK}/sources/T18/ta/ecdsa_ta.c:133:3:133:36 |

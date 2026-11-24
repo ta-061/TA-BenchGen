@@ -1,0 +1,6 @@
+Unencrypted Data Output: 2
+['file://${WORK}/sources/T17/ta/secure_storage_ta.c:206:20:206:23', 'file://${WORK}/sources/T17/ta/secure_storage_ta.c:222:19:222:22']
+Input Validation Weakness: 0
+[]
+Shared Memory Overwrite: 0
+[]

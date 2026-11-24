@@ -1,0 +1,6 @@
+Unencrypted Data Output: 1
+['file://${WORK}/sources/T22/ta/hotp_ta.c:191:18:191:18']
+Input Validation Weakness: 0
+[]
+Shared Memory Overwrite: 0
+[]

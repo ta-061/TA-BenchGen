@@ -1,0 +1,24 @@
+| col0 |  col1  |   col2   |                    col3                    |       col4        |                                                                             col5                                                                             |
++------+--------+----------+--------------------------------------------+-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 2    | a      | uint32_t | ... = ...                                  | sign_verify       | file://${WORK}/sources/T20/ta/sign_verify_ta.c:174:2:174:28 |
+| 2    | a      | uint32_t | call to select_algo                        | sign_verify       | file://${WORK}/sources/T20/ta/sign_verify_ta.c:175:8:175:18 |
+| 2    | a      | uint32_t | switch (...) ...                           | select_algo       | file://${WORK}/sources/T20/ta/sign_verify_ta.c:84:2:117:2   |
+| 0    | buffer | void *   | ... = ...                                  | sign_verify       | file://${WORK}/sources/T20/ta/sign_verify_ta.c:183:2:183:30 |
+| 0    | buffer | void *   | call to __GP11_TEE_DigestUpdate            | sign_verify       | file://${WORK}/sources/T20/ta/sign_verify_ta.c:200:2:200:17 |
+| 0    | size   | uint32_t | ... = ...                                  | sign_verify       | file://${WORK}/sources/T20/ta/sign_verify_ta.c:184:2:184:32 |
+| 0    | size   | uint32_t | call to __GP11_TEE_DigestUpdate            | sign_verify       | file://${WORK}/sources/T20/ta/sign_verify_ta.c:200:2:200:17 |
+| 1    | buffer | void *   | ... = ...                                  | sign_verify       | file://${WORK}/sources/T20/ta/sign_verify_ta.c:185:2:185:30 |
+| 1    | buffer | void *   | ExprStmt                                   | sign_verify       | file://${WORK}/sources/T20/ta/sign_verify_ta.c:240:2:240:27 |
+| 1    | buffer | void *   | call to memcpy                             | sign_verify       | file://${WORK}/sources/T20/ta/sign_verify_ta.c:240:2:240:7  |
+| 1    | size   | uint32_t | ... = ...                                  | sign_verify       | file://${WORK}/sources/T20/ta/sign_verify_ta.c:186:2:186:32 |
+| 1    | size   | uint32_t | ... < ...                                  | sign_verify       | file://${WORK}/sources/T20/ta/sign_verify_ta.c:233:6:233:27 |
+| 3    | a      | uint32_t | ... = ...                                  | sign_verify       | file://${WORK}/sources/T20/ta/sign_verify_ta.c:187:2:187:27 |
+| 3    | a      | uint32_t | call to generate_rsa_keys                  | sign_verify       | file://${WORK}/sources/T20/ta/sign_verify_ta.c:191:8:191:24 |
+| 3    | a      | uint32_t | call to TEE_AllocateOperation              | sign_verify       | file://${WORK}/sources/T20/ta/sign_verify_ta.c:207:8:207:28 |
+| 3    | a      | uint32_t | call to TEE_AllocateOperation              | sign_verify       | file://${WORK}/sources/T20/ta/sign_verify_ta.c:220:8:220:28 |
+| 3    | a      | uint32_t | call to __GP11_TEE_AllocateTransientObject | generate_rsa_keys | file://${WORK}/sources/T20/ta/sign_verify_ta.c:36:8:36:34   |
+| 3    | a      | uint32_t | call to __GP11_TEE_GenerateKey             | generate_rsa_keys | file://${WORK}/sources/T20/ta/sign_verify_ta.c:41:8:41:22   |
+| 3    | a      | uint32_t | call to __GP11_TEE_AllocateTransientObject | generate_rsa_keys | file://${WORK}/sources/T20/ta/sign_verify_ta.c:45:8:45:34   |
+| 1    | size   | uint32_t | ... = ...                                  | sign_verify       | file://${WORK}/sources/T20/ta/sign_verify_ta.c:234:3:234:33 |
+| 1    | size   | uint32_t | call to trace_printf                       | sign_verify       | file://${WORK}/sources/T20/ta/sign_verify_ta.c:235:3:235:54 |
+| 1    | size   | uint32_t | ... = ...                                  | sign_verify       | file://${WORK}/sources/T20/ta/sign_verify_ta.c:241:2:241:32 |
